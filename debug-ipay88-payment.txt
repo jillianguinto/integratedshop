@@ -1,0 +1,1841 @@
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000096
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000096)
+    [TransId] => T0000836700
+    [AuthCode] => 150066
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => Bf3ZHOi67r4LmgvVgtCwUIcw9hQ=
+    [adminhtml] => 69696610891ded93f282e4d983e2a243
+    [external_no_cache] => 1
+    [frontend] => e296a172772c24b1b316f57450516529
+    [PHPSESSID] => d6147bc0d1ddfd1e7efda4611c6a8128
+    [conn] => Array
+        (
+            [user] => healthfipreprod
+            [pwd] => *D27F3A28C7BC41609EE876DBEE952EE33983C791
+            [chset] => utf8
+        )
+
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000097
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000097)
+    [TransId] => T0000838900
+    [AuthCode] => 888789
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => NPh0JD040I808mBjm/qscpKnyoE=
+    [external_no_cache] => 1
+    [frontend] => 41b5a7721cdcb6d275a71dcb1918a018
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000103
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000103)
+    [TransId] => T0000839000
+    [AuthCode] => 001614
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => tu4SYJg9k9gFPcEU5eDo4szEvzo=
+    [conn] => Array
+        (
+            [user] => healthfipreprod
+            [pwd] => *D27F3A28C7BC41609EE876DBEE952EE33983C791
+            [chset] => utf8
+        )
+
+    [external_no_cache] => 1
+    [adminhtml] => fe36fd63c5bbef2562d3c673d7f4f916
+    [frontend] => e4faf1e254b0da8326ce2073d3465be8
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000106
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000106)
+    [TransId] => T0000839100
+    [AuthCode] => 044842
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => mw5gYrrAR8aArjUtOeSMzLmMGWs=
+    [external_no_cache] => 1
+    [frontend] => 9fe2444869f14b1812ed86b2e188b78a
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000114
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000114)
+    [TransId] => T0000839500
+    [AuthCode] => 567699
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => TvuIjLtz/MEzuA9YPzSXae1p/wc=
+    [frontend] => be606cb32faf786c2d361843a199d074
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000116
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000116)
+    [TransId] => T0000839600
+    [AuthCode] => 198742
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => 7ojoVfW0odtbxu2uknPztePUzCU=
+    [frontend] => 01de36f7d64589fa6fd49886e98f59e4
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000126
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000126)
+    [TransId] => T0000840300
+    [AuthCode] => 427379
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => 7WEtKanBOtYfjJbDDG1LT/gY24c=
+    [conn] => Array
+        (
+            [user] => healthfipreprod
+            [pwd] => *D27F3A28C7BC41609EE876DBEE952EE33983C791
+            [chset] => utf8
+            [db] => healthfi_preprod
+            [host] => localhost
+        )
+
+    [frontend] => a7bd00702f4c07ad1ab7d9ae75ffea2d
+    [adminhtml] => 8d0417d961c026c9c099a5329404f5bb
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000131
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000131)
+    [TransId] => T0000840400
+    [AuthCode] => 278896
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => OtCbLxIhj35c80p59mAgdnNlYLY=
+    [conn] => Array
+        (
+            [user] => healthfipreprod
+            [pwd] => *D27F3A28C7BC41609EE876DBEE952EE33983C791
+            [chset] => utf8
+        )
+
+    [adminhtml] => b539c9c75e178d383a46acbe245683c9
+    [frontend] => 0e91ecde3cfd6b5c26ab70166ad60af6
+    [PHPSESSID] => 01ac9aed30286d4142406f45370732ef
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000136
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000136)
+    [TransId] => T0000840700
+    [AuthCode] => 144527
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => vx59u6AOx2eGolXAzNdT9drQg/E=
+    [adminhtml] => eb438a0db096621d9562293734f211b9
+    [frontend] => 734334717225c6f4601b9265f64d36e1
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000138
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000138)
+    [TransId] => T0000841400
+    [AuthCode] => 296291
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => OIGHepOwhNbIYiCdKnoxDhZSbq8=
+    [adminhtml] => eb438a0db096621d9562293734f211b9
+    [frontend] => 734334717225c6f4601b9265f64d36e1
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000139
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000139)
+    [TransId] => T0000841500
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Customer Cancel Transaction
+    [Signature] => 907R/PUHYke0nxFFS4yk3fDU96o=
+    [frontend] => 5956218c7f74b0671a17e0bcfe9af0aa
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000140
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000140)
+    [TransId] => T0000841600
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Fail(Bank Declined Transaction)
+    [Signature] => kwBeCxkei8sdRmXlWa7xSBdMCUg=
+    [frontend] => 5956218c7f74b0671a17e0bcfe9af0aa
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000142
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000142)
+    [TransId] => T0000841700
+    [AuthCode] => 413051
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => k/NsbGcEBRF6w8YdnGJa6CEYU6Q=
+    [frontend] => 5956218c7f74b0671a17e0bcfe9af0aa
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000143
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000143)
+    [TransId] => T0000841800
+    [AuthCode] => 532405
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => C/FYmmh2CIkgPjgQEG83D3wXFpc=
+    [frontend] => 5956218c7f74b0671a17e0bcfe9af0aa
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000144
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000144)
+    [TransId] => T0000841900
+    [AuthCode] => 279430
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => hO7Jsa0w7QzU1tVggQBIGdiwPKM=
+    [frontend] => 5956218c7f74b0671a17e0bcfe9af0aa
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000146
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000146)
+    [TransId] => T0000842100
+    [AuthCode] => 868785
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => QY6RtxkvQUa56Lvid6g5ClqMnNQ=
+    [conn] => Array
+        (
+            [user] => healthfipreprod
+            [pwd] => *D27F3A28C7BC41609EE876DBEE952EE33983C791
+            [chset] => utf8
+        )
+
+    [external_no_cache] => 1
+    [frontend] => 5546de55aee95f764fc34c515f018fd1
+    [adminhtml] => 44015ca0c60da8f2c2e11c49d9cfdb9e
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000147
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000147)
+    [TransId] => T0000842200
+    [AuthCode] => 519008
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => GOx9D1dudoS3YuNcwjQVXnYs2DI=
+    [conn] => Array
+        (
+            [user] => healthfipreprod
+            [pwd] => *D27F3A28C7BC41609EE876DBEE952EE33983C791
+            [chset] => utf8
+        )
+
+    [external_no_cache] => 1
+    [adminhtml] => 44015ca0c60da8f2c2e11c49d9cfdb9e
+    [frontend] => d2ffb6a7febc972539f36fcad21b3079
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000149
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000149)
+    [TransId] => T0000842700
+    [AuthCode] => 928233
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => fMADfMX3KO9os7QeK7cnyeMh66w=
+    [external_no_cache] => 1
+    [adminhtml] => 2744fb61987f4cdada649460298f5806
+    [frontend] => 1bb0a4192f226224b0018a68908b6baa
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000150
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000150)
+    [TransId] => T0000842900
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Customer Cancel Transaction
+    [Signature] => Y5FhNlez94JtMnsutmiStRI2mCY=
+    [external_no_cache] => 1
+    [adminhtml] => 2744fb61987f4cdada649460298f5806
+    [frontend] => 1bb0a4192f226224b0018a68908b6baa
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000155
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000155)
+    [TransId] => T0000843100
+    [AuthCode] => 306255
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => 5gduslKsFMzY//XMGgaihedhQ9Y=
+    [stf] => 1389596109
+    [external_no_cache] => 1
+    [adminhtml] => 2744fb61987f4cdada649460298f5806
+    [frontend] => 1bb0a4192f226224b0018a68908b6baa
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000158
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000158)
+    [TransId] => T0000843200
+    [AuthCode] => 197140
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => SCIG4KkgfCOAkCpy3S4jmBiAge8=
+    [stf] => 1389596109
+    [external_no_cache] => 1
+    [adminhtml] => 2744fb61987f4cdada649460298f5806
+    [frontend] => 1bb0a4192f226224b0018a68908b6baa
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000161
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000161)
+    [TransId] => T0000844500
+    [AuthCode] => 847301
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => LRZULn/D5s6q8gbrAqVX31i+WDs=
+    [frontend] => 537c516d54d78450cff40981d2db3a63
+    [adminhtml] => 55353c1d7a14d0e0488882053d056f69
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000162
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000162)
+    [TransId] => T0000844800
+    [AuthCode] => 402141
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => wCoMyuBsYggCjX+ivAQd5PovTiY=
+    [adminhtml] => 55353c1d7a14d0e0488882053d056f69
+    [external_no_cache] => 1
+    [frontend] => 8e7d735058c597e255888642195a0880
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000163
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000163)
+    [TransId] => T0000845200
+    [AuthCode] => 893092
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => e6XEs4dejAPvBJk2VKIkpfQqu8E=
+    [frontend] => 3d71620a86a4cc23bd32f5bab9dfd96e
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000164
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000164)
+    [TransId] => T0000845700
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Permission not allow
+    [Signature] => 
+    [frontend] => 3d71620a86a4cc23bd32f5bab9dfd96e
+    [external_no_cache] => 1
+    [adminhtml] => 83a745ceec028da28e43847c29dda192
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000165
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000165)
+    [TransId] => T0000845800
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Fail(Bank Declined Transaction)
+    [Signature] => Y73VmP7BdZz2HuW5Il4lG8S5iPY=
+    [frontend] => 3d71620a86a4cc23bd32f5bab9dfd96e
+    [external_no_cache] => 1
+    [adminhtml] => 83a745ceec028da28e43847c29dda192
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000166
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000166)
+    [TransId] => T0000846100
+    [AuthCode] => 828105
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => W552a2gB/zE8ay3jOWig3CNXC6w=
+    [frontend] => 3d71620a86a4cc23bd32f5bab9dfd96e
+    [external_no_cache] => 1
+    [adminhtml] => 83a745ceec028da28e43847c29dda192
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000169
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000169)
+    [TransId] => T0000847100
+    [AuthCode] => 957027
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => 3FXREu9PjNLN9TS8lu0A7AeUrBs=
+    [frontend] => 7ce57844fc4288b3ea6d12c87b5878fb
+    [adminhtml] => 7c8fb24af5f126b48be57db768f26ebf
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000170
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000170)
+    [TransId] => T0000847400
+    [AuthCode] => 742290
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => BgEknvWlENqPlM68diULP+dQX60=
+    [frontend] => 7ce57844fc4288b3ea6d12c87b5878fb
+    [adminhtml] => 7c8fb24af5f126b48be57db768f26ebf
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000171
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000171)
+    [TransId] => T0000847500
+    [AuthCode] => 850719
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => stKJR9aUi7lqkf7Spe+S38r4ohg=
+    [external_no_cache] => 1
+    [frontend] => 83c3e446914dca560f72273c77b20bc9
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000175
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000175)
+    [TransId] => T0000847700
+    [AuthCode] => 085995
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => AnyBpzDrERmbyuPVfabd8jHetzY=
+    [external_no_cache] => 1
+    [frontend] => 83c3e446914dca560f72273c77b20bc9
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000176
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000176)
+    [TransId] => T0000848300
+    [AuthCode] => 536586
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => kpso8DHXYBo+Ja4/WjWmJ3jNRDQ=
+    [frontend] => ad03e151d2012b67ed5a2c5776f39448
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000177
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000177)
+    [TransId] => T0000848400
+    [AuthCode] => 327144
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => 6AUi5BpojOKETvpGMzfwhBUB0XI=
+    [frontend] => 54d9b93a10510f5ce1dbf158b6708556
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000178
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000178)
+    [TransId] => T0000848500
+    [AuthCode] => 979259
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => Z41zeRKH37ml+tSlqBhCLmZDxFo=
+    [external_no_cache] => 1
+    [frontend] => 4e0b83b03c2cb426f040bcbfa4b14f09
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000181
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000181)
+    [TransId] => T0000848600
+    [AuthCode] => 278088
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => zJPBeYiRIgTxH2oHqe1DyGZvcGY=
+    [frontend] => 32415db933cd800ac1b4624f779b4a4a
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000185
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000185)
+    [TransId] => T0000848800
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Fail(Bank Declined Transaction)
+    [Signature] => Ugnnkc+EGUXAiovR/PJ4mtxq/rI=
+    [external_no_cache] => 1
+    [frontend] => ce4891f4b40d5a6c60ba11126dd9d21a
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000187
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000187)
+    [TransId] => T0000849000
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Fail(Bank Declined Transaction)
+    [Signature] => U68WckHmX1nLU9kRb4G8wogTssQ=
+    [external_no_cache] => 1
+    [frontend] => 4e0b83b03c2cb426f040bcbfa4b14f09
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000186
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000186)
+    [TransId] => T0000848900
+    [AuthCode] => 284267
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => YG8NYQRPpW+RBgU/ksmn3nXAMNM=
+    [frontend] => 54d9b93a10510f5ce1dbf158b6708556
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000188
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000188)
+    [TransId] => T0000849100
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Fail(Bank Declined Transaction)
+    [Signature] => ZkqZRFCoseX9Ndey4+HZ7D1ZfDA=
+    [frontend] => 54d9b93a10510f5ce1dbf158b6708556
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000189
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000189)
+    [TransId] => T0000849200
+    [AuthCode] => 542659
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => zVm0t9PGdoNzcABzTU7pgmeHVD8=
+    [external_no_cache] => 1
+    [frontend] => 4e0b83b03c2cb426f040bcbfa4b14f09
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000192
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000192)
+    [TransId] => T0000850900
+    [AuthCode] => 076534
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => vvYqnNV4tscb4LepmYkCBmorzn4=
+    [frontend] => d493629b085e8de2524024cdecf57882
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000193
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000193)
+    [TransId] => T0000851000
+    [AuthCode] => 171688
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => 2fBIn78QnaEi4Z9YJxFuu6p1ZhY=
+    [external_no_cache] => 1
+    [adminhtml] => 56e3a086df37b96e4b4e52575d3aac28
+    [frontend] => d0aabcbfd7bd6a85a8733e14025a14d2
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000207
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000207)
+    [TransId] => T0000853200
+    [AuthCode] => 634380
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => INYXVz8FfInmxdqBc2uZjtwGe2U=
+    [adminhtml] => 6c412cc3e96f8225aa3872a25098ab4f
+    [external_no_cache] => 1
+    [frontend] => c02899ecce594fd0842a0f6f25149ae9
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000210
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000210)
+    [TransId] => T0000853500
+    [AuthCode] => 211712
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => V/DcoE3mBWLs39Win6DduyhDLu4=
+    [external_no_cache] => 1
+    [adminhtml] => df7ebcc3c9577abd3c12608ead096427
+    [frontend] => c160146cd1f903fe546ee03c336a2935
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000211
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000211)
+    [TransId] => T0000853600
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Fail(Bank Declined Transaction)
+    [Signature] => 9Ru/J7wk/TPP4hKDKNkG1Ymt08Q=
+    [external_no_cache] => 1
+    [adminhtml] => df7ebcc3c9577abd3c12608ead096427
+    [frontend] => c160146cd1f903fe546ee03c336a2935
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000212
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000212)
+    [TransId] => T0000853700
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Fail(Bank Declined Transaction)
+    [Signature] => FubvS2OQvdsyck8KOsk4sVtD+Ew=
+    [adminhtml] => df7ebcc3c9577abd3c12608ead096427
+    [external_no_cache] => 1
+    [frontend] => c160146cd1f903fe546ee03c336a2935
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000213
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000213)
+    [TransId] => T0000853800
+    [AuthCode] => 259350
+    [Status] => 0
+    [ErrDesc] => Fail(Card issuing bank do not honor the transaction)
+    [Signature] => g2GTtOtLfpYisbcL427WwGd5tPo=
+    [frontend] => 330fdda96430bbce2007e9caa82d9474
+    [adminhtml] => 5f7ac8c3f6c285981d2de3a95c116c11
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000217
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000217)
+    [TransId] => T0000855200
+    [AuthCode] => 582012
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => Yh9OxMUMmS9ZZvkn+mnthlPRk6Q=
+    [external_no_cache] => 1
+    [frontend] => 75ec9b7959781906343ca5817a1b5882
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000220
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000220)
+    [TransId] => T0000861900
+    [AuthCode] => 893474
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => 0DXAc3W46asFXamFUY6E5VMq4Qo=
+    [conn] => Array
+        (
+            [user] => healthfipreprod
+            [pwd] => *D27F3A28C7BC41609EE876DBEE952EE33983C791
+            [chset] => utf8
+        )
+
+    [adminhtml] => 1ba1d2ba8789467f4a809df2cb257b14
+    [frontend] => e698e24344b25389e2192ab4882588cb
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000228
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000228)
+    [TransId] => T0000863300
+    [AuthCode] => 105755
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => 77pSRzITJZGOjLXYPT5J9JCcz48=
+    [frontend] => bcb02418823ee4fc519e4817a27d0254
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000234
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000234)
+    [TransId] => T0000863800
+    [AuthCode] => 114193
+    [Status] => 0
+    [ErrDesc] => Fail(Card issuing bank do not honor the transaction)
+    [Signature] => tu3IKSZ1mLmv936K7ugVtBfrDjw=
+    [external_no_cache] => 1
+    [adminhtml] => c5202c508139d0f482e32315d0d80937
+    [frontend] => 8954dca69176cf69bc3a4e0c6c7d4ab1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000243
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000243)
+    [TransId] => T0000866600
+    [AuthCode] => 703441
+    [Status] => 0
+    [ErrDesc] => Fail(Card issuing bank do not honor the transaction)
+    [Signature] => wF4SWO3SM7B8CmI1E4T4IF4i2EQ=
+    [external_no_cache] => 1
+    [adminhtml] => e45b18aa47edd7a7a7920ef3acc08b3c
+    [frontend] => 4fce4e0a65d0194fb1cd6eae6dcd1c89
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000245
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000245)
+    [TransId] => T0000866700
+    [AuthCode] => 719783
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => +1FeH2eKO3LWKHNZKaP8lDZD7fw=
+    [adminhtml] => c41a203b464a59624b6ab17f3f421ad7
+    [frontend] => 59bf29d32616307100d4837a21320308
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000253
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000253)
+    [TransId] => T0000870200
+    [AuthCode] => 005001
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => izQ/bpV8pS2hRuA1ZFHUhnCYyCU=
+    [user_name] => c_jmatas@unilab.com.ph
+    [pass_user_name] => itoaypass
+    [rememberme] => 1
+    [frontend] => a0978a9580a47c81ed852a7af5d166e2
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000255
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000255)
+    [TransId] => T0000873100
+    [AuthCode] => 918742
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => ggWLnE4UPihGZTxeIn2eBYM1r8o=
+    [external_no_cache] => 1
+    [frontend] => 9794cc04dfa526a2bb1139b2810df344
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000261
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000261)
+    [TransId] => T0000874100
+    [AuthCode] => 514873
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => PwJuqoLhmLmQFtKx0tmAqlLqZPU=
+    [external_no_cache] => 1
+    [frontend] => 5ec5761c751d96e98bb61b8d8e91a37b
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000262
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000262)
+    [TransId] => T0000874800
+    [AuthCode] => 089718
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => /2srK/XeTSrSyTMVbtrd8ev+bCI=
+    [external_no_cache] => 1
+    [frontend] => 9200295db2a7d603ca6e38365377ab6e
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000264
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000264)
+    [TransId] => T0000876300
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Customer Cancel Transaction
+    [Signature] => 1cbuNhToF4A7FyDV9FzgUptMYNA=
+    [adminhtml] => 80ac3c5673b2a9a5fde496d997f0f591
+    [external_no_cache] => 1
+    [frontend] => a5804428dc66b7f1ab4371f9d0265a9b
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000265
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000265)
+    [TransId] => T0000876400
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Customer Cancel Transaction
+    [Signature] => IHcKT8Yf+wWdgk8IeLWEPbBUbyM=
+    [adminhtml] => 80ac3c5673b2a9a5fde496d997f0f591
+    [external_no_cache] => 1
+    [frontend] => a5804428dc66b7f1ab4371f9d0265a9b
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000266
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000266)
+    [TransId] => T0000876500
+    [AuthCode] => 691585
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => CIw8AcNDmq4mlGGvi0RSxYfDtvY=
+    [adminhtml] => 80ac3c5673b2a9a5fde496d997f0f591
+    [external_no_cache] => 1
+    [frontend] => a5804428dc66b7f1ab4371f9d0265a9b
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000267
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000267)
+    [TransId] => T0000878100
+    [AuthCode] => 717784
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => 3m8lc2pY+91Oke7Lwk4DxzVm5Cg=
+    [adminhtml] => 4fe58cf58f0989da442f60570f60d1de
+    [frontend] => 6b96b8132bb6c60647278ec0020ee169
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000270
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000270)
+    [TransId] => T0000878200
+    [AuthCode] => 320583
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => fbo3OYJREtASm93FcSeAzKXHsa8=
+    [adminhtml] => 4fe58cf58f0989da442f60570f60d1de
+    [frontend] => 6b96b8132bb6c60647278ec0020ee169
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000280
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000280)
+    [TransId] => T0000879000
+    [AuthCode] => 112209
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => I/e2Dx4iPhsdtKh5d7fB6x6+RiE=
+    [adminhtml] => f1c3de986b0b2d97622b5153aeb3dcc1
+    [frontend] => 27b6f726db362c94f6373368dc1bad1c
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000283
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000283)
+    [TransId] => T0000880100
+    [AuthCode] => 048168
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => bjq0a4ps4GIYuttwxF5iha/FkE8=
+    [user_name] => pdpapa@unilab.com.ph
+    [pass_user_name] => password10
+    [rememberme] => 1
+    [external_no_cache] => 1
+    [frontend] => b76eba0c72a63858d89bbef97ce7048c
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000284
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000284)
+    [TransId] => T0000880400
+    [AuthCode] => 439495
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => EVnYS0OQ/9r4OeIphcFaCCBWieI=
+    [adminhtml] => 5d87d38e91a1bd468d12f3a17dc98ef4
+    [frontend] => d01e327b2971c6868140cc20437ac022
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000286
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000286)
+    [TransId] => T0000886100
+    [AuthCode] => 924464
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => nd5W45UH4Vn8OgjgIq7XTh2c5+4=
+    [frontend] => 4786e3228c2e5970d929913a74bf4a0a
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000287
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000287)
+    [TransId] => T0000886300
+    [AuthCode] => 344845
+    [Status] => 0
+    [ErrDesc] => Fail(Card issuing bank do not honor the transaction)
+    [Signature] => YdGKmLUHGYkyQ4bAyLP7S7fIqg0=
+    [adminhtml] => b3c0115629c41d1d147366429f955a18
+    [frontend] => e66f9f420c1baae5cee791473d9cea3e
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000293
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000293)
+    [TransId] => T0000890800
+    [AuthCode] => 990657
+    [Status] => 0
+    [ErrDesc] => Fail(Card issuing bank do not honor the transaction)
+    [Signature] => u4uUq25BmnDh9ktF/boxJthWZoE=
+    [adminhtml] => e941c0bb844bf77fca8abc1b6e27de74
+    [external_no_cache] => 1
+    [frontend] => b4d94c3888209ed973916b73fcfe8dfa
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000295
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000295)
+    [TransId] => T0000891000
+    [AuthCode] => 567333
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => AhFf0nauWamDXfzw+Lzm7G+9mNQ=
+    [frontend] => beb8cf1b636bea8189b253118f23f577
+    [external_no_cache] => 1
+    [adminhtml] => 85eed2eadaf3e0189f5f6b00ac31feaa
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000296
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000296)
+    [TransId] => T0000891100
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Customer Cancel Transaction
+    [Signature] => LganXy4cni26cgNEGRAArxE/g8s=
+    [adminhtml] => e941c0bb844bf77fca8abc1b6e27de74
+    [external_no_cache] => 1
+    [frontend] => b4d94c3888209ed973916b73fcfe8dfa
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000297
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000297)
+    [TransId] => T0000891200
+    [AuthCode] => 171200
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => h8UEDvOD45iWA6tcXrOiIXdmfkE=
+    [frontend] => beb8cf1b636bea8189b253118f23f577
+    [external_no_cache] => 1
+    [adminhtml] => 85eed2eadaf3e0189f5f6b00ac31feaa
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000301
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000301)
+    [TransId] => T0000891300
+    [AuthCode] => 278759
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => ikfz6h6GBN7DNaBPuP2f5vavzW8=
+    [external_no_cache] => 1
+    [adminhtml] => 9a5616cdc7650b5dc5bd4634bf456255
+    [frontend] => 0798e46171d55572544a9e815c726bc0
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000303
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000303)
+    [TransId] => T0000891400
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Customer Cancel Transaction
+    [Signature] => 0Uhy+Tc6WAFBjBEtiQcn/OhZ69c=
+    [external_no_cache] => 1
+    [adminhtml] => 9a5616cdc7650b5dc5bd4634bf456255
+    [frontend] => 0798e46171d55572544a9e815c726bc0
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000306
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000306)
+    [TransId] => T0000891500
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Customer Cancel Transaction
+    [Signature] => 98IrRM2/uSOSvnmfZT4Nab5eNrY=
+    [adminhtml] => 179a6efda8388c1394511193b8e263cc
+    [external_no_cache] => 1
+    [frontend] => 412b33b0cf7156e4b482443a65861136
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000307
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000307)
+    [TransId] => T0000891600
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Customer Cancel Transaction
+    [Signature] => V7TuAtW3/3vrWO6cav6npE7COYI=
+    [external_no_cache] => 1
+    [adminhtml] => 10e916284ca224c6aaced6a2c2611317
+    [frontend] => 412b33b0cf7156e4b482443a65861136
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000312
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000312)
+    [TransId] => T0000893000
+    [AuthCode] => 802654
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => 6T/vZGo32aHwFN6hMKBKlk/5Xgw=
+    [adminhtml] => 8919214f105d53be33acca363659543a
+    [frontend] => a190c260b696c3a421438a78c285524f
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000313
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000313)
+    [TransId] => T0000893100
+    [AuthCode] => 668422
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => DF+2Im/RdLwv9SRCQviLjHQyzAY=
+    [frontend] => a7be68b1841afe82b767ad297887d486
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000317
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000317)
+    [TransId] => T0000893400
+    [AuthCode] => 950160
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => 2Qbaqc6aGSINy1F3gK7o/BL+ykU=
+    [frontend] => a190c260b696c3a421438a78c285524f
+    [adminhtml] => 6699b66c09da309b93494598faf339ac
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000319
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000319)
+    [TransId] => T0000893500
+    [AuthCode] => 971233
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => t4oFmnVu+52qad9gqVMObI3p1rY=
+    [adminhtml] => 6699b66c09da309b93494598faf339ac
+    [currency] => PHP
+    [frontend] => b06414582607d2dc53e2f3a58d03bd23
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000328
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000328)
+    [TransId] => T0000893600
+    [AuthCode] => 992763
+    [Status] => 0
+    [ErrDesc] => Fail(Card issuing bank do not honor the transaction)
+    [Signature] => UzP5CvYfa4ONQQJytUK/DvujK+o=
+    [adminhtml] => 6699b66c09da309b93494598faf339ac
+    [currency] => PHP
+    [frontend] => b06414582607d2dc53e2f3a58d03bd23
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000333
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000333)
+    [TransId] => T0000893700
+    [AuthCode] => 154675
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => X9vm2IWqdxF5NWyyV/s5YhZ8yjQ=
+    [frontend] => 3e06a687cdbcb2045792590574ed9f48
+    [external_no_cache] => 1
+    [adminhtml] => 43e88d024752e1287e0ab969972eb25c
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000334
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000334)
+    [TransId] => T0000893800
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Fail(Bank Declined Transaction)
+    [Signature] => Q6eb3pIUKeo45syYF2xTj546tvQ=
+    [adminhtml] => 2bbfdb4512883be76988980e9ba6474e
+    [external_no_cache] => 1
+    [frontend] => 33e3cf55f54c608ba01eeb905ff90f6f
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000335
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000335)
+    [TransId] => T0000893900
+    [AuthCode] => 421139
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => YWW9nN/LIvEACd4hm7zbSO9vQDM=
+    [adminhtml] => 2bbfdb4512883be76988980e9ba6474e
+    [external_no_cache] => 1
+    [frontend] => 33e3cf55f54c608ba01eeb905ff90f6f
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000337
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000337)
+    [TransId] => T0000894100
+    [AuthCode] => 207043
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => 0lYqlCX6MmMazScSPL/yOqik3BY=
+    [external_no_cache] => 1
+    [frontend] => fc95861385aa995452b55c5a3ba46c92
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000341
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000341)
+    [TransId] => T0000894400
+    [AuthCode] => 693355
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => 5gFA8GSCjJtPlh9eZlxd+esYD0E=
+    [adminhtml] => 0ecb9a558e10d785ce7b4767f347c9c8
+    [frontend] => ed7f9c19ce23c120701c725c81074b2d
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000342
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000342)
+    [TransId] => T0000894500
+    [AuthCode] => 128201
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => Qr2kVhXrT738X6k/Nv3IijZSfSk=
+    [external_no_cache] => 1
+    [frontend] => dfb70c00e40add555bae76230048bebc
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000348
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000348)
+    [TransId] => T0000895500
+    [AuthCode] => 570598
+    [Status] => 0
+    [ErrDesc] => Fail(Card issuing bank do not honor the transaction)
+    [Signature] => 1S3aIaZZnS9+zrDiCadr7Y7B7P4=
+    [frontend] => c96cfd0242cd51a4f1c5f6ca9d7030f4
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000350
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000350)
+    [TransId] => T0000895700
+    [AuthCode] => 977946
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => bz1SGs988kXkwXHSnAXxoJKz08o=
+    [frontend] => c96cfd0242cd51a4f1c5f6ca9d7030f4
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000349
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000349)
+    [TransId] => T0000895600
+    [AuthCode] => 166912
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => d24q05LK3IoxLcAByulY3IMwwLo=
+    [external_no_cache] => 1
+    [frontend] => 27fd8bc4b6b4dabf7e116e46b5c7eca4
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000351
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000351)
+    [TransId] => T0000895900
+    [AuthCode] => 461361
+    [Status] => 0
+    [ErrDesc] => Fail(Card issuing bank do not honor the transaction)
+    [Signature] => SzEDS/XQ8feUU4GKJU5uJeNNVEQ=
+    [frontend] => 05a845a89cd4b826bd00d8c840d3aef7
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000352
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000352)
+    [TransId] => T0000896000
+    [AuthCode] => 919902
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => RCkbBqtt+X6v1RvoHty0gGiiuYE=
+    [frontend] => 05a845a89cd4b826bd00d8c840d3aef7
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000355
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000355)
+    [TransId] => T0000902900
+    [AuthCode] => 343456
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => zju3645PWtjn3OcwkJTwbzG1Dos=
+    [frontend] => 8731f0c9469b2cc31bf8e1d122ef989e
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000357
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000357)
+    [TransId] => T0000905600
+    [AuthCode] => 522350
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => EV7a3Xrrh6BtRSpX1gAqFloqCKU=
+    [frontend] => 3633fa61dd10074cf493b776a65fafcf
+    [adminhtml] => 707711390a2683a6902e3f9af45f0437
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000358
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000358)
+    [TransId] => T0000905800
+    [AuthCode] => 050625
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => EziUHjHrAzq5GwOrPrb7F/Npuo0=
+    [frontend] => 3633fa61dd10074cf493b776a65fafcf
+    [adminhtml] => 707711390a2683a6902e3f9af45f0437
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000359
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000359)
+    [TransId] => T0000906000
+    [AuthCode] => 167721
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => su5+FBy4UswPLf0Psy2zHad6obI=
+    [frontend] => 3633fa61dd10074cf493b776a65fafcf
+    [adminhtml] => 707711390a2683a6902e3f9af45f0437
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000360
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000360)
+    [TransId] => T0000906100
+    [AuthCode] => 501995
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => x5jvFJ0OvnG3wvdN00mCFMY5s1c=
+    [frontend] => 3633fa61dd10074cf493b776a65fafcf
+    [adminhtml] => 707711390a2683a6902e3f9af45f0437
+    [external_no_cache] => 1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000361
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000361)
+    [TransId] => T0000906200
+    [AuthCode] => 125011
+    [Status] => 1
+    [ErrDesc] => 
+    [Signature] => /Okt4FNCaXKtCX1IeD3AyOCaPgs=
+    [frontend] => 416c1ba917e205c6e68b0547a1497202
+    [adminhtml] => 1c2f602cf2442a8e69e6686850dfedad
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000362
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000362)
+    [TransId] => T0000943100
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Permission not allow
+    [Signature] => 
+    [frontend] => ca147a8f5756f497ad937dba36bc54a1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000364
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000364)
+    [TransId] => T0000943200
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Permission not allow
+    [Signature] => 
+    [adminhtml] => d30a2dedb0dcc44aef5488c5c347010c
+    [frontend] => ca147a8f5756f497ad937dba36bc54a1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000365
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000365)
+    [TransId] => T0000943400
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Permission not allow
+    [Signature] => 
+    [adminhtml] => d30a2dedb0dcc44aef5488c5c347010c
+    [frontend] => ca147a8f5756f497ad937dba36bc54a1
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000366
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000366)
+    [TransId] => T0000943900
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Permission not allow
+    [Signature] => 
+    [frontend] => ccd72d8eda571314f91ef025d1e2e1e8
+)
+
+Array
+(
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000369
+    [Amount] => 15.00
+    [Currency] => PHP
+    [Remark] => Payment from unilab onlinestore (Ref:100000369)
+    [TransId] => T0000955800
+    [AuthCode] => 
+    [Status] => 0
+    [ErrDesc] => Permission not allow
+    [Signature] => 
+    [__utma] => 261860703.1614005073.1392683087.1392692269.1392797518.3
+    [__utmz] => 261860703.1392683087.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+    [frontend] => 0026aae7ba3fdd1414a22eb9353dd01a
+    [adminhtml] => b067a3de6247f89e7763823a846cb709
+    [external_no_cache] => 1
+)
+
+Array
+(
+)
+

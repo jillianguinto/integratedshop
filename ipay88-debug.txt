@@ -1,0 +1,2196 @@
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000096
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000096)
+    [UserName] => diszo.sasil
+    [UserEmail] => diszo.sasil@movent.com
+    [UserContact] => 1233233
+    [Remark] => Payment from unilab onlinestore (Ref:100000096)
+    [Signature] => 2tCax2e0TmT6TT+yriwAbZqyv/8=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000097
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000097)
+    [UserName] => c_dfcarlos
+    [UserEmail] => c_dfcarlos@unilab.com.ph
+    [UserContact] => 6868788
+    [Remark] => Payment from unilab onlinestore (Ref:100000097)
+    [Signature] => m0fEMPuwf3f8NbxLGktPHPvf3Eg=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000103
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000103)
+    [UserName] => diszo.sasil2
+    [UserEmail] => diszo.sasil2@movent.com
+    [UserContact] => 234434234
+    [Remark] => Payment from unilab onlinestore (Ref:100000103)
+    [Signature] => RrDkNxbiXXAP5ck7+3eeVUtj8WY=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000106
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000106)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => asdfgh
+    [Remark] => Payment from unilab onlinestore (Ref:100000106)
+    [Signature] => OiDrElYzk/uX8Hi03fPv0fItkD0=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000114
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000114)
+    [UserName] => pdpapa
+    [UserEmail] => pdpapa@unilab.com.ph
+    [UserContact] => 85810011111
+    [Remark] => Payment from unilab onlinestore (Ref:100000114)
+    [Signature] => iXFIi1IuCLifUKAT09gL3qCeyMA=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000116
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000116)
+    [UserName] => pdpapa
+    [UserEmail] => pdpapa@unilab.com.ph
+    [UserContact] => 85810011111
+    [Remark] => Payment from unilab onlinestore (Ref:100000116)
+    [Signature] => hiynylzRzNYzaWL5oQBHUyqMDks=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000126
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000126)
+    [UserName] => jerick.duguran
+    [UserEmail] => jerick.duguran@movent.com
+    [UserContact] => 09124123123
+    [Remark] => Payment from unilab onlinestore (Ref:100000126)
+    [Signature] => h2Jp2lof7haWHmCIvUEztM5Z7II=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000131
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000131)
+    [UserName] => diszo.sasil
+    [UserEmail] => diszo.sasil@movent.com
+    [UserContact] => 38232323
+    [Remark] => Payment from unilab onlinestore (Ref:100000131)
+    [Signature] => Am3wyDwSkUhSKK+kbqn+W1+xTJ4=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000136
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000136)
+    [UserName] => c_dfcarlos
+    [UserEmail] => c_dfcarlos@unilab.com.ph
+    [UserContact] => 8580000
+    [Remark] => Payment from unilab onlinestore (Ref:100000136)
+    [Signature] => y/iKUKCYkJQtJnygNtQFknC3mC4=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000138
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000138)
+    [UserName] => c_dfcarlos
+    [UserEmail] => c_dfcarlos@unilab.com.ph
+    [UserContact] => 8580000
+    [Remark] => Payment from unilab onlinestore (Ref:100000138)
+    [Signature] => O3Efir396LuDP3XC4GkZCUKY/Nk=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000139
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000139)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000139)
+    [Signature] => HnnFWZrc/+NHa8w0FlEGge2gF8A=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000140
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000140)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000140)
+    [Signature] => zdjczWbKM2aHMppqT2QCbgUTsCw=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000142
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000142)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000142)
+    [Signature] => YJ1uBsTUkweAhHxXjm2YVCulRz0=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000143
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000143)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000143)
+    [Signature] => 9SqBqAFkPiZOYF8h/DuPm9Inq94=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000144
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000144)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000144)
+    [Signature] => yosyrjIg754st9G/ii6yYmiM6rY=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000145
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000145)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000145)
+    [Signature] => aXS8X2tl/hnpkmWZClHpNJD19xc=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000146
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000146)
+    [UserName] => diszo.sasil
+    [UserEmail] => diszo.sasil@movent.com
+    [UserContact] => 2343434
+    [Remark] => Payment from unilab onlinestore (Ref:100000146)
+    [Signature] => FuT+5YFghluAw5m631X8bi+Nq00=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000147
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000147)
+    [UserName] => diszo.sasil
+    [UserEmail] => diszo.sasil@movent.com
+    [UserContact] => 2343434
+    [Remark] => Payment from unilab onlinestore (Ref:100000147)
+    [Signature] => 7sKaYXI316WX5IflwjZ58lyU+lk=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000149
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000149)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000149)
+    [Signature] => pOnPbY1kavxJ73BEqJsuOpdAkKA=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000150
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000150)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000150)
+    [Signature] => C92IE5xVaVnri8jPNtXuvI977Aw=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000150
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000150)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000150)
+    [Signature] => C92IE5xVaVnri8jPNtXuvI977Aw=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000154
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000154)
+    [UserName] => rizalynllaneta
+    [UserEmail] => rizalynllaneta@gmail.com
+    [UserContact] => 099090
+    [Remark] => Payment from unilab onlinestore (Ref:100000154)
+    [Signature] => i9ESrRu5zRPoZ9ZNxRTyUwjLSCQ=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000154
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000154)
+    [UserName] => rizalynllaneta
+    [UserEmail] => rizalynllaneta@gmail.com
+    [UserContact] => 099090
+    [Remark] => Payment from unilab onlinestore (Ref:100000154)
+    [Signature] => i9ESrRu5zRPoZ9ZNxRTyUwjLSCQ=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000155
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000155)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000155)
+    [Signature] => PgSJa8fT6Nc1jJwzfAHomEcenks=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000158
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000158)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000158)
+    [Signature] => OT+pDkQO5/99bsoRj/erDS1gLSw=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000161
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000161)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000161)
+    [Signature] => bpJNWTTgbRnYxRIo1/+aUWJPTDM=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000162
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000162)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000162)
+    [Signature] => c/tbAW21n2mY+f4W3CLKy7vL0Mg=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000163
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000163)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000163)
+    [Signature] => y/7yOn6V1kujaPrQKCT46SeW5Ts=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000164
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000164)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000164)
+    [Signature] => WzQvQb2s0P7h88gKXbo8j2qxYLg=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000165
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000165)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000165)
+    [Signature] => aco1jl2Q2I6hFaUM2lbq/q2Wq/4=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000166
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000166)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000166)
+    [Signature] => KzMwEtj2Jxrzh0/v66P9r1WEJd4=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000167
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000167)
+    [UserName] => pdpapa
+    [UserEmail] => pdpapa@unilab.com.ph
+    [UserContact] => 85810011111
+    [Remark] => Payment from unilab onlinestore (Ref:100000167)
+    [Signature] => Umc3h2Bh88pW0rPEW5IudIW72qU=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000169
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000169)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000169)
+    [Signature] => 0oX/lQzcR5IDgQKcxJ8CIgaBo/w=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000170
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000170)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000170)
+    [Signature] => ccneXDhAhsAkRMsXHC/dRu3cVaY=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000171
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000171)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000171)
+    [Signature] => sjNX2pUBp3MkPLyDXVk8ClQDXlk=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000175
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000175)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000175)
+    [Signature] => AHfeEI2SWcDX8jG+fapSkyb/ZfA=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000176
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000176)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1324567
+    [Remark] => Payment from unilab onlinestore (Ref:100000176)
+    [Signature] => U1X52qpAMu4UC2dPeeKhgl+9P1g=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000177
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000177)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 6317968
+    [Remark] => Payment from unilab onlinestore (Ref:100000177)
+    [Signature] => SWcbfrKisRwF2ZkFLqjJG54k+PY=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000178
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000178)
+    [UserName] => pdpapa
+    [UserEmail] => pdpapa@unilab.com.ph
+    [UserContact] => 45465445656547567676767567657677
+    [Remark] => Payment from unilab onlinestore (Ref:100000178)
+    [Signature] => WExsfVEjui+F0ETTdVw+JYZzp3A=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000181
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000181)
+    [UserName] => c_dfcarlos
+    [UserEmail] => c_dfcarlos@unilab.com.ph
+    [UserContact] => 8580000
+    [Remark] => Payment from unilab onlinestore (Ref:100000181)
+    [Signature] => yXx84YyXZ5VW9NMn6zmUmo897L4=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000185
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000185)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1324567
+    [Remark] => Payment from unilab onlinestore (Ref:100000185)
+    [Signature] => EGb8vU+7RdNDTX4j6nHUJDWoKeY=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000186
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000186)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000186)
+    [Signature] => 9sHft4fnOFvD9hePaqtsrVM9LOw=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000187
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000187)
+    [UserName] => pdpapa
+    [UserEmail] => pdpapa@unilab.com.ph
+    [UserContact] => 45465445656547567676767567657677
+    [Remark] => Payment from unilab onlinestore (Ref:100000187)
+    [Signature] => WLe1R6ggBUkrhIS5Na9lqCN7kYA=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000188
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000188)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000188)
+    [Signature] => cJiVKvBaPfxGKo+sVj/g+NkSlqQ=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000189
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000189)
+    [UserName] => pdpapa
+    [UserEmail] => pdpapa@unilab.com.ph
+    [UserContact] => 45465445656547567676767567657677
+    [Remark] => Payment from unilab onlinestore (Ref:100000189)
+    [Signature] => g0H766/DGCPN0UMkZnW0Fxgtd4E=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000192
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000192)
+    [UserName] => c_dfcarlos
+    [UserEmail] => c_dfcarlos@unilab.com.ph
+    [UserContact] => 8580000
+    [Remark] => Payment from unilab onlinestore (Ref:100000192)
+    [Signature] => V2zGdjjzjGJLWet3ByT9uoo2atU=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000193
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000193)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000193)
+    [Signature] => dt+TtFSL5NgBapvoWsJ2pVCz68g=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000198
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000198)
+    [UserName] => phpdeveloper9
+    [UserEmail] => phpdeveloper9@unilab.com.ph
+    [UserContact] => 09332096950
+    [Remark] => Payment from unilab onlinestore (Ref:100000198)
+    [Signature] => ALA2SXOEHeybrvRksftUutoZ0GQ=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000198
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000198)
+    [UserName] => phpdeveloper9
+    [UserEmail] => phpdeveloper9@unilab.com.ph
+    [UserContact] => 09332096950
+    [Remark] => Payment from unilab onlinestore (Ref:100000198)
+    [Signature] => ALA2SXOEHeybrvRksftUutoZ0GQ=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000200
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000200)
+    [UserName] => pdpapa
+    [UserEmail] => pdpapa@unilab.com.ph
+    [UserContact] => 34325435646
+    [Remark] => Payment from unilab onlinestore (Ref:100000200)
+    [Signature] => 42fRU26ZJcYE+1Kz+y1PsAwiOac=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000207
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000207)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000207)
+    [Signature] => jn4UGHQaNPd6bBlH+FbnBWmi1Ro=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000210
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000210)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000210)
+    [Signature] => JNmxOG4ucPPfVqY+2vER40qgyWs=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000211
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000211)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000211)
+    [Signature] => VQpjWujtdDOm4IMc2sv0hnBPaA4=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000212
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000212)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000212)
+    [Signature] => iypN17aj/wwpKQOKTLounq73x9I=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000213
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000213)
+    [UserName] => c_dfcarlos
+    [UserEmail] => c_dfcarlos@unilab.com.ph
+    [UserContact] => 8580000
+    [Remark] => Payment from unilab onlinestore (Ref:100000213)
+    [Signature] => vrY9EoyrIwMXlNDWOyCTWxTnWfs=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000217
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000217)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000217)
+    [Signature] => mKhljWLDy6UtVhGgYeiFDYBO6DU=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000220
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000220)
+    [UserName] => diszo.sasil
+    [UserEmail] => diszo.sasil@movent.com
+    [UserContact] => 2343434
+    [Remark] => Payment from unilab onlinestore (Ref:100000220)
+    [Signature] => o1UY8/KNlgOJmwDZ44DxgvkQhbY=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000220
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000220)
+    [UserName] => diszo.sasil
+    [UserEmail] => diszo.sasil@movent.com
+    [UserContact] => 2343434
+    [Remark] => Payment from unilab onlinestore (Ref:100000220)
+    [Signature] => o1UY8/KNlgOJmwDZ44DxgvkQhbY=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000220
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000220)
+    [UserName] => diszo.sasil
+    [UserEmail] => diszo.sasil@movent.com
+    [UserContact] => 2343434
+    [Remark] => Payment from unilab onlinestore (Ref:100000220)
+    [Signature] => o1UY8/KNlgOJmwDZ44DxgvkQhbY=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000220
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000220)
+    [UserName] => diszo.sasil
+    [UserEmail] => diszo.sasil@movent.com
+    [UserContact] => 2343434
+    [Remark] => Payment from unilab onlinestore (Ref:100000220)
+    [Signature] => o1UY8/KNlgOJmwDZ44DxgvkQhbY=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000228
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000228)
+    [UserName] => c_dfcarlos
+    [UserEmail] => c_dfcarlos@unilab.com.ph
+    [UserContact] => 8580000
+    [Remark] => Payment from unilab onlinestore (Ref:100000228)
+    [Signature] => HxKUNffIPr4juYQgHjB0a42n8Do=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000230
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000230)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000230)
+    [Signature] => +BZJJ/a2lweHwEa/pgs1Na0k0bA=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000234
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000234)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000234)
+    [Signature] => EZRRuQ86/0Z25090NfM6w4Rf8U8=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000243
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000243)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000243)
+    [Signature] => lIKh+eZlYJ1n9mfnVrTaVOR26vU=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000245
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000245)
+    [UserName] => c_dfcarlos
+    [UserEmail] => c_dfcarlos@unilab.com.ph
+    [UserContact] => 8580000
+    [Remark] => Payment from unilab onlinestore (Ref:100000245)
+    [Signature] => qelysTvPsbH+I6nsXyRjmXrnL3c=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000253
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000253)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => +1 (323) 234 6001
+    [Remark] => Payment from unilab onlinestore (Ref:100000253)
+    [Signature] => xiROa8F0eijjymK6heSvDfzRKCY=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000255
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000255)
+    [UserName] => pdpapa
+    [UserEmail] => pdpapa@unilab.com.ph
+    [UserContact] => 34325435646
+    [Remark] => Payment from unilab onlinestore (Ref:100000255)
+    [Signature] => X/H8TibHLDTIqsBVp6nzxIeB1g0=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000256
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000256)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000256)
+    [Signature] => QXL/LR6jBID/2M8K8suyhntH36Q=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000257
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000257)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000257)
+    [Signature] => eSqte52+BaO1hc8SHIaIfN1pf7o=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000261
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000261)
+    [UserName] => mvgeronimo
+    [UserEmail] => mvgeronimo@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000261)
+    [Signature] => zWxdZPJbVCpvxsvB2O7Se+lKqWY=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000262
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000262)
+    [UserName] => pdpapa
+    [UserEmail] => pdpapa@unilab.com.ph
+    [UserContact] => 34325435646
+    [Remark] => Payment from unilab onlinestore (Ref:100000262)
+    [Signature] => 4BDNYtIjaXbgHDbVlzkRuRxNjwo=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000264
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000264)
+    [UserName] => mvgeronimo
+    [UserEmail] => mvgeronimo@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000264)
+    [Signature] => bPwY3jcs2Y+SaJBMm8Cu9b6xQ0w=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000265
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000265)
+    [UserName] => mvgeronimo
+    [UserEmail] => mvgeronimo@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000265)
+    [Signature] => kpOBy8o/TlxpuzzpxXsGQurXt4E=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000266
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000266)
+    [UserName] => mvgeronimo
+    [UserEmail] => mvgeronimo@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000266)
+    [Signature] => Yvv4DlrsUU4NUn3443o9pOMP0Vc=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000267
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000267)
+    [UserName] => mvgeronimo
+    [UserEmail] => mvgeronimo@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000267)
+    [Signature] => lhBwEehe6gmsUkt3ILycsO58/F0=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000270
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000270)
+    [UserName] => mvgeronimo
+    [UserEmail] => mvgeronimo@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000270)
+    [Signature] => RIR33OuFxWB/9CdWVudetqxF4us=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000279
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000279)
+    [UserName] => ecypapa
+    [UserEmail] => ecypapa@yahoo.com
+    [UserContact] => 8789900
+    [Remark] => Payment from unilab onlinestore (Ref:100000279)
+    [Signature] => rufh6IvQ7AYGftxhCPTbZT6S1ZY=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000280
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000280)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000280)
+    [Signature] => gS++F18OD+3CI/95H6rIS69IP44=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000282
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000282)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000282)
+    [Signature] => NUvkmVzhz5u9NNKoFomrB5CrtEw=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000283
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000283)
+    [UserName] => pdpapa
+    [UserEmail] => pdpapa@unilab.com.ph
+    [UserContact] => 0478987788
+    [Remark] => Payment from unilab onlinestore (Ref:100000283)
+    [Signature] => n6bjgnZMMnWFsdaC84Z6K5n6ViQ=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000284
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000284)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000284)
+    [Signature] => zIDwDfft+qQ8qPdCDz0BMh4WiZY=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000286
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000286)
+    [UserName] => c_dfcarlos
+    [UserEmail] => c_dfcarlos@unilab.com.ph
+    [UserContact] => 8580000
+    [Remark] => Payment from unilab onlinestore (Ref:100000286)
+    [Signature] => zgvsDRPx4qEMSq9mYlOIeglyT9k=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000287
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000287)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000287)
+    [Signature] => A7obLdD2bwLZ3WgRye1XvKtMIrM=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000293
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000293)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 
+    [Remark] => Payment from unilab onlinestore (Ref:100000293)
+    [Signature] => W9g0papH+XnA6XNtHM39EATHgXw=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000294
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000294)
+    [UserName] => c_dfcarlos
+    [UserEmail] => c_dfcarlos@unilab.com.ph
+    [UserContact] => 
+    [Remark] => Payment from unilab onlinestore (Ref:100000294)
+    [Signature] => XsFBmEiZeUDbj5hpMoWchvA+gy0=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000295
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000295)
+    [UserName] => c_dfcarlos
+    [UserEmail] => c_dfcarlos@unilab.com.ph
+    [UserContact] => 
+    [Remark] => Payment from unilab onlinestore (Ref:100000295)
+    [Signature] => J197+PagQ27jtxLTVd3oPQiRbB8=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000296
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000296)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 
+    [Remark] => Payment from unilab onlinestore (Ref:100000296)
+    [Signature] => ZL2yeNGBZF8tLd4vPTdKU39h5/Q=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000297
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000297)
+    [UserName] => c_dfcarlos
+    [UserEmail] => c_dfcarlos@unilab.com.ph
+    [UserContact] => 1903190
+    [Remark] => Payment from unilab onlinestore (Ref:100000297)
+    [Signature] => pLxi4Ff07jq+ylhilwfGaPE/zVM=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000301
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000301)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000301)
+    [Signature] => c0pJLXSLpZyq0dxiyXVQOWD29qM=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000303
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000303)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 
+    [Remark] => Payment from unilab onlinestore (Ref:100000303)
+    [Signature] => wytYDZOicXXf5qi2NpvlSbUcOu8=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000306
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000306)
+    [UserName] => pdpapa
+    [UserEmail] => pdpapa@unilab.com.ph
+    [UserContact] => 858-1000
+    [Remark] => Payment from unilab onlinestore (Ref:100000306)
+    [Signature] => c49kDZNVC+QT0+oPa9Wv1Ac9t9g=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000307
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000307)
+    [UserName] => pdpapa
+    [UserEmail] => pdpapa@unilab.com.ph
+    [UserContact] => 858-1000
+    [Remark] => Payment from unilab onlinestore (Ref:100000307)
+    [Signature] => tjO37PB94PKC1dVq2BNOP1Sav1Q=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000309
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000309)
+    [UserName] => c_dfcarlos
+    [UserEmail] => c_dfcarlos@unilab.com.ph
+    [UserContact] => 
+    [Remark] => Payment from unilab onlinestore (Ref:100000309)
+    [Signature] => Jnu1WsfL9GD2ESOxMxrn89HKex4=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000312
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000312)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000312)
+    [Signature] => dWJEWKR4MP7N7VlYOp2dIBuf8ms=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000313
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000313)
+    [UserName] => phpdeveloper9
+    [UserEmail] => phpdeveloper9@unilab.com.ph
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000313)
+    [Signature] => NblYAxxDgGOyyhqZASVL/GvT8pE=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000317
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000317)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000317)
+    [Signature] => m7NEWgNMUNRlbLiaFJHumI10xvU=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000317
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000317)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000317)
+    [Signature] => m7NEWgNMUNRlbLiaFJHumI10xvU=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000319
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000319)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000319)
+    [Signature] => IeKaq0e16mmEjCYtJ+kb8ZM9uCA=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000328
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000328)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000328)
+    [Signature] => iq4LVGWYBqSUUBSEXDiBbyxZimw=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000333
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000333)
+    [UserName] => c_dfcarlos
+    [UserEmail] => c_dfcarlos@unilab.com.ph
+    [UserContact] => 
+    [Remark] => Payment from unilab onlinestore (Ref:100000333)
+    [Signature] => TdwyptI8ATmqm6qcDoVUWBkz5gY=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000334
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000334)
+    [UserName] => ecypapa
+    [UserEmail] => ecypapa@yahoo.com
+    [UserContact] => 
+    [Remark] => Payment from unilab onlinestore (Ref:100000334)
+    [Signature] => mPIsvsT3xVTeqwDHPYMEbVSWRUQ=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000335
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000335)
+    [UserName] => ecypapa
+    [UserEmail] => ecypapa@yahoo.com
+    [UserContact] => 
+    [Remark] => Payment from unilab onlinestore (Ref:100000335)
+    [Signature] => ArGzklAfM3eTYfPeMyCSvEyacYs=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000336
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000336)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000336)
+    [Signature] => SKZpNsF7Yj/GXYEb9G0hroPZqfo=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000337
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000337)
+    [UserName] => ecypapa
+    [UserEmail] => ecypapa@yahoo.com
+    [UserContact] => 858-1000
+    [Remark] => Payment from unilab onlinestore (Ref:100000337)
+    [Signature] => 4lVkAzDu71tkD90vma/WoZKpJzg=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000341
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000341)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000341)
+    [Signature] => XHFqkSkGz11DMF3bxaSqlQLXw8A=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000342
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000342)
+    [UserName] => stbaltao
+    [UserEmail] => stbaltao@unilab.com.ph
+    [UserContact] => 
+    [Remark] => Payment from unilab onlinestore (Ref:100000342)
+    [Signature] => aZuHomKNuXGMpyJFc9XD+khK/4A=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000348
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000348)
+    [UserName] => mbtabeta
+    [UserEmail] => mbtabeta@unilab.com.ph
+    [UserContact] => 6543192
+    [Remark] => Payment from unilab onlinestore (Ref:100000348)
+    [Signature] => ZB0dE6d41BnmQYOmYs7Fhis/zWc=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000349
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000349)
+    [UserName] => c_rlmendoza
+    [UserEmail] => c_rlmendoza@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000349)
+    [Signature] => ygWR++UuzNcEhXox8gVq5ppiqHI=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000350
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000350)
+    [UserName] => mbtabeta
+    [UserEmail] => mbtabeta@unilab.com.ph
+    [UserContact] => 6543192
+    [Remark] => Payment from unilab onlinestore (Ref:100000350)
+    [Signature] => njOf85gS8fUKrbtqVjopSirq1Mo=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000351
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000351)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000351)
+    [Signature] => FOE4lhn6RPoaupJE4QpOfF1pNhU=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000352
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000352)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000352)
+    [Signature] => 0xKF11YOwYqggHfH3TvU5JOPXy4=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000355
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000355)
+    [UserName] => c_dfcarlos
+    [UserEmail] => c_dfcarlos@unilab.com.ph
+    [UserContact] => 
+    [Remark] => Payment from unilab onlinestore (Ref:100000355)
+    [Signature] => g6RXCkiuGptwQYweEgXxXm2wNhA=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000357
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000357)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000357)
+    [Signature] => LAyUdux0nCzOppKHTa4qY7FJJSM=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000358
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000358)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000358)
+    [Signature] => SzKLeuJFPMS1syt6eIf64vkflms=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000359
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000359)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000359)
+    [Signature] => vsYau5t1i4yCzdMrEQigLnA2ZaA=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000360
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000360)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000360)
+    [Signature] => RsHDRNSvCSh4gNn4kt+38V1pz8k=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000361
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000361)
+    [UserName] => c_jmatas
+    [UserEmail] => c_jmatas@unilab.com.ph
+    [UserContact] => 8581000
+    [Remark] => Payment from unilab onlinestore (Ref:100000361)
+    [Signature] => QKE5iD7ZquWu1XvAoDViWN4zP6U=
+    [ResponseURL] => http://healthfirst.ecomqa.com/ipay88/process/response/
+    [BackendURL] => http://healthfirst.ecomqa.com/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000362
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000362)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 
+    [Remark] => Payment from unilab onlinestore (Ref:100000362)
+    [Signature] => E8az7xp0E14TLuKx+gRpN6nDM9M=
+    [ResponseURL] => http://119.81.5.133/~clickhea/index.php/ipay88/process/response/
+    [BackendURL] => http://119.81.5.133/~clickhea/index.php/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000364
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000364)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000364)
+    [Signature] => enl8f1F+uSq83apMu804xXSRJko=
+    [ResponseURL] => http://119.81.5.133/~clickhea/index.php/ipay88/process/response/
+    [BackendURL] => http://119.81.5.133/~clickhea/index.php/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000365
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000365)
+    [UserName] => haroldbataller
+    [UserEmail] => haroldbataller@gmail.com
+    [UserContact] => 1234567
+    [Remark] => Payment from unilab onlinestore (Ref:100000365)
+    [Signature] => CJrxq/EVoMB21FirBTOw5dD1rT8=
+    [ResponseURL] => http://119.81.5.133/~clickhea/index.php/ipay88/process/response/
+    [BackendURL] => http://119.81.5.133/~clickhea/index.php/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000366
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000366)
+    [UserName] => pdpapa
+    [UserEmail] => pdpapa@unilab.com.ph
+    [UserContact] => 858-1000 
+    [Remark] => Payment from unilab onlinestore (Ref:100000366)
+    [Signature] => sRpUeeYJvxcFcgh0Vhduo1w5wfc=
+    [ResponseURL] => http://119.81.5.133/~clickhea/index.php/ipay88/process/response/
+    [BackendURL] => http://119.81.5.133/~clickhea/index.php/ipay88/process/backend/
+)
+
+getPaymentCheckoutRequest():Array
+(
+    [MerchantKey] => 4b3d4qFoFm
+    [MerchantCode] => PH00135
+    [PaymentId] => 1
+    [RefNo] => 100000369
+    [Amount] => 15
+    [Currency] => PHP
+    [ProdDesc] => Payment from unilab onlinestore (Ref:100000369)
+    [UserName] => c_dfcarlos
+    [UserEmail] => c_dfcarlos@unilab.com.ph
+    [UserContact] => 
+    [Remark] => Payment from unilab onlinestore (Ref:100000369)
+    [Signature] => 398AVSi5L8LwTZrEkrdw3CwuQFc=
+    [ResponseURL] => http://clickhealth.com.ph/ipay88/process/response/
+    [BackendURL] => http://clickhealth.com.ph/ipay88/process/backend/
+)
+

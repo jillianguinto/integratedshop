@@ -1,0 +1,630 @@
+Varien_Object Object
+(
+    [_data:protected] => Array
+        (
+            [active] => 1
+            [rate_service_url] => https://www.xend.com.ph/api/RateService.asmx?wsdl
+            [shipment_service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+            [developer_id] => DFABAE3E-C61B-4F4B-84E2-7841F61D02F3
+            [user_token] => E188028D-568E-446A-840A-1EB2004DAA2F
+            [title] => Xend
+            [name] => Standard Delivery
+            [shipment_type] => Parcel
+            [specificerrmsg] => This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.
+            [sallowspecific] => 0
+            [specificcountry] => 
+            [showmethod] => 0
+            [sort_order] => 10
+            [product_weight_unit] => G
+            [insurance_percent_excess] => 1
+            [max_free_shipping_insurance] => 2000
+            [destinations] => Array
+                (
+                    [0] => MetroManilaExpress
+                    [1] => ProvincialExpress
+                    [2] => RizalMetroManilaExpress
+                    [3] => InternationalEMS
+                )
+
+            [service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+        )
+
+    [_hasDataChanges:protected] => 1
+    [_origData:protected] => 
+    [_idFieldName:protected] => 
+    [_isDeleted:protected] => 
+    [_oldFieldsMap:protected] => Array
+        (
+        )
+
+    [_syncFieldsMap:protected] => Array
+        (
+        )
+
+)
+
+Varien_Object Object
+(
+    [_data:protected] => Array
+        (
+            [active] => 1
+            [rate_service_url] => https://www.xend.com.ph/api/RateService.asmx?wsdl
+            [shipment_service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+            [developer_id] => DFABAE3E-C61B-4F4B-84E2-7841F61D02F3
+            [user_token] => E188028D-568E-446A-840A-1EB2004DAA2F
+            [title] => Xend
+            [name] => Standard Delivery
+            [shipment_type] => Parcel
+            [specificerrmsg] => This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.
+            [sallowspecific] => 0
+            [specificcountry] => 
+            [showmethod] => 0
+            [sort_order] => 10
+            [product_weight_unit] => G
+            [insurance_percent_excess] => 1
+            [max_free_shipping_insurance] => 2000
+            [destinations] => Array
+                (
+                    [0] => MetroManilaExpress
+                    [1] => ProvincialExpress
+                    [2] => RizalMetroManilaExpress
+                    [3] => InternationalEMS
+                )
+
+            [service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+        )
+
+    [_hasDataChanges:protected] => 1
+    [_origData:protected] => 
+    [_idFieldName:protected] => 
+    [_isDeleted:protected] => 
+    [_oldFieldsMap:protected] => Array
+        (
+        )
+
+    [_syncFieldsMap:protected] => Array
+        (
+        )
+
+)
+
+Varien_Object Object
+(
+    [_data:protected] => Array
+        (
+            [active] => 1
+            [rate_service_url] => https://www.xend.com.ph/api/RateService.asmx?wsdl
+            [shipment_service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+            [developer_id] => DFABAE3E-C61B-4F4B-84E2-7841F61D02F3
+            [user_token] => E188028D-568E-446A-840A-1EB2004DAA2F
+            [title] => Xend
+            [name] => Standard Delivery
+            [shipment_type] => Parcel
+            [specificerrmsg] => This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.
+            [sallowspecific] => 0
+            [specificcountry] => 
+            [showmethod] => 0
+            [sort_order] => 10
+            [product_weight_unit] => G
+            [insurance_percent_excess] => 1
+            [max_free_shipping_insurance] => 2000
+            [destinations] => Array
+                (
+                    [0] => MetroManilaExpress
+                    [1] => ProvincialExpress
+                    [2] => RizalMetroManilaExpress
+                    [3] => InternationalEMS
+                )
+
+            [service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+        )
+
+    [_hasDataChanges:protected] => 1
+    [_origData:protected] => 
+    [_idFieldName:protected] => 
+    [_isDeleted:protected] => 
+    [_oldFieldsMap:protected] => Array
+        (
+        )
+
+    [_syncFieldsMap:protected] => Array
+        (
+        )
+
+)
+
+Varien_Object Object
+(
+    [_data:protected] => Array
+        (
+            [active] => 1
+            [rate_service_url] => https://www.xend.com.ph/api/RateService.asmx?wsdl
+            [shipment_service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+            [developer_id] => DFABAE3E-C61B-4F4B-84E2-7841F61D02F3
+            [user_token] => E188028D-568E-446A-840A-1EB2004DAA2F
+            [title] => Xend
+            [name] => Standard Delivery
+            [shipment_type] => Parcel
+            [specificerrmsg] => This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.
+            [sallowspecific] => 0
+            [specificcountry] => 
+            [showmethod] => 0
+            [sort_order] => 10
+            [product_weight_unit] => G
+            [insurance_percent_excess] => 1
+            [max_free_shipping_insurance] => 2000
+            [destinations] => Array
+                (
+                    [0] => MetroManilaExpress
+                    [1] => ProvincialExpress
+                    [2] => RizalMetroManilaExpress
+                    [3] => InternationalEMS
+                )
+
+            [service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+        )
+
+    [_hasDataChanges:protected] => 1
+    [_origData:protected] => 
+    [_idFieldName:protected] => 
+    [_isDeleted:protected] => 
+    [_oldFieldsMap:protected] => Array
+        (
+        )
+
+    [_syncFieldsMap:protected] => Array
+        (
+        )
+
+)
+
+Varien_Object Object
+(
+    [_data:protected] => Array
+        (
+            [active] => 1
+            [rate_service_url] => https://www.xend.com.ph/api/RateService.asmx?wsdl
+            [shipment_service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+            [developer_id] => DFABAE3E-C61B-4F4B-84E2-7841F61D02F3
+            [user_token] => E188028D-568E-446A-840A-1EB2004DAA2F
+            [title] => Xend
+            [name] => Standard Delivery
+            [shipment_type] => Parcel
+            [specificerrmsg] => This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.
+            [sallowspecific] => 0
+            [specificcountry] => 
+            [showmethod] => 0
+            [sort_order] => 10
+            [product_weight_unit] => G
+            [insurance_percent_excess] => 1
+            [max_free_shipping_insurance] => 2000
+            [destinations] => Array
+                (
+                    [0] => MetroManilaExpress
+                    [1] => ProvincialExpress
+                    [2] => RizalMetroManilaExpress
+                    [3] => InternationalEMS
+                )
+
+            [service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+        )
+
+    [_hasDataChanges:protected] => 1
+    [_origData:protected] => 
+    [_idFieldName:protected] => 
+    [_isDeleted:protected] => 
+    [_oldFieldsMap:protected] => Array
+        (
+        )
+
+    [_syncFieldsMap:protected] => Array
+        (
+        )
+
+)
+
+Varien_Object Object
+(
+    [_data:protected] => Array
+        (
+            [active] => 1
+            [rate_service_url] => https://www.xend.com.ph/api/RateService.asmx?wsdl
+            [shipment_service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+            [developer_id] => DFABAE3E-C61B-4F4B-84E2-7841F61D02F3
+            [user_token] => E188028D-568E-446A-840A-1EB2004DAA2F
+            [title] => Xend
+            [name] => Standard Delivery
+            [shipment_type] => Parcel
+            [specificerrmsg] => This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.
+            [sallowspecific] => 0
+            [specificcountry] => 
+            [showmethod] => 0
+            [sort_order] => 10
+            [product_weight_unit] => G
+            [insurance_percent_excess] => 1
+            [max_free_shipping_insurance] => 2000
+            [destinations] => Array
+                (
+                    [0] => MetroManilaExpress
+                    [1] => ProvincialExpress
+                    [2] => RizalMetroManilaExpress
+                    [3] => InternationalEMS
+                )
+
+            [service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+        )
+
+    [_hasDataChanges:protected] => 1
+    [_origData:protected] => 
+    [_idFieldName:protected] => 
+    [_isDeleted:protected] => 
+    [_oldFieldsMap:protected] => Array
+        (
+        )
+
+    [_syncFieldsMap:protected] => Array
+        (
+        )
+
+)
+
+Varien_Object Object
+(
+    [_data:protected] => Array
+        (
+            [active] => 1
+            [rate_service_url] => https://www.xend.com.ph/api/RateService.asmx?wsdl
+            [shipment_service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+            [developer_id] => DFABAE3E-C61B-4F4B-84E2-7841F61D02F3
+            [user_token] => E188028D-568E-446A-840A-1EB2004DAA2F
+            [title] => Xend
+            [name] => Standard Delivery
+            [shipment_type] => Parcel
+            [specificerrmsg] => This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.
+            [sallowspecific] => 0
+            [specificcountry] => 
+            [showmethod] => 0
+            [sort_order] => 10
+            [product_weight_unit] => G
+            [insurance_percent_excess] => 1
+            [max_free_shipping_insurance] => 2000
+            [destinations] => Array
+                (
+                    [0] => MetroManilaExpress
+                    [1] => ProvincialExpress
+                    [2] => RizalMetroManilaExpress
+                    [3] => InternationalEMS
+                )
+
+            [service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+        )
+
+    [_hasDataChanges:protected] => 1
+    [_origData:protected] => 
+    [_idFieldName:protected] => 
+    [_isDeleted:protected] => 
+    [_oldFieldsMap:protected] => Array
+        (
+        )
+
+    [_syncFieldsMap:protected] => Array
+        (
+        )
+
+)
+
+Varien_Object Object
+(
+    [_data:protected] => Array
+        (
+            [active] => 1
+            [rate_service_url] => https://www.xend.com.ph/api/RateService.asmx?wsdl
+            [shipment_service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+            [developer_id] => DFABAE3E-C61B-4F4B-84E2-7841F61D02F3
+            [user_token] => E188028D-568E-446A-840A-1EB2004DAA2F
+            [title] => Xend
+            [name] => Standard Delivery
+            [shipment_type] => Parcel
+            [specificerrmsg] => This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.
+            [sallowspecific] => 0
+            [specificcountry] => 
+            [showmethod] => 0
+            [sort_order] => 10
+            [product_weight_unit] => G
+            [insurance_percent_excess] => 1
+            [max_free_shipping_insurance] => 2000
+            [destinations] => Array
+                (
+                    [0] => MetroManilaExpress
+                    [1] => ProvincialExpress
+                    [2] => RizalMetroManilaExpress
+                    [3] => InternationalEMS
+                )
+
+            [service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+        )
+
+    [_hasDataChanges:protected] => 1
+    [_origData:protected] => 
+    [_idFieldName:protected] => 
+    [_isDeleted:protected] => 
+    [_oldFieldsMap:protected] => Array
+        (
+        )
+
+    [_syncFieldsMap:protected] => Array
+        (
+        )
+
+)
+
+Varien_Object Object
+(
+    [_data:protected] => Array
+        (
+            [active] => 1
+            [rate_service_url] => https://www.xend.com.ph/api/RateService.asmx?wsdl
+            [shipment_service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+            [developer_id] => DFABAE3E-C61B-4F4B-84E2-7841F61D02F3
+            [user_token] => E188028D-568E-446A-840A-1EB2004DAA2F
+            [title] => Xend
+            [name] => Standard Delivery
+            [shipment_type] => Parcel
+            [specificerrmsg] => This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.
+            [sallowspecific] => 0
+            [specificcountry] => 
+            [showmethod] => 0
+            [sort_order] => 10
+            [product_weight_unit] => G
+            [insurance_percent_excess] => 1
+            [max_free_shipping_insurance] => 2000
+            [destinations] => Array
+                (
+                    [0] => MetroManilaExpress
+                    [1] => ProvincialExpress
+                    [2] => RizalMetroManilaExpress
+                    [3] => InternationalEMS
+                )
+
+            [service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+        )
+
+    [_hasDataChanges:protected] => 1
+    [_origData:protected] => 
+    [_idFieldName:protected] => 
+    [_isDeleted:protected] => 
+    [_oldFieldsMap:protected] => Array
+        (
+        )
+
+    [_syncFieldsMap:protected] => Array
+        (
+        )
+
+)
+
+Varien_Object Object
+(
+    [_data:protected] => Array
+        (
+            [active] => 1
+            [rate_service_url] => https://www.xend.com.ph/api/RateService.asmx?wsdl
+            [shipment_service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+            [developer_id] => DFABAE3E-C61B-4F4B-84E2-7841F61D02F3
+            [user_token] => E188028D-568E-446A-840A-1EB2004DAA2F
+            [title] => Xend
+            [name] => Standard Delivery
+            [shipment_type] => Parcel
+            [specificerrmsg] => This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.
+            [sallowspecific] => 0
+            [specificcountry] => 
+            [showmethod] => 0
+            [sort_order] => 10
+            [product_weight_unit] => G
+            [insurance_percent_excess] => 1
+            [max_free_shipping_insurance] => 2000
+            [destinations] => Array
+                (
+                    [0] => MetroManilaExpress
+                    [1] => ProvincialExpress
+                    [2] => RizalMetroManilaExpress
+                    [3] => InternationalEMS
+                )
+
+            [service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+        )
+
+    [_hasDataChanges:protected] => 1
+    [_origData:protected] => 
+    [_idFieldName:protected] => 
+    [_isDeleted:protected] => 
+    [_oldFieldsMap:protected] => Array
+        (
+        )
+
+    [_syncFieldsMap:protected] => Array
+        (
+        )
+
+)
+
+Varien_Object Object
+(
+    [_data:protected] => Array
+        (
+            [active] => 1
+            [rate_service_url] => https://www.xend.com.ph/api/RateService.asmx?wsdl
+            [shipment_service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+            [developer_id] => DFABAE3E-C61B-4F4B-84E2-7841F61D02F3
+            [user_token] => E188028D-568E-446A-840A-1EB2004DAA2F
+            [title] => Xend
+            [name] => Standard Delivery
+            [shipment_type] => Parcel
+            [specificerrmsg] => This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.
+            [sallowspecific] => 0
+            [specificcountry] => 
+            [showmethod] => 0
+            [sort_order] => 10
+            [product_weight_unit] => G
+            [insurance_percent_excess] => 1
+            [max_free_shipping_insurance] => 2000
+            [destinations] => Array
+                (
+                    [0] => MetroManilaExpress
+                    [1] => ProvincialExpress
+                    [2] => RizalMetroManilaExpress
+                    [3] => InternationalEMS
+                )
+
+            [service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+        )
+
+    [_hasDataChanges:protected] => 1
+    [_origData:protected] => 
+    [_idFieldName:protected] => 
+    [_isDeleted:protected] => 
+    [_oldFieldsMap:protected] => Array
+        (
+        )
+
+    [_syncFieldsMap:protected] => Array
+        (
+        )
+
+)
+
+Varien_Object Object
+(
+    [_data:protected] => Array
+        (
+            [active] => 1
+            [rate_service_url] => https://www.xend.com.ph/api/RateService.asmx?wsdl
+            [shipment_service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+            [developer_id] => DFABAE3E-C61B-4F4B-84E2-7841F61D02F3
+            [user_token] => E188028D-568E-446A-840A-1EB2004DAA2F
+            [title] => Xend
+            [name] => Standard Delivery
+            [shipment_type] => Parcel
+            [specificerrmsg] => This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.
+            [sallowspecific] => 0
+            [specificcountry] => 
+            [showmethod] => 0
+            [sort_order] => 10
+            [product_weight_unit] => G
+            [insurance_percent_excess] => 1
+            [max_free_shipping_insurance] => 2000
+            [destinations] => Array
+                (
+                    [0] => MetroManilaExpress
+                    [1] => ProvincialExpress
+                    [2] => RizalMetroManilaExpress
+                    [3] => InternationalEMS
+                )
+
+            [service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+        )
+
+    [_hasDataChanges:protected] => 1
+    [_origData:protected] => 
+    [_idFieldName:protected] => 
+    [_isDeleted:protected] => 
+    [_oldFieldsMap:protected] => Array
+        (
+        )
+
+    [_syncFieldsMap:protected] => Array
+        (
+        )
+
+)
+
+Varien_Object Object
+(
+    [_data:protected] => Array
+        (
+            [active] => 1
+            [rate_service_url] => https://www.xend.com.ph/api/RateService.asmx?wsdl
+            [shipment_service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+            [developer_id] => DFABAE3E-C61B-4F4B-84E2-7841F61D02F3
+            [user_token] => E188028D-568E-446A-840A-1EB2004DAA2F
+            [title] => Xend
+            [name] => Standard Delivery
+            [shipment_type] => Parcel
+            [specificerrmsg] => This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.
+            [sallowspecific] => 0
+            [specificcountry] => 
+            [showmethod] => 0
+            [sort_order] => 10
+            [product_weight_unit] => G
+            [insurance_percent_excess] => 1
+            [max_free_shipping_insurance] => 2000
+            [destinations] => Array
+                (
+                    [0] => MetroManilaExpress
+                    [1] => ProvincialExpress
+                    [2] => RizalMetroManilaExpress
+                    [3] => InternationalEMS
+                )
+
+            [service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+        )
+
+    [_hasDataChanges:protected] => 1
+    [_origData:protected] => 
+    [_idFieldName:protected] => 
+    [_isDeleted:protected] => 
+    [_oldFieldsMap:protected] => Array
+        (
+        )
+
+    [_syncFieldsMap:protected] => Array
+        (
+        )
+
+)
+
+Varien_Object Object
+(
+    [_data:protected] => Array
+        (
+            [active] => 1
+            [rate_service_url] => https://www.xend.com.ph/api/RateService.asmx?wsdl
+            [shipment_service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+            [developer_id] => DFABAE3E-C61B-4F4B-84E2-7841F61D02F3
+            [user_token] => E188028D-568E-446A-840A-1EB2004DAA2F
+            [title] => Xend
+            [name] => Standard Delivery
+            [shipment_type] => Parcel
+            [specificerrmsg] => This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.
+            [sallowspecific] => 0
+            [specificcountry] => 
+            [showmethod] => 0
+            [sort_order] => 10
+            [product_weight_unit] => G
+            [insurance_percent_excess] => 1
+            [max_free_shipping_insurance] => 2000
+            [destinations] => Array
+                (
+                    [0] => MetroManilaExpress
+                    [1] => ProvincialExpress
+                    [2] => RizalMetroManilaExpress
+                    [3] => InternationalEMS
+                )
+
+            [service_url] => https://www.xend.com.ph/api/ShipmentService.asmx?wsdl
+        )
+
+    [_hasDataChanges:protected] => 1
+    [_origData:protected] => 
+    [_idFieldName:protected] => 
+    [_isDeleted:protected] => 
+    [_oldFieldsMap:protected] => Array
+        (
+        )
+
+    [_syncFieldsMap:protected] => Array
+        (
+        )
+
+)
+

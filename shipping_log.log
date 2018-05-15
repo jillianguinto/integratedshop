@@ -1,0 +1,949 @@
+Array
+(
+    [ServiceTypeValue] => InternationalExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => United States
+    [Weight] => 0.0250
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 500
+    [AddInsurance] => 1
+)
+
+Array
+(
+    [ServiceTypeValue] => InternationalExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => United States
+    [Weight] => 0.0250
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 500
+    [AddInsurance] => 1
+)
+
+Array
+(
+    [ServiceTypeValue] => InternationalExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => United States
+    [Weight] => 0.0250
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 500
+    [AddInsurance] => 1
+)
+
+Array
+(
+    [ServiceTypeValue] => InternationalExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => United States
+    [Weight] => 0.0750
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 1500
+    [AddInsurance] => 1
+)
+
+Array
+(
+    [ServiceTypeValue] => InternationalExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => United States
+    [Weight] => 0.0750
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 1500
+    [AddInsurance] => 1
+)
+
+Array
+(
+    [ServiceTypeValue] => InternationalExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => United States
+    [Weight] => 0.1250
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2500
+    [AddInsurance] => 1
+)
+
+Array
+(
+    [ServiceTypeValue] => InternationalExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => United States
+    [Weight] => 0.1250
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2500
+    [AddInsurance] => 1
+)
+
+Array
+(
+    [ServiceTypeValue] => InternationalExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => United States
+    [Weight] => 0.2000
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 4000
+    [AddInsurance] => 1
+)
+
+Array
+(
+    [ServiceTypeValue] => InternationalExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => United States
+    [Weight] => 0.2000
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 4000
+    [AddInsurance] => 1
+)
+
+Array
+(
+    [ServiceTypeValue] => InternationalExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => United States
+    [Weight] => 0.1750
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 3500
+    [AddInsurance] => 1
+)
+
+Array
+(
+    [ServiceTypeValue] => InternationalExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => United States
+    [Weight] => 0.1750
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 3500
+    [AddInsurance] => 1
+)
+
+Array
+(
+    [ServiceTypeValue] => InternationalExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => United States
+    [Weight] => 0.1750
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 3500
+    [AddInsurance] => 1
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.1750
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 3500.0000
+    [AddInsurance] => 1
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.1750
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 3500
+    [AddInsurance] => 1
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.1750
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 3500
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.1750
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 3500
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => InternationalPostal
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => United States
+    [Weight] => 0.7780
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 5292
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => InternationalEMS
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => United States
+    [Weight] => 0.7780
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 5292
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => InternationalExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => United States
+    [Weight] => 0.7780
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 5292
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.1760
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 3520
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.1760
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 3520
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.1760
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 3520
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.6760
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 5520
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.6760
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 5520
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 5.0115
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 95220.0000
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 5.0115
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 95220
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 5.0115
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 95220
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 5.0115
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 95220
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 5.0110
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 20220
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 5.0110
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 20220
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.0110
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 220
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.0110
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 220
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.0200
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 400
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.0200
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 400
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200.0000
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Batangas
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200.0000
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Batangas
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Quezon
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200.0000
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Quezon
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Quezon
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200.0000
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Quezon
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Quezon
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200.0000
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Quezon
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Quezon
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Quezon
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Marinduque
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200.0000
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Marinduque
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Lanao del Sur
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200.0000
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Lanao del Sur
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Leyte
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200.0000
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Leyte
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Leyte
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200.0000
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Leyte
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Pampanga
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200.0000
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Pampanga
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Maguindanao
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200.0000
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => ProvincialExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Maguindanao
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200.0000
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200.0000
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.1100
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2200
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.0001
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2675.0000
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.0001
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2675
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.0001
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2675
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.0001
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2675.0000
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.0001
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2675
+    [AddInsurance] => 
+)
+
+Array
+(
+    [ServiceTypeValue] => MetroManilaExpress
+    [ShipmentTypeValue] => Parcel
+    [DestinationValue] => Metro Manila
+    [Weight] => 0.0001
+    [DimensionL] => 0
+    [DimensionW] => 0
+    [DimensionH] => 0
+    [DeclaredValue] => 2675
+    [AddInsurance] => 
+)
+
