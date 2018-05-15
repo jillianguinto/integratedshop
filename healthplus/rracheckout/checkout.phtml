@@ -1,0 +1,97 @@
+<?php
+
+// This page is create by Richel R. Amante for UNILAB use only.
+// Please do not used this software or take with your own risk.
+// Thank you!!!
+
+?>
+<?php
+	$this->getshipppingAddress(); 
+	$this->getsetting();
+	$this->getpaymentmethod();
+	$this->getsubtotalincltax();
+	$this->getdefualtAddress();
+	$this->getaAmountdata();
+	$this->loadAddress();
+?>
+ 
+<?php echo $this->getChildHtml('style_css'); ?>
+
+<?php	
+$customername = Mage::getSingleton('customer/session')->getcustomer()->getfirstname();
+$methodcode = Mage::getSingleton('core/session')->getPaymentMethod(); 
+$storeId = Mage::app()->getStore()->getStoreId();
+
+// echo "<pre>";
+// var_dump(Mage::getModel('checkout/session')->getQuote());
+?>
+
+<div class="container_wapper">
+	<div class="page-title">
+		<h1>CHECKOUT</h1>
+	</div>
+	<div class="checkout-wrapper">
+		<div class="billing-address">
+		<?php echo $this->getChildHtml('billing_address').'<br/><br/>'; ?>		
+			<?php
+				if (Mage::getStoreConfig('rracheckoutsection/rracheckoutgrounp/shiptoaddress') == 1):							
+					echo '<div class="shipping_address" >'.$this->getChildHtml('shipping_address').'</div>';
+				elseif (Mage::getStoreConfig('rracheckoutsection/rracheckoutgrounp/shiptoaddress') == 2):
+					echo '<div class="shipping_address"  style="display:none;">'.$this->getChildHtml('shipping_address').'</div>';							
+				endif;
+			?>
+		</div>
+		<div class="checkout-wrappah">
+			<div class="shipping-method">
+				<?php echo $this->getChildHtml('shipping_method'); ?>
+			</div>
+			<div class="payment-method">
+				<?php echo $this->getChildHtml('payment_method'); ?>
+			</div>
+			
+			<input type="hidden" value="<?php echo $methodCode = Mage::getSingleton('checkout/session')->getQuote()->getPayment()->getMethod(); ?>" id="paymentmethod">
+			<div class="payment-instructions" id="payment-instructions">
+				<?php echo $this->getChildHtml('payment_instructions'); ?>
+			</div>
+		</div>
+	</div>
+</div>
+
+	<div class="orderview-wrapper">
+		<div class="checkout-items">
+			<?php echo $this->getChildHtml('items'); ?>
+		</div>
+		<div class="checkout-totals">
+			<?php echo $this->getChildHtml('totals'); ?>
+		</div>
+		<div class="checkout-placeorder">
+			<?php echo $this->getChildHtml('place_order'); ?>
+		</div>
+	</div>
+</div>
+
+<?php
+	 $point = Mage::getSingleton('core/session')->getMysession();
+	//$healthdiscount = Mage::getSingleton('core/session')->getMysession();
+	//echo $healthdiscount;
+
+?>
+
+
+<script>
+	jQuery(document).ready(function (){	
+		var paymentname = jQuery("#paymentmethod").val();
+				if(paymentname != 'bankdeposit'){
+					jQuery("#payment_instruction_bankdeposit").css({ display: "none" });
+				}else{
+					jQuery("#payment_instruction_bankdeposit").css({ display: "block" });
+				}	
+				
+				if(paymentname != 'perapal'){
+					jQuery("#payment_instruction_cebuana").css({ display: "none" });
+				}else{
+					jQuery("#payment_instruction_cebuana").css({ display: "block" });
+				}
+			
+	});
+</script>
