@@ -1,0 +1,186 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>E-commerce user admin</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="<?php echo base_url()?>template/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>template/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link href="<?php echo base_url()?>template/css/sb-admin.css" rel="stylesheet">
+    <!-- Morris Charts CSS -->
+    <link href="<?php echo base_url()?>template/css/plugins/morris.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="<?php echo base_url()?>template/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url()?>template/css/styles.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>template/css/font-awesome-animation.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+		
+	<script src="<?php echo base_url()?>template/js/jquery-1.11.2.min.js"></script>	
+	<script src="<?php echo base_url()?>template/js/bootstrap.validator.js"></script>	
+	<script src="<?php echo base_url()?>template/js/jquery.dataTables.min.js"></script>	
+	<script src="<?php echo base_url()?>template/js/dataTables.bootstrap.min.js"></script>	
+    <script src="<?php echo base_url()?>template/js/bootstrap-datetimepicker.js"></script>  
+	
+	<script src="<?php echo base_url()?>template/js/jquery.table2excel.js" type="text/javascript" ></script>	
+	
+	<!--script src="<?php echo base_url()?>template/js/tableExport.js" type="text/javascript" ></script>	
+	<script src="<?php echo base_url()?>template/js/jquery.base64.js" type="text/javascript" ></script>	
+	
+	<script src="<?php echo base_url()?>template/js/jspdf/libs/sprintf.js" type="text/javascript" ></script>	
+	<script src="<?php echo base_url()?>template/js/jspdf/jspdf.js" type="text/javascript" ></script>	
+	<script src="<?php echo base_url()?>template/js/jspdf/libs/base64.js" type="text/javascript" ></script-->	
+	<style type="text/css">
+    i.black{
+        color:black;
+    }
+    .iconme
+    {
+    padding: 5px 10px;
+    background: -moz-linear-gradient(
+        top,
+        #fcfcfc 100%,
+        #ffffff 25%,
+        #fcfcfc);
+    display: inline-block;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    -moz-box-shadow: 0px 0px 2px #888;
+    -webkit-box-shadow: 0px 0px 2px #888;
+    box-shadow: 0px 0px 2px #888;
+    }
+.btn-lg.round {
+    /*margin:10px;*/
+    background: -moz-linear-gradient(
+        top,
+        #307d82 0%,
+        #47479e 25%,
+        #73d9d4);
+    background: -webkit-gradient(
+        linear, left top, left bottom,
+        from(#307d82),
+        color-stop(0.25, #47479e),
+        to(#73d9d4));
+    -moz-border-radius: 30px;
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+    border: 3px solid #ffffff;
+    -moz-box-shadow:
+        0px 3px 11px rgba(000,000,000,0.5),
+        inset 0px 0px 1px rgba(255,000,217,1);
+    -webkit-box-shadow:
+        0px 3px 11px rgba(000,000,000,0.5),
+        inset 0px 0px 1px rgba(255,000,217,1);
+    box-shadow:
+        0px 3px 11px rgba(000,000,000,0.5),
+        inset 0px 0px 1px rgba(255,000,217,1);
+    text-shadow:
+        0px -1px 0px rgba(000,000,000,0.2),
+        0px 1px 0px rgba(255,255,255,0.3);
+}
+    /* style for modal */
+    .addcustomer-modal{
+        margin: 20px;
+    }
+
+    #addcustomermodal .modal-dialog
+    {
+        width: 960px;
+    }
+
+    .customer-form .form-group{
+        padding: 10px;
+    }
+
+    .clear{
+        clear: both;
+    }
+
+    .hr {
+
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 10px;
+    }
+
+    @media screen and (max-width: 990px) {
+        #addcustomermodal .modal-dialog
+        {
+            width: auto;
+            margin:10px;
+        }
+    }
+
+    .error-message{color:red;}
+    /* // style for modal */
+
+    </style>
+
+    <script>
+    $(document).ready(function() {
+
+        $("#form-user").on('submit',(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: $('#form-user').attr('action'),
+                type: "POST",
+                data:  new FormData(this),
+                contentType: false,
+                cache: false,
+                processData:false,
+                success: function(data){
+                        console.log(data);
+                        data = JSON.parse(data);
+                        if(data.st == 0)
+                        {
+                            $( ".error-message" ).remove();
+                            var data1    = JSON.parse(data.msg); 
+                            $('form :input').each(function(){                            
+                                            var elementName = $(this).attr('name');        
+                                            var message = data1[elementName];
+                                            if(message){
+                                            var element = $('<div>' + message + '</div>')
+                                                            .attr({
+                                                                'class' : 'error-message'
+                                                            })
+                                                            .css ({
+                                                                display: 'none'
+                                                            });
+                                            $(this).before(element);
+                                            $(element).fadeIn();
+                                            }
+                            });
+                        }
+                           
+                      
+
+                        if(data.st == 1)
+                        {
+                          $('#validation-error').html(data.msg);
+                          $( ".error-message" ).remove();
+                           alert('success!');
+                        }
+                },
+                error: function(){}             
+            });
+        }));
+
+    });
+    </script>
+  
+</head>
+
+<?php settimezome_taipei() ?>
+
+
+

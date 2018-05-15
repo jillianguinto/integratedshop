@@ -1,0 +1,903 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Customers extends CI_Controller {
+
+
+		
+	public function __construct()
+	{
+		parent::__construct();
+		
+		$this->load->helper(array('form','url'));
+       	$this->load->library('form_validation');
+		$this->load->model('Customermod');	
+		
+		$store_id  		= isstore_id();
+		$usersession 	= is_usersession();
+
+		$baseurl = base_url();
+		if(empty($usersession)):
+			redirect($baseurl);
+		endif;			
+		
+		$this->store_id 	= $store_id;
+	}
+
+
+	public function index()
+	{	
+		 		
+		$store_id  		= isstore_id();
+		$usersession 	= is_usersession();
+		$baseurl = base_url();
+		if(empty($usersession)):
+			redirect($baseurl);
+		endif;
+		
+		$getAllcustomer	= $this->Customermod->getcustomerinfo($store_id);
+		$errormessage 	= null;
+		$errortype 		= 'warning';
+
+		$userData = array(
+			'getAllcustomer' =>$getAllcustomer,
+			'errormessage'	 =>$errormessage,
+			'errortype'		 =>$errortype
+		
+		);
+	
+
+		$datax = array();
+		$i = 0;
+		foreach($getAllcustomer as $x=>$j){
+
+		 	$jx = $i++;
+			$ids  = $getAllcustomer[$jx]->entity_id;
+		
+			$query = $this->db->query("SELECT * FROM log_customer WHERE customer_id = '{$ids}' ORDER BY login_at DESC LIMIT 1");
+
+			foreach ($query->result_array() as $row)
+			{
+			    $userData['getAllcustomer'][$jx]->last_login = $row['login_at'];			      
+			}	
+		}
+		
+		$j = 0;
+		foreach($getAllcustomer as $jx=>$k){
+			$xx = $j++;	
+
+			//division
+			$get_division	= $this->Customermod->get_division();
+
+			$unilabdivision_option_id = array();
+			$unilabdivision_name = array();
+
+			foreach($get_division as $k=>$v){
+				$unilabdivision_option_id['option_id'][] 		= $get_division[$k]->option_id;
+				$unilabdivision_name['unilabdivision_name'][] 	= $get_division[$k]->unilabdivision_name;
+			}
+		
+			$get_division_data = array_merge($unilabdivision_option_id,$unilabdivision_name);	
+			$userData['getAllcustomer'][$xx]->unilabdivision = $get_division_data;
+
+			//group
+			$get_group	= $this->Customermod->get_group();
+
+			$unilabgroup_name_option_id = array();
+			$unilabgroup_name = array();
+
+			foreach($get_group as $k=>$v){
+				$unilabgroup_name_option_id['option_id'][] 	= $get_group[$k]->option_id;
+				$unilabgroup_name['unilabgroup_name'][] 	= $get_group[$k]->unilabgroup_name;
+			}
+
+			$get_group_data = array_merge($unilabgroup_name_option_id,$unilabgroup_name);	
+			$userData['getAllcustomer'][$xx]->unilabgroup = $get_group_data;
+
+
+		}		
+
+		
+		//echo $getAllcustomer[0]->entity_id;
+		//echo '<pre>';	
+		 
+		//  $get_division	= $this->Customermod->get_division();
+		//  $get_group	= $this->Customermod->get_group();
+		// print_r($get_division);
+		//print_r($getAllcustomer	);
+
+		//print_r($userData);
+		//die();
+
+		
+		
+		$this->load->view('head/head');
+		$this->load->view('sidebar/menu',$userData);
+		$this->load->view('include/customerlist');
+		$this->load->view('footer/footer');
+	}
+
+		
+	public function view()
+	{
+		
+		
+		
+		$store_id  		= isstore_id();
+		$usersession 	= is_usersession();
+		
+		
+
+		$baseurl = base_url();
+		if(empty($usersession)):
+			redirect($baseurl);
+		endif;				
+		
+		if(isset($_POST['customerId'])):
+			$customerId =  $_POST['customerId'];
+		else:
+			$customerId = 0;
+		endif;		
+				
+		$customerId;		
+				
+		$getCustomerByCustomerId = $this->Customermod->get_account_information($customerId, $store_id); 
+		$getCustomerByCustomerId[0]->address_information = $getCustomerAddressByCustomerId = $this->Customermod->get_customer_address($customerId);	
+
+		$userData = array();				
+		foreach($getCustomerByCustomerId as $key=> $customerView){
+			$userData['customer_information'][$key] = $customerView;
+		}	
+		
+
+		$j = 0;
+		foreach($getCustomerByCustomerId as $jx=>$k){
+			$xx = $j++;	
+
+			//division
+			$get_division	= $this->Customermod->get_division();
+
+			$unilabdivision_option_id = array();
+			$unilabdivision_name = array();
+
+			foreach($get_division as $k=>$v){
+				$unilabdivision_option_id['option_id'][] 		= $get_division[$k]->option_id;
+				$unilabdivision_name['unilabdivision_name'][] 	= $get_division[$k]->unilabdivision_name;
+			}
+		
+			$get_division_data = array_merge($unilabdivision_option_id,$unilabdivision_name);	
+			$userData['customer_information'][$xx]->unilabdivision = $get_division_data;
+
+			//group
+			$get_group	= $this->Customermod->get_group();
+
+			$unilabgroup_name_option_id = array();
+			$unilabgroup_name = array();
+
+			foreach($get_group as $k=>$v){
+				$unilabgroup_name_option_id['option_id'][] 	= $get_group[$k]->option_id;
+				$unilabgroup_name['unilabgroup_name'][] 	= $get_group[$k]->unilabgroup_name;
+			}
+
+			$get_group_data = array_merge($unilabgroup_name_option_id,$unilabgroup_name);	
+			$userData['customer_information'][$xx]->unilabgroup = $get_group_data;
+
+		}		
+
+		$website_id = $this->Customermod->core_store();				
+		foreach($website_id as $webid_key=>$webid_value){
+			foreach($webid_value as $k=>$val){
+				$userData['website_id'][$webid_key][$k] = $val;			
+			}				
+		}		
+		
+		$customer_group = $this->Customermod->customer_group();	
+		foreach($customer_group as $customer_group_key=>$customer_group_value){
+			foreach($customer_group_value as $k=>$val){
+				$userData['customer_group'][$customer_group_key][$k] = $val;			
+			}				
+		}				
+
+
+		// echo '<pre>';
+
+		// print_r($userData);
+
+		// die();
+				
+		$this->load->view('head/head');
+		$this->load->view('sidebar/menu',$userData);
+		$this->load->view('include/customer/view');
+		$this->load->view('footer/footer');		
+	}	
+
+	public function add_customer_account(){	
+
+		// echo '<pre>';
+
+		// print_r($_POST);
+		
+
+
+
+		// $eav_attribute_customer_entity = [							
+		// 	// 'prcnumber'					=> $this->input->post('prcnumber'),
+		// 	'lastname'					=> $this->input->post('lastname'),
+		// 	'agree_on_terms' 			=> $this->input->post('agree_on_terms'),
+		// 	// 'numofkids'					=> $this->input->post('numofkids'),
+		// 	// 'suffix' 					=> $this->input->post('suffix'),
+		// 	// 'medprefix'					=> $this->input->post('medprefix'),
+		// 	'website_id' 				=> $this->input->post('website_id'),
+		// 	// 'medfname' 					=> $this->input->post('medfname'),
+		// 	'group_id' 					=> $this->input->post('group_id'),
+		// 	// 'medlname' 					=> $this->input->post('medlname'),
+		// 	'disable_auto_group_change' => $this->input->post('disable_auto_group_change'),
+		// 	'prefix' 					=> $this->input->post('prefix'),
+		// 	// 'taxvat' 					=> $this->input->post('taxvat'),
+		// 	'firstname' 				=> $this->input->post('firstname'),
+		// 	'gender' 					=> $this->input->post('gender'),
+		// 	'middlename' 				=> $this->input->post('middlename'),
+		// 	'civil_status' 				=> $this->input->post('civil_status'),
+		// 	'password_hash' 			=> $this->input->post('password')
+
+		// ];			
+
+
+		// if($this->input->post('password_hash') > 0){
+		// 	$eav_attribute_customer_entity['password_hash'] = get_random_password();
+		// }
+
+		// echo '<pre>';
+		// print_r($eav_attribute_customer_entity);
+
+
+
+
+		die();
+
+
+		$userName = $_POST['prefix'];
+
+		echo json_encode(array(
+		    'message' => sprintf('Welcome %s', $userName),
+		));
+
+		//die();
+			
+		$store_id  		= isstore_id();
+		$usersession 	= is_usersession();
+		$baseurl = base_url();
+		if(empty($usersession)):
+			redirect($baseurl);
+		endif;			
+		
+		$website_ids = $store_id;						
+		//customer account
+		$this->form_validation->set_rules('firstname', 'First Name',  'trim|required'); 
+		// $this->form_validation->set_rules('lastname', 'Last Name',  'trim|required'); 
+		
+		// $this->form_validation->set_rules('email', 'Email',  'trim|required'); 
+		// $this->form_validation->set_rules('dob', 'Date of Birth',  'trim|required'); 
+		// $this->form_validation->set_rules('gender', 'Gender',  'trim|required'); 
+		// $this->form_validation->set_rules('civil_status', 'Civil Status',  'trim|required'); 
+		// $this->form_validation->set_rules('password', 'Password',  'trim|required'); 
+
+		// //address
+		// $this->form_validation->set_rules('address_street', 'Street Address',  'trim|required'); 
+		// $this->form_validation->set_rules('address_city', 'City',  'trim|required'); 
+		// $this->form_validation->set_rules('address_postcode', 'Zip/Postal Code',  'trim|required'); 
+
+	    if($this->form_validation->run() == false)
+	    {	     
+			$errors = $this->form_validation->error_array();         
+           
+		    echo json_encode(array('st'=>0, 'msg' => json_encode($errors)));
+	    }
+	    else
+	    {
+			$customer_entity = [
+				'entity_id' 				=> NULL,
+				'entity_type_id'			=> 1,
+				'attribute_set_id' 			=> 0,
+				'website_id' 				=> $website_ids,
+				'email' 					=> $this->input->post('email'),
+				'group_id' 					=> $this->input->post('group_id'),
+				'increment_id' 				=> '',
+				'store_id' 					=> store_id(),
+				'created_at' 				=> date("Y-m-d H:i:s", strtotime('now')),
+				'updated_at' 				=> date("Y-m-d H:i:s", strtotime('now')),
+				'is_active' 				=> 1,
+				'disable_auto_group_change' => 0			
+			];			
+
+					
+			$insert_id = $this->Customermod->customer_entity($customer_entity);		
+
+			$eav_attribute_customer_address_entity = [
+				'prefix'		 			=> $this->input->post('address_prefix'),
+			   	'firstname' 				=> $this->input->post('address_firstname'),
+			    'middlename' 				=> $this->input->post('address_middlename'),
+			    'lastname' 					=> $this->input->post('address_lastname'),
+			    'suffix' 					=> $this->input->post('address_suffix'),
+			    'company' 					=> $this->input->post('address_company'),
+			    'street' 					=> $address_street,
+			    'city' 						=> $this->input->post('address_city'),
+			    'country_id' 				=> $this->input->post('country_id'),
+			    'region_id'					=> $this->input->post('address_region_id'),
+			    'postcode' 					=> $this->input->post('address_postcode'), 
+			    'telephone' 				=> $this->input->post('address_telephone'),
+			    'address_fax' 				=> $this->input->post('address_fax'),			    
+				'default_billing' 			=> $this->input->post('default_billing'),
+				'default_shipping' 			=> $this->input->post('default_shipping')
+			 ];    
+
+			//add address
+			if(!empty($_POST['address_firstname']) && !empty($_POST['address_lastname'])):
+
+				$customer_address_entity = [
+					'entity_id' 				=>NULL,
+					'entity_type_id'			=>2,
+					'attribute_set_id'			=>0,
+					'increment_id'				=>'',
+					'parent_id'					=>$insert_id,
+					'created_at'				=>date("Y-m-d H:i:s", strtotime('now')),
+					'updated_at'				=>date("Y-m-d H:i:s", strtotime('now')),
+					'is_active'					=>1
+				];				
+				
+				$eav_attribute_customer_entity = [							
+					// 'prcnumber'					=> $this->input->post('prcnumber'),
+					'lastname'					=> $this->input->post('lastname'),
+					'agree_on_terms' 			=> $this->input->post('agree_on_terms'),
+					// 'numofkids'					=> $this->input->post('numofkids'),
+					// 'suffix' 					=> $this->input->post('suffix'),
+					// 'medprefix'					=> $this->input->post('medprefix'),
+					'website_id' 				=> $this->input->post('website_id'),
+					// 'medfname' 					=> $this->input->post('medfname'),
+					'group_id' 					=> $this->input->post('group_id'),
+					// 'medlname' 					=> $this->input->post('medlname'),
+					'disable_auto_group_change' => $this->input->post('disable_auto_group_change'),
+					'prefix' 					=> $this->input->post('prefix'),
+					// 'taxvat' 					=> $this->input->post('taxvat'),
+					'firstname' 				=> $this->input->post('firstname'),
+					'gender' 					=> $this->input->post('gender'),
+					'middlename' 				=> $this->input->post('middlename'),
+					'civil_status' 				=> $this->input->post('civil_status'),
+					'password_hash' 			=> $this->input->post('password')
+
+				];			
+
+				//auto generate password to user email
+				if($this->input->post('password_hash') > 0){
+					$eav_attribute_customer_entity['password_hash'] = get_random_password();
+				
+					$to 		= $this->input->post('email');
+					$firstname 	= $this->input->post('firstname');
+					$lastname 	= $this->input->post('lastname');
+					$get_random_password = get_random_password();
+					sendAutoGeneratedPassword($to,$firstname, $lastname, $get_random_password);
+				   
+				}
+
+
+
+				$this->Customermod->customer_address_entity($customer_address_entity);	
+				// $this->add_customer($insert_id, $eav_attribute_customer_address_entity, $website_ids);
+
+				$customer_address_entity_last_id = $this->Customermod->customer_address_entity_last_id($insert_id, $website_ids);
+							
+				foreach($customer_address_entity_last_id as $customer_address_entity_value):
+
+					$entity_id 		= $customer_address_entity_value->entity_id;
+					$entity_type_id = $customer_address_entity_value->entity_type_id;
+
+					$attribute_ids 	= $this->Customermod->get_all_eav_attribute($entity_type_id);
+
+					foreach($eav_attribute_customer_address_entity  as $eav_attribute_key => $eav_attribute_value):
+				
+						foreach($attribute_ids as $eav):																
+							
+							if($eav->attribute_code == $eav_attribute_key):							
+								$this->load->model('Customermod');		
+								$data = array(
+									'value_id'			=>NULL, 
+									'entity_type_id' 	=>$entity_type_id,
+									'attribute_id' 		=>$eav->attribute_id,
+									'entity_id' 		=>$entity_id,
+									'value'				=>$eav_attribute_value
+								);		
+								
+								$funcname = 'customer_address_entity_varchar';
+								
+								$this->Customermod->$funcname($data);		
+								
+							endif;		
+
+						endforeach;	
+
+					endforeach;	
+					
+				endforeach;			
+			
+			endif;
+		
+			
+			$customer_entity_last_id = $this->Customermod->customer_entity_last_id($insert_id, $website_ids);	
+		
+			foreach($customer_entity_last_id as $customer_entity_value){
+		
+				$entity_id 		= $customer_entity_value->entity_id;
+				$entity_type_id = $customer_entity_value->entity_type_id;		
+		
+				$attribute_ids 	= $this->Customermod->get_all_eav_attribute($entity_type_id);		
+				
+				foreach($eav_attribute_customer_entity  as $eav_attribute_key => $eav_attribute_value){
+				
+					foreach($attribute_ids as $eav){																
+						
+						if($eav->attribute_code == $eav_attribute_key){														
+							$this->load->model('Customermod');		
+							$data = array(
+								'value_id'			=>NULL, 
+								'entity_type_id' 	=>$entity_type_id,
+								'attribute_id' 		=>$eav->attribute_id,
+								'entity_id' 		=>$entity_id,
+								'value'				=>$eav_attribute_value
+							);			
+							$this->Customermod->customer_entity_varchar($data);						
+						}						
+					}
+				}
+			}	
+			echo json_encode(array('st'=>1, 'msg' => 'New Account was added', 'parent_id' =>$insert_id));	
+		}
+	}
+	
+	public function update_customer_account(){
+		
+
+
+		//$this->update_customer_account_address($_POST,  $_POST['entity_id']);
+
+		// echo '<pre>';
+
+		// print_r($_POST);
+
+		// die();
+
+		//customer account
+		$this->form_validation->set_rules('firstname', 'First Name',  'trim|required'); 
+		// $this->form_validation->set_rules('lastname', 'Last Name',  'trim|required'); 
+		
+		// $this->form_validation->set_rules('email', 'Email',  'trim|required'); 
+		// $this->form_validation->set_rules('dob', 'Date of Birth',  'trim|required'); 
+		// $this->form_validation->set_rules('gender', 'Gender',  'trim|required'); 
+		// $this->form_validation->set_rules('civil_status', 'Civil Status',  'trim|required'); 
+		// $this->form_validation->set_rules('password', 'Password',  'trim|required'); 
+
+
+		if($this->form_validation->run() == false)
+	    {	 
+
+	    	// echo 1;    
+			$errors = $this->form_validation->error_array();      
+           
+		    echo json_encode(array('st'=>0, 'msg' => json_encode($errors)));
+	    }
+	    else
+	    {
+	    	// echo 0;
+
+
+
+	    	// die();
+
+
+	    	
+
+			$update_customer_entity = [	
+				'entity_type_id'  	=> 1,
+				'attribute_set_id' 	=> $this->input->post('attribute_set_id'), //errro
+				'website_id'		=> $this->input->post('website_id'), //ok
+				'email'				=> $this->input->post('email'),	//ok
+				'group_id'			=> $this->input->post('group_id'),
+				'increment_id'		=> $this->input->post('increment_id'), //error
+				'created_at'		=> $this->input->post('created_at'), //error
+				'updated_at'		=> $this->input->post('updated_at'), //error
+				'is_active'			=> 1,			
+				'disable_auto_group_change' => $this->input->post('disable_auto_group_change')
+			];		
+
+
+
+
+
+		 	$id = $this->input->post('entity_id');	
+			$this->load->model('Customermod');				
+			$results = $this->Customermod->update_customer_entity($id, $update_customer_entity);	
+			
+
+			// echo '<pre>';
+
+			// print_r($results);
+
+
+			// die();
+
+			$eav_attribute_customer_entity = [							
+				// 'prcnumber'					=> $this->input->post('prcnumber'),
+				'lastname'					=> $this->input->post('lastname'),
+				'agree_on_terms' 			=> $this->input->post('agree_on_terms'),
+				// 'numofkids'					=> $this->input->post('numofkids'),
+				'suffix' 					=> $this->input->post('suffix'),
+				// 'medprefix'					=> $this->input->post('medprefix'),
+				'website_id' 				=> $this->input->post('website_id'),
+				// 'medfname' 					=> $this->input->post('medfname'),
+				'group_id' 					=> $this->input->post('group_id'),
+				// 'medlname' 					=> $this->input->post('medlname'),
+				'disable_auto_group_change' => $this->input->post('disable_auto_group_change'),
+				'prefix' 					=> $this->input->post('prefix'),
+				//'taxvat' 					=> $this->input->post('taxvat'),
+				'firstname' 				=> $this->input->post('firstname'),
+				'gender' 					=> $this->input->post('gender'),
+				'middlename' 				=> $this->input->post('middlename'),
+				'civil_status' 				=> $this->input->post('civil_status'),
+				'password_hash' 			=> $this->input->post('password')
+
+			];			
+			
+			//auto generate password to user email
+			if($this->input->post('password_hash') > 0){
+				$eav_attribute_customer_entity['password_hash'] = get_random_password();
+			
+				$to 		= $this->input->post('email');
+				$firstname 	= $this->input->post('firstname');
+				$lastname 	= $this->input->post('lastname');
+				$get_random_password = get_random_password();
+				sendAutoGeneratedPassword($to,$firstname, $lastname, $get_random_password);
+			}
+			
+			//echo '<pre>';
+			//print_r($eav_attribute_customer_entity);
+			//die();
+			
+			$attribute_ids 	= $this->Customermod->get_all_eav_attribute(1);
+			
+			foreach($eav_attribute_customer_entity  as $eav_attribute_key => $eav_attribute_value):
+
+					foreach($attribute_ids as $eav):												
+					
+						if($eav->attribute_code == $eav_attribute_key):								
+
+							$this->load->model('Customermod');		
+							$data = array(							
+								'entity_type_id' 	=>1,							
+								'value'				=>$eav_attribute_value
+							);					
+							
+							$this->Customermod->update_customer_entity_varchar($eav->attribute_id, $data);	
+							
+						endif;			
+
+					endforeach;
+			endforeach;	
+
+			echo json_encode(array('st'=>1, 'msg' => 'Updated Account'));	
+		}	
+
+	}
+
+	
+	public function update_customer_account_address($address, $parent_ids){
+			
+		$store_id  		= isstore_id();
+		$usersession 	= is_usersession();
+		$baseurl 		= base_url();
+			
+		$website_ids = $store_id;	
+
+		$this->load->model('Customermod');		
+
+		//echo '<pre>';
+
+		$addressid = array();
+
+		foreach($address['addressid'] as $k=>$val){
+			$addressid[] =  $val;
+		}
+
+		$addrfname = array();
+		foreach($address['addrfname'] as $k=>$val){
+			$addrfname[] =  $val;
+		}
+
+		$addrlname = array();
+		foreach($address['addrlname'] as $k=>$val){
+			$addrlname[] =  $val;
+		}
+
+		$addrcompany = array();
+		foreach($address['addrcompany'] as $k=>$val){
+			$addrcompany[] =  $val;
+		}
+
+		$addrstreet = array();
+		foreach($address['addrstreet'] as $k=>$val){
+			$addrstreet[] =  $val;
+		}
+
+		$addrcity = array();
+		foreach($address['addrcity'] as $k=>$val){
+			$addrcity[] =  $val;
+		}
+
+		$country_id = array();
+		foreach($address['country_id'] as $k=>$val){
+			$country_id[] =  $val;
+		}
+
+		$address_region_id = array();
+		foreach($address['address_region_id'] as $k=>$val){
+			$address_region_id[] =  $val;
+		}
+
+		$addrpostcode = array();
+		foreach($address['addrpostcode'] as $k=>$val){
+			$addrpostcode[] =  $val;
+		}
+
+		$address_telephone = array();
+		foreach($address['address_telephone'] as $k=>$val){
+			$address_telephone[] =  $val;
+		}
+
+		$addrfax = array();
+		foreach($address['addrfax'] as $k=>$val){
+			$addrfax[] =  $val;
+		}
+
+		// $caddrenidArray = array();
+		$parent_id = $this->Customermod->get_customer_address_entity_id($parent_ids);	//get parent 		
+	
+		//mix
+		foreach($addressid as $k=>$val){
+			
+			$post_address = [
+				'parent_id' => $parent_ids,
+				// 'prefix' 	=> $this->input->post('address_prefix'),
+			 	'firstname' => $addrfname[$k],
+			 	'lastname'	=> $addrlname[$k],
+			 	// 'suffix' 	=> $this->input->post('address_suffix'),
+			    'company' 	=> $addrcompany[$k],
+			    'street' 	=> $addrstreet[$k],
+			    'city' 		=> $addrcity[$k],
+			    // 'id' 		=> $country_id,
+			    // 'region_id' => $address_region_id,
+			    'postcode' 	=> $addrpostcode[$k],
+			    'telephone' => $addrpostcode[$k]
+			    // 'fax' 		=> $address_fax
+			];   	
+
+
+			//checks if parent id is !blank
+			if( !empty( $parent_id[$k]->parent_id ) ){
+
+				$entity_id= $this->Customermod->all_customer_address_entity_varchar($parent_id[$k]->entity_id);			
+				$getbyValueId 	= $this->Customermod->getbyValueId($parent_id[$k]->entity_id);
+			
+				//from user
+				$post_entity_id 		= array();
+				$pos_entity_type_id 	= array();
+				$post_attribute_id 		= array();
+				$post_addressvalue 		= array();
+
+				//from database
+				$push_value_id 			= array();
+				$push_attribute_id 		= array();
+				$push_value 			= array();
+				$push_entity_type_id 	= array();
+
+				foreach($getbyValueId as $m=>$n){
+					$push_value_id[] 		= $getbyValueId[$m]->value_id; 
+					$push_attribute_id[] 	= $getbyValueId[$m]->attribute_id; 
+					$push_value[] 			= $getbyValueId[$m]->value; 
+					$push_entity_id[] 		= $getbyValueId[$m]->entity_id; 
+					$push_entity_type_id[] 	= $getbyValueId[$m]->entity_type_id; 
+				}
+			
+				//pass the enity_type_id
+				$attribute_ids 	= $this->Customermod->get_all_eav_attribute($entity_id[$k]->entity_type_id);
+
+				foreach($post_address as $addresskey => $addressvalue)
+				{
+					// echo $addresskey."<br/>";
+					foreach($attribute_ids as $attribute_idskey=>$attribute_idsvalue)
+					{
+
+						if($attribute_idsvalue->attribute_code ==$addresskey){							
+							
+							$post_entity_id[] 		= $parent_id[$k]->entity_id;
+							$pos_entity_type_id[] 	= $entity_id[$k]->entity_type_id;
+							$post_attribute_id[] 	= $attribute_idsvalue->attribute_id;
+							$post_addressvalue[] 	= $addressvalue;							
+
+						}
+					}
+				}	
+
+			}
+			else
+			{
+				$customer_address_entity = [
+					'entity_id' 				=>NULL,
+					'entity_type_id'			=>2,
+					'attribute_set_id'			=>0,
+					'increment_id'				=>'',
+					'parent_id'					=>$_POST['parent_id'],
+					'created_at'				=>date("Y-m-d H:i:s", strtotime('now')),
+					'updated_at'				=>date("Y-m-d H:i:s", strtotime('now')),
+					'is_active'					=>1
+				];					
+					
+				$eav_attribute_customer_address_entity = [
+					'prefix'		 			=> $this->input->post('address_prefix'),
+					'firstname' 				=> $this->input->post('address_firstname'),
+					'lastname' 					=> $this->input->post('address_lastname'),
+					'suffix' 					=> $this->input->post('address_suffix'),
+					'company' 					=> $this->input->post('address_company'),
+					'street' 					=> $this->input->post('address_street'),
+					'city' 						=> $this->input->post('address_city'),
+					'country_id' 				=> $this->input->post('country_id'),
+					'region_id'					=> $this->input->post('address_region_id'),
+					'postcode' 					=> $this->input->post('address_postcode'), 
+					'telephone' 				=> $this->input->post('address_telephone'),
+					'address_fax' 				=> $this->input->post('address_fax'),			    
+					'default_billing' 			=> $this->input->post('default_billing'),
+					'default_shipping' 			=> $this->input->post('default_shipping')
+				];    	
+				
+				// add address
+				$validate = $this->Customermod->customer_address_entity($customer_address_entity);					
+				if(	$validate){					
+					// $this->add_customer($_POST['parent_id'], $eav_attribute_customer_address_entity, $website_ids);	
+
+					$customer_address_entity_last_id = $this->Customermod->customer_address_entity_last_id($_POST['parent_id'], $website_ids);
+								
+					foreach($customer_address_entity_last_id as $customer_address_entity_value){
+
+						$entity_id 		= $customer_address_entity_value->entity_id;
+						$entity_type_id = $customer_address_entity_value->entity_type_id;
+
+						$attribute_ids 	= $this->Customermod->get_all_eav_attribute($entity_type_id);
+
+						foreach($eav_attribute_customer_address_entity  as $eav_attribute_key => $eav_attribute_value){
+					
+							foreach($attribute_ids as $eav){																
+								
+								if($eav->attribute_code == $eav_attribute_key){							
+									$this->load->model('Customermod');		
+									$data = array(
+										'value_id'			=>NULL, 
+										'entity_type_id' 	=>$entity_type_id,
+										'attribute_id' 		=>$eav->attribute_id,
+										'entity_id' 		=>$entity_id,
+										'value'				=>$eav_attribute_value
+									);		
+									
+									$funcname = 'customer_address_entity_varchar';
+									
+									$this->Customermod->$funcname($data);		
+									
+								}		
+
+							}
+
+						}
+						
+					}
+				}
+			}	
+
+		
+			//from user input
+			foreach ($post_entity_id as $key => $value) {
+				$this->db->query("UPDATE customer_address_entity_varchar SET value = '".$post_addressvalue[$key]."' WHERE entity_id = '".$post_entity_id[$key]."' AND attribute_id = '".$post_attribute_id[$key]."' ");
+			}							
+		
+		}				
+		
+	}
+
+
+	public function delete(){
+
+
+		$empId =  $this->input->post('entity_id');		
+		$this->Customermod->delete($empId);					
+
+		try{					
+
+			$response['status']  = "true";	
+			$response['message'] = $this->db->affected_rows();	
+		
+		
+		}catch(Exception $e) {		
+
+				$response['status']  = "false";	
+				$response['message'] = $e->getMessage();
+
+		}			
+		
+	}
+
+
+	function exportCus()
+	{
+		$store_id  		= isstore_id();
+		$getAllcustomer	= $this->Customermod->getExportCust($store_id);
+
+		// $website_id = $this->Customermod->getWebsiteIds($store_id);	// push website_id
+		// foreach ($getAllcustomer as $key => $value) {
+		//  	$getAllcustomer[$key]->website = $website_id[0]->name;  
+		// }
+		// echo '<pre>';
+
+		// print_r($getAllcustomer);
+		// die();
+		$queMe = $this->db->last_query();
+        $this->load->dbutil();
+        $this->load->helper('file');
+        $this->load->helper('download');
+        $delimiter = ",";
+        $newline = "\r\n";
+        $filename = "customers.csv";
+
+       	$result = $this->db->query($queMe);
+        $data = $this->dbutil->csv_from_result($result, $delimiter, $newline);
+        force_download($filename, $data);
+        //$tocsv =  $this->dbutil->csv_from_result($getAllcustomer, $delimiter, $newline);
+        //force_download($filename, $tocsv);
+	}
+
+
+	//function sendAutoGeneratedPassword($to,$firstname, $lastname, $get_random_password){
+
+	function sendAutoGeneratedPassword(){
+		$config = array(
+		    'mailtype' => 'html'		    
+		);
+
+		$this->load->library('email', $config); //Load the library
+
+		$this->email->from('phpdeveloper11@unilab.com.ph', ucfirst(web_sitename()));  //set sender email
+		//$this->email->to($to);  //set recipient email
+		$this->email->to('junsay.john4@gmail.com');
+		$this->email->cc('johnjunsay1@yahoo.com.com'); //optional
+		//$this->email->bcc('them@their-example.com'); //optional
+
+		//$this->email->subject('New password for ' .$firstname. ' ' .$lastname); //Set email subject
+		//$this->email->message('Your new password is: ' .$get_random_password); //Set email message
+		
+			
+		
+		$this->email->subject('New password for John, Junsay'); //Set email subject
+		$this->email->message('Your new password is: ' .get_random_password()); 
+		
+		if($this->email->send())
+		    {
+		    	return true;
+		    }
+		    else
+		    {
+		     	return false;
+		    }
+
+		
+		
+	}
+
+
+
+	
+  
+}

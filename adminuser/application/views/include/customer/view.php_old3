@@ -1,0 +1,356 @@
+<?php //print_r($customer_information);?>
+<?php //print_r($website_id);?>
+<?php //print_r($customer_group);?>
+
+
+
+<div id="page-wrapper">
+    <div class="container-fluid">
+
+    	<div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    <i class="fa fa-qrcode"></i> Customer Information 
+                </h1>
+                <ol class="breadcrumb">
+                    <li class="active">
+						<a href="<?php echo base_url();?>">
+							<i class="fa fa-dashboard"></i> Dashboard
+						</a>
+                    </li>
+                    <li>
+						<a href="<?php echo base_url();?>index.php/customers">
+							<i class="fa fa-qrcode"></i>  <?php echo $this->uri->segment(1) ?>
+						</a>
+                    </li>
+                    <li><strong><?php echo $this->uri->segment(2); ?></strong></li>
+                </ol>
+
+                
+            </div>
+        </div>
+
+		<!-- tab pane -->
+        <div class="row">
+        	<div class="col-lg-12">
+				<ul class="nav nav-tabs" id="tabContent">
+				    <li class="active"><a href="#cv" data-toggle="tab">Customer View</a></li>
+				    <li><a href="#ai" data-toggle="tab">Account Information</a></li>		
+				    <li><a href="#addr" data-toggle="tab">Address</a></li>	
+				    <li><a href="#ord" data-toggle="tab">Orders</a></li>
+				    <li><a href="#rr" data-toggle="tab">Billing Agreements</a></li>		
+				    <li><a href="#rp" data-toggle="tab">Recurring profiles (beta)</a></li>	
+				    <li><a href="#sc" data-toggle="tab">Shopping Cart</a></li>
+				    <li><a href="#wh" data-toggle="tab">Wishlist</a></li>		
+				    <li><a href="#ns" data-toggle="tab">Newsletter</a></li>	
+				    <li><a href="#pr" data-toggle="tab">Product Reviews</a></li>				   	
+				    <li><a href="#pt" data-toggle="tab">Product Tags</a></li>
+										       
+				</ul>
+				<?php foreach($customer_information as $custinfo): ?>  
+				<div class="tab-content">
+					<div class="tab-pane active" id="cv">content</div>      
+					<div class="tab-pane" id="ai">
+						
+						
+						<form id="form-account_info" class="form-horizontal col-sm-12" action="<?php echo base_url(); ?>index.php/customers/update_customer_account" method="post">
+				  				
+				  			
+				        	<div class="col-md-9 customer-form">                     
+	                        	<div id="validation-error" class="alert alert-success"></div>	
+
+	                            <div class="form-group"><label class="col-sm-2 control-label">PRC Number</label>
+	                            	<div class="col-sm-10">
+	                            		<input name="entity_id" class="form-control" type="hidden" value="<?php echo $custinfo->entity_id; ?>">
+	                            		<input class="form-control required" name="prcnumber" type="text" value="<?php echo $custinfo->prcnumber; ?>">
+	                            	</div>
+	                            </div>
+	                            <div class="form-group"><label class="col-sm-2 control-label">Number of Kids</label>
+	                            	<div class="col-sm-10">
+	                            		<input class="form-control required" name="numofkids" type="text" value="<?php echo $custinfo->numofkids; ?>">
+	                            	</div>
+	                           	</div>
+	                            <div class="form-group"><label class="col-sm-2 control-label">Associate to Website</label>		                            	
+	                            	<div class="col-sm-10">
+										<select id="_accountwebsite_id"  name="website_id" class="form-control">
+											<option value="">-- Please Select --</option>								
+											<?php foreach($website_id as $website_id_key=>$name): ?>	
+												<?php if($website_id[$website_id_key]['website_id'] == $custinfo->website_id):?>												
+														<option selected="selected"value="<?php echo $website_id[$website_id_key]['website_id'];?>"><?php echo $website_id[$website_id_key]['name']; ?></option>																							
+												<?php else: ?>	
+														<option value="<?php echo $website_id[$website_id_key]['website_id'];?>"><?php echo $website_id[$website_id_key]['name']; ?></option>											
+												<?php endif; ?>	
+											<?php endforeach;?>											
+										</select>
+									</div>
+	                            </div>
+	                           	<div class="form-group"><label class="col-sm-2 control-label">Customer Group</label>				                  
+									<div class="col-sm-10">
+										<select id="_accountgroup_id" name="group_id" class="form-control">									
+										<?php foreach($customer_group as $customer_group_id_key=>$customer_group_value): ?>												
+											<?php if($customer_group[$customer_group_id_key]['customer_group_id'] == $custinfo->group_id):?>	
+												<option selected="selected" value="<?php echo $customer_group[$customer_group_id_key]['customer_group_id'];?>"><?php echo $customer_group[$customer_group_id_key]['customer_group_code']; ?></option>											
+											<?php else: ?>
+												<option value="<?php echo $customer_group[$customer_group_id_key]['customer_group_id'];?>"><?php echo $customer_group[$customer_group_id_key]['customer_group_code']; ?></option>											
+											<?php endif; ?>
+										<?php endforeach;?>	
+										</select>
+									</div>
+									<input name="disable_auto_group_change" class="required" type="checkbox" id="checkboxSuccess" value="1">Disable Automatic Group Change Based on VAT ID
+	                            	
+	                            </div>
+	                           
+								<div class="form-group"><label class="col-sm-2 control-label">Prefix</label>
+									<div class="col-sm-10">
+										<input name="prefix" class="form-control required" type="text" value="<?php echo $custinfo->prefix; ?>">
+									</div>
+		                        </div>	
+		                        <div class="form-group"><label class="col-sm-2 control-label">First Name</label>
+		                        	<div class="col-sm-10">
+		                        		<input name="firstname" class="form-control required" type="text" value="<?php echo $custinfo->firstname; ?>">
+		                        	</div>
+		                        </div>	
+		                       	
+		                        <div class="form-group"><label class="col-sm-2 control-label">Middle Name/Initial</label>
+		                        	<div class="col-sm-10">
+		                        		<input name="middlename" class="form-control required" type="text" value="<?php echo $custinfo->middlename; ?>"></div>
+	                        		</div>
+		                    
+								
+		                        <div class="form-group"><label class="col-sm-2 control-label">Last Name</label>
+		                        	<div class="col-sm-10">
+		                        		<input name="lastname" class="form-control required" type="text" value="<?php echo $custinfo->lastname; ?>"></div>
+	                        		</div>
+	                        	<div class="form-group"><label class="col-sm-2 control-label">Suffix</label>
+	                        		<div class="col-sm-10">
+	                        			<input name="suffix" value="" class="form-control required" type="text" value="<?php echo $custinfo->suffix; ?>"></div>
+		                    		</div>
+		                    	<div class="form-group"><label class="col-sm-2 control-label">Email</label>
+		                    		<div class="col-sm-10">
+		                    			<input name="email" value="<?php echo $custinfo->email; ?>" class="form-control required" type="text"></div>
+	                           		</div>
+	                            <div class="form-group"><label class="col-sm-2 control-label">Date Of Birth</label>	                            	
+	                            	<div class="col-sm-10">
+		                            	<div class='input-group date' id='datetimepicker1'>
+						                    <input type='text' class="form-control" />
+						                    <span class="input-group-addon">
+						                        <span class="glyphicon glyphicon-calendar"></span>
+						                    </span>
+						                </div>
+						            </div>
+	                            </div>
+
+	                            <!-- datepicker --> 				                         	
+
+	                            <!-- //-->
+	                          
+	                          
+	                            <div class="form-group"><label class="col-sm-2 control-label">Tax/VAT Number</label>
+	                            	<div class="col-sm-10">
+	                            		<input name="taxvat" class="form-control email" type="text" value="<?php echo $custinfo->taxvat; ?>"></div>
+	                            	</div>
+
+	                            <div class="form-group"><label class="col-sm-2 control-label">Gender</label>
+	                            	<div class="col-sm-10">
+		                            	<select id="_accountgender" name="gender" class="form-control phone">
+											<option value=""></option>											
+											<?php $gender = [1=>'Male', 2=>'Female'];?>
+											<?php foreach($gender as $gender_key=>$gender_value):?>
+												<?php if($gender_key == $custinfo->gender):?>												
+													<option selected="selected" value="<?php echo $gender_key;?>"><?php echo $gender_value;?></option>
+												<?php else: ?>
+													<option value="<?php echo $gender_key; ?>"><?php echo $gender_value;?></option>
+												<?php endif;?>
+											<?php endforeach;?>
+										</select>
+									</div>
+	                            </div>
+		                    	<div class="form-group"><label class="col-sm-2 control-label">Civil Status</label>
+		                    		<div class="col-sm-10">
+		                    			<input id="_accountcivil_status" name="status" value="<?php echo $custinfo->status; ?>" class="form-control email" type="text">
+		                    		</div>
+		                    	</div>           
+		                    
+		                    
+	                            <div class="form-group"><label class="col-sm-2 control-label">Agree on Terms </label>
+	                               	<div class="col-sm-10">
+		                               	<select id="_accountagree_on_terms" name="agree_on_terms" class="form-control required">
+											<option value="0" selected="selected">No</option>
+											<option value="1">Yes</option>
+										</select>
+									</div>
+	                            </div>
+	                        	<div class="form-group"><label class="col-sm-2 control-label">Medical Oncologist Title</label>
+	                        		<div class="col-sm-10">
+	                        			<input name="medprefix" class="form-control required" type="text" value="<?php echo $custinfo->medprefix; ?>"></div>
+		                    		</div>
+		                    	<div class="form-group"><label class="col-sm-2 control-label">Medical Oncologist First Name</label>
+		                    		<div class="col-sm-10">
+		                    			<input name="medfname" class="form-control required" type="text" value="<?php echo $custinfo->medfname; ?>"></div>
+	                          		</div>
+	                            <div class="form-group"><label class="col-sm-2 control-label">Medical Oncologist Last Name</label>
+	                            	<div class="col-sm-10">
+	                            		<input name="medlname" class="form-control required" type="text" value="<?php echo $custinfo->medlname; ?>"></div>
+	                          		</div>
+	                           
+	                            <div class="form-group"><label class="col-sm-2 control-label">Send Welcome Email</label>
+	                            	<div class="col-sm-10">
+	                            		<input disabled name="" type="checkbox" class="email"></div>
+	                            </div> 
+	                            <div class="form-group"><label class="col-sm-2 control-label">Send From</label>
+	                            	<div class="col-sm-10">
+	                            		<input disabled name="" class="form-control phone">
+	                            	</div>
+		                    	</div> 
+		                    	<div class="form-group">
+		                    		<label class="col-sm-2 control-label">Password</label>
+		                    		<div class="col-sm-10">
+		                    			<input name="password" class="form-control required" type="text">
+		                    		</div>                            	
+		                 		</div>	
+	                      	</div>
+	                      
+
+	                      	<div style="clear:both;"></div>
+
+	                      	<div class="col-md-9">
+	                      		<button type="submit" class="btn btn-primary pull-right">Update Customer</button> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
+							</div>				
+
+						</form>  	
+					</div> 
+
+					<div class="tab-pane" id="addr">
+
+						<form id="form-account_addressinfo" class="new-addr-btn" action="<?php echo base_url(); ?>index.php/customers/update_customer_account_address" method="post">
+							<!-- <div id="validation-error" class="alert alert-success"></div> -->
+
+							<input name="parent_id" class="form-control" type="hidden" value="<?php echo $custinfo->entity_id; ?>">
+							<div class="col-md-12">
+								<div class="row">
+									<div class="col-md-2">
+										<button type="button" class="btn btn-danger btn-xs add-new-customer button">add New Address</button>	
+									</div>
+								</div>						
+							</div>		                      
+
+	                      	<div class="col-md-12" id="addr-btn">
+	                      		<button type="submit" class="btn btn-primary pull-right">Save Customer</button> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
+							</div>	
+						</form>                      	
+              		
+
+					</div>     
+					
+					<div class="tab-pane" id="ord">content</div>     
+					<div class="tab-pane" id="rr">content</div>     
+					<div class="tab-pane" id="rp">content</div>     
+					<div class="tab-pane" id="sc">content</div>     
+					<div class="tab-pane" id="wh">content</div>     
+					<div class="tab-pane" id="ns">content</div>     
+					<div class="tab-pane" id="pr">content</div>		     
+					<div class="tab-pane" id="pt">content</div>     
+
+				</div>
+
+				<?php endforeach; ?> 
+
+
+			</div>	
+		</div>
+	</div>
+</div>			
+
+<script type="text/javascript">
+$(function() {
+
+    $('.new-addr-btn').on('click', '.remove', function() {
+        $(this).closest('div[class^=div]').remove();
+    });    
+
+	$(".add-new-customer").on("click",function(){
+
+		var firstname = $('input[name=firstname]').val();
+		var lastname  = $('input[name=lastname]').val();
+		var i =0;
+		$(".new-addr-btn").append('<div id="div_8" class="div_8 row hr customer-form-append">'+
+									'<div id="div_8" class="col-xs-6 col-md-4">New Customer Address Element <a class="remove" href="#" title="Remove">(Remove)</a>'+
+										'<div class="col-md-6">'+
+											'<div class="form-group">'+
+												'<input name="default_billing" class="required" type="checkbox" id="checkboxSuccess" value="1">Default Billing Address'+
+				                        	'</div>'+
+				                        	'<div class="form-group">'+
+												'<input name="default_shipping" class="required" type="checkbox" id="checkboxSuccess" value="1">Default Shipping Address'+
+				                        	'</div>'+
+				                    	'</div>'+
+				                  	'</div>'+
+				                  	'<div id="div_8" class="div_8 col-xs-6 col-md-6">Edit Customers Address</div>'+
+
+				                  		'<div class="col-md-8 customer-form">'+   
+				                  		                
+					                            '<div class="form-group"><label class="col-sm-2 control-label">Prefix</label><div class="col-sm-10"><input type="text" name="address_prefix" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">First Name</label><div class="col-sm-10"><input type="text" name="address_firstname" value="'+firstname+'" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">Middle Name/Initial</label><div class="col-sm-10"><input type="text" name="middlename" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">Last Name</label><div class="col-sm-10"><input type="text" name="address_firstname" value="'+firstname+'" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        		
+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">Suffix</label><div class="col-sm-10"><input type="text" name="address_suffix" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	
+					                        	
+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">Company</label><div class="col-sm-10"><input type="text" name="address_company" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">Street Address</label><div class="col-sm-10"><input type="text" name="address_street" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">City </label><div class="col-sm-10"><input type="text" name="address_city" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	 '<div class="form-group"><label class="col-sm-2 control-label">Country </label>'+		                            	
+													'<div class="col-sm-10">'+
+														'<select name="country_id" class="form-control">'+
+															'<option value=""> </option>'+
+															'<option value="AF">Afghanistan</option>'+
+															'<option value="PH" selected="selected">Philippines</option>'+
+															'<option value="US">United States</option>'+
+														'</select>'+
+													'</div>'+
+				                            	'</div>'+
+				                            	'<div class="form-group"><label class="col-sm-2 control-label">State/Province</label>'+		                            	
+													'<div class="col-sm-10">'+
+														'<select id="_item1region_id" name="address_region_id" class="form-control">'+
+															'<option value="0" selected="selected">-- Please select --</option>'+
+															'<option value="485">Abra</option>'+
+															'<option value="486">Agusan del Norte</option>'+
+															'<option value="487">Agusan del Sur</option>'+
+															'<option value="488">Aklan</option>'+
+															'<option value="489">Albay</option>'+
+															'<option value="490">Antique</option>'+
+															'<option value="491">Apayao</option>'+
+															'<option value="492">Aurora</option>'+
+															'<option value="493">Basilan</option>'+
+															'<option value="494">Bataan</option>'+
+															'<option value="495">Batanes</option>'+
+															'<option value="496">Batangas</option>'+
+															'<option value="497">Benguet</option>'+
+															'<option value="498">Biliran</option>'+
+															'<option value="499">Bohol</option>'+
+															'<option value="500">Bukidnon</option><option value="501">Bulacan</option><option value="502">Cagayan</option><option value="503">Camarines Norte</option><option value="504">Camarines Sur</option><option value="505">Camiguin</option><option value="506">Capiz</option><option value="507">Catanduanes</option><option value="508">Cavite</option><option value="509">Cebu</option><option value="510">Compostela Valley</option><option value="511">Cotabato</option><option value="512">Davao del Norte</option><option value="513">Davao del Sur</option><option value="514">Davao Oriental</option><option value="515">Dinagat Islands</option><option value="516">Eastern Samar</option><option value="517">Guimaras</option><option value="518">Ifugao</option><option value="519">Ilocos Norte</option><option value="520">Ilocos Sur</option><option value="521">Iloilo</option><option value="522">Isabela</option><option value="523">Kalinga</option><option value="524">La Union</option><option value="525">Laguna</option><option value="526">Lanao del Norte</option><option value="527">Lanao del Sur</option><option value="528">Leyte</option><option value="529">Maguindanao</option><option value="530">Marinduque</option><option value="531">Masbate</option><option value="532">Metro Manila</option><option value="533">Misamis Occidental</option><option value="534">Misamis Oriental</option><option value="535">Mountain Province</option><option value="536">Negros Occidental</option><option value="537">Negros Oriental</option><option value="538">Northern Samar</option><option value="539">Nueva Ecija</option><option value="540">Nueva Vizcaya</option><option value="541">Occidental Mindoro</option><option value="542">Oriental Mindoro</option><option value="543">Palawan</option><option value="544">Pampanga</option><option value="545">Pangasinan</option><option value="546">Quezon</option><option value="547">Quirino</option><option value="548">Rizal</option><option value="549">Romblon</option><option value="550">Samar</option><option value="551">Sarangani</option><option value="552">Siquijor</option><option value="553">Sorsogon</option><option value="554">South Cotabato</option><option value="555">Southern Leyte</option><option value="556">Sultan Kudarat</option><option value="557">Sulu</option><option value="558">Surigao Del Norte</option><option value="559">Surigao Del Sur</option><option value="560">Tarlac</option><option value="561">Tawi-Tawi</option><option value="562">Zambales</option><option value="563">Zamboanga del Norte</option><option value="564">Zamboanga del Sur</option><option value="565">Zamboanga Sibugay</option></select>'+
+													'</div>'+
+				                            	'</div>'+
+				                            	'<div class="form-group"><label class="col-sm-2 control-label">Zip/Postal Code</label><div class="col-sm-10"><input type="text" name="address_postcode" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">Telephone </label><div class="col-sm-10"><input type="text" name="address_telephone" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">Fax </label><div class="col-sm-10"><input type="text" name="address_fax" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">VAT number </label><div class="col-sm-10"><input type="text" name="" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">Mobile </label><div class="col-sm-10"><input type="text" name="" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+
+
+				                        
+
+				                        '</div>'+    
+				                           
+				                  '</div>');
+	});
+
+
+
+
+});
+</script>
+

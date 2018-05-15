@@ -1,0 +1,108 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Categories extends CI_Controller {
+
+		
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->load->helper(array('form','url'));
+       	$this->load->library('form_validation');
+
+		$this->load->model('Customermod');		
+		$this->load->model('Productsmod');
+		$this->load->helper('url');
+	
+	}
+	 
+	public function index()
+	{	
+
+		$id =  store_id();	
+
+		// echo 'store_id: ' .$id;
+
+		$this->load->model('Productsmod');	
+
+		$userdata['categories'] 	= $this->Productsmod->getRootcategory($id);
+
+		// echo '<pre>';
+
+		// print_r($userdata);
+
+		// die();
+		$this->load->view('head/head');
+		$this->load->view('sidebar/menu',$userdata);
+		$this->load->view('include/listcategories');
+		$this->load->view('footer/footer');
+					
+	}	
+
+	public function add_category(){
+
+		echo '<pre>';
+
+		// print_r($_POST);
+
+		// die();
+
+		$data = array(
+			'entity_id' =>'NUll',
+			'entity_type_id' =>3,
+			'attribute_set_id' =>3,
+			'parent_id' =>$this->input->post("parent_id"),
+			'created_at' =>'',//date("Y-m-d H:i:s", strtotime('now')),
+			'updated_at' =>'',//date("Y-m-d H:i:s", strtotime('now')),
+			'path' =>$this->input->post("path"),
+			'position' => '',
+			'level' => '',
+			'children_count' => ''
+ 
+			);
+		
+		
+		// print_r($data);
+
+		// die();
+		$this->load->model('Categoriesmod');
+		$id = $this->Categoriesmod->post_categoy($data);
+
+		echo $id;
+
+		$update_path = array(
+		'path' => $this->input->post("path").'/'.$id,
+		
+			);
+
+		$path_id = $this->Categoriesmod->put_categoy_path($id, $update_path);
+
+
+		$data_varchar = array(
+				'value_id' =>'NULL', 
+				'entity_type_id' =>3, // auto generate
+				'attribute_id'=>41, // auto generate
+				'store_id' => 0, // auto generate
+				'entity_id'=>$path_id,
+				'value'=> $this->input->post("name")
+			);
+
+		$varchar_id = $this->Categoriesmod->post_varchar($data_varchar);
+		echo $varchar_id;
+
+		$data_varchar = array(
+				'value_id' =>'NULL', 
+				'entity_type_id' =>3,
+				'attribute_id'=>42,
+				'store_id' => 0,
+				'entity_id'=>$path_id,
+				'value'=> $this->input->post("is_active")
+			);
+
+		$varchar_id = $this->Categoriesmod->post_varchar($data_varchar);
+		echo $varchar_id;
+	
+	}		
+	
+}	

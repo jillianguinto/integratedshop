@@ -1,0 +1,385 @@
+	
+
+		<div id="page-wrapper">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            <i class="fa fa-fw fa-users"></i> Manage Customer
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+								<a href="<?php echo base_url();?>">
+									<i class="fa fa-dashboard"></i> Dashboard
+								</a>
+                            </li>
+                            <li>
+								<strong>
+                                <i class="fa fa-leaf"></i>
+								<?php echo $this->uri->segment(1) . " [ ".count($getAllcustomer) ." ]"; ?>
+								</strong>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="row">
+					<div class="col-lg-10">
+					
+							<?php 
+							
+							if(!empty($errormessage)):
+								echo message_handler($errormessage,$errortype); 
+							endif;
+							
+							?>
+					
+						<p><button type="button" class="btn btn-danger" onclick="createpdf()"><i class="fa fa-file-pdf-o"></i> GENERATE PDF</button>
+						<button type="button" class="btn btn-success"><i class="fa fa-file-excel-o"></i> EXPORT TO EXCEL</button></p>
+
+					</div>				
+					<div class="col-lg-2">
+						<a id="" href="#addcustomermodal" type="button" class="btn btn-xs btn-success" data-toggle="modal" ><i class="fa fa-file-excel-o"></i> ADD NEW CUSTOMER</a>
+						
+					</div>
+
+
+                   
+                    <div class="col-lg-12">
+						<table id="customerlist" class="table table-striped table-bordered" cellspacing="0" width="100%">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Email</th>
+										<th>Active</th>
+										<th width="18%"><center>Action</center></th>
+									</tr>
+								</thead>
+						 
+								<tfoot>
+									<tr>
+										<th>ID</th>
+										<th>Email</th>
+										<th>Active</th>
+										<th width="18%"><center>Action</center></th>
+									</tr>
+								</tfoot>
+						 
+								<tbody>
+									<?php 
+									
+										if(empty($getAllcustomer)):
+										
+											echo '<tr>';
+											echo '<td colcol-md-="4"><center>NO RECORD FOUND!</center></td>';
+											echo '</tr>';	
+											
+										else:		
+											?>
+												<script>
+													$(document).ready(function() {
+														$('#customerlist').DataTable();
+													});
+												</script>
+											<?php									
+											foreach($getAllcustomer as $_list):
+
+												$customerId = $_list->entity_id;
+												
+												echo '<tr>';
+												echo '<td>'.$_list->entity_id.'</td>';
+												echo '<td>'.$_list->email.'</td>';
+												if($_list->is_active == true):
+													echo '<td>Yes</td>';
+												else:
+													echo '<td>No</td>';
+												endif;
+												echo '<td><center><button type="button" class="_view btn btn-primary" title="View" data-id="'.$customerId.'"><i class="fa fa-eye"></i> View</button> <button type="button" class="_view btn btn-success" title="Edit"><i class="fa fa-edit"></i> Edit</button></center></td>';
+												echo '</tr>';
+										
+											endforeach;
+										endif;
+									?>
+								</tbody>
+							</table>                   
+					</div>   
+				   
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="addcustomer-modal" id="addcustomer-modal">				    
+		  
+		    <div id="addcustomermodal" class="modal fade">
+		        <div class="modal-dialog">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                    <h4 class="modal-title">New Customer</h4>
+		                </div>
+		                <div class="modal-body">
+
+
+							<ul class="nav nav-tabs" id="tabContent">
+							        <li class="active"><a href="#details" data-toggle="tab">Account Information</a></li>
+							        <li><a href="#access-security" data-toggle="tab">Addresses</a></li>							       
+							</ul>
+								  
+						    <div class="tab-content">
+						        <div class="tab-pane active" id="details">                    
+                   				 
+                  				
+							        <form id="form-user" class="form-horizontal col-sm-12" action="<?php echo base_url(); ?>index.php/customers/addnewcustomer" method="post">
+
+							        	
+
+							        	<div class="col-md-4 customer-form">
+							        		<div id="validation-error"></div>            
+				                            <div class="form-group"><label>PRC Number</label><input class="form-control required" name="prcnumber" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+				                            
+				                            <div class="form-group"><label>Number of Kids</label><input class="form-control required" name="numofkids" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+				                            <div class="form-group"><label>Associate to Website</label>		                            	
+
+												<select id="_accountwebsite_id"  name="website_id" class="form-control">
+													<option value="" selected="selected">-- Please Select --</option>
+													<option value="0" selected="selected">Admin</option>
+													<option value="15">Appebon</option>
+													<option value="22">athena</option>
+													<option value="3">Celeteque</option>
+													<option value="2">Evolife</option>
+													<option value="17">FHH</option>
+													<option value="6">Heymom</option>
+													<option value="19">Juvenaid</option>
+													<option value="21">Liviacor</option>
+													<option value="1">Mainsite</option>
+													<option value="7">Medichem</option>
+													<option value="14">Psslai</option>
+													<option value="18">Ritemed</option>
+													<option value="20">ulah2</option>
+													<option value="16">Unilabactivehealth</option>
+												</select>
+
+				                            </div>
+				                           	<div class="form-group"><label>Associate to Website</label>				                  
+												<select id="_accountgroup_id" name="group_id" class="form-control">
+													<option value="1">General</option>
+													<option value="2">Wholesale</option>
+													<option value="3">Retailer</option>
+												</select>
+												<input name="disable_auto_group_change" class="required" type="checkbox" id="checkboxSuccess" value="1">Disable Automatic Group Change Based on VAT ID
+				                            
+				                            </div>
+				                           
+											<div class="form-group"><label>Prefix</label><input name="prefix" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+					                        <div class="form-group"><label>First Name</label><input name="firstname" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+					                       	
+					                        <div class="form-group"><label>Middle Name/Initial</label><input name="middlename" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+				                        	
+					                    </div>
+					                    <div class="col-md-4 customer-form">
+											
+					                        <div class="form-group"><label>Last Name</label><input name="lastname" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+				                        	
+				                        	<div class="form-group"><label>Suffix</label><input name="suffix" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+					                    	<div class="form-group"><label>Email</label><input name="email" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+				                           
+				                            <div class="form-group"><label>Date Of Birth</label>
+				                            	<!-- <input name="dob" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"> -->
+				                            	<div class='input-group date' id='datetimepicker1'>
+								                    <input type='text' class="form-control" />
+								                    <span class="input-group-addon">
+								                        <span class="glyphicon glyphicon-calendar"></span>
+								                    </span>
+								                </div>
+				                            </div>
+
+				                            <!-- datepicker --> 				                         	
+
+				                            <!-- //-->
+				                          
+				                          
+				                            <div class="form-group"><label>Tax/VAT Number</label><input name="taxvat" class="form-control email" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
+				                            <div class="form-group"><label>Gender</label>
+				                            	
+				                            	<select id="_accountgender" name="gender" class="form-control phone">
+													<option value="" selected="selected"></option>
+													<option value="1">Male</option>
+													<option value="2">Female</option>
+												</select>
+				                            </div>
+					                    	<div class="form-group"><label>Civil Status</label>
+					                    		<input id="_accountcivil_status" name="civil_status" value="" class="form-control email" type="text">
+					                    	</div>
+				                            	
+					                    </div>
+					                    <div class="col-md-4 customer-form">
+					                    
+				                            <div class="form-group"><label>Agree on Terms </label>
+				                               	<select id="_accountagree_on_terms" name="agree_on_terms" class="form-control required">
+													<option value="0" selected="selected">No</option>
+													<option value="1">Yes</option>
+												</select>
+				                            </div>
+				                        	<div class="form-group"><label>Medical Oncologist Title</label><input name="medprefix" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+					                    	<div class="form-group"><label>Medical Oncologist First Name</label><input name="medfname" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+				                          
+				                            <div class="form-group"><label>Medical Oncologist Last Name</label><input name="medlname" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+				                          
+				                           
+				                            <div class="form-group"></label><input disabled name="" type="checkbox" class="email" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)">Send Welcome Email</div>
+				                            <div class="form-group"><label><input disabled name="" class="form-control phone" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (999-999-9999)">Send From</label></div>
+					                    	<div class="form-group"><label>Password</label><input name="password" class="form-control required"  data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+				                            	
+					                    </div>   	
+				                      
+
+
+								        <div class="modal-footer">
+						                    	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						                    	<button type="submit" class="btn btn-primary pull-right">Save Customer</button> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
+											
+									  	</div>	
+									</form>  	
+									
+									<div class="clear"></div>
+
+						      	</div>
+						        
+						        <div class="tab-pane new-addr-btn" id="access-security">
+						        	
+							       	<div class="row">
+  										<div class="col-md-2">
+  											<button type="button" class="btn btn-danger btn-xs add-new-customer">add New Address</button>
+  										</div>
+  									</div>	
+
+  									<div class="modal-footer f-2column">
+						                    	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						                    	<button type="submit" class="btn btn-primary pull-right">Save Customer</button> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
+											
+									</div>	
+
+									<div class="clear"></div>
+						        </div> 
+						    </div>  			  
+
+						</div>     			     
+		              
+		            </div>
+		        </div>
+		    </div>
+		</div>    	
+	</div>
+
+	<form name="customerform" action="?" method="post">
+		<input type="hidden" value="" name="customerId" />
+	</form>
+
+</body>
+
+<script>
+$(document).ready(function() {
+	
+	$('#customerlist').DataTable();
+	
+	$("body").on('click', '._view', function (){		
+		var customerId = $(this).attr('data-id');
+		$("[name=customerId]").val(customerId);
+		$("[name=customerform]").attr("action","<?php echo base_url()?>index.php/customers/view");
+		$("[name=customerform]").submit();		
+	});	
+	
+});
+
+function createpdf()
+{
+	window.location.href = "<?php echo base_url();?>index.php/pdf/orders";
+}	
+</script>
+
+<script type="text/javascript">
+$(function() {
+
+    $('.new-addr-btn').on('click', '.remove', function() {
+        $(this).closest('div[class^=div]').remove();
+    });    
+
+	$(".add-new-customer").on("click",function(){
+
+		$(".new-addr-btn").append('<div id="div_8" class="div_8 row hr customer-form-append">'+
+									'<div id="div_8" class="col-xs-6 col-md-4">New Customer Address Element <a class="remove" href="#" title="Remove">(Remove)</a>'+
+										'<div class="col-md-6">'+
+											'<div class="form-group">'+
+												'<input name="" class="required" type="checkbox" id="checkboxSuccess" value="1">Default Billing Address'+
+				                        	'</div>'+
+				                        	'<div class="form-group">'+
+												'<input name="" class="required" type="checkbox" id="checkboxSuccess" value="1">Default Shipping Address'+
+				                        	'</div>'+
+				                    	'</div>'+
+				                  	'</div>'+
+				                  	'<div id="div_8" class="div_8 col-xs-6 col-md-8">Edit Customers Address</div>'+
+
+				                  		'<div class="col-md-8 customer-form">'+   
+				                  			'<form class="form-horizontal">'+                  
+					                            '<div class="form-group"><label class="col-sm-2 control-label">Prefix</label><div class="col-sm-10"><input type="email" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">First Name</label><div class="col-sm-10"><input type="email" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">Middle Name/Initial</label><div class="col-sm-10"><input type="email" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">Last Name</label><div class="col-sm-10"><input type="email" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">Suffix</label><div class="col-sm-10"><input type="email" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">Company</label><div class="col-sm-10"><input type="email" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">Street Address</label><div class="col-sm-10"><input type="email" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">City </label><div class="col-sm-10"><input type="email" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	 '<div class="form-group"><label class="col-sm-2 control-label">Country </label>'+		                            	
+													'<div class="col-sm-10">'+
+														'<select name="country_id" class="form-control">'+
+															'<option value=""> </option>'+
+															'<option value="AF">Afghanistan</option>'+
+															'<option value="PH" selected="selected">Philippines</option>'+
+															'<option value="US">United States</option>'+
+														'</select>'+
+													'</div>'+
+				                            	'</div>'+
+				                            	'<div class="form-group"><label class="col-sm-2 control-label">State/Province</label>'+		                            	
+													'<div class="col-sm-10">'+
+														'<select id="_item1region_id" name="region_id" class="form-control">'+
+															'<option value="0" selected="selected">-- Please select --</option>'+
+															'<option value="485">Abra</option>'+
+															'<option value="486">Agusan del Norte</option>'+
+															'<option value="487">Agusan del Sur</option>'+
+															'<option value="488">Aklan</option>'+
+															'<option value="489">Albay</option>'+
+															'<option value="490">Antique</option>'+
+															'<option value="491">Apayao</option>'+
+															'<option value="492">Aurora</option>'+
+															'<option value="493">Basilan</option>'+
+															'<option value="494">Bataan</option>'+
+															'<option value="495">Batanes</option>'+
+															'<option value="496">Batangas</option>'+
+															'<option value="497">Benguet</option>'+
+															'<option value="498">Biliran</option>'+
+															'<option value="499">Bohol</option>'+
+															'<option value="500">Bukidnon</option><option value="501">Bulacan</option><option value="502">Cagayan</option><option value="503">Camarines Norte</option><option value="504">Camarines Sur</option><option value="505">Camiguin</option><option value="506">Capiz</option><option value="507">Catanduanes</option><option value="508">Cavite</option><option value="509">Cebu</option><option value="510">Compostela Valley</option><option value="511">Cotabato</option><option value="512">Davao del Norte</option><option value="513">Davao del Sur</option><option value="514">Davao Oriental</option><option value="515">Dinagat Islands</option><option value="516">Eastern Samar</option><option value="517">Guimaras</option><option value="518">Ifugao</option><option value="519">Ilocos Norte</option><option value="520">Ilocos Sur</option><option value="521">Iloilo</option><option value="522">Isabela</option><option value="523">Kalinga</option><option value="524">La Union</option><option value="525">Laguna</option><option value="526">Lanao del Norte</option><option value="527">Lanao del Sur</option><option value="528">Leyte</option><option value="529">Maguindanao</option><option value="530">Marinduque</option><option value="531">Masbate</option><option value="532">Metro Manila</option><option value="533">Misamis Occidental</option><option value="534">Misamis Oriental</option><option value="535">Mountain Province</option><option value="536">Negros Occidental</option><option value="537">Negros Oriental</option><option value="538">Northern Samar</option><option value="539">Nueva Ecija</option><option value="540">Nueva Vizcaya</option><option value="541">Occidental Mindoro</option><option value="542">Oriental Mindoro</option><option value="543">Palawan</option><option value="544">Pampanga</option><option value="545">Pangasinan</option><option value="546">Quezon</option><option value="547">Quirino</option><option value="548">Rizal</option><option value="549">Romblon</option><option value="550">Samar</option><option value="551">Sarangani</option><option value="552">Siquijor</option><option value="553">Sorsogon</option><option value="554">South Cotabato</option><option value="555">Southern Leyte</option><option value="556">Sultan Kudarat</option><option value="557">Sulu</option><option value="558">Surigao Del Norte</option><option value="559">Surigao Del Sur</option><option value="560">Tarlac</option><option value="561">Tawi-Tawi</option><option value="562">Zambales</option><option value="563">Zamboanga del Norte</option><option value="564">Zamboanga del Sur</option><option value="565">Zamboanga Sibugay</option></select>'+
+													'</div>'+
+				                            	'</div>'+
+				                            	'<div class="form-group"><label class="col-sm-2 control-label">Zip/Postal Code</label><div class="col-sm-10"><input type="email" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">Telephone </label><div class="col-sm-10"><input type="email" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">Fax </label><div class="col-sm-10"><input type="email" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">VAT number </label><div class="col-sm-10"><input type="email" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+					                        	'<div class="form-group"><label class="col-sm-2 control-label">Mobile </label><div class="col-sm-10"><input type="email" class="form-control" id="inputEmail3" placeholder=""></div></div>'+
+
+
+				                        	'</form>'+
+
+				                        '</div>'+    
+				                           
+				                  '</div>');
+	});
+
+	$(".f-2column").css('display','none');
+
+
+});
+
+</script>

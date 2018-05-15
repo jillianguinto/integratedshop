@@ -1,0 +1,249 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Customers extends CI_Controller {
+
+		
+	public function __construct()
+	{
+		parent::__construct();
+	
+
+		// $this->load->helper('url');	
+		$this->load->model('Customermod');		
+		
+		$store_id  		= isstore_id();
+		$usersession 	= is_usersession();
+
+		$baseurl = base_url();
+		if(empty($usersession)):
+			redirect($baseurl);
+		endif;			
+		
+		$this->store_id 	= $store_id;
+	}
+	 
+	public function index()
+	{	
+		
+		$this->load->model('Customermod');			
+		$store_id  		= isstore_id();
+		$usersession 	= is_usersession();
+		$baseurl = base_url();
+		if(empty($usersession)):
+			redirect($baseurl);
+		endif;	
+		
+		$getAllcustomer	= $this->Customermod->getcustomerinfo($store_id);
+		$errormessage 	= null;
+		$errortype 		= 'warning';
+
+		$userData = array(
+			'getAllcustomer' =>$getAllcustomer,
+			'errormessage'	 =>$errormessage,
+			'errortype'		=>$errortype
+		);
+		
+		$this->load->view('head/head');
+		$this->load->view('sidebar/menu',$userData);
+		$this->load->view('include/customerlist');
+		$this->load->view('footer/footer');
+	}
+
+
+	public function view()
+	{
+
+
+		$this->load->model('Customermod');	
+
+		$store_id  		= isstore_id();
+		$usersession 	= is_usersession();
+
+		$baseurl = base_url();
+		if(empty($usersession)):
+			redirect($baseurl);
+		endif;				
+		
+		if(isset($_POST['customerId'])):
+			$customerId =  $_POST['customerId'];
+		else:
+			$customerId = 0;
+		endif;
+
+
+		$getCustomerByCustomerId 	= $this->Customermod->getCustomerByCustomerId($customerId, $store_id);
+
+		foreach($getCustomerByCustomerId as $key=> $customerView):
+			$userData['customer_information'][$key] = $customerView;
+		endforeach;	
+	
+
+		if(empty($getCustomerByCustomerId)):
+			$baseurl = base_url().'index.php/customers';
+			redirect($baseurl);
+		endif;
+
+		$this->load->view('head/head');
+		$this->load->view('sidebar/menu',$userData);
+		$this->load->view('include/customer/view');
+		$this->load->view('footer/footer');	
+	}	
+
+	public function addnewcustomer(){	
+
+
+		$this->load->helper(array('form','url'));
+       	$this->load->library('form_validation');
+
+		$this->load->model('Customermod');			
+		$store_id  		= isstore_id();
+		$usersession 	= is_usersession();
+		$baseurl = base_url();
+		if(empty($usersession)):
+			redirect($baseurl);
+		endif;			
+		
+		$website_ids = $store_id;	
+
+	    $this->form_validation->set_rules('firstname','Firstname','trim|required');	  
+	    $this->form_validation->set_rules('lastname','Lastname','trim|required');	   
+
+	    if($this->form_validation->run() == false)
+	    {
+	     
+			$errors = $this->form_validation->error_array(); //function in library : My_Form_validation            
+            echo json_encode(array('st'=>0, 'msg' => json_encode($errors)));
+	    }
+	    else
+	    {
+
+			$customer_entity = array(
+				'entity_id' 				=> 'NULL',
+				'entity_type_id'			=> '1',
+				'attribute_set_id' 			=> '0',
+				'website_id' 				=> $website_ids,
+				'email' 					=> $this->input->post('email'),
+				'group_id' 					=> $this->input->post('group_id'),
+				'increment_id' 				=> '',
+				'store_id' 					=> '1',
+				'created_at' 				=> '2015-09-30 07:58:39',
+				'updated_at' 				=> '2015-09-30 07:58:40',
+				'is_active' 				=> '1',
+				'disable_auto_group_change' => '0'				
+			);			
+
+			$prcnumber 					= $this->input->post('prcnumber');
+			$lastname					= $this->input->post('lastname');
+			$agree_on_terms 			= $this->input->post('agree_on_terms');
+			$numofkids 					= $this->input->post('numofkids');
+			$suffix 					= $this->input->post('suffix');
+			$medprefix					= $this->input->post('medprefix');
+			$website_id 				= $this->input->post('website_id');
+			$medfname 					= $this->input->post('medfname');
+			$group_id 					= $this->input->post('group_id');
+			$medlname 					= $this->input->post('medlname');
+			$disable_auto_group_change 	= $this->input->post('disable_auto_group_change');
+	 		$prefix 					= $this->input->post('prefix');
+			$taxvat 					= $this->input->post('taxvat');
+			$firstname 					= $this->input->post('firstname');
+			$gender 					= $this->input->post('gender');
+			$middlename 				= $this->input->post('middlename');
+			$civil_status 				= $this->input->post('civil_status');
+			$password 					= $this->input->post('password');
+
+		
+			$results = $this->Customermod->addNewAccount($customer_entity, $website_ids);
+		
+			$data = $this->Customermod->getLastInsertedId($website_ids);
+			foreach($data as $ce)
+			{					
+				$entity_id 		= $ce->entity_id;
+				$entity_type_id = $ce->entity_type_id;		
+				
+				$attribute_ids 	= $this->Customermod->getAttributeId($entity_type_id);
+
+				foreach($attribute_ids as $eav)
+				{	
+					switch($eav->attribute_code){
+
+						case 'prcnumber':
+							$this->addAttributeValue('NULL',$entity_type_id,$eav->attribute_id,$entity_id,$prcnumber);
+							break;
+						case 'lastname':
+							$this->addAttributeValue('NULL',$entity_type_id,$eav->attribute_id,$entity_id,$lastname);
+							break;	
+						case 'agree_on_terms':
+							$this->addAttributeValue('NULL',$entity_type_id,$eav->attribute_id,$entity_id,$agree_on_terms);
+							break;	
+						case 'numofkids':
+							$this->addAttributeValue('NULL',$entity_type_id,$eav->attribute_id,$entity_id,$numofkids);
+							break;	
+						case 'suffix':
+							$this->addAttributeValue('NULL',$entity_type_id,$eav->attribute_id,$entity_id,$suffix);
+							break;	
+						case 'medprefix':
+							$this->addAttributeValue('NULL',$entity_type_id,$eav->attribute_id,$entity_id,$medprefix);
+							break;	
+						case 'website_id':
+							$this->addAttributeValue('NULL',$entity_type_id,$eav->attribute_id,$entity_id,$website_id);
+							break;	
+						case 'medfname':
+							$this->addAttributeValue('NULL',$entity_type_id,$eav->attribute_id,$entity_id,$medfname);
+							break;	
+						case 'group_id':
+							$this->addAttributeValue('NULL',$entity_type_id,$eav->attribute_id,$entity_id,$group_id);
+							break;	
+						case 'medlname':
+							$this->addAttributeValue('NULL',$entity_type_id,$eav->attribute_id,$entity_id,$medlname);
+							break;	
+						case 'disable_auto_group_change':
+							$this->addAttributeValue('NULL',$entity_type_id,$eav->attribute_id,$entity_id,$disable_auto_group_change);
+							break;	
+						case 'prefix':
+							$this->addAttributeValue('NULL',$entity_type_id,$eav->attribute_id,$entity_id,$prefix);
+							break;	
+						case 'taxvat':
+							$this->addAttributeValue('NULL',$entity_type_id,$eav->attribute_id,$entity_id,$taxvat);
+							break;	
+						case 'firstname':
+							$this->addAttributeValue('NULL',$entity_type_id,$eav->attribute_id,$entity_id,$firstname);
+							break;	
+						case 'gender':
+							$this->addAttributeValue('NULL',$entity_type_id,$eav->attribute_id,$entity_id,$gender);
+							break;
+						case 'middlename':
+							$this->addAttributeValue('NULL',$entity_type_id,$eav->attribute_id,$entity_id,$middlename);
+							break;					
+						case 'civil_status':
+							$this->addAttributeValue('NULL',$entity_type_id,$eav->attribute_id,$entity_id,$civil_status);
+							break;	
+						default:					
+					}
+				}
+			}		
+		}	
+
+
+
+
+		// $getAllcustomer	= $this->Customermod->get_account_information($entity_id, $website_ids);
+		// echo '<pre>';
+		// print_r($getAllcustomer);
+	}
+
+
+	public function addAttributeValue($value_id,$entity_type_id,$attribute_id,$entity_id,$value){			
+		$this->load->model('Customermod');		
+		$data = array(
+			'value_id'			=>$value_id, 
+			'entity_type_id' 	=>$entity_type_id,
+			'attribute_id' 		=>$attribute_id,
+			'entity_id' 		=>$entity_id,
+			'value'				=>$value
+		);			
+		$this->Customermod->addAttributeCustomer($data);
+
+	}
+
+}

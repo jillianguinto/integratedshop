@@ -1,0 +1,37 @@
+
+
+/* style for modal */
+.addcustomer-modal{
+    margin: 20px;
+}
+
+#addcustomermodal .modal-dialog
+{
+    width: 960px;
+}
+
+.customer-form .form-group{
+    padding: 10px;
+}
+
+.clear{
+    clear: both;
+}
+
+.hr {
+
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 990px) {
+    #addcustomermodal .modal-dialog
+    {
+        width: auto;
+        margin:10px;
+    }
+}
+
+.error-message{color:red; font-size: 12px;}
+/* end style for modal */
+

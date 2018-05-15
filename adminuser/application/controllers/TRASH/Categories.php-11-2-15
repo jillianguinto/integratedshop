@@ -1,0 +1,153 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Categories extends CI_Controller {
+
+	protected 	$id;	
+	protected 	$attribute_set_id;
+	protected 	$entity_type_id;	
+	public 		$type_id 			= array();
+	public 		$set_id  			= array();
+	public 		$i 		 			= 0;
+	public 		$attribute_code		= array();
+	
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->load->helper(array('form','url'));
+       	$this->load->library('form_validation');
+		$this->load->model('Customermod');		
+		$this->load->model('Productsmod');
+		$this->load->model('Categoriesmod');		
+		$this->load->helper('url');		
+		$this->id =  store_id();	
+		
+		//Get column [entity_type_id, attribute_set_id] from catalog_category_entity automatically
+		$data	= $this->Categoriesmod->get_entity_type_id();			
+		
+		foreach($data as $value){
+			$askey = $this->i++;
+			
+			$this->type_id[]  =  $data[$askey]->entity_type_id;
+			$this->attribute_set_id =  $data[$askey]->attribute_set_id;
+			if($this->attribute_set_id > 0){
+				$set_id[] = $this->attribute_set_id;
+			}					
+		}
+		
+		foreach(array_unique($this->set_id) as $setkey=>$set){
+			($setkey == 0)? $this->attribute_set_id = $set: null;
+		}
+		
+		foreach(array_unique($this->type_id) as $typekey=>$type){
+			($typekey == 0)? $this->entity_type_id = $type: null;
+		}			
+	
+	}
+	 
+		 
+	public function index()
+	{	
+
+		$this->load->model('Productsmod');
+		$userdata['categories'] = $this->Productsmod->getRootcategory($this->id);		
+		$userdata['root']		= $this->Productsmod->getsubmaincategory($this->id);
+
+		
+
+		// $query=$this->db->query("SELECT * FROM eav_attribute WHERE attribute_code = 'name' AND entity_type_id = 3");
+		// $attribute_code = $query->result_array();	
+		// echo  $attribute_code[0]['attribute_code']; 
+
+		// echo '<pre>';	
+
+		// print_r($userdata);
+		
+		// die();
+
+		$this->load->view('head/head');
+		$this->load->view('sidebar/menu',$userdata);
+		$this->load->view('include/listcategories');
+		$this->load->view('footer/footer');
+					
+	}	
+
+	public function add_category(){		
+
+		$data = array(
+			'entity_id' =>'NUll',
+			'entity_type_id' 	=>$this->entity_type_id,
+			'attribute_set_id' 	=>$this->attribute_set_id,
+			'parent_id' 		=>$this->input->post("parent_id"),
+			'created_at' 		=>date("Y-m-d H:i:s", strtotime('now')),
+			'updated_at' 		=>date("Y-m-d H:i:s", strtotime('now')),
+			'path' 				=>$this->input->post("path"),
+			'position' 			=> '',
+			'level' 			=> '',
+			'children_count' 	=> '' 
+			);		
+	
+		$this->load->model('Categoriesmod');
+		$id = $this->Categoriesmod->post_categoy($data);
+		
+		$update_path = array(
+		'path' => $this->input->post("path").'/'.$id		
+			);
+
+		$path_id = $this->Categoriesmod->put_categoy_path($id, $update_path);
+	
+		// compare key to eav_attribute table	
+		foreach($_POST as $postkey=> $post){			
+			$this->attribute_code	= $this->Categoriesmod->get_attribute_code($postkey);	
+			$x = 0; 
+			foreach($this->attribute_code as $codeindex=>$attr_code){			
+				
+				$inc = $x++;		
+				
+				$entity_type_id = $this->attribute_code[$inc]['entity_type_id'];
+				$attribute_code = $this->attribute_code[$inc]['attribute_code'];
+				$backend_type 	= $this->attribute_code[$inc]['backend_type'];
+				$attribute_id 	= $this->attribute_code[$inc]['attribute_id'];
+				
+				if($attribute_code !='path'){
+				
+					$datas_ = array(
+						'value_id' 			=>'NULL', 
+						'entity_type_id' 	=>$entity_type_id , 
+						'attribute_id'		=>$attribute_id , 
+						'store_id' 			=>0,//$this->id, 
+						'entity_id'			=>$path_id,
+						'value'				=>$this->input->post($attribute_code)
+					);
+
+					$func_name = 'post_'.$backend_type; 					
+					$this->Categoriesmod->$func_name($datas_);
+				}					
+			}		
+		}	
+		
+	
+	}		
+
+
+	public function ExportCSV() 
+	{
+        $this->load->dbutil();
+        $this->load->helper('file');
+        $this->load->helper('download');
+        $delimiter = ",";
+        $newline = "\r\n";
+        $filename = "manage_products.csv";
+        $query = "SELECT * FROM eav_attribute WHERE entity_type_id = 4";
+       	$result = $this->db->query($query);
+        $data = $this->dbutil->csv_from_result($result, $delimiter, $newline);
+        force_download($filename, $data);
+
+	}
+
+	
+	
+	
+	
+}	

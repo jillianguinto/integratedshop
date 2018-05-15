@@ -1,0 +1,118 @@
+<?php
+class Productsmod extends CI_Model {
+
+    function __construct()
+    {
+		parent::__construct();
+		$this->load->database();		
+
+    }
+	
+	function getAllProducts($store_id)
+	{	
+
+		$sqlWeb 		= "SELECT website_id FROM core_store WHERE store_id='$store_id'";
+		$sqlwebsiteid 	= $this->db->query($sqlWeb); 
+		
+		if($sqlwebsiteid->num_rows() > 0):
+			$webID = 0;
+			foreach ($sqlwebsiteid->result() as $webResult):
+				if($webResult->website_id):
+					$webID = $webResult->website_id;
+				endif;
+			endforeach;		
+			
+		endif;
+		
+		$this->db->select('catalog_product_website.product_id,catalog_product_entity.*,catalog_product_entity_varchar.value');
+		$this->db->from('catalog_product_website');
+		$this->db->join('catalog_product_entity', 'catalog_product_entity.entity_id = catalog_product_website.product_id');
+		$this->db->join('catalog_product_entity_varchar', 'catalog_product_entity_varchar.entity_id = catalog_product_entity.entity_id AND catalog_product_entity_varchar.attribute_id=71');
+		$this->db->where("catalog_product_website.website_id='$webID'");
+
+		$sqlResult = $this->db->get();			
+		
+
+		return $sqlResult->num_rows();
+	
+
+	}	
+	
+	function getAllProductslist($store_id)
+	{	
+	
+
+		$sqlWeb 		= "SELECT website_id FROM core_store WHERE website_id='$store_id'";
+		$sqlwebsiteid 	= $this->db->query($sqlWeb); 
+		
+		if($sqlwebsiteid->num_rows() > 0):
+			$webID = 0;
+			foreach ($sqlwebsiteid->result() as $webResult):
+				if($webResult->website_id):
+					echo $webID = $webResult->website_id;
+				endif;
+			endforeach;		
+			
+		endif;
+		
+		$this->db->select('catalog_product_website.product_id,catalog_product_entity.*,catalog_product_entity_varchar.value');
+		$this->db->from('catalog_product_website');
+		$this->db->join('catalog_product_entity', 'catalog_product_entity.entity_id = catalog_product_website.product_id');
+		$this->db->join('catalog_product_entity_varchar', 'catalog_product_entity_varchar.entity_id = catalog_product_entity.entity_id AND catalog_product_entity_varchar.attribute_id=71');
+		$this->db->where("catalog_product_website.website_id='$webID'"); 
+
+		$sqlResult = $this->db->get();			
+
+		return $sqlResult->result();
+
+	}	
+
+	
+	public function getProductInformationById($id){
+
+		$this->db->select('c.sku, c.entity_id, at_name.value AS name, at_description.value AS description, at_short_description.value AS short_description, at_url_key.value AS url_key, at_price.value AS price, at_special_price.value AS special_price, at_special_from_date.value AS special_from_date, at_special_to_date.value AS special_to_date, at_weight.value AS weight, at_status.value AS status, at_visibility.value AS visibility, at_unilab_moq.value AS unilab_moq, at_generic_name.value AS generic_name');
+		$this->db->from('catalog_product_entity AS c');
+
+		//varchar
+		$this->db->join('catalog_product_entity_varchar AS at_name', 'at_name.entity_id = c.entity_id AND at_name.attribute_id=71');
+		$this->db->join('catalog_product_entity_varchar AS at_url_key', 'at_url_key.entity_id = c.entity_id AND at_url_key.attribute_id=97');
+		$this->db->join('catalog_product_entity_varchar AS at_unilab_moq', 'at_unilab_moq.entity_id = c.entity_id AND at_unilab_moq.attribute_id=181');
+		$this->db->join('catalog_product_entity_varchar AS at_generic_name', 'at_generic_name.entity_id = c.entity_id AND at_generic_name.attribute_id=174');
+
+
+		//text
+		$this->db->join('catalog_product_entity_text AS at_description', 'at_description.entity_id = c.entity_id AND at_description.attribute_id=72');
+		$this->db->join('catalog_product_entity_text AS at_short_description', 'at_short_description.entity_id = c.entity_id AND at_short_description.attribute_id=73');
+
+
+		//decimal
+		$this->db->join('catalog_product_entity_decimal AS at_price', 'at_price.entity_id = c.entity_id AND at_price.attribute_id=75');
+		$this->db->join('catalog_product_entity_decimal AS at_special_price', 'at_special_price.entity_id = c.entity_id AND at_special_price.attribute_id=76');
+		$this->db->join('catalog_product_entity_decimal AS at_weight', 'at_weight.entity_id = c.entity_id AND at_weight.attribute_id=80');
+
+		//datetime
+		$this->db->join('catalog_product_entity_datetime AS at_special_from_date', 'at_special_from_date.entity_id = c.entity_id AND at_special_from_date.attribute_id=77');
+		$this->db->join('catalog_product_entity_datetime AS at_special_to_date', 'at_special_to_date.entity_id = c.entity_id AND at_special_to_date.attribute_id=78');
+
+		//int
+		$this->db->join('catalog_product_entity_int AS at_status', 'at_status.entity_id = c.entity_id AND at_status.attribute_id=96');
+		$this->db->join('catalog_product_entity_int AS at_visibility', 'at_visibility.entity_id = c.entity_id AND at_visibility.attribute_id=102');
+
+		$this->db->where("c.entity_id='$id'");
+
+		$sqlResult = $this->db->get();		
+		return $sqlResult->result();		
+
+	}	
+
+
+	public function update_catalog_product_entity($id,$data){
+
+		$this->db->where('entity_id', $id);
+	    $this->db->update('catalog_product_entity', $data);
+
+
+	}
+	
+}
+?>

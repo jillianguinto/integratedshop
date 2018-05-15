@@ -1,0 +1,90 @@
+<?php
+class Customermod extends CI_Model {
+
+    function __construct()
+    {
+		parent::__construct();
+		$this->load->database();		
+
+    }
+    
+	function getallCustomers($website_ids)
+	{	
+		 
+		$sql 			= "SELECT * FROM customer_entity WHERE website_id='$website_ids'";
+		$sqlResult 		= $this->db->query($sql); 
+		$dataACcount 	= array();
+		
+		return $sqlResult->num_rows();
+
+	}
+	
+	function getadminuserwebsite($website_ids)
+	{	
+		 
+		$sql 			= "SELECT name FROM core_website WHERE website_id='$website_ids'";
+		$sqlResult 		= $this->db->query($sql); 
+		
+		return $sqlResult->result();
+
+	}
+	
+	
+	function getcustomerinfo($website_ids)
+	{	
+		 
+		$sql 			= "SELECT * FROM customer_entity WHERE website_id='$website_ids'";
+		$sqlResult 		= $this->db->query($sql); 
+		
+		return $sqlResult->result();
+
+	}
+	
+	function addnewcustomer($data)
+	{			
+		$this->db->insert('customer_entity', $data);    
+	}
+
+
+	public function getCustomerByCustomerId($customerId, $toreid){
+
+		$this->db->select('*');
+		$this->db->from('customer_entity');
+		
+		$this->db->where(array('customer_entity.entity_id' => $customerId, 'customer_entity.store_id ' => $toreid));		
+		
+		$sqlResult = $this->db->get();		
+		
+		return $sqlResult->result();
+	}
+
+	//
+	public function addNewAccount($data, $website_ids)
+	{	
+		$this->db->insert('customer_entity', $data);		
+	}
+	
+	public function getLastInsertedId($website_ids)
+	{		
+		$sql 		= "SELECT * FROM customer_entity WHERE website_id = $website_ids ORDER BY entity_id DESC LIMIT 1";
+		$sqlResult 	= $this->db->query($sql); 
+		return $sqlResult->result();
+	}
+	
+	public function getAttributeId($entity_type_id)
+	{		
+		$sql = "SELECT * FROM eav_attribute WHERE entity_type_id = $entity_type_id";		
+		$sqlResult 	= $this->db->query($sql); 
+		return $sqlResult->result();		
+	}	
+	
+	public function addAttributeCustomer($data)
+	{	
+		$this->db->insert('customer_entity_varchar', $data);		
+	}
+		
+	
+
+}
+
+?>

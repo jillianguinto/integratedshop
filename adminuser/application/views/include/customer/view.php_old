@@ -1,0 +1,226 @@
+<?php //print_r($customer_information);?>
+<div id="page-wrapper">
+    <div class="container-fluid">
+
+    	<div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    <i class="fa fa-qrcode"></i> Customer Information 
+                </h1>
+                <ol class="breadcrumb">
+                    <li class="active">
+						<a href="<?php echo base_url();?>">
+							<i class="fa fa-dashboard"></i> Dashboard
+						</a>
+                    </li>
+                    <li>
+						<a href="<?php echo base_url();?>index.php/customers">
+							<i class="fa fa-qrcode"></i>  <?php echo $this->uri->segment(1) ?>
+						</a>
+                    </li>
+                    <li><strong><?php echo $this->uri->segment(2); ?></strong></li>
+                </ol>
+
+                
+            </div>
+        </div>
+
+		<!-- tab pane -->
+        <div class="row">
+        	<div class="col-lg-12">
+				<ul class="nav nav-tabs" id="tabContent">
+				    <li class="active"><a href="#cv" data-toggle="tab">Customer View</a></li>
+				    <li><a href="#ai" data-toggle="tab">Account Information</a></li>		
+				    <li><a href="#addr" data-toggle="tab">Address</a></li>	
+				    <li><a href="#ord" data-toggle="tab">Orders</a></li>
+				    <li><a href="#rr" data-toggle="tab">Billing Agreements</a></li>		
+				    <li><a href="#rp" data-toggle="tab">Recurring profiles (beta)</a></li>	
+				    <li><a href="#sc" data-toggle="tab">Shopping Cart</a></li>
+				    <li><a href="#wh" data-toggle="tab">Wishlist</a></li>		
+				    <li><a href="#ns" data-toggle="tab">Newsletter</a></li>	
+				    <li><a href="#pr" data-toggle="tab">Product Reviews</a></li>				   	
+				    <li><a href="#pt" data-toggle="tab">Product Tags</a></li>
+										       
+				</ul>
+				  
+				<div class="tab-content">
+					<div class="tab-pane active" id="cv">content</div>      
+					<div class="tab-pane new-addr-btn" id="ai">
+						
+						
+						<form class="form-horizontal col-sm-12" action="<?php echo base_url(); ?>" method="post">
+				        	<?php foreach($customer_information as $custinfo): ?>
+				        	<div class="col-md-9 customer-form">                     
+	                            <div class="form-group"><label class="col-sm-2 control-label">PRC Number</label>
+	                            	<div class="col-sm-10">
+	                            		<input class="form-control required" name="prcnumber" data-placement="top" data-trigger="" data-content="" type="text">
+	                            	</div>
+	                            </div>
+	                            <div class="form-group"><label class="col-sm-2 control-label">Number of Kids</label>
+	                            	<div class="col-sm-10">
+	                            		<input class="form-control required" name="numofkids" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text">
+	                            	</div>
+	                           	</div>
+	                            <div class="form-group"><label class="col-sm-2 control-label">Associate to Website</label>		                            	
+	                            	<div class="col-sm-10">
+										<select id="_accountwebsite_id"  name="website_id" class="form-control">
+											<option value="" selected="selected">-- Please Select --</option>
+											<option value="0" selected="selected">Admin</option>
+											<option value="15">Appebon</option>
+											<option value="22">athena</option>
+											<option value="3">Celeteque</option>
+											<option value="2">Evolife</option>
+											<option value="17">FHH</option>
+											<option value="6">Heymom</option>
+											<option value="19">Juvenaid</option>
+											<option value="21">Liviacor</option>
+											<option value="1">Mainsite</option>
+											<option value="7">Medichem</option>
+											<option value="14">Psslai</option>
+											<option value="18">Ritemed</option>
+											<option value="20">ulah2</option>
+											<option value="16">Unilabactivehealth</option>
+										</select>
+									</div>
+
+	                            </div>
+	                           	<div class="form-group"><label class="col-sm-2 control-label">Associate to Website</label>				                  
+									<div class="col-sm-10">
+										<select id="_accountgroup_id" name="group_id" class="form-control">
+											<option value="1">General</option>
+											<option value="2">Wholesale</option>
+											<option value="3">Retailer</option>
+										</select>
+									</div>
+									<input name="disable_auto_group_change" class="required" type="checkbox" id="checkboxSuccess" value="1">Disable Automatic Group Change Based on VAT ID
+	                            	
+	                            </div>
+	                           
+								<div class="form-group"><label class="col-sm-2 control-label">Prefix</label>
+									<div class="col-sm-10">
+										<input name="prefix" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text">
+									</div>
+		                        </div>	
+		                        <div class="form-group"><label class="col-sm-2 control-label">First Name</label>
+		                        	<div class="col-sm-10">
+		                        		<input name="firstname" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text">
+		                        	</div>
+		                        </div>	
+		                       	
+		                        <div class="form-group"><label class="col-sm-2 control-label">Middle Name/Initial</label>
+		                        	<div class="col-sm-10">
+		                        		<input name="middlename" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+	                        		</div>
+		                    
+								
+		                        <div class="form-group"><label class="col-sm-2 control-label">Last Name</label>
+		                        	<div class="col-sm-10">
+		                        		<input name="lastname" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+	                        		</div>
+	                        	<div class="form-group"><label class="col-sm-2 control-label">Suffix</label>
+	                        		<div class="col-sm-10">
+	                        			<input name="suffix" value="" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+		                    		</div>
+		                    	<div class="form-group"><label class="col-sm-2 control-label">Email</label>
+		                    		<div class="col-sm-10">
+		                    			<input name="email" value="<?php echo $custinfo->email; ?>" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+	                           		</div>
+	                            <div class="form-group"><label class="col-sm-2 control-label">Date Of Birth</label>	                            	
+	                            	<div class="col-sm-10">
+		                            	<div class='input-group date' id='datetimepicker1'>
+						                    <input type='text' class="form-control" />
+						                    <span class="input-group-addon">
+						                        <span class="glyphicon glyphicon-calendar"></span>
+						                    </span>
+						                </div>
+						            </div>
+	                            </div>
+
+	                            <!-- datepicker --> 				                         	
+
+	                            <!-- //-->
+	                          
+	                          
+	                            <div class="form-group"><label class="col-sm-2 control-label">Tax/VAT Number</label>
+	                            	<div class="col-sm-10">
+	                            		<input name="taxvat" class="form-control email" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
+	                            	</div>
+
+	                            <div class="form-group"><label class="col-sm-2 control-label">Gender</label>
+	                            	<div class="col-sm-10">
+		                            	<select id="_accountgender" name="gender" class="form-control phone">
+											<option value="" selected="selected"></option>
+											<option value="1">Male</option>
+											<option value="2">Female</option>
+										</select>
+									</div>
+	                            </div>
+		                    	<div class="form-group"><label class="col-sm-2 control-label">Civil Status</label>
+		                    		<div class="col-sm-10">
+		                    			<input id="_accountcivil_status" name="civil_status" value="" class="form-control email" type="text">
+		                    		</div>
+		                    	</div>
+	                            	
+		                 
+		                    
+		                    
+	                            <div class="form-group"><label class="col-sm-2 control-label">Agree on Terms </label>
+	                               	<div class="col-sm-10">
+		                               	<select id="_accountagree_on_terms" name="agree_on_terms" class="form-control required">
+											<option value="0" selected="selected">No</option>
+											<option value="1">Yes</option>
+										</select>
+									</div>
+	                            </div>
+	                        	<div class="form-group"><label class="col-sm-2 control-label">Medical Oncologist Title</label>
+	                        		<div class="col-sm-10">
+	                        			<input name="medprefix" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+		                    		</div>
+		                    	<div class="form-group"><label class="col-sm-2 control-label">Medical Oncologist First Name</label>
+		                    		<div class="col-sm-10">
+		                    			<input name="medfname" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+	                          		</div>
+	                            <div class="form-group"><label class="col-sm-2 control-label">Medical Oncologist Last Name</label>
+	                            	<div class="col-sm-10">
+	                            		<input name="medlname" class="form-control required" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+	                          		</div>
+	                           
+	                         <!--    <div class="form-group"><label class="col-sm-2 control-label">Send Welcome Email</label>
+	                            	<div class="col-sm-10">
+	                            		<input disabled name="" type="checkbox" class="email" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)"></div>
+	                            </div> -->
+	                         <!--    <div class="form-group"><label class="col-sm-2 control-label">Send From</label>
+	                            	<div class="col-sm-10">
+	                            		<input disabled name="" class="form-control phone" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (999-999-9999)">
+	                            	</div>
+		                    	</div> -->
+		                    	<div class="form-group">
+		                    		<label class="col-sm-2 control-label">Password</label>
+		                    		<div class="col-sm-10">
+		                    			<input name="password" class="form-control required"  data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text">
+		                    		</div>                            	
+		                 		</div>	
+	                      	</div>
+	                      	<?php endforeach; ?> 
+	                      	<div class="form-group">
+	                      		<button type="submit" class="btn btn-primary pull-right">Save Customer</button> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
+							</div>				
+
+						</form>  	
+					</div> 
+
+					<div class="tab-pane" id="addr">content</div>     
+					<div class="tab-pane" id="ord">content</div>     
+					<div class="tab-pane" id="rr">content</div>     
+					<div class="tab-pane" id="rp">content</div>     
+					<div class="tab-pane" id="sc">content</div>     
+					<div class="tab-pane" id="wh">content</div>     
+					<div class="tab-pane" id="ns">content</div>     
+					<div class="tab-pane" id="pr">content</div>		     
+					<div class="tab-pane" id="pt">content</div>     
+
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>			

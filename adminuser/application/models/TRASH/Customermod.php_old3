@@ -1,0 +1,265 @@
+<?php
+class Customermod extends CI_Model {
+
+    function __construct()
+    {
+		parent::__construct();
+		$this->load->database();		
+
+    }
+    
+	function getallCustomers($website_ids)
+	{	
+		 
+		$sql 			= "SELECT * FROM customer_entity WHERE website_id='$website_ids'";
+		$sqlResult 		= $this->db->query($sql); 
+		$dataACcount 	= array();
+		
+		return $sqlResult->num_rows();
+
+	}
+	
+	function getadminuserwebsite($website_ids)
+	{	
+		 
+		$sql 			= "SELECT name FROM core_website WHERE website_id='$website_ids'";
+		$sqlResult 		= $this->db->query($sql); 
+		
+		return $sqlResult->result();
+
+	}
+	
+	
+	function getcustomerinfo($website_ids)
+	{	
+		 
+		$sql 			= "SELECT * FROM customer_entity WHERE website_id='$website_ids'";
+		$sqlResult 		= $this->db->query($sql); 
+		
+		return $sqlResult->result();
+
+	}
+	
+	public function getCustomerByCustomerId($customerId, $toreid){
+
+		$this->db->select('*');
+		$this->db->from('customer_entity');
+		
+		$this->db->where(array('customer_entity.entity_id' => $customerId, 'customer_entity.store_id ' => $toreid));		
+		
+		$sqlResult = $this->db->get();		
+		
+		return $sqlResult->result();
+	}
+
+	//	insert 
+
+	public function customer_address_entity($data)
+	{		
+		$this->db->insert('customer_address_entity', $data);	
+		$insert_id = $this->db->insert_id();  
+		return  $insert_id;	 
+	}
+
+	public function customer_address_entity_last_id($insert_id, $website_ids)
+	{		
+		$sql 		= "SELECT * FROM customer_address_entity WHERE parent_id = $insert_id";
+		$sqlResult 	= $this->db->query($sql); 
+		return $sqlResult->result();
+	}
+	
+
+	public function customer_address_entity_varchar($data)
+	{	
+		$this->db->insert('customer_address_entity_varchar', $data);		
+	}
+
+	
+	public function customer_entity($data)
+	{	
+		$this->db->insert('customer_entity', $data);	
+		$insert_id = $this->db->insert_id();
+   		return  $insert_id;	
+	}
+	
+	public function customer_entity_last_id($insert_id, $website_ids)
+	{		
+		$sql 		= "SELECT * FROM customer_entity WHERE website_id = $website_ids AND entity_id = $insert_id ORDER BY entity_id DESC LIMIT 1";
+		$sqlResult 	= $this->db->query($sql); 
+		return $sqlResult->result();
+	}
+	
+	public function get_all_eav_attribute($entity_type_id)
+	{		
+		$sql = "SELECT * FROM eav_attribute WHERE entity_type_id = $entity_type_id";		
+		$sqlResult 	= $this->db->query($sql); 
+		return $sqlResult->result();		
+	}	
+	
+	public function customer_entity_varchar($data)
+	{	
+		$this->db->insert('customer_entity_varchar', $data);		
+	}
+	
+	// get account information$website_ids)
+	public function get_account_information($entity_id, $website_ids)
+	{			
+		$sql = "SELECT e.*,  
+				at_prefix.`value` AS prefix,		
+				at_firstname.`value` AS firstname,
+				at_middlename.`value` AS middlename,
+				at_lastname.`value` AS lastname,
+				at_suffix.`value` AS suffix,	
+				at_password.`value` AS password,				
+				at_status.`value` AS status,	
+				at_prcnumber.`value` AS prcnumber,	
+				at_numofkids.`value` AS numofkids,
+				at_gender.`value` AS gender,
+				at_taxvat.`value` AS taxvat,	
+				at_medprefix.`value` AS medprefix,
+				at_medfname.`value` AS medfname,		
+				at_medlname.`value` AS medlname,
+			
+
+				CONCAT(
+					IF(at_prefix.value IS NOT NULL AND at_prefix.value != '', 
+						CONCAT(LTRIM(RTRIM(at_prefix.value)), ' '), ''
+					)
+				) AS `name`				
+				
+				FROM customer_entity AS e				
+							
+
+				LEFT JOIN customer_entity_varchar AS at_prefix 
+				ON (at_prefix.entity_id = e.entity_id)				
+				AND (at_prefix.attribute_id = '4') 
+				
+				LEFT JOIN customer_entity_varchar AS at_firstname 
+				ON (at_firstname.entity_id = e.entity_id) 
+				AND (at_firstname.attribute_id = '5')				
+				
+				LEFT JOIN customer_entity_varchar AS at_middlename 
+				ON (at_middlename.entity_id = e.entity_id) 
+				AND (at_middlename.attribute_id = '6')				
+				
+				LEFT JOIN customer_entity_varchar AS at_lastname 
+				ON (at_lastname.entity_id = e.entity_id) 
+				AND (at_lastname.attribute_id = '7')				
+				
+				LEFT JOIN customer_entity_varchar AS at_suffix 
+				ON (at_suffix.entity_id = e.entity_id) 
+				AND (at_suffix.attribute_id = '8')	
+				
+				LEFT JOIN customer_entity_varchar AS at_password 
+				ON (at_password.entity_id = e.entity_id)				
+				AND (at_password.attribute_id = '12') 			
+				
+				LEFT JOIN customer_entity_varchar AS at_status 
+				ON (at_status.entity_id = e.entity_id)				
+				AND (at_status.attribute_id = '96')
+				
+				LEFT JOIN customer_entity_varchar AS at_prcnumber 
+				ON (at_prcnumber.entity_id = e.entity_id)				
+				AND (at_prcnumber.attribute_id = '203')
+				
+				LEFT JOIN customer_entity_varchar AS at_numofkids 
+				ON (at_numofkids.entity_id = e.entity_id)				
+				AND (at_numofkids.attribute_id = '215')				
+				
+				LEFT JOIN customer_entity_varchar AS at_gender 
+				ON (at_gender.entity_id = e.entity_id)				
+				AND (at_gender.attribute_id = '18')
+				
+				LEFT JOIN customer_entity_varchar AS at_taxvat 
+				ON (at_taxvat.entity_id = e.entity_id)				
+				AND (at_taxvat.attribute_id = '16')			
+
+				LEFT JOIN customer_entity_varchar AS at_medprefix 
+				ON (at_medprefix.entity_id = e.entity_id)				
+				AND (at_medprefix.attribute_id = '195')		
+
+				LEFT JOIN customer_entity_varchar AS at_medfname 
+				ON (at_medfname.entity_id = e.entity_id)				
+				AND (at_medfname.attribute_id = '197')		
+
+				LEFT JOIN customer_entity_varchar AS at_medlname 
+				ON (at_medlname.entity_id = e.entity_id)				
+				AND (at_medlname.attribute_id = '198')		
+			
+
+												
+				WHERE (`e`.`entity_id` = '$entity_id')								
+				AND (`e`.`website_id` = '$website_ids')";			
+		
+				
+		$sqlResult 		= $this->db->query($sql); 		
+		return $sqlResult->result();		
+	
+	}
+
+
+	public function update_customer_entity($id, $data) {
+
+	    $this->db->where('entity_id', $id);
+	    $this->db->update('customer_entity', $data);
+	    $insert_id = $this->db->insert_id();  
+		return  $insert_id;	 
+	}
+
+
+	public function update_customer_entity_varchar($id, $data) {
+
+	    $this->db->where('attribute_id', $id);
+	    $this->db->update('customer_entity_varchar', $data);
+	   
+	}
+	
+	public function update_customer_address_entity($id, $data) {
+
+	    $this->db->where('parent_id', $id);
+	    $this->db->update('customer_address_entity', $data);
+	}
+
+
+	public function get_customer_address_entity_id($id){
+		$sql = "SELECT * FROM customer_address_entity WHERE parent_id = $id";
+
+		$sqlResult 		= $this->db->query($sql); 		
+		return $sqlResult->result();	
+	}
+
+
+	public function all_customer_address_entity_varchar($id){
+		$sql = "SELECT * FROM customer_address_entity_varchar WHERE entity_id = $id";
+
+		$sqlResult 		= $this->db->query($sql); 		
+		return $sqlResult->result();	
+	}
+
+
+	public function update_customer_address($id,$data)
+	{				
+		$this->db->where('attribute_id',$id);
+		$this->db->update('customer_address_entity_varchar', $data);
+		
+	}
+
+	//
+	function customer_group()
+	{	
+		$sql 			= "SELECT * FROM customer_group";
+		$sqlResult 		= $this->db->query($sql); 		
+		return $sqlResult->result();
+	}
+	
+	function core_store()
+	{	
+		$sql 			= "SELECT website_id, name FROM core_store WHERE is_active = 1 ORDER BY name ASC";
+		$sqlResult 		= $this->db->query($sql); 		
+		return $sqlResult->result();
+
+	}
+
+}
+
+?>

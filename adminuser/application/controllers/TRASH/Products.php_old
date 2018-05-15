@@ -1,0 +1,202 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Products extends CI_Controller {
+
+		
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->load->helper(array('form','url'));
+       	$this->load->library('form_validation');
+
+		$this->load->model('Customermod');		
+		$this->load->model('Productsmod');		
+	}
+	 
+	public function index()
+	{
+				
+		$store_id  		= isstore_id();
+		$usersession 	= is_usersession();
+		
+
+		$baseurl = base_url();
+		if(empty($usersession)):
+			redirect($baseurl);
+		endif;		
+
+		
+		$getallCustomers 	 = $this->Customermod->getallCustomers($store_id);
+		$getAllProducts 	 = $this->Productsmod->getAllProducts($store_id);
+		$getProductslist 	 = $this->Productsmod->getAllProductslist($store_id);
+		
+
+		//$getProductslist 	 = $this->Productsmod->getAllProductslistings($store_id);
+		
+		$userData = array(
+			'getallCustomers'	=>$getallCustomers,
+			'getAllProducts' 	=> $getAllProducts,
+			'getProductslist' 	=> $getProductslist
+		);
+		
+		$this->load->view('head/head');
+		$this->load->view('sidebar/menu',$userData);
+		$this->load->view('include/listproducts');
+		$this->load->view('footer/footer');
+	}
+
+
+	public function view()
+	{
+		$this->load->model('Productsmod');	
+		$store_id  		= isstore_id();
+		$usersession 	= is_usersession();
+
+		$storeid =	store_id();
+
+		$baseurl = base_url();
+		if(empty($usersession)):
+			redirect($baseurl);	
+		endif;		
+
+
+		if(isset($_POST['productId'])):
+			$productId =  $_POST['productId'];
+		else:
+			$productId = 0;
+		endif;				
+
+		$getProductInformationById 	= $this->Productsmod->getProductInformationById($productId);
+		//$getPrice 	 		= $this->Productsmod->getPrice($productId);	
+
+		// $getUrlKey 	 		= $this->Productsmod->getUrlKey($productId);
+		
+
+		// echo '<pre>';
+		// print_r($getProductsById);
+		// die();
+
+		$userData = array();	
+		if(!empty($getProductInformationById)){
+
+			foreach($getProductInformationById as $key=> $productsView):
+				$userData['products_view'][$key] = $productsView;
+			endforeach;		
+		}	
+			
+		// foreach($getPrice as $w=>$x):
+		// 	foreach($x as $y=>$z):
+		// 		$getProductsById[$w]->$y = $z;
+		// 	endforeach;
+		// endforeach;		
+
+		$this->load->view('head/head');
+		$this->load->view('sidebar/menu',$userData);
+		$this->load->view('include/products/view');
+		$this->load->view('footer/footer');	
+	}	
+
+
+	public function update_Products(){
+		
+		$productsid =  $_POST['entity_id'];
+
+		//static
+	    $this->form_validation->set_rules('sku', 'Sku',  'trim|required');
+	    $this->form_validation->set_rules('name', 'Name',  'trim|required');
+	    
+	    //text
+	    $this->form_validation->set_rules('description', 'Description',  'trim|required|min_length[30]');
+	    $this->form_validation->set_rules('short_description', 'Short Description',  'trim|required|min_length[10]');
+	 
+	    // decimal as value
+	    $this->form_validation->set_rules('weight', 'Weight',  'trim|required');
+	    $this->form_validation->set_rules('price', 'Price',  'trim|required');
+
+	    // varchar as value
+	    $this->form_validation->set_rules('unilab_moq', 'MOQ',  'trim|required');
+	
+	    if($this->form_validation->run() == false)
+	    {	     
+			$errors = $this->form_validation->error_array();            
+		    echo json_encode(array('st'=>0, 'msg' => json_encode($errors)));
+	    }
+	    else
+	    {	
+
+
+	    	$static_values = array(
+	    		'sku' =>$this->input->post("sku")    	
+	    	);
+
+	    	$decimal_values = array(	    		
+	    		'weight'=>$this->input->post("weight"), 
+	    		'price'=> $this->input->post("price")
+	    	);
+
+	    	echo '<pre>';
+	    	print_r($decimal_values);
+
+	    	$i = 0;
+	    	foreach($decimal_values as $decimal_values_k => $decimal_values_output){	  		 
+
+		    	$query=$this->db->query("SELECT * FROM eav_attribute WHERE attribute_code IN('$decimal_values_k') "); 
+		        $eav_rows = $query->result_array();
+		        foreach($eav_rows as $x=>$j){
+
+		        	echo $eav_rows[$x]['attribute_id']. ' = ' .$decimal_values_output. ' = ' . $productsid. '<br/>';
+		        	//echo 'id: ' . $productsid. ' value: ' . $decimal_values_output. ' attribute_id: ' . $attribute_id= $eav_rows[$i]['attribute_id']. '<br/>';
+
+
+		        	$query2=$this->db->query("UPDATE catalog_product_entity_decimal SET value = '".$decimal_values_output."' WHERE entity_id = '".$productsid."' AND attribute_id = '".$eav_rows[$x]['attribute_id']."'");
+		      		 		
+
+				
+
+		        }
+
+		   
+
+
+	       		// $this->db->where('entity_id', "$productsid");
+		        // $this->db->where('attribute_id', "$attribute_id");
+		        // $this->db->update('catalog_product_entity_decimal',"$decimal_values_output");
+		       // UPDATE catalog_product_entity_decimal SET value = 230 WHERE entity_id = 1680 AND attribute_id = 75
+
+		  //       $sql = "UPDATE catalog_product_entity_decimal SET value = '$decimal_values_output' WHERE entity_id = '$productsid' AND attribute_id = '$attribute_id'";
+		  //       $sqlResult 		= $this->db->query($sql); 
+		
+				// $sqlResult->result();
+
+		        // return $this;
+		    }    
+
+	       
+	     //  	foreach($eav_rows as $eav_rows_k => $eav_rows_output){
+	     //  		 foreach($decimal_values as $decimal_values_k => $decimal_values_output){	
+
+	     //  			$eav_attribute_code = $eav_rows[$eav_rows_k]['attribute_code'];
+
+	     //  			if($decimal_values_k == $eav_attribute_code){
+	     //  				echo $decimal_values_k . '=>' .$decimal_values[$decimal_values_k]. '<br/>';
+	     //  			}	
+
+		    //   	}
+		    // }
+
+	   //  	$this->db->where('entity_id', $productsid);
+	   //  	$this->db->update('catalog_product_entity', $static_values);
+
+	   //  	$this->db->where('attribute_id', 75);
+	 		// $this->db->update('catalog_product_entity_decimal', $decimal_values);
+
+
+	       	//$update_products= $this->Productsmod->update_catalog_product_entity($productsid,$data);
+	       	echo json_encode(array("st" =>1, "msg" => "Changes Save Successfully!"));
+                
+
+	    }
+	}
+}

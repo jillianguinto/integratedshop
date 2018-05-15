@@ -1,0 +1,281 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Customers extends CI_Controller {
+
+
+		
+	public function __construct()
+	{
+		parent::__construct();
+		
+		$this->load->helper(array('form','url'));
+       	$this->load->library('form_validation');
+		$this->load->model('Customermod');	
+		
+		$store_id  		= isstore_id();
+		$usersession 	= is_usersession();
+
+		$baseurl = base_url();
+		if(empty($usersession)):
+			redirect($baseurl);
+		endif;			
+		
+		$this->store_id 	= $store_id;
+	}
+
+
+	public function index()
+	{		
+		$store_id  		= isstore_id();
+		$usersession 	= is_usersession();
+		$baseurl = base_url();
+		if(empty($usersession)):
+			redirect($baseurl);
+		endif;	
+		
+		$getAllcustomer	= $this->Customermod->getcustomerinfo($store_id);
+		$errormessage 	= null;
+		$errortype 		= 'warning';
+
+		$userData = array(
+			'getAllcustomer' =>$getAllcustomer,
+			'errormessage'	 =>$errormessage,
+			'errortype'		 =>$errortype
+		
+		);
+		
+		$this->load->view('head/head');
+		$this->load->view('sidebar/menu',$userData);
+		$this->load->view('include/customerlist');
+		$this->load->view('footer/footer');
+	}
+
+
+	public function view()
+	{
+		$this->load->model('Customermod');	
+
+		$store_id  		= isstore_id();
+		$usersession 	= is_usersession();
+
+		$baseurl = base_url();
+		if(empty($usersession)):
+			redirect($baseurl);
+		endif;				
+		
+		if(isset($_POST['customerId'])):
+			$customerId =  $_POST['customerId'];
+		else:
+			$customerId = 0;
+		endif;		
+				
+		$getCustomerByCustomerId 	= $this->Customermod->get_account_information($customerId, $store_id);
+		
+		if(empty($getCustomerByCustomerId)):
+			$baseurl = base_url().'index.php/customers';
+			redirect($baseurl);
+		endif;
+		
+		$userData = [];				
+		foreach($getCustomerByCustomerId as $key=> $customerView):
+			$userData['customer_information'][$key] = $customerView;
+		endforeach;			
+		
+		$website_id = $this->Customermod->core_store();			
+		foreach($website_id as $webid_key=>$webid_value):
+			foreach($webid_value as $k=>$val):
+				$userData['website_id'][$webid_key][$k] = $val;			
+			endforeach;				
+		endforeach;		
+		
+		$customer_group = $this->Customermod->customer_group();	
+		foreach($customer_group as $customer_group_key=>$customer_group_value):
+			foreach($customer_group_value as $k=>$val):
+				$userData['customer_group'][$customer_group_key][$k] = $val;			
+			endforeach;				
+		endforeach;				
+		
+		$this->load->view('head/head');
+		$this->load->view('sidebar/menu',$userData);
+		$this->load->view('include/customer/view');
+		$this->load->view('footer/footer');	
+	}	
+
+	public function add_customer_account(){	
+			
+		$store_id  		= isstore_id();
+		$usersession 	= is_usersession();
+		$baseurl = base_url();
+		if(empty($usersession)):
+			redirect($baseurl);
+		endif;			
+		
+		$website_ids = $store_id;	
+
+		echo '<pre>';
+
+		print_r($_POST);
+
+		$this->form_validation->set_rules('prcnumber','PRC Number','trim|required');
+	    $this->form_validation->set_rules('lastname','Last Name','trim|required');	  
+		$this->form_validation->set_rules('email','email','trim|required');	
+		$this->form_validation->set_rules('agree_on_terms','agree_on_terms','trim|required');	  	
+		$this->form_validation->set_rules('numofkids','numofkids','trim|required');	  	
+		//$this->form_validation->set_rules('suffix','suffix','trim|required');	  	
+		$this->form_validation->set_rules('medprefix','medprefix','trim|required');	  	
+		$this->form_validation->set_rules('website_id','website_id','trim|required');	  	
+		$this->form_validation->set_rules('medfname','medfname','trim|required');	  	
+		$this->form_validation->set_rules('group_id','group_id','trim|required');	  	
+		$this->form_validation->set_rules('medlname','medlname','trim|required');	  	
+		$this->form_validation->set_rules('disable_auto_group_change','disable_auto_group_change','trim|required');	  	
+		//$this->form_validation->set_rules('prefix','prefix','trim|required');	  	
+		$this->form_validation->set_rules('taxvat','taxvat','trim|required');	  	
+		$this->form_validation->set_rules('firstname','firstname','trim|required');	  	
+		$this->form_validation->set_rules('gender','gender','trim|required');	  	
+		//$this->form_validation->set_rules('middlename','middlename','trim|required');	  	
+		$this->form_validation->set_rules('civil_status','civil_status','trim|required');	  	
+		$this->form_validation->set_rules('password','password','trim|required'); 	     
+
+	    if($this->form_validation->run() == false)
+	    {	     
+			$errors = $this->form_validation->error_array(); //function in library : My_Form_validation            
+           
+		    echo json_encode(array('st'=>0, 'msg' => json_encode($errors)));
+	    }
+	    else
+	    {
+			$customer_entity = [
+				'entity_id' 				=> 'NULL',
+				'entity_type_id'			=> '1',
+				'attribute_set_id' 			=> '0',
+				'website_id' 				=> $website_ids,
+				'email' 					=> $this->input->post('email'),
+				'group_id' 					=> $this->input->post('group_id'),
+				'increment_id' 				=> '',
+				'store_id' 					=> '1',
+				'created_at' 				=> '2015-09-30 07:58:39',
+				'updated_at' 				=> '2015-09-30 07:58:40',
+				'is_active' 				=> '1',
+				'disable_auto_group_change' => '0'			
+			];			
+
+			$eav_attribute_customer_entity = [							
+				'prcnumber'					=> $this->input->post('prcnumber'),
+				'lastname'					=> $this->input->post('lastname'),
+				'agree_on_terms' 			=> $this->input->post('agree_on_terms'),
+				'numofkids'					=> $this->input->post('numofkids'),
+				'suffix' 					=> $this->input->post('suffix'),
+				'medprefix'					=> $this->input->post('medprefix'),
+				'website_id' 				=> $this->input->post('website_id'),
+				'medfname' 					=> $this->input->post('medfname'),
+				'group_id' 					=> $this->input->post('group_id'),
+				'medlname' 					=> $this->input->post('medlname'),
+				'disable_auto_group_change' => $this->input->post('disable_auto_group_change'),
+				'prefix' 					=> $this->input->post('prefix'),
+				'taxvat' 					=> $this->input->post('taxvat'),
+				'firstname' 				=> $this->input->post('firstname'),
+				'gender' 					=> $this->input->post('gender'),
+				'middlename' 				=> $this->input->post('middlename'),
+				'civil_status' 				=> $this->input->post('civil_status'),
+				'password' 					=> $this->input->post('password')
+			];
+				
+			$insert_id = $this->Customermod->customer_entity($customer_entity, $website_ids);		
+
+			$eav_attribute_customer_address_entity = [
+				'prefix'		 			=> $this->input->post('address_prefix'),
+			   	'firstname' 				=> $this->input->post('address_firstname'),
+			    'lastname' 					=> $this->input->post('address_lastname'),
+			    'suffix' 					=> $this->input->post('address_suffix'),
+			    'company' 					=> $this->input->post('address_company'),
+			    'street' 					=> $this->input->post('address_street'),
+			    'city' 						=> $this->input->post('address_city'),
+			    'country_id' 				=> $this->input->post('country_id'),
+			    'region_id'					=> $this->input->post('address_region_id'),
+			    'postcode' 					=> $this->input->post('address_postcode'), 
+			    'telephone' 				=> $this->input->post('address_telephone'),
+			    'address_fax' 				=> $this->input->post('address_fax')
+			 ];    
+
+
+			if(!empty($_POST['address_firstname']) && !empty($_POST['address_lastname'])):
+
+				$customer_address_entity = [
+					'entity_id' 				=>NULL,
+					'entity_type_id'			=>2,
+					'attribute_set_id'			=>0,
+					'increment_id'				=>'',
+					'parent_id'					=>$insert_id,
+					'created_at'				=>'2014-01-05 12:36:47',
+					'updated_at'				=>'2014-01-05 12:36:49',
+					'is_active'					=>1
+				];
+
+				$this->Customermod->customer_address_entity($customer_address_entity);	
+			
+				$customer_address_entity_last_id = $this->Customermod->customer_address_entity_last_id($insert_id, $website_ids);
+
+				foreach($customer_address_entity_last_id as $customer_address_entity_value){
+
+					$entity_id 		= $customer_address_entity_value->entity_id;
+					$entity_type_id = $customer_address_entity_value->entity_type_id;
+
+					$attribute_ids 	= $this->Customermod->eav_attrib($entity_type_id);
+
+					foreach($eav_attribute_customer_address_entity  as $eav_attribute_key => $eav_attribute_value){
+				
+						foreach($attribute_ids as $eav){																
+							
+							if($eav->attribute_code == $eav_attribute_key){							
+								$this->load->model('Customermod');		
+								$data = array(
+									'value_id'			=>NULL, 
+									'entity_type_id' 	=>$entity_type_id,
+									'attribute_id' 		=>$eav->attribute_id,
+									'entity_id' 		=>$entity_id,
+									'value'				=>$eav_attribute_value
+								);			
+								$this->Customermod->customer_address_entity_varchar($data);						
+							}						
+						}
+					}	
+				}			
+			
+			endif;
+		
+			
+			$customer_entity_last_id = $this->Customermod->customer_entity_last_id($insert_id, $website_ids);	
+		
+			foreach($customer_entity_last_id as $customer_entity_value){
+		
+				$entity_id 		= $customer_entity_value->entity_id;
+				$entity_type_id = $customer_entity_value->entity_type_id;		
+		
+				$attribute_ids 	= $this->Customermod->eav_attrib($entity_type_id);		
+				
+				foreach($eav_attribute_customer_entity  as $eav_attribute_key => $eav_attribute_value){
+				
+					foreach($attribute_ids as $eav){																
+						
+						if($eav->attribute_code == $eav_attribute_key){							
+							$this->load->model('Customermod');		
+							$data = array(
+								'value_id'			=>NULL, 
+								'entity_type_id' 	=>$entity_type_id,
+								'attribute_id' 		=>$eav->attribute_id,
+								'entity_id' 		=>$entity_id,
+								'value'				=>$eav_attribute_value
+							);			
+							$this->Customermod->customer_entity_varchar($data);						
+						}						
+					}
+				}
+			}	
+			echo json_encode(array('st'=>1, 'msg' => 'Successfully Submiited', 'parent_id' =>$insert_id));	
+		}
+	}
+
+
+
+}

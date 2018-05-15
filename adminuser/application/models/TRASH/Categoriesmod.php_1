@@ -1,0 +1,39 @@
+<?php
+class Categoriesmod extends CI_Model {
+
+    function __construct()
+    {
+		parent::__construct();
+		$this->load->database();		
+
+    }
+    
+	
+	
+	public function post_categoy($data)
+	{	
+		$this->db->insert('catalog_category_entity', $data);	
+		$insert_id = $this->db->insert_id();
+   		return  $insert_id;			
+	}
+
+	public function post_varchar($data)
+	{	
+		$this->db->insert('catalog_category_entity_varchar', $data);	
+		$insert_id = $this->db->insert_id();
+   		return  $insert_id;			
+	}
+
+	public function put_categoy_path($id, $data) {
+
+	    $this->db->where('entity_id', $id);
+	    $this->db->update('catalog_category_entity', $data);
+
+   		return $id;	
+	}
+	
+
+
+}
+
+?>

@@ -1,0 +1,71 @@
+<?php
+class Categoriesmod extends CI_Model {
+
+    function __construct()
+    {
+		parent::__construct();
+		$this->load->database();		
+
+    }
+    
+	
+	//static
+	public function post_categoy($data)
+	{	
+		$this->db->insert('catalog_category_entity', $data);	
+		$insert_id = $this->db->insert_id();
+   		return  $insert_id;			
+	}
+	
+	//varchar
+	public function post_varchar($data)
+	{	
+		$this->db->insert('catalog_category_entity_varchar', $data);	
+		$insert_id = $this->db->insert_id();
+   		return  $insert_id;			
+	}
+	
+	//text
+	public function post_text($data)
+	{	
+		$this->db->insert('catalog_category_entity_text', $data);	
+		$insert_id = $this->db->insert_id();
+   		return  $insert_id;			
+	}
+	
+	//int
+	public function post_int($data)
+	{	
+		$this->db->insert('catalog_category_entity_int', $data);	
+		$insert_id = $this->db->insert_id();
+   		return  $insert_id;			
+	}
+
+	public function put_categoy_path($id, $data) {
+
+	    $this->db->where('entity_id', $id);
+	    $this->db->update('catalog_category_entity', $data);
+
+   		return $id;	
+	}
+	
+	
+	public function get_entity_type_id()
+	{	
+		$sql 		= "SELECT * FROM catalog_category_entity";
+		$sqlResult 	= $this->db->query($sql); 
+		return $sqlResult->result();
+	}
+	
+	public function get_attribute_code($code){
+
+		$query=$this->db->query("SELECT * FROM eav_attribute WHERE attribute_code = '".$code."' "); 
+		$attribute_code = $query->result_array();	
+		return $attribute_code;	
+
+	}
+
+
+}
+
+?>
