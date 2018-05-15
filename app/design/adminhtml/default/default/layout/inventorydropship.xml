@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_Inventorydropship
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+-->
+<layout version="0.1.0">
+    <inventorydropshipadmin_adminhtml_inventorydropship_index>
+        <reference name="content">
+            <block type="inventorydropship/adminhtml_inventorydropship" name="inventorydropship" />
+        </reference>
+    </inventorydropshipadmin_adminhtml_inventorydropship_index>
+    
+    <adminhtml_sales_order_view>
+        <reference name="sales_order_tabs">
+            <action method="addTab">
+                <name>inventorydropship_dropship</name>
+                <block>inventorydropship/adminhtml_sales_order_view_tab_dropship</block>
+            </action>            
+        </reference>
+    </adminhtml_sales_order_view>
+    
+    <!-- drop shipment in order tab -->
+    <inventorydropshipadmin_adminhtml_inventorydropship_dropship>
+        <block type="core/text_list" name="root">
+            <block type="inventorydropship/adminhtml_sales_order_view_tab_dropshiptab" name="sales.order.view.dropship"/>
+            <block type="adminhtml/widget_grid_serializer" name="related_grid_serializer">
+                <action method="initSerializerBlock">
+                        <grid_block_name>sales.order.view.dropship</grid_block_name>
+                        <data_callback>getSelectedRelatedDropships</data_callback>
+                        <hidden_input_name>dropship_dropship</hidden_input_name><!-- -->
+                        <reload_param_name>idropships</reload_param_name>
+                </action>
+                <action method="addColumnInputName">
+                        <input_name>position</input_name>
+                </action>
+            </block>
+        </block>	
+    </inventorydropshipadmin_adminhtml_inventorydropship_dropship>
+    
+    <inventorydropshipadmin_adminhtml_inventorydropship_dropshipgrid>
+        <block type="core/text_list" name="root">
+            <block type="inventorydropship/adminhtml_sales_order_view_tab_dropshiptab" name="sales.order.view.dropship"/>
+        </block>
+    </inventorydropshipadmin_adminhtml_inventorydropship_dropshipgrid>
+    
+    <inventorydropshipadmin_adminhtml_inventorydropship_edit>
+        <reference name="content">
+            <block type="inventorydropship/adminhtml_inventorydropship" name="inventory_dropship_view" template="inventorydropship/view.phtml">                
+                <block type="adminhtml/sales_order_view_info" name="order_info" template="inventorydropship/info.phtml"></block>
+            </block>
+        </reference>
+    </inventorydropshipadmin_adminhtml_inventorydropship_edit>
+    
+    <!-- Drop Ship email -->
+    <inventorydropshipadmin_email_request_items>
+        <block type="inventorydropship/adminhtml_email" name="dropship_item" template="inventorydropship/email/item.phtml" />
+    </inventorydropshipadmin_email_request_items>
+    
+    <inventorydropshipadmin_email_cancel_items>
+        <block type="inventorydropship/adminhtml_email" name="dropship_cancel_item" template="inventorydropship/email/cancel.phtml" />
+    </inventorydropshipadmin_email_cancel_items>
+    
+    <inventorydropshipadmin_email_approve_items>
+        <block type="inventorydropship/adminhtml_email" name="dropship_approve_item" template="inventorydropship/email/approve.phtml" />
+    </inventorydropshipadmin_email_approve_items>  
+          
+    <inventorydropshipadmin_email_refund_items>
+        <block type="inventorydropship/adminhtml_email" name="dropship_refund_item" template="inventorydropship/email/refund.phtml" />
+    </inventorydropshipadmin_email_refund_items>        
+    
+    <!-- drop shipment in supplier tab -->
+    <inventorydropshipadmin_adminhtml_inventorydropship_supplierdropship>
+        <block type="core/text_list" name="root">
+            <block type="inventorydropship/adminhtml_supplier_dropship" name="inventory.supplier.view.dropship"/>
+        </block>
+<!--        <block type="core/text_list" name="root">
+            <block type="inventorydropship/adminhtml_supplier_dropship" name="inventory.supplier.view.dropship"/>
+            <block type="adminhtml/widget_grid_serializer" name="related_grid_serializer">
+                <action method="initSerializerBlock">
+                        <grid_block_name>inventory.supplier.view.dropship</grid_block_name>
+                        <data_callback>getSelectedRelatedDropships</data_callback>
+                        <hidden_input_name>dropship_dropship</hidden_input_name> 
+                        <reload_param_name>idropships</reload_param_name>
+                </action>
+                <action method="addColumnInputName">
+                        <input_name>position</input_name>
+                </action>
+            </block>
+        </block>	-->
+    </inventorydropshipadmin_adminhtml_inventorydropship_supplierdropship>
+    
+    <inventorydropshipadmin_adminhtml_inventorydropship_supplierdropshipgrid>
+        <block type="core/text_list" name="root">
+            <block type="inventorydropship/adminhtml_supplier_dropship" name="inventory.supplier.view.dropship"/>
+        </block>
+    </inventorydropshipadmin_adminhtml_inventorydropship_supplierdropshipgrid>
+    
+    <!-- drop shipment order-->
+    <inventorydropshipadmin_adminhtml_inventorydropship_dropshiporders>
+        <reference name="content">
+            <block type="inventorydropship/adminhtml_inventorydropshiporder" name="inventorydropship_orders" />
+        </reference>
+    </inventorydropshipadmin_adminhtml_inventorydropship_dropshiporders>
+    <inventorydropshipadmin_adminhtml_inventorydropship_dropshipordersgrid>
+         <reference name="content">
+            <block type="inventorydropship/adminhtml_inventorydropshiporder" name="inventorydropship_orders" />
+        </reference>
+    </inventorydropshipadmin_adminhtml_inventorydropship_dropshipordersgrid>
+    
+</layout>

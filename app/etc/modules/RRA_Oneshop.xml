@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <RRA_Oneshop>
+            <active>true</active>
+            <codePool>local</codePool>
+        </RRA_Oneshop>
+    </modules>
+</config>

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+		<reference name="head">
+			<action method="addJs"><script>prototype/window.js</script></action> 
+            <action method="addItem"><type>js_css</type><name>prototype/windows/themes/default.css</name></action>
+            <action method="addCss"><name>lib/prototype/windows/themes/magento.css</name></action> 
+            <block type="core/html_calendar" name="head.calendar" as="calendar" template="page/js/calendar.phtml"/>
+		</reference>
+	</default>
+    <prescription_adminhtml_prescription_index>
+        <reference name="content">
+            <block type="prescription/adminhtml_prescription" name="prescription" />
+        </reference>
+    </prescription_adminhtml_prescription_index>
+	<prescription_adminhtml_prescription_order>
+		<update handle="default"/>
+        <remove name="header"/>
+        <remove name="menu"/>
+        <remove name="global_notices"/>
+        <reference name="root">
+            <action method="setTemplate"><template>prescription/empty.phtml</template></action> 
+		</reference>
+		<reference name="content">
+			 <block type="prescription/adminhtml_prescription_sales_order_view_tab_prescriptions" name="prescription" template="prescription/sales/order/view/tab/prescriptions.phtml">
+				<block type="prescription/adminhtml_prescription_sales_order_view_items" name="order_items" template="prescription/sales/order/view/items.phtml">
+					<action method="addItemRender"><type>default</type><block>prescription/adminhtml_prescription_sales_order_view_items_renderer_default</block><template>prescription/sales/order/view/items/renderer/default.phtml</template></action>
+					<action method="addColumnRender"><column>qty</column><block>adminhtml/sales_items_column_qty</block><template>sales/items/column/qty.phtml</template></action>
+					<action method="addColumnRender"><column>name</column><block>adminhtml/sales_items_column_name</block><template>sales/items/column/name.phtml</template></action>
+					<action method="addColumnRender"><column>name</column><block>adminhtml/sales_items_column_name_grouped</block><template>sales/items/column/name.phtml</template><type>grouped</type></action>
+					<block type="core/text_list" name="order_item_extra_info" />
+				</block> 
+			</block>	  
+		</reference>
+    </prescription_adminhtml_prescription_order>
+	<prescription_adminhtml_prescription_view>        
+       <update handle="prescription_adminhtml_prescription_order"/>  
+		<remove name="prescription"/>  
+		<!--<reference name="content">
+			<block type="prescription/adminhtml_prescription_view" name="precription_detail" template="prescription/view.phtml"/>
+		</reference>--> 
+		<!--<update handle="editor"/>-->
+		<!--<reference name="left">
+            <block type="prescription/adminhtml_prescription_view_tabs" name="adminform_tabs"/>
+        </reference>-->
+        <reference name="content">
+            <block type="prescription/adminhtml_prescription_view" name="adminform"/>
+        </reference>
+	</prescription_adminhtml_prescription_view>      
+</layout>

@@ -1,0 +1,238 @@
+<?php
+
+$storeviewid = Mage::app()->getStore()->getStoreId();
+$siteenabled =  Mage::getStoreConfig("webservice/sitesettings/siteenabled", $storeviewid);
+$logouturl 	=  Mage::getUrl('customer/account/logout');
+
+if($siteenabled == 1){
+
+	$loginurl 	=  Mage::getStoreConfig("webservice/sitesettings/loginurl", $storeviewid);
+	$accturl 	=  Mage::getStoreConfig("webservice/sitesettings/accturl", $storeviewid);
+	$signupurl 	=  Mage::getStoreConfig("webservice/sitesettings/signupurl", $storeviewid);
+
+}else{
+
+	$loginurl 	=  Mage::getUrl('customer/account/login');
+	$accturl 	=  Mage::getUrl('customer/account');
+	$signupurl 	=  Mage::getUrl('customer/account/create');
+
+}
+
+	$iconurl = Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . "images/";
+	$logo = Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'frontend/default/enervon/';
+	$homepageurl = Mage::getBaseUrl();
+
+?>
+
+
+
+<div class="mainsearch">
+	<div class="m-logo">
+		<a href="<?php echo $homepageurl?>" title="<?php echo $this->getLogoAlt() ?>" class="logo">
+			<img src="<?php echo $logo . Mage::getStoreConfig('design/header/logo_src'); ?>" alt="<?php echo $this->getLogoAlt() ?>" class="logoimg"/>
+		</a>
+	</div>
+
+	<div class="m-input-search">
+		<form id="search_main_form" action="<?php echo $this->helper('catalogsearch')->getResultUrl() ?>" method="get">
+			<div class="underform">
+				<input class="formSearch" type="text" name="<?php echo $this->helper('catalogsearch')->getQueryParamName() ?>" value="<?php echo $this->helper('catalogsearch')->getEscapedQueryText() ?>" class="input-text" placeholder="SEARCH" />
+
+				<input type="submit" id="search-button" title="<?php echo $this->__('Go') ?>" value="<?php echo $this->__("Search");?>" class="button search-button">
+
+				<div id="search_autocomplete" class="search-autocomplete"></div>
+
+					<script type="text/javascript">
+
+					//<![CDATA[
+
+						var searchForm = new Varien.searchForm('search_main_form', 'main_search', '<?php echo $this->__('Search') ?>');
+
+						searchForm.initAutocomplete('<?php echo $this->helper('catalogsearch')->getSuggestUrl() ?>', 'search_autocomplete');
+
+					//]]>
+
+					</script>
+
+					<div style="clear:both;"></div>
+				</div> 						
+		</form> 
+
+			<ul class="my-account-top account-icons">
+
+				<li>
+					<div class="dropdown">
+						<a href="<?php echo $accturl; ?>"><img src="<?php echo $this->getSkinUrl('images/my-account-icon.png'); ?>" class="my-account-img"/></a>
+						<ul class="dropdown-content">
+							<?php 
+					    		if(!Mage::getSingleton('customer/session')->isLoggedIn()){
+					    	?>
+					    	<li class="login"><a href="<?php echo $loginurl; ?>">Login</a></li>
+					    	<li class="signup"><a href="<?php echo $signupurl; ?>">Signup</a></li>
+					    	<?php } else {?>
+
+							<li><a href="<?php echo $accturl; ?>">My Account</a></li>
+							<li><a href="<?php echo $logouturl; ?>">Logout</a></li>
+
+							<?php }?>
+						</ul>
+					</div> 
+				</li>
+				<li><a href="<?php echo Mage::helper('checkout/cart')->getCartUrl(); ?>"><img src="<?php echo $this->getSkinUrl('images/cart-icon.png'); ?>" class="my-account-img"/> 
+					<?php $cart_count = Mage::helper('checkout/cart')->getItemsCount();?>
+					<?php if($cart_count > 0): ?>
+					<span id="item_count"><?php echo Mage::helper('checkout/cart')->getItemsCount()?></span>
+					<?php endif; ?>
+				</a></li>
+			</ul>
+		</div>
+
+</div>
+
+
+<div class="m-horizontal-bar cart-divheight">
+ 	<?php 
+			$cart_url = Mage::helper('checkout/cart')->getCartUrl();
+			$currentUrl = Mage::helper('core/url')->getCurrentUrl();
+			
+			$storeid 		= 	Mage::app()->getStore()->getStoreId();
+			$defaultcategory = Mage::getStoreConfig('oneshop/oneshopsettings/defaultcategory', $storeid);
+    ?>
+    
+	<div class="left-menu">
+
+    	<ul class="navbar cf"> 
+			<li class="main-category m">
+				<strong>Categories 
+					<img src="<?php echo $this->getSkinUrl('images/arrow_down.png'); ?>" class="cat-arrow"/>
+				</strong>
+				<ul  class="sub-menu"> 
+					<?php
+						$root_category = Mage::getModel('catalog/category')->load($defaultcategory); // Put your root category ID here.
+						$subcategories = $root_category->getChildren(); 
+
+						foreach(explode(',',$subcategories) as $subcategory) {
+					        $category = Mage::getModel('catalog/category')->load($subcategory);
+					        
+					        if(count($category) != null){
+					            echo '<li class="parent-category"><a href="'.$category->getURL() .'" />'.$category->getName().'</a>';
+					        }
+
+					         $subcategories2 = $category->getChildren();
+					         echo '<ul class="child-category">';
+					        foreach(explode(',', $subcategories2) as $subcategory2){
+					            $category2 = Mage::getModel('catalog/category')->load($subcategory2);
+					            
+					             if(count($category2) != null){
+					                echo '<li class="sub-menu2"><a href="'.$category2->getURL() .'" />'.$category2->getName().'</a></li>';
+					            }
+					        }
+					        echo '</ul></li>';
+					    }
+					?>
+
+				</ul>
+			</li>
+			<?php
+			$storeid 		= 	Mage::app()->getStore()->getStoreId();
+			$promocategory = Mage::getStoreConfig('oneshop/oneshopsettings/promocategory', $storeid);
+			
+			$promo_category = Mage::getModel('catalog/category')->load($promocategory);
+			$promo_url = $promo_category->getURL(); 
+			?>
+			<li><a href="<?php echo $promo_url; ?>"><strong>Promos</strong></a></li>
+			
+		</ul>
+	</div>
+
+	<div class="right-menu">
+		<table class="cart_timeline_t">
+			<tr>
+				<td class="_cart"><img class="cart_" src="<?php echo $this->getSkinUrl('images/shopping_cart1.png'); ?>" style="" /></td>
+				<td class="_shipping"><img class="shipping_"src="<?php echo $this->getSkinUrl('images/shopping_cart1.png'); ?>" /></td>
+				<td class="_payment"><img class="payment_"src="<?php echo $this->getSkinUrl('images/shopping_cart1.png'); ?>" style="" /></td>
+				<td class="_placeholder"><img class="placeholder_"src="<?php echo $this->getSkinUrl('images/shopping_cart1.png'); ?>" style="" /></td>
+			</tr>
+		</table>
+		<table class="cart_timeline">
+			<tr>
+				<td class="cart"><a href="<?php echo Mage::helper('checkout/cart')->getCartUrl(); ?>" class='cart_link'>CART</a></td>
+				<td class="shipping"><a href='#' class='shipping_link'>SHIPPING</a></td>
+				<td class="payment"><a href='#' class='payment_link'>PAYMENT</a></td>
+				<td class="placeholder"><a href='#' class='placeorder_link'>PLACE ORDER</a></td>
+			</tr>
+		</table>
+	</div>
+	
+</div>
+
+<script type="text/javascript"> 
+
+jQuery(document).ready(function(){
+
+    jQuery('.mobile-nav').click(function(){
+
+        jQuery(".primary-top-nav").slideToggle("slow");
+
+    });
+
+
+	jQuery('.newSearchButton').click(function(){
+		   jQuery('#search-button').click();
+		});
+
+	});
+
+function jqUpdateSize(){
+	var width2 = jQuery(window).width();
+
+    return width2;
+}
+
+
+jQuery(document).ready(function(){
+	
+	var item_count = "<?php echo Mage::helper('checkout/cart')->getItemsCount()?>";
+
+	if(item_count == 0){
+		jQuery('.checkout-cart-index .right-menu').css('display', 'none');
+		jQuery('.checkout-cart-index .cart-divheight').css('height', '40px');
+		jQuery('.checkout-cart-index .left-menu').show();
+		jQuery('.checkout-cart-index .health-credits-container').css('display', 'none');
+		
+	}else{
+
+		jQuery(window).resize(function(){
+			var width2 = jQuery(window).width();
+
+		});
+	}
+
+}); 
+
+
+jQuery('.child-category').fadeIn();
+
+
+	jQuery("#login-link").click(function(){
+	    _satellite.track('login-starts');
+	});
+
+
+	jQuery("#signup-link").click(function(){
+	    _satellite.track('register-starts');
+	});
+
+	jQuery(document).ready(function(){
+	    jQuery("button").click(function(){
+	        jQuery("p:first").addClass("intro");
+	    });
+	});
+
+	jQuery(".logout").click(function(){
+		digitalData.user={
+			loginStatus:"not logged-in"
+		}
+		_satellite.track("successful-logout");
+	});
+</script>

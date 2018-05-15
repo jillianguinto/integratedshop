@@ -1,0 +1,109 @@
+<?xml version="1.0"?> 
+<config>
+    <modules>
+        <RRA_Oneshop>
+            <version>1.1.0.1</version>
+        </RRA_Oneshop>
+    </modules>
+	<global>	
+        <models>
+            <oneshop>
+				<class>RRA_Oneshop_Model</class>
+                <resourceModel>oneshop_resource</resourceModel>
+            </oneshop>
+            <oneshop_resource>
+                <class>RRA_Oneshop_Model_Resource</class>
+                <entities>
+                    <oneshopurl>
+                        <table>rra_oneshop_websiteurl</table>
+                    </oneshopurl>    
+					<oneshopslider>
+                        <table>rra_oneshop_slider</table>
+                    </oneshopslider>     					
+                </entities>
+            </oneshop_resource>
+        </models>
+		
+		<blocks>	
+			<oneshop>
+				<class>RRA_Oneshop_Block</class>
+			</oneshop>
+		</blocks>
+		<helpers>
+			<oneshop>
+				<class>RRA_Oneshop_Helper</class>
+			</oneshop>
+		</helpers>				
+	</global>	
+	
+	<frontend>
+		<routers>
+			<oneshop>
+				<use>standard</use>
+				<args>
+					<module>RRA_Oneshop</module>
+					<frontName>oneshop</frontName>
+				</args>
+			</oneshop>
+		</routers>
+		
+		<events>
+			<controller_action_predispatch>
+				<observers>
+					<controller_action_before>
+						<class>oneshop/observer</class>
+						<method>authenticatecategory</method>
+					</controller_action_before>
+				</observers>
+			</controller_action_predispatch>
+		</events>
+	</frontend>
+	
+	
+	<admin>
+        <routers>
+            <oneshop>
+                <use>admin</use>
+                <args>
+                    <module>RRA_Oneshop</module>
+                    <frontName>oneshop</frontName>
+                </args>
+            </oneshop>
+        </routers>
+    </admin>  	
+	
+	<adminhtml>
+        <layout>
+            <updates>
+                <oneshop>
+                    <file>oneshop.xml</file>
+                </oneshop>
+            </updates>
+        </layout>        
+    </adminhtml>
+	
+	<adminhtml>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<system>
+							<children>
+								<config>
+									<children>
+										<oneshop>
+											<title>Oneshop Settings</title>
+										</oneshop>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+	</adminhtml>
+</config>

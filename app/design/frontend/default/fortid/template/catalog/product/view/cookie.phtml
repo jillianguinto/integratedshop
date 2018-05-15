@@ -1,0 +1,40 @@
+<?php
+$customer = Mage::getSingleton('customer/session')->getcustomer();
+$_product = $this->getProduct();
+
+$customerid = $customer->getEntityId();
+$email 		= $customer->getEmail();
+$prodURL 	= $_product->getProductUrl();
+$prodDate	= date("Y/m/d");
+$sku 		= $_product->getSku();
+
+$cookie_name	=	$sku;
+
+$cookie_value['customerid'] = $customerid;
+$cookie_value['email'] = $email;
+$cookie_value['prodURL'] = $prodURL;
+$cookie_value['prodDate'] = $prodDate;
+
+setcookie($cookie_name,serialize($cookie_value), time() + (86400 * 30), "/");
+
+//echo "<pre>";
+//print_r(unserialize($_COOKIE[$sku]));
+
+//-------------------------------------------------------------//
+
+// $storeId = Mage::app()->getStore()->getStoreId();
+
+// $products = Mage::getModel('catalog/product')->getCollection()
+		// ->addAttributeToSelect('sku')
+		// ->addStoreFilter($storeId);
+
+// foreach($products as $product){
+	
+	// $prodSku = $product->getSku();
+	// print_r(unserialize($_COOKIE[$prodSku])); 
+
+// }
+
+		
+
+?>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Extends_Cashondelivery>
+            <version>0.1.0</version>
+        </Extends_Cashondelivery>
+    </modules>
+   <!--  <global>
+        <models>
+            <cashondelivery>
+                <class>Extends_Cashondelivery_Model</class>
+            </cashondelivery>
+        </models>
+        <helpers>
+            <cashondelivery>
+                <class>Extends_Cashondelivery_Helper</class>
+            </cashondelivery>
+        </helpers>
+    </global> -->
+</config>

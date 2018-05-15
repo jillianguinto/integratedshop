@@ -1,0 +1,50 @@
+	<?php 
+		
+		$couponID = $this->getRequest()->getParam('id');
+		$formKey = Mage::getSingleton('core/session')->getFormKey();
+	?>
+	
+	<div class="content-header">		
+		<table cellspacing="0" class="grid-header">					
+		<tr>							
+			<td><h3><?=$this->__('Import Coupon Code')?></h3></td>								
+			<td class="a-right">					
+				<button onclick="backForm.submit()" class="scalable delete" type="button"><span>Back</span></button>					
+				<button onclick="saveForm.submit()" class="scalable save" type="button"><span>Upload Coupon code</span></button>				
+			</td>						
+			</tr>					
+		</table>			
+	</div>
+	<div class="entry-edit">	
+	
+		<form id="back_form" name="back_form" method="post" action="<?=$this->getUrl("adminhtml/promo_quote/edit/id/$couponID/key/$formKey")?>">				
+			<input name="form_key" type="hidden" value="<?php echo $formKey; ?>" />			
+		</form>					
+		
+		<form id="save_form" name="save_form" method="post" action="<?=$this->getUrl('*/*/importcsv')?>" enctype = "multipart/form-data">								<input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />			
+			<div class="entry-edit-head">
+			<h4 class="icon-head head-edit-form fieldset-legend">
+			<?php echo $this->__('Manage Import Coupon Code'); ?></h4>
+			</div>								<div class="hor-scroll">						
+			<fieldset id="my-fieldset">													
+				<table cellspacing="0" class="data order-tables">								
+					<col width="1" />								
+					<col width="1" />													
+					<tbody>													
+						<tr>										
+						<td>
+							<input type="file" name="csv_file" class="required-entry required-entry">
+							<input type="hidden" name="couponid" value="<?php echo $couponID; ?>">
+							
+						</td>									
+						</tr>							
+					</tbody>				
+				</table>						
+			</fieldset>					
+			</div>		
+		</form>			
+	</div>
+	<script type="text/javascript">    
+		var saveForm = new varienForm('save_form');   
+		var backForm = new varienForm('back_form');
+	</script>

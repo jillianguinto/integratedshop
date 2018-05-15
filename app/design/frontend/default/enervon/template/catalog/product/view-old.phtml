@@ -1,0 +1,211 @@
+<style>
+.zoomLens
+{
+height : 150px !important;
+width : 150px !important;
+display : none !important;
+}
+.zoomContainer
+{
+display : none !important;
+}
+
+#galleria
+{
+display:none !important;
+}
+</style>
+<?php $_helper  = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?><script type="text/javascript"> 
+   var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+   </script>
+   <div id="messages_product_view">
+	<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+   </div>
+   <div class="product-view">    
+   <div class="product-essential">   
+   <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>    
+   <?php echo $this->getBlockHtml('formkey') ?>       
+   <div class="no-display">           
+   <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />     
+   <input type="hidden" name="related_product" id="related-products-field" value="" />	
+   <input type="hidden" name="actual_product" id="actual_product" value="<?php echo $_product->getId() ?>" />   
+   </div>       
+     <div class="product-shop">  
+   <div class="product-name">    
+   <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>  
+   </div>            
+   <div class="generic-name">
+   <h1><?php echo $_product->getGenericName(); ?></h1>
+   </div>									
+   <div class="add-to-wl">
+   <?php echo $this->getChildHtml('addto') ?>			
+   </div>
+   <?php if ($this->canEmailToFriend()): ?>
+   <p class="email-friend"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to Friend') ?></a></p>
+   <?php endif; ?>
+   <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+   <?php echo $this->getChildHtml('alert_urls') ?> 
+   <?php echo $this->getChildHtml('product_type_data') ?> 
+   <?php echo $this->getTierPriceHtml() ?> 
+   <?php echo $this->getChildHtml('extrahint') ?>
+   <?php if ($_product->getShortDescription()):?>  
+   <div class="short-description"> 
+   <h2><?php echo $this->__('Quick Overview') ?></h2>   
+   <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
+   </div>                </div>            <?php endif;?>            <?php echo $this->getChildHtml('other');?> 
+   <?php if ($_product->isSaleable() && $this->hasOptions()):?>   
+   <?php echo $this->getChildChildHtml('container1', '', true, true) ?>      
+   <?php endif;?>        
+   </div>      
+   <div class="product-img-box">    
+   <?php echo $this->getChildHtml('media') ?>      
+   </div>      
+   <div class="clearer"></div>        
+   <?php if ($_product->isSaleable() && $this->hasOptions()):?>            
+   <?php echo $this->getChildChildHtml('container2', '', true, true) ?>       
+   <?php endif;?>				 
+   <?php if (!$this->hasOptions()):?>  
+   <div class="add-to-box">           
+   <?php if($_product->isSaleable()): ?>     
+   <?php echo $this->getChildHtml('addtocart') ?>    
+   <?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>                            <span class="or"><?php echo $this->__('OR') ?></span>                        <?php endif; ?>                    <?php endif; ?>                    <?php echo $this->getChildHtml('addto') ?>                </div>                <?php echo $this->getChildHtml('extra_buttons') ?>            <?php elseif (!$_product->isSaleable()): ?>   
+   <div class="add-to-box">                   
+   <?php echo $this->getChildHtml('addto') ?>   
+   </div>            
+   <?php endif; ?>		
+   </form>    
+   <script type="text/javascript">		
+   //<![CDATA[			var productAddToCartForm = new VarienForm('product_addtocart_form');	
+   var disable_submission   = false;			
+   var prevent_submission   = false;			
+   productAddToCartForm.submit = function(button, url) {		
+   if (this.validator.validate()) {					
+   var form = this.form;		
+   var oldUrl = form.action;					
+   if (url) {					  
+   form.action = url;					
+   }					
+   var e = null;			
+   try {						
+   this.form.submit();				
+   jQuery.fancybox.showLoading();		
+   } catch (e) {					
+   }					
+   this.form.action = oldUrl;	
+   if (e) {					
+   throw e;					
+   }				
+   if (button && button != 'undefined') {	
+   button.disabled = true;					
+   }				
+   }			
+   }.bind(productAddToCartForm);
+   productAddToCartForm.submitLight = function(button, url){
+   if(this.validator) {				
+   var nv = Validation.methods;			
+   delete Validation.methods['required-entry'];	
+   delete Validation.methods['validate-one-required'];	
+   delete Validation.methods['validate-one-required-by-name'];	
+   // Remove custom datetime validators					
+   for (var methodName in Validation.methods) {			
+   if (methodName.match(/^validate-datetime-.*/i)) {	
+   delete Validation.methods[methodName];				
+   }					
+   }					
+   if (this.validator.validate()) {
+   if (url) {							
+   this.form.action = url;		
+   }					
+   this.form.submit();				
+   jQuery.fancybox.showLoading();		
+   }				
+   Object.extend(Validation.methods, nv);
+   }		
+   }.bind(productAddToCartForm);	
+   productAddToCartForm.askPrescription = function(button)	
+   {				
+   if(this.validator.validate()){
+   jQuery.fancybox.showLoading();	
+   var prescription_askuser_url  = '<?php echo $this->getUrl('prescription/index/askuser');?>'; 	
+   var parameters				  =  Form.serialize(this.form);	
+   parameters				 += '&form_action=<?php echo $this->getSubmitUrl($_product) ?>';
+   var request = new Ajax.Request(prescription_askuser_url, {			
+   parameters: parameters,					
+   onSuccess: function(transport){ 		  		
+   if(transport.status == 200)	{ 	 			
+   var response = transport.responseText.evalJSON();	
+   if(response.proceed_to_cart){						
+   productAddToCartForm.submit(button);						
+   }else{  									
+   showDialog(response.askuser_dialog); 	
+   askUserControls(response);					
+   }						
+   }					
+   },						
+   onFailure: '',				
+   onComplete: function(){			
+   jQuery.fancybox.hideLoading();	
+   }				
+   }); 				
+   }		
+   }.bind(productAddToCartForm);
+   var askUserControls = function(response)	
+   {			
+   jQuery("#no_prescription").click(function(){		
+   showDialog(response.cancel_dialog); 	
+   jQuery("#btnCancelPrescription").click(function(){	
+   jQuery.fancybox.close(); 				
+   });			
+   });	 		
+   jQuery("#has_prescription").click(function(){	
+   prescriptionControls(response);			
+   });						
+   } 					
+   var showConfirmCancelPrescriptionDialog = function(response)	
+   { 				
+   showDialog(response.cancel_trans_dialog);	
+   jQuery("#btnCancelPrescriptionTransaction").click(function(){	
+   jQuery.fancybox.close(); 			
+   });	  								
+   jQuery("#btnCancelPrescriptionCancelTransaction").click(function(){	
+   prescriptionControls(response);			
+   });	    					
+   }						
+   var prescriptionControls = function(response)	
+   {						
+   showDialog(response.prescription_dialog);	
+   jQuery("#cancel_prescription").click(function(){		
+   showConfirmCancelPrescriptionDialog(response);	
+   });	   								
+   prescriptionForm.submit = function(button, url) {		
+   if(disable_submission){   				
+   return false;					
+   }				
+   if (prescriptionForm.validator.validate()) {	
+   //prevent double submission					
+   if(prevent_submission){						
+   return false;					
+   }					
+   prevent_submission = true;
+   VarienForm.prototype.submit.bind(prescriptionForm)();
+   }			
+   }		
+   } 		//]]>		   
+   </script>   
+   
+   </div>   
+   <div 
+   class="product-collateral">		
+   <?php foreach ($this->getChildGroup('detailed_info', 'getChildHtml') as $alias => $html):?>	
+   <div class="box-collateral <?php echo "box-{$alias}"?>">	
+   <?php if ($title = $this->getChildData($alias, 'title')):?>
+   <h2><?php echo $this->escapeHtml($title); ?></h2>
+   <?php endif;?>					
+   <?php echo $html; ?>			
+   </div>		
+   <?php endforeach;?>  
+   <?php echo $this->getChildHtml('upsell_products') ?>  
+   <?php echo $this->getChildHtml('product_additional_data') ?> 
+   </div> 
+   </div>

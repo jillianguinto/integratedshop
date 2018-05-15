@@ -1,0 +1,124 @@
+<?php
+
+// This page is create by Richel R. Amante for UNILAB use only.
+// Please do not used this software or take with your own risk.
+// Thank you!!!
+
+?>
+
+<?php	$methodcode = Mage::getSingleton('core/session')->getPaymentMethod(); 
+$storeId = Mage::app()->getStore()->getStoreId();
+?>
+	<div class="payment_method_wraper">
+		<!-- <div class="heading">
+			<div class="cls_number">3.</div>
+				<h1 class="cls_header">Payment Method</h1>
+		</div> -->
+		<div class="cls_body">	
+			<div class="heading">
+				<div class="shipping-line"></div>
+				<h1 class="cls_header">
+					Choose your payment option
+				</h1>
+				<div class="shipping-line" ></div>
+			</div>
+		
+			<div class="payment_list"> 
+			<form action="" id="payment-method-form">
+				<ul>
+					<?php				
+					$payments = Mage::getSingleton('payment/config')->getActiveMethods();
+					foreach ($payments as $paymentCode=>$paymentModel):
+						if($paymentModel->canUseCheckout()==1):
+							$paymentTitle = Mage::getStoreConfig('payment/'.$paymentCode.'/title');	
+							?>
+							<li class="checkout">
+								<input  name="payment[method]" value="<?php echo $paymentCode ?>" <?php if ($methodcode == $paymentCode ): echo 'checked="true"'; endif;?> id="<?php echo $paymentCode ?>"  type="radio" class="payment_method" />	
+								<!-- <input  name="payment[method]" value="<?php echo $paymentCode ?>" checked="true" id="<?php echo $paymentCode ?>"  type="radio" class="payment_method" /> -->							
+								<label for="<?php echo $paymentCode ?>">&nbsp;<?php echo $paymentTitle ?></label>
+								<ul>
+									<li>
+										<div id="<?php echo $paymentCode ?>_name" <?php if ($methodcode == $paymentCode ): echo 'style="display: block; padding-left:20px;"'; else: echo 'style="display: none; padding-left:20px;"'; endif;?>  class="payment_desc">
+											<?php if($paymentTitle == 'Credit Card'):?>
+												<i>You will be redirected to BPI Securepay website when you place an order.</i>
+											<?php elseif($paymentTitle == 'Bank Deposit'):?>	 
+												<i>Please see <?php echo $paymentTitle; ?> Instruction below.</i>
+											<?php elseif($paymentTitle == 'Cebuana Perapal'):?>	 
+												<i>Please see Cebuana Lhuillier Instruction below.</i>
+											<?php elseif($paymentTitle == 'Cash On Delivery'):?>	 
+												<?php echo Mage::getStoreConfig('payment/cashondelivery/instructions'); ?> 
+											<?php else: ?>
+												<i>You will be redirected to <?php echo $paymentTitle ?></i>
+											<?php endif; ?>
+										</div>
+									</li>
+									<li>
+										<p id="<?php echo $paymentCode ?>_loading" style="display:none; padding-left:20px;" class="payment_desc">
+										<span style="display:inline-block;position: relative;top: -5px;font-size:12px;">Updating payment method. Please wait...</span>
+										<br>
+										<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)?>wysiwyg/ajax-loader.gif" alt="loading" style="width:50%; height: 15px;" />
+										</p>
+									</li>
+
+								</ul>
+							</li>
+							
+							<?php 
+						endif;
+					endforeach;
+					?>
+				</ul>
+				</form>
+			</div>
+		</div>
+	</div>
+
+<script>
+	jQuery(document).ready(function (){	
+		jQuery('.payment_method').click(function() {
+			jQuery('.payment_desc').hide();
+			jQuery('#'+jQuery(this).val()+'_name').show();
+			jQuery('#'+jQuery(this).val()+'_loading').show();
+			jQuery('#submit_btn').attr('disabled',true);
+			
+			var paymentname = jQuery(this).val();			
+			var paymentdata = jQuery("#payment-method-form").serialize();
+			
+			jQuery.post( '<?php echo Mage::getBaseUrl();?>checkout/onepage/savePayment/', 
+		
+				paymentdata,
+
+			function (paymentdataret)
+			{
+				var dataobj = jQuery.parseJSON(paymentdataret);
+				
+				if(dataobj.goto_section == 'review')
+				{
+					jQuery('#submit_btn').removeAttr('disabled');
+					jQuery('#'+paymentname+'_loading').hide();
+					//location.reload(true);
+				}
+				else
+				{
+					jQuery('#submit_btn').attr('disabled',true);
+					alert(dataobj.error);
+					jQuery('#'+paymentname+'_loading').hide();
+				}
+
+				if(paymentname != 'bankdeposit'){
+					jQuery("#payment_instruction_bankdeposit").css({ display: "none" });
+				}else{
+					jQuery("#payment_instruction_bankdeposit").css({ display: "block" });
+				}
+				
+				if(paymentname != 'perapal'){
+					jQuery("#payment_instruction_cebuana").css({ display: "none" });
+				}else{
+					jQuery("#payment_instruction_cebuana").css({ display: "block" });
+				}
+
+			});					
+			
+		});
+	});
+</script>

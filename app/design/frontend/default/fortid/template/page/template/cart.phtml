@@ -1,0 +1,69 @@
+<?php $_links = $this->getLinks(); ?>
+<?php $count = (int) $this->helper('checkout/cart')->getSummaryCount(); ?>
+
+<?php if(count($_links)>0): ?>
+	<?php if($this->getBlockAlias() == 'topCart'):?>	
+			<div class="shoppingcart">
+
+				<ul>
+					<li>
+
+			<?php
+			    $cartTotal = $this->helper('checkout/cart')->getQuote()->getGrandTotal();
+			    $cartItemsCount = Mage::helper('checkout/cart')->getCart()->getItemsCount();
+			    $cartSuffix = ($cartItemsCount != 1) ? 's' : '';
+
+			    echo '<a class="cartgo" href="'.$this->getUrl('checkout/cart').'">
+			              <strong>'.$this->__('My Cart').'</strong><br />'.
+			              //$this->__('(%s) Item%s', $cartItemsCount, $cartSuffix).
+			              '<span>'.$this->helper('core')->formatPrice($cartTotal, false).'</span>
+			          </a>';
+			?>
+				<?php 
+				// retrieve quote items collection
+				$itemsCollection = Mage::getSingleton('checkout/session')->getQuote()->getItemsCollection();
+				 
+				// get array of all items what can be display directly
+				$itemsVisible = Mage::getSingleton('checkout/session')->getQuote()->getAllVisibleItems();
+				 
+				// retrieve quote items array
+				$items = Mage::getSingleton('checkout/session')->getQuote()->getAllItems();
+				 
+				// foreach($items as $item) {
+				// 	echo 'ID: '.$item->getProductId().'<br />';
+				// 	echo 'Name: '.$item->getName().'<br />';
+				// 	echo 'Sku: '.$item->getSku().'<br />';
+				// 	echo 'Quantity: '.$item->getQty().'<br />';
+				// 	echo 'Price: '.$item->getPrice().'<br />';
+				// 	echo "<br />";			
+				// }
+								?>	
+					</li>
+					<li class="icon-shoppingcart">
+					
+						<a href="<?php echo Mage::helper('checkout/cart')->getCartUrl() ?>">
+							<?php echo $count; ?>
+						</a>
+
+					</li>
+					
+					<li class="checkout_btn">
+						<a  href="<?php echo Mage::helper('checkout/url')->getCheckoutUrl() ?>"><?php echo $this->__('Checkout')?></a>
+					</li>
+				</ul>
+			</div>
+	<?php endif;?>
+	
+	<ul class="links"<?php if($this->getName()): ?> id="<?php echo $this->getName() ?>"<?php endif;?>>
+		<?php foreach($_links as $_link): ?>
+			
+			<?php if ($_link instanceof Mage_Core_Block_Abstract):?>
+				<?php echo $_link->toHtml() ?>
+			<?php else: ?>
+				<li<?php if($_link->getIsFirst()||$_link->getIsLast()): ?> class="<?php if($_link->getIsFirst()): ?>first<?php endif; ?><?php if($_link->getIsLast()): ?> last<?php endif; ?>"<?php endif; ?> <?php echo $_link->getLiParams() ?>><?php echo $_link->getBeforeText() ?><a href="<?php echo $_link->getUrl() ?>" title="<?php echo $_link->getTitle() ?>" <?php echo $_link->getAParams() ?>><?php echo $_link->getLabel() ?></a><?php echo $_link->getAfterText() ?></li>
+			<?php endif;?>
+		<?php endforeach; ?>
+	</ul>
+		
+	
+<?php endif; ?>

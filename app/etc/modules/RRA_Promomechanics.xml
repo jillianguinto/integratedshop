@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<RRA_Promomechanics>
+			<active>true</active>
+			<codePool>local</codePool>
+		</RRA_Promomechanics>
+	</modules>
+</config>

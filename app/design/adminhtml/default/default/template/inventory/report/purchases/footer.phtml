@@ -1,0 +1,63 @@
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>  
+jQuery.noConflict();
+var i =0;
+var t =0;
+var row = jQuery(' #purchasereportGrid_table tr').length;
+jQuery(' #purchasereportGrid_table tr').each(function(){
+    for(var j=i+1;j<=row ;j++){
+        if(jQuery(' #purchasereportGrid_table tr:nth-child('+i+') td:first-child').text() == jQuery(' #purchasereportGrid_table tr:nth-child('+j+') td:first-child').text())
+        {
+            //jQuery(' #purchasereportGrid_table tr:nth-child('+j+') td:first-child').remove();
+            jQuery(' #purchasereportGrid_table tr:nth-child('+j+') td:first-child').text('');
+            jQuery(' #purchasereportGrid_table tr:nth-child('+j+') td:first-child').addClass('need-remove');
+            if(jQuery(' #purchasereportGrid_table tr:nth-child('+i+') td:first-child').text() != ''){
+                //jQuery(' #purchasereportGrid_table tr:nth-child('+i+') td:first-child').addClass('first-row');
+            }
+            //alert(firstrow);
+        }
+        else{
+            //alert(count);
+            jQuery(' #purchasereportGrid_table tr:nth-child('+j+') td:first-child').addClass('first-row');
+            //if(count>1)
+            //jQuery(' #purchasereportGrid_table tr:nth-child('+j+') td:first-child').attr('rowspan',count);
+            break;
+        } 
+    }
+    i++;
+});
+var rows = 1;
+var firstrows = 1;
+var check = 0;
+jQuery(' #purchasereportGrid_table tr td:first-child').each(function(index,curRow){
+    if(jQuery(this).hasClass('first-row')){
+        if(index != 0){
+            previndex = index-rows-1;
+            //jQuery(' #purchasereportGrid_table tr:nth-child('+previndex+') td:first-child').attr('rowspan',rows);
+            //jQuery(' #purchasereportGrid_table tr:nth-child('+previndex+') td:first-child').text(rows);
+            rows = 1;
+            if(check == 0){
+                //jQuery(' #purchasereportGrid_table tr:first-child td:first-child').attr('rowspan',firstrows);
+            check = 1;
+            }
+        }
+        else{
+            //alert(rows);
+            //jQuery(' #purchasereportGrid_table tr:first-child td:first-child').text('--'+index);
+            //jQuery(' #purchasereportGrid_table tr:first-child td:first-child').text('--'+rows);
+            //jQuery(' #purchasereportGrid_table tr:nth-child('+index+') td:first-child').text(rows);
+
+            //alert(previndex);
+            //jQuery(' #purchasereportGrid_table tr:nth-child('+previndex+') td:first-child').attr('rowspan',rows);
+            //jQuery(' #purchasereportGrid_table tr:first-child td:first-child').text(rows);
+            //rows = 1;
+        }
+    }
+    else{
+        //jQuery(this).remove();
+        rows++;
+        firstrows++;
+    }
+    
+});
+</script>

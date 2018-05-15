@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+    </default>
+    <prescription_index_index>
+        <reference name="content">
+            <block type="prescription/prescription" name="prescription" template="prescription/prescription.phtml" />
+        </reference>
+    </prescription_index_index>
+	<prescription_index_askuser translate="label">
+        <label>Add To Cart - Ask Prescription</label>
+        <remove name="right"/>
+        <remove name="left"/>
+		<reference name="root">
+			<action method="setTemplate"><template>prescription/empty.phtml</template></action>
+		</reference> 
+        <reference name="content">
+            <block type="prescription/checkout_cart" name="prescription.cart.askuserdialog" template="prescription/checkout/cart/dialog/askuser.phtml"/>
+            <block type="prescription/checkout_cart" name="prescription.cart.prescriptiondialog" template="prescription/checkout/cart/dialog/prescriptions.phtml"/>
+        </reference>
+    </prescription_index_askuser>
+	<prescription_index_editprescription translate="label">
+		<update handler="prescription_index_askuser"/> 
+        <reference name="content">
+            <block type="prescription/checkout_cart" name="prescription.cart.prescriptiondialog" template="prescription/checkout/cart/dialog/prescriptions.phtml"/>
+        </reference>
+    </prescription_index_editprescription>
+</layout> 

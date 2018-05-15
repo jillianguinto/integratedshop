@@ -1,0 +1,47 @@
+<?php 
+$payment_method_code = Mage::getSingleton('checkout/session')->getQuote()->getPayment()->getMethodInstance()->getCode();
+$cart = Mage::getModel('checkout/cart')->getQuote();
+$cartItems = $cart->getAllVisibleItems();
+        $rx_items = 0;
+        foreach($cartItems as $i):
+            $_product = Mage::getModel('catalog/product')
+                    ->load($i->getProductId())->getUnilabRx();
+
+            if($_product == 1){
+                $rx_items = 1;
+            }
+
+        endforeach;
+?>
+<table cellspacing="0" cellpadding="0" border="0" width="650" style="margin: 0 auto;">
+    <thead>
+    <tr>
+        <th align="left" width="325" bgcolor="#EAEAEA" style="font-size:13px; padding:5px 9px 6px 9px; line-height:1em;">Payment Method:</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td valign="top" align="left" style="font-size:12px; padding:7px 9px 9px 9px; border-left:1px solid #EAEAEA; border-bottom:1px solid #EAEAEA; border-right:1px solid #EAEAEA;">
+            <?php if($payment_method_code == "perapal"): ?>
+            
+                <?php if($rx_items == 1): ?>
+                <p>Our pharmacist will contact you for prescription verification. You have chosen Cebuana Lhuiller as your mode of payment</p>
+                <?php else: ?>
+                <p>You have chosen Cebuana Lhuiller as your mode of payment</p>
+                <?php endif; ?>
+
+            <?php elseif($payment_method_code == "cashondelivery"): ?>
+
+                <?php if($rx_items == 1): ?>
+                <p>Our pharmacist will contact you for prescription verification. You have chosen Cash on Delivery (COD) as your mode of payment</p>
+                <p>Please be ready with the <u><b>exact amount</b></u> to be paid to our courier upon delivery.</p>
+                <?php else: ?>
+                <p>You have chosen Cash on Delivery (COD) as your mode of payment</p>
+                <p>Please be ready with the <u><b>exact amount</b></u> to be paid to our courier upon delivery.</p>
+                <?php endif; ?>
+
+            <?php endif; ?>
+        </td>
+    </tr>
+    </tbody>
+</table>

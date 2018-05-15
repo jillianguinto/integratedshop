@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+
+<config>
+	<modules>
+		<Unilab_Expeditedshipping>
+			<version>1.1.0.0</version>
+		</Unilab_Expeditedshipping>
+	</modules>
+
+	<global>
+		<models>
+			<expeditedshipping>
+				<class>Unilab_Expeditedshipping_Model</class>
+				<resourceModel>expeditedshipping_resource</resourceModel>
+            </expeditedshipping>
+		</models>
+		<blocks>
+			<expeditedshipping>
+				<class>Unilab_Expeditedshipping_Block</class>
+			</expeditedshipping>
+		</blocks>
+		<helpers>
+			<expeditedshipping>
+				<class>Unilab_Expeditedshipping_Helper</class>
+			</expeditedshipping>
+		</helpers>
+		<events>
+			<checkout_onepage_controller_success>
+				<observers>
+					<process_waybill>
+						<class>Unilab_Xend_Model_Observer_Sales</class>
+						<method>processWaybill</method>
+					</process_waybill>
+				</observers>
+			</checkout_onepage_controller_success>
+		</events>
+	</global> 
+
+	<default>
+        <carriers>
+            <expeditedshipping>
+                <active>1</active>
+                <model>expeditedshipping/mycarrier_carrier</model>
+                <title>Expedited Shipping</title>
+                <sort_order>30</sort_order>
+                <sallowspecific>0</sallowspecific>
+            </expeditedshipping>
+        </carriers>
+    </default>
+	
+	<frontend>
+		<routers>
+			<expeditedshipping>
+				<use>standard</use>
+				<args>
+					<module>Unilab_Expeditedshipping</module>
+					<frontName>expeditedshipping</frontName>
+				</args>
+			</expeditedshipping>
+		</routers>
+	</frontend>
+	
+	<admin>
+        <routers>
+            <expeditedshipping>
+                <use>admin</use>
+                <args>
+                    <module>Unilab_Expeditedshipping</module>
+                    <frontName>expeditedshipping</frontName>
+                </args>
+            </expeditedshipping>
+        </routers>
+    </admin>  	
+
+</config>

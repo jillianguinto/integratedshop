@@ -1,0 +1,238 @@
+<?php 
+
+
+
+	$id 		= $this->getRequest()->getParam('order_id');
+
+	$order 		= Mage::getModel('sales/order')->load($id);
+
+
+
+	$collection = Mage::getModel('webservice/netsuitelogs')->getCollection();
+
+	$collection->addFieldToFilter('transaction_id',$order->getIncrementId());
+
+	$collection->addFieldToFilter('type','send');
+
+
+
+	
+
+	$is_sent 	= false;
+
+	
+
+?>
+
+
+
+
+
+<div class="entry-edit">
+
+			
+
+	<div class="entry-edit-head">
+
+
+
+		<h4 class="icon-head head-products"><?php echo Mage::helper('sales')->__('History of Sending Order to Netsuite') ?></h4>
+
+
+
+	</div>
+
+	
+
+		<div class="grid np">	
+
+		
+
+			<div class="hor-scroll">	
+
+				<fieldset id="my-fieldset">	
+
+				
+
+					<table cellspacing="0" class="data order-tables">	
+
+					
+
+					<thead>	
+
+					
+
+						<tr class="headings">
+
+						
+
+							<th><center><?php echo $this->helper('webservice')->__('#') ?></center></th>
+
+							
+
+							<th><?php echo $this->helper('webservice')->__('Response From ') ?></th>
+
+
+
+							<th><?php echo $this->helper('webservice')->__('Sales Order #') ?></th>
+
+
+
+							<th><?php echo $this->helper('webservice')->__('Command Event') ?></th>
+
+							
+
+							<th><?php echo $this->helper('webservice')->__('Status') ?></th>
+
+							
+
+							<th><?php echo $this->helper('webservice')->__('Message Log') ?></th>
+ 
+							<th><?php echo $this->helper('webservice')->__('Date and Time') ?></th>
+
+							<!-- <th><?php //echo $this->helper('webservice')->__('Type') ?></th> -->
+
+						</tr>	
+
+						
+
+					</thead>		
+
+					
+
+						<tbody>	
+
+						
+
+						<?php 
+
+							
+
+							$senttoNetsuite = $collection->getData();
+
+							 
+
+							if(count($senttoNetsuite)){
+
+								
+
+								$count		= 1;	
+
+								$TItems		= 0;
+
+								$is_sent 	= false;
+
+								
+
+								foreach ($senttoNetsuite as $_value):
+
+
+
+										echo "<tr>";
+
+											foreach($_value as $key=>$_item):
+
+												if($key == 'id'){
+
+													echo "<td>". $count . "</td>";	
+
+												}elseif($key == 'cmdEvent'){
+
+													echo "<td>". $_item . "</td>";											
+
+												}elseif($key == 'transaction_id'){
+
+													echo "<td>". $_item . "</td>";	
+
+												}elseif($key == 'status'){
+
+													if($_item == 1){
+
+														$is_sent = true;
+
+														echo "<td style='background: rgb(0, 189, 7);font-weight: bold; color: #fff; padding: 5px;font-size: 12px;'><center>Yes</center></td>";	
+
+													}else{
+
+														echo "<td style='background: red;font-weight: bold; color: #fff; padding: 5px;font-size: 12px;'><center>No</center></td>";		
+
+													}
+
+												}elseif($key == 'logs'){
+
+													echo '<td >'.str_replace('\\' , ' ' ,$_item) . "</td>";	 
+
+												}elseif($key == 'type'){
+
+													echo "<td>". $_item . "</td>";	
+
+												}elseif($key == 'date'){
+
+													echo "<td>". $_item . "</td>";	
+
+												}elseif($key == 'data_from'){
+
+													echo "<td>". $_item . "</td>";	
+
+												}
+
+												
+
+											endforeach;	
+
+										echo "</tr>";	
+
+										$count++;				
+
+									
+
+								endforeach;	
+
+							}else{
+
+								echo "<tr><td colspan='6'><center>NO Record Found!</center></td></tr>";
+
+							}
+
+								
+
+						 ?>											
+
+						  
+
+						</tbody>	
+
+						
+
+					</table>
+
+				
+
+				</fieldset>		
+
+			</div>
+
+		</div>
+
+			
+
+
+
+</div>
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+    var resendForm = new varienForm('resend_form');	
+
+
+
+</script>
+
+
+

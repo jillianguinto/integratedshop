@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+    </default>
+    <homepagebanner_index_index>
+        <reference name="content">
+            <block type="homepagebanner/homepagebanner" name="homepagebanner" template="homepagebanner/homepagebanner.phtml" />
+        </reference>
+    </homepagebanner_index_index>
+</layout> 

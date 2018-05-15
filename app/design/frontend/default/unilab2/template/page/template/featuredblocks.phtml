@@ -1,0 +1,40 @@
+<div class="wrapper_footer_blocks homepage_footer"> 	
+
+	<div class="footer_featured_block customer-care">
+		<h3>Customer Care</h3>
+		<ul>
+			<li><a href="#">How to buy</a></li>
+			<li><a href="<?php echo Mage::getUrl("deliverypolicy");?>">Shipping &amp; Delivery</a></li>
+			<li><a href="<?php echo Mage::getUrl('customer/account'); ?>">Your account</a></li>
+			<li><a href="<?php echo Mage::getUrl('sales/order/history'); ?>">Your orders</a></li>
+			<li><a href="<?php echo Mage::getUrl("contacts");?>" >Contact us</a></li>
+		</ul>
+
+	</div>
+
+
+	<div class="footer_featured_block wpsi">
+		<h3><?php echo Mage::getStoreConfig('general/store_information/name'); ?></h3>
+		<ul>
+			<li><a href="<?php echo Mage::getUrl("termsandcondition");?>">Terms and Condition</a></li>
+			<li><a href="<?php echo Mage::getUrl("privacypolicy");?>">Privacy Policy</a></li>
+		</ul>
+	</div>
+
+	<div class="footer_featured_block wpsi_logo">
+		<ul>
+			<li><h3>Operated by</h3></li>
+			<li><img src="<?php echo $this->getSkinUrl('images/clickhealth.png'); ?>" style="width:120px;"/></li>
+		</ul>
+	</div>
+
+</div>
+
+
+<div class="footer-operateby loggedin_footer" style="background-color:#fff;">
+		<br>
+		<center><ul>
+			<li><span>Operated by</span></li>
+			<li><img src="<?php echo $this->getSkinUrl('images/clickhealth.png'); ?>" style="width:120px;margin-left:15px;"/></li>
+		</ul></center>
+</div>

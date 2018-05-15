@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <checkout_onepage_index>
+	   <reference name="footer" >
+            <block type="xendcod/shipping" name="shipping" template="xendcod/shipping_method.phtml" />
+		</reference>
+    </checkout_onepage_index>
+</layout>

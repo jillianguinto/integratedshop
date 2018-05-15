@@ -1,0 +1,59 @@
+<?xml version="1.0"?> 
+<config>
+    <modules>
+        <RRA_Admincontroller>
+            <version>0.1.0</version>
+        </RRA_Admincontroller>
+    </modules>	
+	<global>	
+		<models>
+			<admincontroller>
+				<class>RRA_Admincontroller_Model</class>
+			</admincontroller>		
+		</models>
+		<blocks>		
+			<admincontroller>
+				<class>RRA_Admincontroller_Block</class>
+			</admincontroller>
+		</blocks>
+		<helpers>
+			<admincontroller>
+				<class>RRA_Admincontroller_Helper</class>
+			</admincontroller>
+		</helpers>		
+		
+	</global>	
+	
+	<admin>
+		 <routers>
+			 <admincontroller>
+				 <use>admin</use>
+				 <args>
+					 <module>RRA_Admincontroller</module>
+					 <frontName>admincontroller</frontName>
+				 </args>
+			 </admincontroller>
+		 </routers>
+	</admin>
+	
+	<frontend>
+		<routers>
+
+		<admincontroller>
+
+			<use>standard</use>
+
+			<args>
+
+				<module>RRA_Admincontroller</module>
+
+				<frontName>admincontroller</frontName>
+
+			</args>
+
+		</admincontroller>
+
+		</routers>	
+	</frontend>
+	
+</config>

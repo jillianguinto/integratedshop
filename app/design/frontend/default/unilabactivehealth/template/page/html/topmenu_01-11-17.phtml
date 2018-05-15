@@ -1,0 +1,473 @@
+<?php
+/**
+* Magento
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Academic Free License (AFL 3.0)
+* that is bundled with this package in the file LICENSE_AFL.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/afl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@magentocommerce.com so we can send you a copy immediately.
+*
+* DISCLAIMER
+*
+* Do not edit or add to this file if you wish to upgrade Magento to newer
+* versions in the future. If you wish to customize Magento for your
+* needs please refer to http://www.magentocommerce.com for more information.
+*
+* @category    design
+* @package     base_default
+* @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+* @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+*/
+?>
+<?php
+/**
+* Top menu for store
+*
+* @see Mage_Page_Block_Html_Topmenu
+*/
+?>
+
+<div id="mobileNav">
+	<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>/frontend/default/unilab2/images/burger.png" id="btnMobileNav"   />
+	<img src="<?php echo $this->getSkinUrl('images/unilabactivehealth/mobileNavClose.png');?>" id="btnMobileNavClose" />
+</div>
+<div id="navigation" >
+	<ul class="menu" >
+		<li class="home">
+			<a href="http://unilabactivehealth.com/">HOME</a>
+			<span class="toggle-down">▼</span>
+			<ul style="width:100px;" class="sub-menu posMobile">
+				<li> <a href="http://unilabactivehealth.com/news_kipsang-barcena-rule-ru2-premier-categories.html" >NEWS</a></li>
+				<li> <a href="http://unilabactivehealth.com/stories_ernest-carual-a-leg-to-run-on.html">STORIES</a></li>
+			</ul>
+		</li>
+		<li class="events"><a href="http://unilabactivehealth.com/events.html">EVENTS</a>
+			<span class="toggle-down">▼</span>
+			<ul style="width:290px;" class="sub-menu posMobile">
+				<li><a href="http://unilabactivehealth.com/events_aquathlonunited_racedetails.html">AQUATHLON UNITED</a>
+					<ul  style="width:130px;">
+
+						<li><a href="http://unilabactivehealth.com/events_aquathlonunited_racedetails.html">Race Details</a></li>
+						<li><a href="http://unilabactivehealth.com/events_aquathlonunited_racegear.html">Race Gear</a></li>
+						<li><a href="http://unilabactivehealth.com/events_aquathlonunited_startlists.html">Start Lists</a></li>
+						<li><a href="http://unilabactivehealth.com/events_aquathlonunited_routemaps.html">Route Maps</a></li>
+						<li><a href="http://unilabactivehealth.com/events_aquathlonunited_results.html">Results</a></li>
+					</ul>
+				</li>
+
+				<li><a href="http://unilabactivehealth.com/events_cyclingunited_racedetails.html">CYCLING UNITED</a>
+					<ul style="width:130px;">
+
+						<li><a href="https://regonline.activeglobal.com/builder/site/Default.aspx?EventID=1742392" target="_blank">Registration</a></li>
+						<li><a href="http://unilabactivehealth.com/events_cyclingunited_racedetails.html">Race Details</a></li>
+						<li><a href="http://unilabactivehealth.com/events_cyclingunited_startlists.html">Start Lists</a></li>
+					</ul>
+				</li>
+
+				<li><a href="http://unilabactivehealth.com/events_duathlonunited_racedetails.html">DUATHLON UNITED</a>
+					<ul style="width:130px;">
+
+						<li><a href="https://regonline.activeglobal.com/builder/site/Default.aspx?EventID=1743425" target="_blank">Registration</a></li>
+						<li><a href="http://unilabactivehealth.com/events_duathlonunited_racedetails.html">Race Details</a></li>
+						<li><a href="http://unilabactivehealth.com/events_duathlonunited_startlists.html">Start Lists</a></li>
+					</ul>
+				</li>
+
+
+				<li> <a href="http://unilabactivehealth.com/events.html#ru">RUN UNITED</a>
+					<ul style="width:145px;">
+
+						<li><a href="https://regonline.activeglobal.com/rununitedphilippinemarathon2015" target="_blank">Registration</a></li>
+						<li><a href="http://unilabactivehealth.com/events_rununited_racedetails.html">Race Details</a></li>
+						<li><a href="http://unilabactivehealth.com/events_rununited_routemaps.html">Route Maps</a></li>
+						<li><a href="http://unilabactivehealth.com/events_rununited_results.html">Results</a></li>
+					</ul>
+				</li>
+
+				<li><a href="http://unilabactivehealth.com/events_rununited-recoveryrun_racedetails.html">RUN UNITED RECOVERY RUN</a>
+					<ul style="width:130px;">
+
+						<li><a href="https://regonline.activeglobal.com/Register/Checkin.aspx?EventID=1744384" target="_blank">Registration</a></li>
+						<li><a href="http://unilabactivehealth.com/events_rununited-recoveryrun_racedetails.html">Race Details</a></li>
+						<li><a href="http://unilabactivehealth.com/events_rununited-recoveryrun_racegear.html">Race Gear</a></li>
+					</ul>
+				</li>
+
+
+				<li><a href="http://unilabactivehealth.com/events.html#tu">TRI UNITED 2</a>
+					<ul style="width:130px;">
+						<li><a href="http://unilabactivehealth.com/events_triunited_racedetails.html">Race Details</a></li>
+						<li><a href="http://unilabactivehealth.com/events_triunited_routemaps.html">Route Maps</a></li>
+						<li><a href="http://unilabactivehealth.com/events_triunited_racegear.html">Race Gear</a></li>
+						<li><a href="http://unilabactivehealth.com/events_triunited_startlists.html">Start Lists</a></li>
+						<li><a h href="http://unilabactivehealth.com/events_triunited_results.html"> Results</a></li>
+					</ul>
+				</li>
+				<li><a href="http://unilabactivehealth.com/events.html#tu">TRI UNITED 3</a>
+					<ul style="width:130px;">
+						<li><a href="http://www.bikekingphilippines.com/events_tu3_event-details.html" target="_blank" >Registration</a></li>
+						<li><a href="http://unilabactivehealth.com/events_triunited3_racedetails.html">Race Details</a></li>
+					</ul>
+				</li>
+
+				<li><a href="http://unilabactivehealth.com/events.html#tu">TRI UNITED 4</a>
+					<ul style="width:130px;">
+						<li><a href="http://www.bikekingphilippines.com/events_tu4_event-details.html" target="_blank">Registration</a></li>
+						<li><a href="http://unilabactivehealth.com/events_triunited4_racedetails.html">Race Details</a></li>
+					</ul>
+				</li>
+				<li><a href="http://tbrdream.com/" target="_blank">THE BULL RUNNER DREAM MARATHON</a></li>
+			</ul>
+		</li>
+		<li class="training"><a href="training-articles_coach-kris-how-to-prevent-itb-pain-syndrome.html">TRAINING</a><span class="toggle-down">▼</span>
+			<ul style="width:180px;" class="sub-menu posMobile">
+				<li><a href="http://unilabactivehealth.com/training-articles_coach-kris-how-to-prevent-itb-pain-syndrome.html">ARTICLES</a></li>
+				<li><a href="http://unilabactivehealth.com/training-programs_coach-andy-preparation-for-tri-united2.html">PROGRAMS</a></li>
+				<li><a href="http://unilabactivehealth.com/training_how-to-exceed-series.html">HOW TO EXCEED SERIES</a></li>
+				<li><a href="http://unilabactivehealth.com/training_directory.html">DIRECTORY</a></li>
+			</ul>
+
+		</li>
+		<li class="community"><a href="<?php echo Mage::getBaseUrl(); ?>">COMMUNITY</a></li>
+		<li class="nutrition"><a href="http://unilabactivehealth.com/nutrition.html">NUTRITION</a><span class="toggle-down">▼</span>
+			<ul style="width:120px;" class="sub-menu posMobile">
+				<li><a href="http://unilabactivehealth.com/nutrition_enervon-activ.html">ENERVON ACTIV</a></li>
+				<li><a href="http://unilabactivehealth.com/nutrition_enervon-hp.html">ENERVON HP</a></li>
+			</ul>
+		</li>
+		<li class="shop"><a href="<?php echo Mage::getBaseUrl(); ?>">SHOP</a></li>
+
+		<li class="promos"><a href="http://unilabactivehealth.com/promos/wegotyourbike/index.html">PROMOS</a><span class="toggle-down">▼</span>
+			<ul style="width:140px;" class="sub-menu posMobile">
+				<li><a href="http://unilabactivehealth.com/promos/wegotyourbike/index.html">ENERVON ACTIV WE GOT YOUR BIKE</a></li>
+			</ul>
+		</li>
+		<li class="contact-us"><a href="<?php echo Mage::getBaseUrl(); ?>">CONTACT US</a></li>
+	</ul>
+</div> 
+<div id="mobile-nav" class="scrollbar">
+	<div class="mobile-menu-title">ActiveHealth</div>
+	<ul class="menu">
+			<li>
+				<span class="appendLink rm-append-active"></span>
+				<a href="http://unilabactivehealth.com/">Home</a>
+				<ul class="child-menu" style="display:block!important;">
+					<li>
+						<a href="http://www.activehealth.ph/news/">News</a>
+					</li>
+					<li>
+						<a href="http://www.activehealth.ph/stories/">Stories</a>
+					</li>
+				</ul>
+			</li>
+			<li><span class="appendLink rm-append-inactive"></span><a href="http://www.activehealth.ph/events/">Events</a>
+			<ul class="child-menu">
+					<li>
+						<span class="child-appendLink rm-append-inactive"></span>
+						<a href="http://activehealth.ph/events/#events-ru">Run United 1</a>
+						<ul class="grand-child-menu">
+							<li>
+								<span class="grand-child-appendLink rm-append-inactive"></span>
+								<a href="http://www.activehealth.ph/event/run-united-1/2016-run-united-1-race-details/">2016</a>
+								<ul class="grand-grand-child-menu">
+									<li>
+										<a href="http://www.activehealth.ph/event/run-united-1/2016-run-united-1-race-details/">RACE DETAILS</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/run-united-1/2016-run-united-1-route-maps/">ROUTE MAPS</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/run-united-1/2016-run-united-1-race-results/">RACE RESULTS</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<span class="grand-child-appendLink rm-append-inactive"></span>
+								<a href="http://www.activehealth.ph/event/run-united-1/2015-run-united-philippine-marathon-race-details/">2015</a>
+								<ul class="grand-grand-child-menu">
+									<li>
+										<a href="http://www.activehealth.ph/event/run-united-1/2015-run-united-philippine-marathon-race-details/">RACE DETAILS</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/run-united-1/2015-run-united-philippine-marathon-route-maps/">ROUTE MAPS</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/run-united-1/2015-run-united-philippine-marathon-results-pdf/">RESULTS</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span class="child-appendLink rm-append-inactive"></span>
+						<a href="http://www.activehealth.ph/event/run-united-2/2016-run-united-2-race-details/">Run United 2</a>
+						<ul class="grand-child-menu">
+							<li>
+								<a href="http://www.activehealth.ph/event/run-united-2/2016-run-united-2-race-details/">RACE DETAILS</a>
+							</li>
+							<li>
+								<a href="http://www.activehealth.ph/event/run-united-2/2016-run-united-2-race-results/">RACE RESULTS</a>
+							</li>
+						</ul>	
+					</li>
+
+					<li>
+						<span class="child-appendLink rm-append-inactive"></span>
+						<a href="http://www.activehealth.ph/event/run-united-freedom-run/2016-run-united-freedom-run-cdo-registration-details/">Run United Freedom Run</a>
+						<ul class="grand-child-menu">
+							<li>
+								<a href="http://www.activehealth.ph/event/run-united-freedom-run/2016-run-united-freedom-run-cdo-registration-details/">RACE DETAILS</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span class="child-appendLink rm-append-inactive"></span>
+						<a href="http://www.activehealth.ph/event/run-united-philippine-marathon/2016-run-united-philippine-marathon-race-details/">Run United Philippine Marathon</a>
+						<ul class="grand-child-menu">
+							<li>
+								<a href="http://www.activehealth.ph/event/run-united-philippine-marathon/2016-run-united-philippine-marathon-race-details/">2016</a>
+								<ul class="grand-grand-child-menu">
+									<li>
+										<a href="http://www.activehealth.ph/event/run-united-philippine-marathon/2016-run-united-philippine-marathon-race-details/">RACE DETAILS</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/run-united-philippine-marathon/2016-run-united-philippine-marathon-results/">RACE RESULTS</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span class="child-appendLink rm-append-inactive"></span>
+						<a href="http://activehealth.ph/events/#events-tri">Tri United 1</a>
+						<ul class="grand-child-menu">
+							<li>
+								<a href="http://www.activehealth.ph/event/tri-united-1/2016-tri-united-1-race-details/">RACE DETAILS</a>
+							</li>
+							<li>
+								<a href="http://www.activehealth.ph/event/tri-united-1/2016-tri-united-1-route-maps/">ROUTE MAPS</a>
+							</li>
+							<li>
+								<a href="http://www.activehealth.ph/event/tri-united-1/2016-tri-united-1-results-pdf/">RESULTS</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span class="child-appendLink rm-append-inactive"></span>
+						<a href="http://activehealth.ph/events/#events-tri">Tri United 2</a>
+						<ul class="grand-child-menu">
+							<li>
+								<span class="grand-child-appendLink rm-append-inactive"></span>
+								<a href="http://www.activehealth.ph/event/tri-united-2/2016-tri-united-2-race-details/">2016</a>
+								<ul class="grand-grand-child-menu">
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-2/2016-tri-united-2-race-results/">RACE RESULTS</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-2/2016-tri-united-2-race-details/">RACE DETAILS</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-2/2016-tri-united-2-race-rules/">RACE RULES</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-2/2016-tri-united-2-start-list/">START LIST</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-2/2016-tri-united-2-route-maps/">ROUTE MAPS</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<span class="grand-child-appendLink rm-append-inactive"></span>
+								<a href="http://www.activehealth.ph/event/tri-united-2/2015-tri-united-2-race-details/">2015</a>
+								<ul class="grand-grand-child-menu">
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-2/2015-tri-united-2-race-details/">RACE DETAILS</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-2/2015-tri-united-2-race-gear/">RACE GEAR</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-2/2015-tri-united-2-start-lists/">START LISTS</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-2/2015-tri-united-2-route-maps/">ROUTE MAPS</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-2/2015-tri-united-1-results-pdf/">RESULTS</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span class="child-appendLink rm-append-inactive"></span>
+						<a href="http://activehealth.ph/events/#events-tri">Tri United 3</a>
+						<ul class="grand-child-menu">
+							<li>
+								<span class="grand-child-appendLink rm-append-inactive"></span>
+								<a href="http://www.activehealth.ph/event/tri-united-3/2016-tri-united-3-race-details/">2016</a>
+								<ul class="grand-grand-child-menu">
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-3/2016-tri-united-3-race-details/">RACE DETAILS</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-3/2016-tri-united-3-race-rules/">RACE RULES</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<span class="grand-child-appendLink rm-append-inactive"></span>
+								<a href="http://www.activehealth.ph/event/tri-united-3/2015-tri-united-3-race-details/">2015</a>
+								<ul class="grand-grand-child-menu">
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-3/2015-tri-united-3-race-details/">RACE DETAILS</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-3/2015-tri-united-3-race-gear/">RACE GEAR</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-3/2015-tri-united-3-start-lists/">START LISTS</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-3/2015-tri-united-3-route-maps/">ROUTE MAPS</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-3/2015-tri-united-3-results/">RESULTS</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span class="child-appendLink rm-append-inactive"></span>
+						<a href="http://activehealth.ph/events/#events-tri">Tri United 4</a>
+						<ul class="grand-child-menu">
+							<li>
+								<span class="grand-child-appendLink rm-append-inactive"></span>
+								<a href="http://www.activehealth.ph/event/tri-united-4/2016-tri-united-4-race-details/">2016</a>
+								<ul class="grand-grand-child-menu">
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-4/2016-tri-united-4-race-details/">RACE DETAILS</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<span class="grand-child-appendLink rm-append-inactive"></span>
+								<a href="http://www.activehealth.ph/event/tri-united-4/2015-tri-united-4-start-lists/">2015</a>
+								<ul class="grand-grand-child-menu">
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-4/2015-tri-united-4-start-lists/">START LISTS</a>
+									</li>
+									<li>
+										<a href="http://www.activehealth.ph/event/tri-united-4/2015-tri-united-4-route-maps/">ROUTE MAPS</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<span class="appendLink rm-append-inactive"></span>
+				<a href="http://www.activehealth.ph/training/">Training</a>
+				<ul class="child-menu">
+					<li>
+						<a href="http://www.activehealth.ph/training-article/">Articles</a>
+					</li>
+					<li>
+						<a href="http://www.activehealth.ph/training-programs/">Programs</a>
+					</li>
+					<li>
+						<a href="http://www.activehealth.ph/how-to-exceed-series/">How to Exceed Series</a>
+					</li>
+					<li>
+						<a href="http://www.activehealth.ph/directory/">Directory</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="http://www.activehealth.ph/activehealth-community-home/">Community</a>
+			</li>
+			<li>
+				<span class="appendLink rm-append-inactive"></span>
+				<a href="http://www.activehealth.ph/nutrition/">Nutrition</a>
+				<ul class="child-menu">
+					<li>
+						<a href="http://www.activehealth.ph/enervon-activ/">Enervon Activ</a>
+					</li>
+					<li>
+						<a href="http://www.activehealth.ph/enervon-hp/">Enervon HP</a>
+					</li>
+					<li>
+						<a href="http://www.activehealth.ph/activehealth-carbgel/">ActiveHealth Carbgel</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="http://shop.activehealth.ph/">Shop</a>
+			</li>
+			<li>
+				<a href="http://www.activehealth.ph/promos/">Promos</a>
+			</li>
+			<li>
+				<a href="http://www.activehealth.ph/contact-us/">Contact Us</a>
+			</li>
+	</ul>
+</div>
+<script type="text/javascript">
+( function($) {
+	$(document).ready(function(){
+		$("#mobileNav").click(function(){
+			$("#mobile-nav").animate({width: "toggle"}, {duration: 1000});
+		});
+		$(".appendLink").click(function(){
+			$(this).siblings('.child-menu').slideToggle('slow');
+			if($(this).attr('class') == 'appendLink rm-append-active'){
+				$( this ).removeClass( "rm-append-active" );
+				$( this ).addClass( "rm-append-inactive" );
+			}
+			else
+			{
+				$( this ).addClass( "rm-append-active" );
+				$( this ).removeClass( "rm-append-inactive" );
+			}
+		});
+		$(".child-appendLink").click(function(){
+			$(this).siblings('.grand-child-menu').slideToggle('slow');
+			if($(this).attr('class') == 'child-appendLink rm-append-active'){
+				$( this ).removeClass( "rm-append-active" );
+				$( this ).addClass( "rm-append-inactive" );
+			}
+			else
+			{
+				$( this ).addClass( "rm-append-active" );
+				$( this ).removeClass( "rm-append-inactive" );
+			}
+		});
+		$(".grand-child-appendLink").click(function(){
+			$(this).siblings('.grand-grand-child-menu').slideToggle('slow');
+			if($(this).attr('class') == 'grand-child-appendLink rm-append-active'){
+				$( this ).removeClass( "rm-append-active" );
+				$( this ).addClass( "rm-append-inactive" );
+			}
+			else
+			{
+				$( this ).addClass( "rm-append-active" );
+				$( this ).removeClass( "rm-append-inactive" );
+			}
+		});
+
+		$(window).resize(function() {
+		  if ($(window).width() > 1348) {
+			$('#mobile-nav').fadeOut();
+		  }
+		});
+	});
+} ) ( jQuery );
+</script>

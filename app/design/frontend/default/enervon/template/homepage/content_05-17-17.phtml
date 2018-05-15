@@ -1,0 +1,72 @@
+<?php
+
+	// echo $_GET['id'];
+
+	// die(); 
+
+	$iconurl = Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . "images/";
+
+	//echo $count;
+
+	 $catID = $_GET['id'];
+
+	$token=$_GET['token'];
+
+	
+
+	$connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+
+	
+
+	$qry = $connection->select()->from('rra_oneshop_websiteurl', array('*'))
+
+	->where('categoryid=?', $catID)
+
+	->where('token=?', $token);
+
+	$result = $connection->fetchAll($qry);
+
+	$connection->commit();	
+
+	
+
+	// print_r($result);
+
+	foreach($result as $key => $value)
+
+	{
+
+		foreach($value as $key1 => $value1)
+
+		{
+
+			if($key1 == 'banner')
+
+			{
+
+				$image_path = $value1;
+
+			}
+
+			if($key1 == 'websiteurl')
+
+			{
+
+				$websiteurl = $value1;
+
+			}
+
+		}
+
+	
+
+	}
+
+?>
+
+<?php if($catID != null && $token != null) { ?>
+
+<div style="border:2px solid #47a4f1"><img src="<?php echo $image_path;?>" style="width:100%"></div>
+
+<?php } ?>
+

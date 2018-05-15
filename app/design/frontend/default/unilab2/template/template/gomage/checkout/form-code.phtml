@@ -1,0 +1,12 @@
+<button  style="display:none !important;" <?php if(!$this->getQuote()->validateMinimumAmount()): ?>disabled="disabled"<?php endif; ?> onclick="checkout.LightcheckoutSubmit()" id="submit-btn" type="button" title="<?php echo $this->__('Place Order') ?>" class="button btn-checkout <?php if(!$this->getQuote()->validateMinimumAmount()): ?>disabled<?php endif; ?>">
+  <span><span><?php echo $this->__('Place Order') ?></span></span>
+</button>
+
+<button type="button" title="<?php echo $this->__('Place Order') ?>" class="button btn-checkout" id="subplaceorder" onclick="show_waiver()">
+  <span><span><?php echo $this->__('Place Order') ?></span></span>
+</button>
+		
+
+<?php
+	echo $this->getLayout()->createBlock('core/template')->setTemplate('waiver/layout.phtml')->toHtml();	
+?>

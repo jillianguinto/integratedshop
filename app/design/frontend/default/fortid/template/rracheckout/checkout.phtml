@@ -1,0 +1,131 @@
+<?php
+
+// This page is create by Richel R. Amante for UNILAB use only.
+// Please do not used this software or take with your own risk.
+// Thank you!!!
+
+?>
+<?php
+	$this->getshipppingAddress(); 
+	$this->getsetting();
+	$this->getpaymentmethod();
+	$this->getsubtotalincltax();
+	$this->getdefualtAddress();
+	$this->getaAmountdata();
+	$this->loadAddress();
+	
+	echo $this->getChildHtml('style_css'); 
+	
+	$customername = Mage::getSingleton('customer/session')->getcustomer()->getfirstname();
+	$methodcode = Mage::getSingleton('core/session')->getPaymentMethod(); 
+	$storeId = Mage::app()->getStore()->getStoreId();
+	$baseurl = Mage::getBaseUrl();
+
+?>
+<script type="text/javascript">
+/* NOTE: dont remove this variable(this is being use in rrcheckout.js) - leandro 07-27-2017 */
+    var baseurl = "<?php echo $baseurl;?>"; 
+</script>
+
+<div class="shipping-address">
+	<?php echo $this->getChildHtml('shipping_address'); ?>	
+</div>
+<div class="shipping-method">
+	<?php echo $this->getChildHtml('shipping_method'); ?>
+</div>
+<div class="payment-method">
+	<?php echo $this->getChildHtml('payment_method'); ?>
+	<?php echo $this->getChildHtml('payment_instructions'); ?>
+</div>
+<div class="billing-address">
+	<?php echo $this->getChildHtml('billing_address'); ?>	
+</div>
+<div class="checkout-nav">
+	<input type="button" value="Continue" class="checkout-paging"/>
+</div>
+<div class="orderview-wrapper">
+	<div class="checkout-items">
+		<?php 	echo $this->getChildHtml('items'); ?>
+	</div>
+	<div class="checkout-totals">
+		<?php echo $this->getChildHtml('totals'); ?>
+	</div>
+	<div class="checkout-placeorder">
+		<?php echo $this->getChildHtml('place_order'); ?>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	function check(state_id,city_id) //for shipping
+	{		
+		var array_state ='<?php $stateprovince2 = Mage::getStoreConfig('payment/cashondelivery/stateprovince');
+							$default_state = '';
+							$stateprovince2 = explode(',', $stateprovince2);
+
+							foreach($stateprovince2 as $stateprovince){
+								$default_state .= $stateprovince .","; 
+							} 
+							echo substr($default_state,0,-1); ?>';
+
+		var array_city ='<?php $city2 = Mage::getStoreConfig('payment/cashondelivery/city');
+							$default_city = ''; 
+							$city2 = explode(',', $city2);
+							foreach($city2 as $city){ 
+									$default_city .= $city .","; } 
+							echo substr($default_city,0,-1); ?>';
+
+		var splitObj = array_state.split(","); 
+		var splitObj2 = array_city.split(",");
+		
+		if(jQuery.inArray(state_id, splitObj) !=-1 && jQuery.inArray(city_id, splitObj2) !=-1){
+			jQuery('#cashondelivery').attr('disabled', false);
+			jQuery("label[for='p_method_cashondelivery']").attr('disabled', false);
+
+		}else{
+			jQuery('#cashondelivery').attr('disabled', true);
+			jQuery('#cashondelivery').removeAttr("checked");
+			jQuery("#cashondelivery_name").css('display', 'none');
+
+		}
+	}
+
+	function check2(state_id,city_id)
+	{		
+		var array_state ='<?php $stateprovince2 = Mage::getStoreConfig('payment/cashondelivery/stateprovince');
+							$default_state = '';
+							$stateprovince2 = explode(',', $stateprovince2);
+
+							foreach($stateprovince2 as $stateprovince){
+								$default_state .= $stateprovince .","; 
+							} 
+							echo substr($default_state,0,-1); ?>';
+
+
+
+		var array_city ='<?php $city2 = Mage::getStoreConfig('payment/cashondelivery/city');
+							$default_city = ''; 
+							$city2 = explode(',', $city2);
+							foreach($city2 as $city){ 
+									$default_city .= $city .","; } 
+							echo substr($default_city,0,-1); ?>';
+
+   	
+		var splitObj = array_state.split(","); 
+		var splitObj2 = array_city.split(",");
+		
+
+		if(jQuery.inArray(state_id, splitObj) !=-1 && jQuery.inArray(city_id, splitObj2) !=-1){
+			jQuery('#cashondelivery').attr('disabled', false);
+			jQuery("label[for='p_method_cashondelivery']").attr('disabled', false);
+
+		}else{
+			jQuery('#cashondelivery').attr('disabled', true);
+			jQuery('#cashondelivery').removeAttr("checked");
+			jQuery("#cashondelivery_name").css('display', 'none');
+
+		}
+	}
+</script>
+
+

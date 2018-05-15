@@ -1,0 +1,227 @@
+<?php
+ /**
+ * GoMage LightCheckout Extension
+ *
+ * @category     Extension
+ * @copyright    Copyright (c) 2010-2013 GoMage (http://www.gomage.com)
+ * @author       GoMage
+ * @license      http://www.gomage.com/license-agreement/  Single domain license
+ * @terms of use http://www.gomage.com/terms-of-use
+ * @version      Release: 5.0
+ * @since        Class available since Release 5.0
+ */
+?>
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+ fbq('init', '1444215309213909'); 
+fbq('track', 'PageView');
+</script>
+<noscript>
+ <img height="1" width="1" 
+src="https://www.facebook.com/tr?id=1444215309213909&ev=PageView
+&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
+
+<?php 
+$order = Mage::getModel('sales/order')->loadByIncrementId($this->getOrderId());
+$pagetitle = "Success";
+?>
+<script>
+    digitalData.page={ 
+        pageInfo:{
+            pageName:"ch:checkout:confirmation",
+            site: "clickhealth"         
+        },
+
+        category:{        
+            pageType:"Checkout",  
+            primaryCategory: "Checkout",
+            subCategory1: "Order Confirmation", 
+            subCategory2: "",
+            subCategory3: ""
+        }
+
+    }
+</script>
+<script>
+    digitalData.transaction={
+        purchaseID: "<?php echo $this->getOrderId(); ?>", 
+        paymentMethodType: "<?php echo $order->getPayment()->getMethodInstance()->getTitle(); ?>",
+        paymentMethodBrand: "",
+        paymentStatus: "<?php echo $order->getStatusLabel();?>",
+        totalOrderValue: "<?php echo $order->getGrandTotal();?>", 
+        currency: "PHP",
+        discount:
+        {
+            promoCode: "<?php echo $order->getCouponCode();?>",
+            promoCodeDiscountAmt: "<?php echo $order->getDiscountAmount();?>",
+        },
+        deliveryState: "<?php echo $order->getShippingAddress()->getRegion();?>",
+        deliveryCity: "<?php echo $order->getShippingAddress()->getCity();?>",
+        zipCode: "<?php echo $order->getShippingAddress()->getPostcode();?>",
+    
+        item:[
+
+            <?php foreach ($order->getAllItems() as $item) :
+                $product2 = Mage::getModel('catalog/product')->load($item->getProductId()); 
+        $brand = $product2->getUnilabBrand();
+        $size = $product2->getUnilabSize();
+
+        $unilab_brand_text = Mage::getModel('admincontroller/convertattrib')->idtotext($item->getProductId(), $brand, 'unilab_brand');
+        $unilab_size_text = Mage::getModel('admincontroller/convertattrib')->idtotext($item->getProductId(), $size, 'unilab_size');
+        
+            ?>  
+            { 
+                quantity:"<?php echo $item->getqty_ordered();?>",
+                price: {
+                    basePrice: "<?php echo $item->getbase_price(); ?>" 
+                       },
+                productInfo:{               
+                    productID: "<?php echo $product2->getSku();?>",
+                    productName: "<?php echo $product2->getName();?>",
+                    productBrand: "<?php echo $unilab_brand_text;?>",
+                    productSize: "<?php echo $unilab_size_text;?>"
+                    
+                      }
+            },
+            <?php endforeach; ?>
+        ]
+    } 
+    digitalData.events = "purchase";
+</script>
+
+<div class="page-title">
+    <h1><?php echo $this->__('Your order has been received.') ?></h1>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<h2 class="sub-title"><?php echo $this->__('Thank you for your purchase!') ?></h2>
+
+<?php if ($this->getOrderId()):?>
+<?php if ($this->getCanViewOrder()) :?>
+    <p><?php echo $this->__('Your order # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></p>
+<?php  else :?>
+    <p><?php echo $this->__('Your order # is: %s.', $this->escapeHtml($this->getOrderId())) ?></p>
+<?php endif;?>
+    <p><?php echo $this->__('You will receive an order confirmation email with details of your order and a link to track its progress.') ?></p>
+<?php if ($this->getCanViewOrder() && $this->getCanPrintOrder()) :?>
+    <p>
+        <?php echo $this->__('Click <a href="%s" onclick="this.target=\'_blank\'">here to print</a> a copy of your order confirmation.', $this->getPrintUrl()) ?>        
+    </p>
+<?php endif;?>
+
+<?php 
+    $order = Mage::getModel('sales/order')->loadByIncrementId($this->getOrderId());
+    //items
+    $items = $order->getAllItems(); 
+
+    $rx_items = 0;
+    foreach($items as $i):
+        $_product = Mage::getModel('catalog/product')
+                ->load($i->getProductId())->getUnilabRx();
+
+        if($_product == 1){
+            $rx_items = 1;
+        }
+
+    endforeach;
+
+    //items
+    if ($order->getPayment()->getMethod() == "cashondelivery")
+    {
+        if($rx_items == 1){
+            echo '<p style="line-height: 13px;">Our pharmacist will contact you for prescription verification. <br><br> You have chosen Cash on Delivery (COD) as your mode of payment. Please be ready with the <u><b>exact amount</b></u> to be paid to our courier upon delivery.</p>';
+        }else{
+            echo '<p>You have chosen Cash on Delivery (COD) as your mode of payment. Please be ready with the <u><b>exact amount</u></b> to be paid to our courier upon delivery.</p>';
+        }
+    }
+    elseif ($order->getPayment()->getMethod() == "perapal")
+    {
+        Mage::getSingleton('core/session')->setpaymentcode($order->getPayment()->getMethod()); 
+        if($rx_items == 1){
+        echo '<p style="line-height: 13px;">Our pharmacist will contact you for prescription verification. <br><br> You have chosen Cebuana Lhuillier as your mode of payment.</p>';
+
+        echo '<p>Payment Instructions:</p>';
+        echo Mage::getStoreConfig('payment/perapal/paymentinstructions');
+
+        }else{
+        echo '<p>You have chosen Cebuana Lhuillier as your mode of payment.</p>';
+
+        echo '<p>Payment Instructions:</p>';
+        echo Mage::getStoreConfig('payment/perapal/paymentinstructions');
+        }
+    }
+    elseif($order->getPayment()->getMethod() == "bankdeposit") 
+    {
+        ?><h2 class="sub-title"><?php echo $this->__('Payment Instructions') ?></h2><?php
+        echo Mage::getStoreConfig('payment/bankdeposit/paymentinstructions');
+        
+    }
+    else{
+        if($rx_items == 1){
+        echo '<p>Our pharmacist will contact you for prescription verification.</p>';
+        }
+    }
+?>     
+
+<?php echo $this->getChildHtml() ?>
+<?php endif;?>
+
+<?php if ($this->getAgreementRefId()): ?>
+    <p><?php echo $this->__('Your billing agreement # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getAgreementUrl()), $this->escapeHtml($this->getAgreementRefId())))?></p>
+<?php endif;?>
+
+<?php if ($profiles = $this->getRecurringProfiles()):?>
+<p><?php echo $this->__('Your recurring payment profiles:'); ?></p>
+<ul class="disc">
+<?php foreach($profiles as $profile):?>
+<?php $profileIdHtml = ($this->getCanViewProfiles() ? sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getProfileUrl($profile)), $this->escapeHtml($this->getObjectData($profile, 'reference_id'))) : $this->escapeHtml($this->getObjectData($profile, 'reference_id')));?>
+    <li><?php echo $this->__('Payment profile # %s: "%s".', $profileIdHtml, $this->escapeHtml($this->getObjectData($profile, 'schedule_description')))?></li>
+<?php endforeach;?>
+</ul>
+<?php endif;?>
+
+<div class="buttons-set">
+    <button type="button" class="button" title="<?php echo $this->__('Continue Shopping') ?>" onclick="window.location='<?php echo $this->getUrl() ?>'"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+</div>
+
+<!-- AMO Conversion Tags -->
+<script type='text/javascript'>
+    (function() {
+        var f = function() {
+              EF.init({ eventType: "transaction",
+                        transactionProperties : "ev_Thank You Page_Order=1&ev_revenue="+<?php echo $order->getGrandTotal();?>+"&ev_transid="+<?php echo $this->getOrderId(); ?>,
+                        segment : "27954", 
+                        searchSegment : "",
+                        sku : "",
+                        userid : "940",
+                        pixelHost : "pixel.everesttech.net"
+                        
+                        , allow3rdPartyPixels: 1});
+              EF.main();
+        };
+        window.EF = window.EF || {}; 
+        if (window.EF.main) {
+            f();
+            return;
+        }
+        window.EF.onloadCallbacks = window.EF.onloadCallbacks || [];
+        window.EF.onloadCallbacks[window.EF.onloadCallbacks.length] = f;
+        if (!window.EF.jsTagAdded) {
+            var efjs = document.createElement('script'); efjs.type = 'text/javascript'; efjs.async = true;
+            efjs.src = 'https://www.everestjs.net/static/st.v3.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(efjs, s);
+            window.EF.jsTagAdded=1;
+        }
+    })();
+</script>
+<noscript><img src="https://pixel.everesttech.net/940/t?ev_Thank You Page_Order=1&ev_revenue=<rev>&ev_transid=<transid>" width="1" height="1"/></noscript>
+<!-- AMO Conversion Tags -->

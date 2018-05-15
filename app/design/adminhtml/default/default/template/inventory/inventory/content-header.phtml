@@ -1,0 +1,19 @@
+<?php
+    $last_update = Mage::getModel('inventory/inventory')
+        ->getCollection()
+        ->setOrder('last_update','desc')
+        ->getFirstItem()
+        ->getLastUpdate();
+    $date = date('M d,Y H:i:s A',strtotime($last_update));
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="<?php echo $this->getHeaderWidth() ?>"><?php echo $this->getHeaderHtml() ?></td>
+            <td class="form-buttons"><label style="font-size: 13px"><?php echo 'Last update:' . $date;?></label><?php echo $this->getButtonsHtml() ?></td>
+        </tr>
+    </table>
+</div>
+<div>
+    <?php echo $this->getGridHtml() ?>
+</div>

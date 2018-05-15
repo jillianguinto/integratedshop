@@ -1,0 +1,114 @@
+<?php
+$supplierId = $this->getRequest()->getParam('supplier_select');
+$periodId = $this->getRequest()->getParam('period');
+$datefrom = $this->getRequest()->getParam('date_from');
+$dateto = $this->getRequest()->getParam('date_to');
+?>
+<?php if (Mage::app()->getRequest()->getActionName() == 'purchasessupplier'): ?>
+    <div class="content-header">
+        <table cellspacing="0">
+            <tbody><tr>
+                    <td style="width:50%;"><h3 class="icon-head head-adminhtml-inventory"><?php echo $this->__('Purchase Reports by Supplier'); ?></h3></td>
+                </tr>
+            </tbody></table>
+    </div>
+<?php endif ?>
+<?php
+$req = Mage::app()->getRequest();
+$actionName = $req->getActionName();
+if ($actionName == 'purchases') {
+    ?>
+    <div class="content-header">
+        <h3 class="icon-head head-adminhtml-report-purchases"><?php echo $this->__('Purchases Report by Supplier Products') ?></h3>
+    </div>
+<?php } ?>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Select Criteria to Show Report') ?></h4>
+    </div>
+    <div id="date_picker_form" class="fieldset ">
+        <div  class="input-box">
+            <form action="<?php echo Mage::helper('core/url')->getCurrentUrl(); ?>" method="GET">
+                <input name="form_key" type="hidden" value="<?php echo $this->getFormKey() ?>" id="form_key"/>
+                <label><?php echo $this->__('From:'); ?> </label>
+                &nbsp; &nbsp;
+                <input name="date_from" id="date_from" type="text" size="20" value="<?php echo $datefrom; ?>">
+                <img title="Select date" id="btn-date-picker-from" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle">
+                <label><?php echo $this->__('To:'); ?> </label>
+                &nbsp; &nbsp;
+                <input name="date_to" id="date_to" type="text" size="20" value="<?php echo $dateto; ?>">
+                <img title="Select date" id="btn-date-picker-to" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle">
+                <?php if (Mage::app()->getRequest()->getActionName() == 'purchasessupplier'): ?>
+                    <input name="supplier_select" type="hidden" id="supplier_select" />
+                <?php else: ?>
+                    <label><?php echo $this->__('Supplier Filter'); ?></label>
+                    &nbsp; &nbsp;
+                    <select name="supplier_select" id="supplier_select" style="width: 120px">
+    <!--                        <option value=""><?php echo $this->__('All') ?></option>-->
+                        <?php $suppliers = Mage::getModel('inventory/supplier')->getCollection() ?>
+                        <?php foreach ($suppliers as $supplier): ?>
+                            <?php if ($supplier->getId() == $supplierId): ?>
+                                <option selected value="<?php echo $supplier->getId() ?>"><?php echo $supplier->getName(); ?></option>
+                            <?php else: ?>
+                                <option value="<?php echo $supplier->getId() ?>"><?php echo $supplier->getName(); ?></option>   
+                            <?php endif; ?>
+                        <?php endforeach ?>
+                    </select>
+                <?php endif ?>
+                <label><?php echo $this->__('Period Filter'); ?></label>
+                &nbsp; &nbsp;
+                <select name="period" id="period" style="width: 120px">
+                    <option value=""><?php echo $this->__('None') ?></option>
+                    <?php
+                    $periods = $options = array(
+                        'day' => $this->__('Day'),
+                        'month' => $this->__('Month'),
+                        'year' => $this->__('Year'),
+                    );
+                    ?>
+                    <?php foreach ($periods as $id => $period): ?>
+                        <?php if ($id == $periodId): ?>
+                            <option selected value="<?php echo $id ?>"><?php echo $period; ?></option>
+                        <?php else: ?>
+                            <option value="<?php echo $id ?>"><?php echo $period; ?></option>
+                        <?php endif; ?>
+                    <?php endforeach ?>
+                </select>
+                <button type="submit" ><?php echo $this->__('Show Report'); ?></button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <?php //echo $this->getGridHtml() ?>
+    <?php $gridName = $this->getGridName(); ?>
+    <?php echo $this->getChildHtml($gridName) ?>
+    <?php
+    $period = $this->getRequest()->getParam('period');
+    //if($period != '' && $gridName != 'inventory_report_purchases'){
+    //echo $this->getChildHtml('inventory_report_purchase_footer');
+    // }
+    ?>
+</div>
+
+<script type="text/javascript">
+    //<![CDATA[
+    Calendar.setup({
+        inputField : 'date_from',
+        ifFormat : "%d-%m-%Y",
+        daFormat : "%d-%m-%Y",
+        button : 'btn-date-picker-from',
+        align : 'Bl',
+        singleClick : true
+    });
+    Calendar.setup({
+        inputField : 'date_to',
+        ifFormat : "%d-%m-%Y",
+        daFormat : "%d-%m-%Y",
+        button : 'btn-date-picker-to',
+        align : 'Bl',
+        singleClick : true
+    });
+    //]]>           
+</script>

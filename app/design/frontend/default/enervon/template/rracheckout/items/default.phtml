@@ -1,0 +1,147 @@
+<?php
+
+// This page is create by Richel R. Amante for UNILAB use only.
+// Please do not used this software or take with your own risk.
+// Thank you!!!
+$storeId = Mage::app()->getStore()->getStoreId();
+?>
+
+
+<div class="shipping-line">
+</div>
+<h1 class="cls_header">
+	<?php echo $this->__('Review your order') ?>
+</h1>
+<div class="shipping-line">
+</div>
+
+<div class="items_wrapper">
+	<div class="order-review-details">
+		<div class="address-preview">
+			<h3>Shipping Address</h3>
+			<span class="change" id="go-back-address">change</span>
+			<Ul>
+				<li>
+					<span id="shipping_fname"> </span> 
+					<span id="shipping_lname"></span>
+				</li>
+				<li>
+					<span id="shipping_addres"></span>
+				</li>
+				<li>
+					<span id="shipping_city_2"></span>, 
+					<span id="shipping_region_2"></span> 
+				<li>
+					<span id="shipping_country"></span>, 
+					<span id="shipping_postcode2"></span> 
+				</li>
+				<li>
+					Mobile: 
+					<span id="shipping_mobile_num"></span>
+				</li>
+			</ul>
+		</div>
+
+		<div class="address-preview">
+			<h3>Payment Method</h3>
+			<span class="change" id="go-back-payment-method">change</span>
+			<ul>
+				<li>
+					<span id="payment_method"></span>
+				</li>
+			</ul>
+		</div>
+
+
+		<div class="address-preview">
+			<h3>Billing Address</h3> 
+			<span class="change" id="go-back-address2">change</span>
+			<ul>
+				<li>
+					<span id="billing_fname" class="new_billing_fname"></span> 
+					<span id="billing_lname" class="new_billing_lname"></span>
+				</li>
+				<li>
+					<span id="billing_address" class="new_billing_address"></span>
+				</li>
+				<li>
+					<span id="billing_city_2" class="new_billing_city"></span>, 
+					<span id="billing_region_2" class="new_billing_region"></span> 
+				</li>
+				<li>
+					<span id="billing_country" class="new_billing_country"></span>, 
+					<span id="billing_postcode2" class="new_billing_postcode"></span>
+				</li>
+				<li>Mobile: 
+					<span id="billing_mobile_2" class="new_billing_mobile"></span>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+	<div class="cls_body">
+		<div class="discount checkout">
+			<div class="lightcheckout-discount-form">
+
+				<input type="hidden" name="remove" id="remove_coupone" value="0" />
+
+				<label for="coupon_code"><?php echo $this->__('Discount codes') ?></label>
+
+				<div class="input-box">
+					<input class="input-text" id="coupon_code" name="coupon_code" value="<?php echo $this->htmlEscape($this->getCouponCode()) ?>" />
+				</div>
+
+				<button type="button" title="<?php echo $this->__('Apply Coupon') ?>" class="button" onclick="if(!$('coupon_code').value){alert('<?php echo $this->__('Please enter coupon code.') ?>')}else{checkout.applyDisocunt(false);}" value="<?php echo $this->__('Apply Coupon') ?>"><span><span><?php echo $this->__('Apply Coupon') ?></span></span></button>
+				<?php if(strlen($this->getCouponCode())): ?>
+					&nbsp; <button type="button" title="<?php echo $this->__('Cancel Coupon') ?>" class="button" onclick="checkout.applyDisocunt(true)" value="<?php echo $this->__('Cancel Coupon') ?>"><span><span><?php echo $this->__('Cancel Coupon') ?></span></span></button>
+				<?php endif;?>
+
+			</div>
+		</div>
+	
+		<div class="glc-col">
+			<table id="shopping-cart-table" class="data-table cart-table">
+				<?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
+				<thead>
+					<tr>
+						<th><?php echo $this->__('Items') ?></th>
+						<th><span class="nobr"><?php echo $this->__('Product Name') ?></span></th> 
+						<th style="text-align: center; width: 15%;"><?php echo $this->__('Prescription') ?></th>
+						<th style="text-align: center; width: 15%;"><?php echo $this->__('Qty') ?></th>
+						<th style="text-align: right;"><span class="nobr"><?php echo $this->__('Unit Price') ?></span></th>
+						<th style="text-align: right; width: 15%;"><?php echo $this->__('Subtotal') ?></th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php 
+					$cartItems = Mage::getSingleton('checkout/session')->getQuote()->getAllItems();
+					foreach ($cartItems as $item):
+					
+					$_product 	= Mage::getModel('catalog/product')->load($item->getProduct_id());
+				
+				?>
+					<tr>
+						<td class="a-left">						
+							<img width="75" height="75"  src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(75); ?>">	
+						</td> 
+						
+						<td><p class="prodname"><?php echo $item->getName();?></p></td>
+						<td><p class="prodname"><?php ?></p></td>
+
+						<td class="prodqty"> <?php echo $item->getQty() * 1;//echo $item->getQtyOrdered();?> </td>
+						<td class="align-right"> <?php echo Mage::helper('core')->currency($item->getPrice(),true,false);?> </td>
+						<td class="align-right"> 
+							<?php 
+								$Tamount = $item->getQty()* $item->getPrice();
+								echo  Mage::helper('core')->currency($Tamount,true,false);
+							?> 
+						</td>
+					</tr>
+					
+				<?php endforeach; ?>
+				
+				</tbody>
+			</table>
+		</div>	
+	</div>
+</div>

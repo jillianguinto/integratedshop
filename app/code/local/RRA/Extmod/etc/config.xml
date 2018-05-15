@@ -1,0 +1,25 @@
+<?xml version="1.2"?> 
+<config>
+    <modules>
+        <RRA_Extmod>
+            <version>1.0.1.2</version>
+        </RRA_Extmod>
+    </modules>
+	<global>
+		<models>
+			<extmod>
+				<class>RRA_Extmod_Model</class>
+			</extmod>
+		</models>
+		<blocks>
+			<extmod>
+				<class>RRA_Extmod_Block</class>
+			</extmod>
+		</blocks>
+		<helpers>
+			<extmod>
+				<class>RRA_Extmod_Helper</class>
+			</extmod>
+		</helpers>		
+	</global>
+</config>

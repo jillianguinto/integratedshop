@@ -1,0 +1,84 @@
+<?xml version="1.0"?> 
+<config>
+    <tabs>
+        <customconfig module="databaseupdate">
+            <label>Unilab</label>
+            <sort_order>9999999999</sort_order>
+        </customconfig>
+    </tabs>
+	<sections>
+		<customconfig translate="label" module="databaseupdate">
+			<label>Sales</label>
+			<tab>customconfig</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>999999</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+                <creditmemo translate="label">
+                    <label>Credit Memo Account Notification</label> 
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+						<fields>
+							<enabled translate="label">
+								<label>Enabled</label>
+								<frontend_type>select</frontend_type>
+								<source_model>adminhtml/system_config_source_yesno</source_model>
+								<sort_order>0</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+							</enabled>
+							<identity translate="label">
+								<label>Credit Memo Email Sender</label>
+								<frontend_type>select</frontend_type>
+								<source_model>adminhtml/system_config_source_email_identity</source_model>
+								<sort_order>1</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+							</identity>
+							<template translate="label">
+								<label>Credit Memo Email Template</label>
+								<frontend_type>select</frontend_type>
+								<source_model>adminhtml/system_config_source_email_template</source_model>
+								<sort_order>2</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+							</template> 
+							<email translate="label comment">
+								<label>Send Credit Memo Email To</label>
+								<frontend_type>text</frontend_type>
+								<sort_order>4</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store> 
+							</email>
+							<copy_to translate="label comment">
+								<label>Send Credit Memo Email Copy To</label>
+								<frontend_type>text</frontend_type>
+								<sort_order>4</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Comma-separated.</comment>
+							</copy_to>
+							<copy_method translate="label">
+								<label>Send Credit Memo Email Copy Method</label>
+								<frontend_type>select</frontend_type>
+								<source_model>adminhtml/system_config_source_email_method</source_model>
+								<sort_order>5</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+							</copy_method>
+						</fields>
+                </creditmemo> 
+			</groups>
+		</customconfig>
+	</sections>
+</config>

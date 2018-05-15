@@ -1,0 +1,244 @@
+<?xml version="1.0"?>
+
+<!--
+
+MOV
+
+-->
+
+<config>
+
+	<modules>
+
+		<Unilab_Minimumordervalue>
+
+			<version>1.1.0.0</version>
+
+		</Unilab_Minimumordervalue>
+
+	</modules>
+
+
+
+	<global>
+
+		<models>
+
+			<minimumordervalue>
+
+				<class>Unilab_Minimumordervalue_Model</class>
+
+				<resourceModel>minimumordervalue_resource</resourceModel>
+
+            </minimumordervalue>
+
+			
+
+			<minimumordervalue_resource>
+
+				<class>Unilab_Minimumordervalue_Model_Resource</class>
+
+                <entities>
+
+					<movshipping>
+
+						<table>unilab_mov_shipping</table>
+
+					</movshipping>
+
+				</entities>
+
+			</minimumordervalue_resource>
+
+		</models>
+
+		<blocks>
+
+			<minimumordervalue>
+
+				<class>Unilab_Minimumordervalue_Block</class>
+
+			</minimumordervalue>
+
+		</blocks>
+
+		<helpers>
+
+			<minimumordervalue>
+
+				<class>Unilab_Minimumordervalue_Helper</class>
+
+			</minimumordervalue>
+
+		</helpers>
+
+		
+
+		<events>
+
+			<!-- <unilab_payment_captured_after>
+
+				<observers>
+
+					<process_waybill>
+
+						<class>Unilab_Xend_Model_Observer_Sales</class>
+
+						<method>processWaybill</method>
+
+					</process_waybill>
+
+				</observers>
+
+			</unilab_payment_captured_after> -->
+
+			<checkout_onepage_controller_success>
+				<observers>
+					<process_waybill>
+						<class>Unilab_Xend_Model_Observer_Sales</class>
+						<method>processWaybill</method>
+					</process_waybill>
+				</observers>
+			</checkout_onepage_controller_success>
+			
+			<salesrule_validator_process>
+                <observers>
+                    <checkoutCouponProduct>
+                        <type>singleton</type>
+                        <class>Unilab_Minimumordervalue_Model_Observer</class>
+                        <method>setFreeshipping</method>
+                    </checkoutCouponProduct>
+                </observers>
+            </salesrule_validator_process>
+
+		</events>
+
+	</global> 
+
+
+
+
+
+	<default>
+
+        <carriers>
+
+            <minimumordervalue>
+
+                <active>1</active>
+
+                <model>minimumordervalue/mycarrier_carrier</model>
+
+                <title>WPSI Minimum Order Value</title>
+
+                <sort_order>10</sort_order>
+
+                <sallowspecific>0</sallowspecific>
+
+            </minimumordervalue>
+
+        </carriers>
+
+    </default>
+
+	
+
+	<frontend>
+
+		<routers>
+
+			<minimumordervalue>
+
+				<use>standard</use>
+
+				<args>
+
+					<module>Unilab_Minimumordervalue</module>
+
+					<frontName>minimumordervalue</frontName>
+
+				</args>
+
+			</minimumordervalue>
+
+		</routers>
+
+	</frontend>
+
+	
+
+	<admin>
+
+        <routers>
+
+            <minimumordervalue>
+
+                <use>admin</use>
+
+                <args>
+
+                    <module>Unilab_Minimumordervalue</module>
+
+                    <frontName>minimumordervalue</frontName>
+
+                </args>
+
+            </minimumordervalue>
+
+        </routers>
+
+    </admin>  	
+
+	
+
+	<adminhtml>
+
+		<acl>
+
+			<resources>
+
+				<all>
+
+					<title>Allow Everything</title>
+
+				</all>
+
+				<admin>
+
+					<children>
+
+						<system>
+
+							<children>
+
+								<config>
+
+									<children>
+
+										<minimumordervalue>
+
+											<title>MOV Shipping</title>
+
+										</minimumordervalue>
+
+									</children>
+
+								</config>
+
+							</children>
+
+						</system>
+
+					</children>
+
+				</admin>
+
+			</resources>
+
+		</acl>
+
+	</adminhtml>
+
+
+
+</config>

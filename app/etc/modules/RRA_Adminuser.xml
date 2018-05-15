@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * 
+ * Camera Integration
+ */
+ * @author: Richel.R.Amante
+ * @email: richelramante@gmail.com
+ * @date: 2015-10-23
+ */
+-->
+<config>
+    <modules>
+        <RRA_Adminuser>
+            <active>true</active>
+            <codePool>local</codePool>
+        </RRA_Adminuser>
+    </modules>
+</config>

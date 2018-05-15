@@ -1,0 +1,404 @@
+<div class="slider-container">
+    <img src="<?php echo $this->getSkinUrl('images/slider-background.jpg'); ?>" />
+</div>
+
+
+
+<div id="loading-icon"><img src="<?php echo $this->getSkinUrl('images/ajax-loader.gif');?>"></div>
+
+<style type="text/css">
+@media screen and (max-width: 320px){
+    .gallery__item{
+        width: 13% !important;
+    }
+}
+
+</style>
+
+
+<!-- <link href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/unilab2/fancybox/jquery.fancybox-1.3.1.css" media="screen" />  -->
+
+<?php 
+
+    $currentUrl = Mage::helper('core/url')->getCurrentUrl(); 
+      
+    $baseurl = Mage::getBaseUrl();
+ 
+    $buttonTitle = $this->__('Add to Cart');
+?>
+
+
+<input type="hidden" class="counter" value="">
+            <section id="demos">
+                  <div class="">
+                    <div class="large-12 columns">
+                      <div class="owl-carousel owl-theme">
+        	
+       <?php 
+
+          $currentCategoryId= 247;    
+                
+          $categories = Mage::getModel('catalog/category')->load($currentCategoryId)->getProductCollection()
+          		->addAttributeToSelect('image')->addAttributeToSelect('name')->addAttributeToSelect('*')
+          		->addAttributeToFilter('price', array('neq' => 0.0000))
+          		->addAttributeToFilter('status', 1)
+				->addAttributeToFilter('visibility', 4) 
+          		->setOrder('unilab_sort', 'asc')->setPageSize(7);
+
+          // echo count($categories);
+
+          $slider_content_num = count($categories);
+
+          foreach ($categories as $category) 
+          {
+				$cat_id = $category->getId();
+				$skin_url = $category->getImageUrl(); 
+				$url_path = $baseurl.$category->getUrlPath();
+				$name = $category->getName();
+				$g_name = $category->getGenericName();
+				$price = $category->getPrice();
+                $p = number_format($price, 2, '.','');
+
+
+            ?>            
+
+                       <div class="gallery__item">
+
+                   <a href="<?php echo $url_path; ?>" class="gallery__link">
+                       <img src="<?php echo $skin_url; ?>" class="gallery__img" alt="" title="<?php echo $name; ?>" /><br>
+                    </a>
+                       
+                        <center><div class="generic-name-box"><h5><strong><?php echo $g_name; ?></strong></h5></div></center>
+                       
+                       <ul class="item-name-price">
+                            <li>&nbsp;</li>
+                            <li>
+                                <a href="<?php echo $url_path; ?>" class="gallery__link">
+                                    <h6><?php echo $name.'</h6></a><br> <span class="gallery-price">PHP '.$p.'</span>' ?>
+                            </li>
+                            
+                       </ul>
+
+                    </a>
+                       <?php 
+                            $login = Mage::getUrl('customer/account/login');
+                            $_productId = $cat_id;
+                            $_product = Mage::getModel('catalog/product')->load($_productId);
+                            $_producturl = Mage::helper('checkout/cart')->getAddUrl($_product);
+                            $redirect = Mage::getUrl('checkout/cart');
+                            
+                            if(Mage::getSingleton('customer/session')->isLoggedIn()){ ?>
+
+                                <button type="button" id="btncart"  returnId="<?php echo $_product->getId(); ?>" returnName="<?php echo $_product->getName(); ?>" returnUrl="<?php echo Mage::helper('checkout/cart')->getCartUrl(); ?>" viewUrl="<?php echo $_product->getProductUrl() ?>" title="<?php echo $buttonTitle ?>" class="button btn-cart" ><span><?php echo $buttonTitle ?></span></button>
+                            
+                            <?php } else { ?>
+
+                                <button type="button" id="btncart"  returnId="<?php echo $_product->getId(); ?>" returnName="<?php echo $_product->getName(); ?>" returnUrl="<?php echo Mage::getUrl('customer/account/login'); ?>" viewUrl="<?php echo $_product->getProductUrl() ?>" title="<?php echo $buttonTitle ?>" class="button btn-cart" ><span><?php echo $buttonTitle ?></span></button>
+                            
+                            <?php }
+                        ?>
+                   
+                </div>
+                        
+ 
+            <?php   
+            }        
+        ?> 
+
+
+
+
+
+                        </div>
+                      </div>
+                    </div>
+              </div>
+            </section>    
+
+            
+        </div> <!-- .gallery -->
+        
+    </div> <!--.gallery-wrap -->
+</div> <!-- #content -->
+<br><br>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<!-- redirect to signin if not logged in -->
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    //Adjust .cms-homepage .shopbycategory-content when slider content is <= 5
+    var slider_content_cnt = "<?php echo $slider_content_num; ?>";
+
+    if(slider_content_cnt <= 5){
+        jQuery('.cms-homepage .shopbycategory-content').attr('style','margin-top: 125px;');
+    }
+});
+
+jQuery.noConflict();
+
+function setcheckoutLocation(location)
+{
+jQuery.ajax({
+    type:"GET",
+    url:location,
+    success:function(data){
+         //window.location.href = "<?php echo Mage::getBaseUrl()?>checkout/cart/";
+    }
+ });
+
+}
+</script>
+<script type="text/javascript">
+// Only run everything once the page has completely loaded
+jQuery(window).load(function(){
+    var countClass = jQuery('.gallery__item').length;
+    var count = '';
+    var windowSize = jQuery(window).width();
+    if(windowSize >= 623){
+        count = '4';
+    }else
+    if(windowSize <= 622 && windowSize >= 463){
+        count = '3';
+    }else
+    if(windowSize <= 462 && windowSize >=383){
+        count = '2';
+    }else{
+        count = '1';
+    }
+     
+    // Set general variables
+    // ====================================================================
+    var totalWidth = 0;
+
+    // Total width is calculated by looping through each gallery item and
+    // adding up each width and storing that in `totalWidth`
+    jQuery(".gallery__item").each(function(){
+        totalWidth = totalWidth + jQuery(this).outerWidth(true);
+      
+    });
+
+    // The maxScrollPosition is the furthest point the items should
+    // ever scroll to. We always want the viewport to be full of images.
+    var maxScrollPosition = totalWidth - jQuery(".gallery-wrap-").outerWidth(); //gallery-wrap
+
+    // This is the core function that animates to the target item
+    // ====================================================================
+    function toGalleryItem(jQuerytargetItem,count){
+
+        // Make sure the target item exists, otherwise do nothing
+        if ( count >= countClass){
+            jQuery('.gallery__controls-next').prop('disabled',true);
+            jQuery('.gallery__controls-prev').prop('disabled',false);
+        }else if( count < countClass){
+            jQuery('.gallery__controls-next').prop('disabled',false);
+        }else if (count == count){
+            jQuery('.gallery__controls-prev').prop('disabled',true);
+        }
+        
+        if(jQuery('.counter').val() == count){
+            jQuery('.gallery__controls-prev').prop('disabled',true);
+            jQuery('.gallery__controls-next').prop('disabled',false);
+        }else{
+            jQuery('.gallery__controls-prev').prop('disabled',false);
+        }
+            jQuery('.counter').val(count);
+
+            if(jQuerytargetItem.length){
+            // The new position is just to the left of the targetItem
+            var newPosition = jQuerytargetItem.position().left;
+
+            // If the new position isnt greater than the maximum width
+            if(newPosition <= maxScrollPosition){
+
+                // Add active class to the target item
+                jQuerytargetItem.addClass("gallery__item--active");
+
+                // Remove the Active class from all other items
+                jQuerytargetItem.siblings().removeClass("gallery__item--active");
+
+                // Animate .gallery element to the correct left position.
+                jQuery(".gallery").animate({
+                    left : - newPosition
+                });
+            } else {
+                // Animate .gallery element to the correct left position.
+                jQuery(".gallery").animate({
+                    left : - maxScrollPosition
+                });
+            };
+        };
+
+    };
+
+    // Basic HTML manipulation
+    // ====================================================================
+    // Set the gallery width to the totalWidth. This allows all items to
+    // be on one line.
+    jQuery(".gallery").width(totalWidth);
+
+    // Add active class to the first gallery item
+    jQuery(".gallery__item:first").addClass("gallery__item--active");
+
+    // When the prev button is clicked
+    // ====================================================================
+    jQuery(".gallery__controls-prev").click(function(){
+        // Set target item to the item before the active item
+        var jQuerytargetItem = jQuery(".gallery__item--active").prev();
+        count--;
+        toGalleryItem(jQuerytargetItem,count);       
+    });
+
+    // When the next button is clicked
+    // ====================================================================
+    
+
+    jQuery(".gallery__controls-next").click(function(){
+        // Set target item to the item after the active item
+        var jQuerytargetItem = jQuery(".gallery__item--active").next();
+        count++;
+        toGalleryItem(jQuerytargetItem,count);
+        
+    });
+});
+</script>
+
+<!-- <script type="text/javascript" src="./fancybox/jquery.fancybox-1.3.1.js"></script> -->
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery('#loading-icon').hide();
+    
+
+    jQuery('.gallery__img:first').css({'border-left':'initial'});
+
+    var countDiv = 0;
+
+    jQuery(".gallery").find(".gallery__item").each(function(){      
+
+        countDiv++;     
+
+    });
+
+    if(countDiv > 4){
+
+        jQuery('.gallery__controls').show();       
+    
+    }else if(countDiv == 0){
+
+        jQuery('.category-variants').hide();
+
+    }else{
+
+        jQuery('.gallery__controls').hide();
+    }
+
+});
+</script>
+
+<script>
+jQuery(document).on('click','#btncart',function(){
+
+    jQuery('#loading-icon').show();
+    var product = jQuery(this).attr('returnId');
+
+    var productName = jQuery(this).attr('returnName');
+
+    var returnUrl = jQuery(this).attr('returnUrl');
+
+     var view_product = jQuery(this).attr('viewUrl');
+    //alert(returnUrl);
+
+    jQuery.ajax({
+
+    type: 'Post',
+
+    url:'<?php echo Mage::getBaseUrl()?>checkout/cart/addtoCart',
+
+    data: {
+
+        product: product
+
+    },
+
+    }).done(function(data){
+		
+		var objresponse = jQuery.parseJSON(data);
+
+        if(objresponse.msg == 'success'){
+         //alert(jQuery(this).attr('returnUrl'));
+         window.location = returnUrl;
+
+        }else{
+            //If Failed
+            
+             //alert(view_product);
+             window.location = view_product;
+        }
+
+    });
+
+});
+</script>
+
+
+<script src="<?php echo $this->getSkinUrl() ?>css/carousel/assets/vendors/jquery.mousewheel.min.js"></script>
+<script>
+$(document).ready(function() {
+  var owl = $('.owl-carousel');
+  owl.owlCarousel({
+    loop: false,
+    rewind: true,
+    nav: true,
+    margin: 10,
+    responsive: {
+        320: {
+        items: 1
+      },
+     375: {
+        items: 2
+      },
+      414: {
+        items: 2
+      },
+      480: {
+        items: 2
+      },
+      600: {
+        items: 3
+      },
+      960: {
+        items: 5
+      },
+      1200: {
+        items: 5
+      }
+    }
+  });
+  owl.on('mousewheel', '.owl-stage', function(e) {
+    if (e.deltaY > 0) {
+      owl.trigger('next.owl');
+    } else {
+      owl.trigger('prev.owl');
+    }
+    e.preventDefault();
+  });
+
+
+})
+</script>
+
+
+
+<script type="text/javascript">
+
+    
+
+
+    jQuery( document ).ready(function() {
+        jQuery('.owl-prev').html('');
+        jQuery('.owl-next').html('');
+
+    
+    });
+
+
+
+</script>

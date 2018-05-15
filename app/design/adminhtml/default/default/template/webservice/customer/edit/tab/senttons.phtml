@@ -1,0 +1,85 @@
+<?php 
+
+	$id 	= $this->getRequest()->getParam('id');
+	$order 	= Mage::getModel('sales/order')->load($id);
+	$connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+	
+	$address_list_sql   = "select GROUP_CONCAT(entity_id) as address_list from customer_address_entity where parent_id=$id";
+	$address_list       = $connection->fetchRow($address_list_sql);
+	$addresslist 		= $address_list['address_list'];
+	
+	$sql        		= "select * FROM(
+							select id as sort_order, data_from, transaction_id, cmdEvent, status, logs, date from unilab_logs_netsuite where transaction_id=$id and cmdEvent in ('CreateCustomer','UpdateCustomer')
+							union all
+							select id as sort_order, data_from, transaction_id, cmdEvent, status, logs, date from unilab_logs_netsuite where transaction_id in ($addresslist) and cmdEvent in ('CreateAddress','UpdateAddress')
+							) a order by sort_order";
+	$customer_rows      = $connection->fetchAll($sql); 
+	
+?>
+
+<div class="entry-edit">
+
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-products"><?php echo Mage::helper('sales')->__('History of Sending Customer to Netsuite') ?></h4>
+	</div>
+
+	<div class="grid np">	
+		<div class="hor-scroll">	
+			<fieldset id="my-fieldset">	
+				<table cellspacing="0" class="data order-tables">	
+				<thead>	
+					<tr class="headings">
+						<th><center><?php echo $this->helper('webservice')->__('#') ?></center></th>
+						<th><?php echo $this->helper('webservice')->__('Response From ') ?></th>	
+						<th><?php echo $this->helper('webservice')->__('Transaction ID') ?></th>
+						<th><?php echo $this->helper('webservice')->__('Command Event') ?></th>
+						<th><?php echo $this->helper('webservice')->__('Status') ?></th>
+						<th><?php echo $this->helper('webservice')->__('Message Log') ?></th>
+						<th><?php echo $this->helper('webservice')->__('Date and Time') ?></th>
+					</tr>	
+				</thead>		
+				<tbody>	
+				
+					<?php
+
+					if(count($customer_rows) > 0)		
+					{
+						$count		= 1;
+						
+						foreach ($customer_rows as $customer){
+							echo "<tr>";
+								echo "<td>" . $count . "</td>";
+								echo "<td>" . $customer['data_from'] . "</td>";
+								echo "<td>" . $customer['transaction_id'] . "</td>";
+								echo "<td>" . $customer['cmdEvent'] . "</td>";
+								
+								if($customer['status'] == 1){
+									echo "<td style='background: rgb(0, 189, 7);font-weight: bold; color: #fff; padding: 5px;font-size: 12px;'><center>Yes</center></td>";	
+								}else{
+									echo "<td style='background: red;font-weight: bold; color: #fff; padding: 5px;font-size: 12px;'><center>No</center></td>";	
+								}
+								
+								echo "<td>" . $customer['logs'] . "</td>";
+								echo "<td>" . $customer['date'] . "</td>";
+								
+							echo "</tr>";
+							$count++;	
+						}
+						
+					}else{
+						echo "<tr><td colspan='6'><center>NO Record Found!</center></td></tr>";
+					}
+					?>										
+				</tbody>	
+				</table>
+			</fieldset>		
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+    var resendForm = new varienForm('resend_form');	
+</script>
+
+
+

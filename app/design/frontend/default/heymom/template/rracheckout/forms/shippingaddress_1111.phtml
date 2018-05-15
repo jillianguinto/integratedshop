@@ -1,0 +1,453 @@
+<?php
+
+	$customer = Mage::getSingleton('customer/session')->getCustomer();
+
+?>
+
+<div class="shipping_wrapper">
+	<div class="heading">
+		<div class="cls_number">2</div>
+		<h1 class="cls_header">SHIPPING ADDRESS</h1>
+	</div>
+	<div class="cls_body">
+		<ul class="form-list">
+		<form action="" id="shipping_address_form">	
+			<li class="wide">
+				<label for="shipping-address-select">Select a Shipping Address</label>
+				<div class="input-box">
+
+				<select name="shipping_address_id" id="shipping_address_id" class="address_select" onchange="selectAddress_shipping()" title="Select your shipping Address" autocomplete="off">
+					<?php					
+
+							foreach ($customer->getAddresses() as $address) {
+								if (!empty($address['entity_id'])):
+								
+									$defaultshipping = $customer->getPrimaryShippingAddress()->getId();
+									$shippingfulladd = $address['firstname'] . " " .$address['lastname'] . ", " . $address['street'] . ", " . $address['city'] . ", " . $address['region'] . ", " . $address['postcode'];
+									if($address['entity_id'] == $defaultshipping){
+									?>
+									<option value="<?php echo $address['entity_id']; ?>" selected="selected"><?php echo $shippingfulladd; ?></option>
+									<?php
+										$address_firstname = $address['firstname'];
+										$address_lastname = $address['lastname'];
+									}
+									else{
+									?>
+										<option value="<?php echo $address['entity_id']; ?>"><?php echo $shippingfulladd; ?></option>
+									<?php
+									}
+								endif;
+							}
+					?>					
+					<option value="0">New address</option> 					
+				</select>
+				</div>
+			</li>
+			<input type="hidden" name="shipping[emailaddress]" id="emailaddress" value="<?php echo $customer->getEmail(); ?>" >
+			<!--- Name -->
+			<li class="fields">
+				<div class="customer-name">
+					<div class="name-firstname">
+						<label for="shipping_firstname" class="required"><em>*</em>First Name</label>
+						<div class="input-box">
+							<input type="text" id="shipping_firstname" name="shipping[firstname]" value="<?php echo $address_firstname; ?>" title="First Name" class="input-text required-entry absolute-advice validation-passed" autocomplete="off">
+						</div>
+					</div>
+					<div class="name-lastname">
+						<label for="shipping_lastname" class="required"><em>*</em>Last Name</label>
+						<div class="input-box">
+							<input type="text" id="shipping_lastname" name="shipping[lastname]" value="<?php echo $address_lastname; ?>" title="Last Name" class="input-text required-entry absolute-advice validation-passed" autocomplete="off">
+						</div>
+					</div>
+				</div>
+			</li> 
+			
+			<!--- Country -->
+			<li class="wide">
+				<label for="shipping_country_id" class="required"><em>*</em>Country</label>
+					<div class="input-box input-box-country shipping-country">
+						<?php 
+						
+							$_countries = Mage::getResourceModel('directory/country_collection')->loadData()->toOptionArray(false);
+							$countryCode = Mage::getStoreConfig('general/country/default');
+						?>
+						<?php if (count($_countries) > 0): ?>
+							<select name="shipping[country_id]" id="shipping_country_id" class="required-entry absolute-advice" title="Country" autocomplete="off">
+								<option value="">-- Please Select --</option>
+								<?php foreach($_countries as $_country): ?>
+									<?php if ($_country['value'] == $countryCode ): ?>
+									<option value="<?php echo $_country['value'] ?>" selected>
+										<?php echo $_country['label'] ?>
+									</option>
+								<?php else: ?>
+									<option value="<?php echo $_country['value'] ?>">
+										<?php echo $_country['label'] ?>
+									</option>
+								<?php endif; endforeach; ?>
+							</select>
+						<?php endif; ?>
+					</div>
+			</li>
+
+			<li class="fields telephone-mobile">
+				<div class="field-telephone  field-first ">
+					<label for="shipping_postcode" class=" required "><em>*</em>Zip/Postal</label>
+					<div class="input-box shipping_postcode">
+						<input type="text" name="shipping[postcode]" id="shipping_postcode" value="<?php if($this->helper('customer')->isLoggedIn()): echo $customer->getPrimaryShippingAddress()->getPostcode(); endif; ?>" title="Zip/Postal" class=" input-text required-entry absolute-advice " autocomplete="off">
+					</div>
+				</div>
+				<div class="field-mobile  field-last ">
+					<label for="shipping_region_id" class=" required "><em>*</em>State/Province</label>
+					<div class="input-box input-box-country shipping-country">
+						<select onchange="changeAddressSave(this.checked)" id="billing_region_id" name="shipping[region_id]" title="State/Province" class="input-text required-entry absolute-advice validate-select" defaultvalue="" autocomplete="off">
+							<?php 
+
+								if($this->helper('customer')->isLoggedIn()):
+									$customerregionID = $customer->getPrimaryShippingAddress()->getRegionId();
+									echo '<option value="0" >Select address</option>'; 								
+								else:
+									$customerregionID = 0;
+									echo '<option value="0" selected="selected">Select address</option>'; 								
+								endif;
+								
+									$collection = Mage::getModel('directory/region')->getResourceCollection()->addCountryFilter('PH')->load();
+									
+									foreach($collection as $region) 
+									{
+										if ($customerregionID == $region['region_id'] ): 
+											echo '<option value="'.$region['region_id'].'" selected="selected">'.$region['name'].'</option> ';
+										else:
+											$regionName = $region['name'];
+											echo '<option value="'.$region['region_id'].'" >'.$region['name'].'</option> ';									
+										endif;
+
+									}
+							?>
+						</select>
+						<input type="text" id="shipping_region" name="shipping[region]" value="<?php echo $regionName ?>" title="State/Province" class="input-text required-entry absolute-advice" style="display: none;" autocomplete="off">
+
+					</div>
+				</div>
+			</li> 
+			
+			<!-- City -->
+			<script type="text/javascript">
+			jQuery(document).on('change','#shipping_region_id', function(){
+			
+				var data = jQuery(this).val(); 
+
+				jQuery.post('<?php echo Mage::getBaseurl(); ?>rracheckout/ajax/onepage', {region_id: data }, function(res){				
+					jQuery("#shipping_city").html(res);
+				});
+			});
+			</script>
+			<li class="wide">
+				<label for="shipping_city" class=" required "><em>*</em>City</label>
+				<!--<div class="input-box shipping_city">
+					<input type="text"  name="shipping[city]" id="shipping_city" value="<?php	if($this->helper('customer')->isLoggedIn()): echo $customer->getPrimaryshippingAddress()->getCity(); endif; ?>" class=" input-text required-entry absolute-advice " >
+				</div> -->
+				
+				
+				<div  class="input-box billing_city" id="citylist">	
+						<?php 
+
+						$city			= $customer->getPrimaryshippingAddress()->getCity();
+						$provinceid 	= $customer->getPrimaryshippingAddress()->getRegionId();
+						
+						$connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+						$connection->beginTransaction();
+
+						?>
+						<select  name="shipping[city]" id="shipping_city" class="input-text required-entry absolute-advice" title="City"  onchange="onchangeShippingSave()">
+							<?php						
+										
+								$qrycities = $connection->select()->from('unilab_cities', array('*')) 
+											->where('region_id=?',$provinceid)	
+											->order(array('name ASC'));
+								$cities = $connection->fetchAll($qrycities);	
+										
+									foreach ($cities as $value) 
+									{ 
+										$cities_id = $value['city_id'];
+										$cities_name = $value['name'];
+										
+										if($cities_name==$city)
+										{
+											echo "<option value='$cities_id' selected='selected'>$cities_name</option>";
+										}
+										else
+										{
+											echo "<option value='$cities_id'>$cities_name</option>";
+										}
+									}	
+							?>
+						</select>
+					</div>
+			</li> 
+
+			<!-- Street -->
+			<li class="wide">
+				<label for="shipping_street1" class=" required "><em>*</em>Address</label>
+				<div class="input-box">
+					<input type="text" title="Street Address" name="shipping[street][]" id="shipping_street1" value="<?php if($this->helper('customer')->isLoggedIn()): echo $customer->getPrimaryshippingAddress()->getStreet(1); endif; ?>" class=" input-text required-entry absolute-advice " autocomplete="off">
+				</div>
+				<br/>
+<!-- 				<div class="input-box">
+					<input type="text" title="Street Address 2" name="shipping[street][]" id="shipping_street2" value="<?php if($this->helper('customer')->isLoggedIn()):  echo $customer->getPrimaryshippingAddress()->getStreet(2); endif; ?>" class="input-text" autocomplete="off">
+				</div> -->
+			</li>
+			
+			<!-- Telephone and Mobile -->	
+			<li class="fields telephone-mobile" style="max-width: 92%;">
+				<div class="field-telephone">
+					<label for="shipping_telephone" class=" required "><em>*</em>Telephone</label>
+					<div class="input-box shipping_telephone">
+						<input type="text" name="shipping[telephone]" id="shipping_telephone" value="<?php if($this->helper('customer')->isLoggedIn()):  echo $customer->getPrimaryshippingAddress()->getTelephone(); endif; ?>" title="Telephone" class=" input-text required-entry absolute-advice " autocomplete="off">
+					</div>
+				</div>
+				<div class="field-mobile">
+					<label for="shipping_mobile" class="">Mobile</label>
+					<div class="input-box shipping_mobile">
+						<input type="text" name="shipping[mobile]" id="shipping_mobile" value="<?php if($this->helper('customer')->isLoggedIn()):  echo $customer->getPrimaryshippingAddress()->getMobile(); endif; ?>" title="Mobile" class=" input-text " autocomplete="off">
+					</div>
+				</div>
+			</li> 
+
+			<li class="fields">
+				<div class="customer-name" style="max-width: 90%;">
+					<div class="field-fax">
+						<label for="shipping_fax" class="required">Fax</label>
+						<div class="input-box">
+						<input type="text" name="shipping[fax]" id="shipping_fax" value="<?php if($this->helper('customer')->isLoggedIn()):  echo $customer->getPrimaryShippingAddress()->getFax(); endif; ?>" title="Fax" class="input-text required-entry absolute-advice" autocomplete="off">
+						</div>
+					</div>
+				</div>
+			</li>
+
+			<li id="shipping_siab" class="control control-siab" style="display:none;">
+				<input type="checkbox" name="shipping[save_in_address_book]"  id="shipping_save_in_address_book" class="checkbox" autocomplete="off">
+				<label for="billing_save_in_address_book">Save in address book</label>
+			</li>
+			
+			</form>			
+			</ul>
+		</div>
+</div>
+
+<script type="text/javascript">
+jQuery(document).ready(function (){	
+
+	check(jQuery('#shipping_region_id').val(),jQuery('#shipping_city').val());
+
+   	jQuery(document).on('change','#shipping_city', function(){
+  		check(jQuery('#shipping_region_id').val(),jQuery('#shipping_city').val());
+   	});
+
+   	jQuery(document).on('change','#shipping_region_id', function(){
+  		check(jQuery('#shipping_region_id').val(),jQuery('#shipping_city').val());
+
+   	});
+	
+	function check(state_id,city_id)
+	{		
+		
+		var array_state ='<?php $stateprovince2 = Mage::getStoreConfig('payment/cashondelivery/stateprovince');
+							$default_state = '';
+							$stateprovince2 = explode(',', $stateprovince2);
+
+							foreach($stateprovince2 as $stateprovince){
+								$default_state .= $stateprovince .","; 
+							} 
+							echo substr($default_state,0,-1); ?>';
+
+
+
+		var array_city ='<?php $city2 = Mage::getStoreConfig('payment/cashondelivery/city');
+							$default_city = ''; 
+							$city2 = explode(',', $city2);
+							foreach($city2 as $city){ 
+									$default_city .= $city .","; } 
+							echo substr($default_city,0,-1); ?>';
+
+   	
+		var splitObj = array_state.split(","); 
+		var splitObj2 = array_city.split(",");
+		
+
+		if(jQuery.inArray(state_id, splitObj) !=-1 && jQuery.inArray(city_id, splitObj2) !=-1){
+			//console.log(1);
+			jQuery('input#p_method_cashondelivery').attr('disabled', false);
+			jQuery("label[for='p_method_cashondelivery']").attr('disabled', false);
+
+		}else{
+			// console.log(2);
+			jQuery('input#p_method_cashondelivery').attr('disabled', true);
+			jQuery('input#p_method_cashondelivery').removeAttr("checked");
+			jQuery("label[for='p_method_cashondelivery']").attr('disabled', true);
+			jQuery("#payment_form_cashondelivery").css('display', 'none');
+		}
+	}
+
+
+});
+
+//-----------------
+
+	function selectAddress_shipping()
+	{
+	
+		var addID = jQuery('#shipping_address_id').val();		
+
+		jQuery.post( '<?php echo Mage::getBaseUrl();?>rracheckout/address/addressbill',{ 
+			addressID: addID
+			},
+			function (addressData)
+			{
+			var dataobj = jQuery.parseJSON(addressData);
+			if (dataobj.success == true)
+			{
+				jQuery('#shipping_firstname').val(dataobj.firstname);
+				jQuery('#shipping_lastname').val(dataobj.lastname);
+				
+				jQuery('#shipping_country_id').val(dataobj.country_id);
+				jQuery('#shipping_postcode').val(dataobj.postcode);				
+				
+				jQuery('#shipping_city').val(dataobj.city);
+				jQuery('#shipping_telephone').val(dataobj.telephone);
+				jQuery('#shipping_street1').val(dataobj.street);
+				
+				jQuery('#shipping_region_id').val(dataobj.region_id);
+				jQuery('#shipping_region').val(dataobj.region);
+				
+				// jQuery("#shippingmethod").click();	
+				var paymentdata = jQuery("#shipping_address_form").serialize();
+				
+				jQuery.post( '<?php echo Mage::getBaseUrl();?>checkout/onepage/saveShipping/', 
+			
+					paymentdata,
+
+				function (paymentdataret)
+				{
+					var dataobj = jQuery.parseJSON(paymentdataret);
+					
+					if(dataobj.success == true)
+					{
+						alert("bbb");
+						jQuery('#amt_'+dataobj.carrier_code+'').html(dataobj.carrier_method_title + ' - ' + dataobj.shippingrate);
+						jQuery('.shipping_name').html(dataobj.carrier_title + ' - ' + dataobj.carrier_method_title);
+						jQuery('.shipping_amount').html(dataobj.shippingrate);
+						jQuery('.grand_total').html(dataobj.grandTotal);
+						jQuery('.tax_amount').html(dataobj.taxAmount);					
+						jQuery('#submit_btn').removeAttr('disabled');
+
+						jQuery("#shippingmethod").click();	
+						location.reload(true);
+
+					}
+					else
+					{
+							jQuery.post( '<?php echo Mage::getBaseUrl();?>rracheckout/address/setshipping',{ 
+							addressID: addID
+							},
+
+								function (shippingdatadata)
+								{
+									var dataobj = jQuery.parseJSON(shippingdatadata);
+									if (dataobj.success == true)
+									{
+										location.reload(true);
+									}
+
+								});	
+					}
+
+				});				
+			}else{
+
+				jQuery('#shipping_firstname').val('');
+				jQuery('#shipping_lastname').val('');
+				
+				// jQuery('#shipping_country_id').val('');
+				jQuery('#shipping_postcode').val('');				
+				
+				jQuery('#shipping_city').val('');
+				jQuery('#shipping_telephone').val('');
+				jQuery('#shipping_mobile').val('');
+				jQuery('#shipping_street1').val('');
+				
+				jQuery('#shipping_region_id').val('');
+				jQuery('#shipping_region').val('');
+				jQuery('#shipping_siab').show();
+
+			}
+		});
+	}
+
+function onchangeShippingSave()
+{
+	var paymentdata = jQuery('#shipping_address_form').serialize();
+	
+	jQuery.post( '<?php echo Mage::getBaseUrl();?>checkout/onepage/savenewShipping/', 
+	
+	paymentdata,
+
+	function (paymentdataretship)
+	{
+
+		var dataobj = jQuery.parseJSON(paymentdataretship);
+
+		if (dataobj.reload == true)
+		{
+		
+			jQuery("#shippingmethod").click();	
+
+		
+		}else{
+
+			return;
+		
+		}
+
+	});	
+}
+
+</script>
+ <script type="text/javascript">
+
+jQuery('#shipping_save_in_address_book').change(function () {
+
+	if(jQuery('#shipping_save_in_address_book').is(':checked')){
+    jQuery("#shipping_save_in_address_book").val(1);
+
+   		var shippingaddressdata = jQuery('#shipping_address_form').serialize();
+ 		jQuery.post( '<?php echo Mage::getBaseUrl();?>checkout/onepage/saveanotherShipping/', 
+			shippingaddressdata,
+
+			function (shipdataretship)
+			{
+				var dataobj = jQuery.parseJSON(shipdataretship);
+
+					if (dataobj.reload == true)
+					{
+									
+							jQuery("#shippingmethod").click();	
+										
+					}else{
+
+						return;
+
+					}
+				
+
+			}
+		);
+
+
+	}else{
+    jQuery("#shipping_save_in_address_book").val(0);
+	}
+
+	jQuery("#shipping_save_in_address_book").val(1);
+
+ });
+// </script>

@@ -1,0 +1,53 @@
+<style>
+.button{
+border-radius : 2px !important;
+}
+.divAddToCart
+{
+background-color:#eaeaea;
+padding : 2%;
+height : 60px;
+}
+.divButton
+{
+float:right;
+}
+</style>
+<?php $_product = $this->getProduct(); ?>
+<?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+<?php if($_product->isSaleable()): ?>
+    <div class="add-to-cart divAddToCart">
+	<div style="margin-top:1%">
+        <?php if(!$_product->isGrouped()): ?>
+        <b><label for="qty"><?php echo $this->__('Qty:') ?></label></b>
+        
+        <?php $xQty = ($this->getProductDefaultQty() * 1) == 0 ? 1 : $this->getProductDefaultQty() * 1; ?>
+        
+        
+        <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $xQty ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+        <?php endif; ?>
+		<div class="divButton">
+		<?php if($_product->getUnilabRx()):?>
+			<button type="button" id="btnAddToCart" title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="productAddToCartForm.askPrescription(this);"><span><span><?php echo $buttonTitle ?></span></span></button>
+        <?php else:?>
+			<button type="button" id="btnAddToCart"  title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="productAddToCartForm.submit(this)"><span><?php echo $buttonTitle ?></span></button>
+        <?php endif;?>
+		<a href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submit(this, this.href); return false;" class="btn-wishlist"><?php echo $this->__('Add to Wishlist') ?></a>
+		</div>
+		<?php echo $this->getChildHtml('', true, true) ?>
+		</div>
+    </div>
+	<script>
+		var addtocart = document.getElementById("qty");
+
+		addtocart.addEventListener("keypress", function(event) {
+			if (event.keyCode == 13){
+				jQuery("#btnAddToCart").trigger("click");
+				event.preventDefault();
+				return;
+			}
+		});
+	</script>
+<?php endif; ?>
+ 

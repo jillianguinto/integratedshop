@@ -1,0 +1,59 @@
+<?php
+
+// This page is create by Richel R. Amante for UNILAB use only.
+// Please do not used this software or take with your own risk.
+// Thank you!!!
+
+?>
+
+<?php	$methodcode = Mage::getSingleton('core/session')->getPaymentMethod(); 
+?>
+
+	<div class="payment_instruction_bankdeposit" id="payment_instruction_bankdeposit" style="display:none;">
+		<div class="heading">
+			<div class="cls_number">&#x2713;</div>
+				<h1 class="cls_header">Bank Deposit Instructions</h1>
+			
+		</div>
+		<div class="cls_body">			
+			<div class="payment_list">
+				<?php echo Mage::getStoreConfig('payment/bankdeposit/paymentinstructions'); ?>
+			</div>
+		</div>
+	</div>
+	
+	<div class="payment_instruction_cebuana" id="payment_instruction_cebuana" style="display:none;">
+		<div class="heading">
+			<div class="cls_number">&#x2713;
+			</div>
+				<h1 class="cls_header">Cebuana Lhuillier Instructions</h1>
+			
+		</div>
+		<div class="cls_body">			
+			<div class="payment_list">
+				<?php echo Mage::getStoreConfig('payment/perapal/paymentinstructions'); ?>
+			</div>
+		</div>
+	</div>
+	
+<?php
+
+// $_order = new Mage_Sales_Model_Order();
+// $orderId = Mage::getSingleton('checkout/session')->getLastRealOrderId();
+// $_order->loadByIncrementId($orderId);
+// echo "--".$grandtotal = $_order->getBaseGrandTotal();
+
+
+// $invoice = Mage::getModel('sales/service_order', $_order)->prepareInvoice();
+// $invoice->setRequestedCaptureCase(Mage_Sales_Model_Order_Invoice::CAPTURE_OFFLINE);
+// $invoice->register();
+// $transactionSave = Mage::getModel('core/resource_transaction')
+// ->addObject($invoice)
+// ->addObject($invoice->getOrder());
+ 
+// $transactionSave->save();
+
+// echo "===". $_order->canInvoice();
+
+
+?>

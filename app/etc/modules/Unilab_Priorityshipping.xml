@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Unilab_Priorityshipping>
+            <active>false</active>
+            <codePool>local</codePool>
+        </Unilab_Priorityshipping>
+    </modules>
+</config>

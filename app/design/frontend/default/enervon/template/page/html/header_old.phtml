@@ -1,0 +1,110 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_modern
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+ 
+ 	//echo Mage::getSingleton('core/session')->getCatId() . "test";
+?> 
+
+<?php 
+		$read = Mage::getSingleton('core/resource')->getConnection('core_read');	
+
+		$customerData = Mage::getSingleton('customer/session')->getCustomer();
+      	$session_customerid = $customerData->getId();
+
+		$currentstoreid   = Mage::app()->getStore()->getStoreId();
+		$currentStorename = Mage::app()->getStore()->getName();
+
+		$categoryid = Mage::getSingleton('core/session')->getCategoryId();
+		$storeid    = Mage::getSingleton('core/session')->getStoreid();	
+		$storename  = Mage::getSingleton('core/session')->getStorename();	
+
+//dito nakapaloob		
+
+		$cookie_storeid = Mage::getModel('core/cookie')->get('oneshop');
+
+		if($cookie_storeid != "" && $storeid == ""){
+			
+			//echo $redirectlink = 'http://' . $_SERVER['HTTP_HOST'] . "/errors/sessionexpired.php";
+		    
+
+		}
+		
+
+		if($currentstoreid != $storeid)
+		{
+			$redirectlink = 'http://' . $_SERVER['HTTP_HOST'] . "/errors/unauthorized.php";
+			
+			?> <script> window.location = "<?php echo $redirectlink; ?>"; </script><?php
+		    
+
+		}
+//dito nakapaloob
+
+
+      	$qry 	= "select count(id) as shopperwebsite from unilab_shopperswebsite where userid='$session_customerid' and storeviewid='$currentstoreid'";						
+		$result = $read->fetchRow($qry);
+
+		
+		if($result['shopperwebsite'] == 0 ){
+
+			//Mage::getSingleton('customer/session')->logout();
+		}
+
+		// echo "Currentstoreid = " . Mage::app()->getStore()->getStoreId();
+		// echo "<br>";
+		// echo "CurrentStorename = " . Mage::app()->getStore()->getName();
+		// echo "<br><br>";
+		
+		
+		// echo "Storeid = " . $storeid;
+		// echo "<br>";
+		// echo "Storename = " . $storename;
+		// echo "<br>";
+		// echo "Categoryid = " . $categoryid;
+
+		// die(); 
+
+
+
+?>
+
+<div class="header-container">
+    <div class="header">   
+
+	<?php echo $this->getChildHtml('mainSearch') ?>
+	<?php //echo $this->getChildHtml('store_language'); ?>
+
+	<?php echo $this->getChildHtml('storeList'); ?>
+    <?php echo $this->getChildHtml('menuList'); ?>
+    <?php echo $this->getChildHtml('topBar') ?>
+    <?php echo $this->getChildHtml('topContainer'); ?>	
+	</div>
+	
+</div>
+
+

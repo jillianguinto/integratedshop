@@ -1,0 +1,59 @@
+<?php
+
+var productAddToCartForm = new VarienForm('order-form');
+productAddToCartForm.submit = function(button, url) {
+    if (this.validator.validate()) {
+        var form = this.form;
+        var oldUrl = form.action;
+ 
+        if (url) {
+           form.action = url;
+        }
+        var e = null;
+ 
+        try {
+	    $jQ.post('<?php echo $this->helper('checkout/cart')->getAddUrl($_product, array()) ?>', $jQ('#order-form').serialize(), function(data) {
+	        // Close quick view
+	        $jQ('.quick-view').trigger('close');
+ 
+	        // Update quick cart
+	        $jQ('.header .cart').remove();
+	        $jQ('.header .links').append(data);
+	        initQuickCart();
+ 
+	        // Show quick cart temporarily to customer signifying cart addition
+	        $jQ('html, body').animate({ 'scrollTop': $jQ('.header .links').scrollTop() }, 500);
+	        $jQ('.header .cart').addClass('cart-active');
+	        var showCartToUser = setTimeout(function() {
+	            $jQ('.header .cart').removeClass('cart-active');
+	        }, 5000);
+	    });
+        } catch (e) {
+	    throw e;
+        }
+ 
+        this.form.action = oldUrl;
+ 
+        if (e) {
+            throw e;
+        }
+ 
+        if (button && button != 'undefined') {
+            button.disabled = true;
+        }
+ 
+		return false;
+    }
+}.bind(productAddToCartForm);
+ 
+function initQuickCart() {
+	if($jQ('.quickcart').length && !$jQ('.no-items-in-cart').length) {
+		$jQ('.cart').unbind().hoverIntent({
+			interval: 20,
+			over: function() { $jQ(this).addClass('cart-active').find('.quickcart').show(); },
+			out: function() { $jQ(this).removeClass('cart-active').find('.quickcart').hide(); }
+		});
+	}
+}
+
+?>

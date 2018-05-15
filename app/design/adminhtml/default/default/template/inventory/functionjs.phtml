@@ -1,0 +1,13 @@
+<?php
+$url = Mage::helper("adminhtml")->getUrl('inventoryadmin/adminhtml_supplier/showreport');
+?>
+<script type="text/javascript">
+    function showreport(productId,supplierId){
+       var productId  = productId ;
+       var supplierId = supplierId;
+       var url = '<?php echo $url ?>';
+       url = url+'supplierid/'+supplierId+'/productid/'+productId;
+       TINY.box.show(url,1, 800, 400, 1);
+    }
+    //productGridJsObject.rowClickCallback = false;
+</script>

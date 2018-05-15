@@ -1,0 +1,20 @@
+<?php if ($this->isfreeProduct() == true){ ?>	
+
+<link rel="stylesheet" type="text/css" href="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>freeproductshipping/css/style.css" media="all" />
+
+	<div id="popup-product">
+		<h5 class="title-name"><?php echo $this->getTitlename() ?></h5>
+		<p class="close_me" title="Close">x</p>
+		<?php $itemcount = (int) $this->getItemQty(); if($itemcount <= 1) { ?> 
+			<h4><strong><?php echo $this->getItemQty() . " item of " . $this->getItemName(); ?></strong></h4>
+		<?php } else { ?> 
+			<h4><strong><?php echo $this->getItemQty() . " items of " . $this->getItemName(); ?></strong></h4>
+		<?php } ?>
+		<?php echo $this->getMessage() ?>
+	</div>
+	
+<!--script type="text/javascript" src="<?php //echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_JS) ?>jquery/jquery-1.10.2.min.js"></script-->
+<script type="text/javascript" src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_JS) ?>freeproductshipping/popup.js"></script>
+
+<? } ?>
+

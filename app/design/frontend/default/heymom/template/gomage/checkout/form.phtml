@@ -1,0 +1,422 @@
+<?php
+ /**
+ * GoMage LightCheckout Extension
+ *
+ * @category     Extension
+ * @copyright    Copyright (c) 2010-2013 GoMage (http://www.gomage.com)
+ * @author       GoMage
+ * @license      http://www.gomage.com/license-agreement/  Single domain license
+ * @terms of use http://www.gomage.com/terms-of-use
+ * @version      Release: 5.0
+ * @since        Class available since Release 2.0
+ */
+?>
+<div class="glc-step address" id="gcheckout-onepage-address">
+	<?php echo $this->getChildHtml('address');?>
+</div>
+
+
+<div class="glc-step methods" id="gcheckout-onepage-methods">
+  <?php echo $this->getChildHtml('methods');?>
+</div>
+
+<div class="glc-step review" id="gcheckout-onepage-review">
+  
+  <?php echo $this->getChildHtml('review');?>
+  
+  <?php if($this->isEnabled('comments')):?>
+  <div class="customer-comment">
+    <label for="customer_comment"><?php echo  $this->__('Comments') ?></label>
+    <textarea id="customer_comment" name="customer_comment" cols="50" rows="5"><?php echo $this->getCustomerComment();?></textarea>
+  </div>
+  <?php endif;?>
+  
+  <div class="advanced-options">
+    
+    <?php if (!$this->getQuote()->isVirtual()): ?>
+        <div id="gomage-lightcheckout-giftmessage">
+            <?php echo $this->helper('gomage_checkout/giftMessage')->getInline('onepage_checkout', $this->getQuote(), $this->getDontDisplayContainer()) ?>
+            </div>
+    <?php endif; ?>
+    <?php if($this->getConfigData('termsandconditions/enabled')):?>
+      <p class="control control-terms">
+	      <input type="checkbox" value="1" id="accept_terms" name="accept_terms" class="required-entry absolute-advice radio" />
+	      <label for="accept_terms"><?php echo $this->__('I accept the <a class="terms-link" href="%s" rel="#terms-block" onclick="%s">Terms and Conditions</a>', "#terms-block","checkout.showTerms();return false;");?></label>
+      </p>
+    <?php endif;?>
+    <div class="agreements">
+		<?php echo $this->getChildHtml('agreements') ?>
+	</div>
+    <?php if($this->getConfigData('poll_settings/display')):?>
+      <?php echo $this->getChildHtml('poll'); ?>
+    <?php endif;?>
+  </div>
+  <div id="checkout-update-section"></div>
+  <?php $form_additional_info = $this->getChildHtml('form.additional.info'); ?>
+  <?php if ($form_additional_info): ?>
+    <ul class="form-list">
+      <?php echo $form_additional_info; ?>
+    </ul>
+  <?php endif; ?>
+  <div class="button-set" id="checkout-review-submit">
+ <!--  onclick="checkout.LightcheckoutSubmit()" remove from button temporary -->
+    <button <?php if(!$this->getQuote()->validateMinimumAmount()): ?>disabled="disabled"<?php endif; ?>  id="btn-validate" type="button" title="<?php echo $this->__('Place Order') ?>" class="button btn-checkout <?php if(!$this->getQuote()->validateMinimumAmount()): ?>disabled<?php endif; ?>">
+      <span><span><?php echo $this->__('Place Order') ?></span></span>
+    </button>
+	
+	<div style="display:none;">	
+		<button <?php if(!$this->getQuote()->validateMinimumAmount()): ?>disabled="disabled"<?php endif; ?>  id="submit-btn" onclick="checkout.LightcheckoutSubmit()" type="button" title="<?php echo $this->__('Place Order') ?>" class="button btn-checkout <?php if(!$this->getQuote()->validateMinimumAmount()): ?>disabled<?php endif; ?>">
+		  <span><span><?php echo $this->__('Place Order') ?></span></span>
+		</button>
+	</div>
+  <?php if($this->isEnabled('newsletter')):?>
+    <?php if(!$this->isCustomerLoggedIn() || !Mage::getModel('newsletter/subscriber')->loadByCustomer($this->getCustomer())->getStatus()):?>
+    	<?php if (in_array($this->helper->getConfigData('address_fields/newsletter'), array(1,2))): ?>    
+		    <p class="control control-subscribe">
+		      <input type="checkbox" value="1" id="subscribe" name="subscribe" <?php if($this->helper->getConfigData('address_fields/newsletter') == 2):?> checked="checked" <?php endif;?> />
+		      <label for="subscribe"><?php echo $this->__('Subscribe to newsletter');?></label>
+		    </p>		
+		<?php endif; ?>        
+    <?php endif;?>
+  <?php endif;?>
+  </div>
+
+</div>
+<style type="text/css">
+  #modal-background {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(16, 13, 13, 0.89);
+    opacity: .50;
+    -webkit-opacity: .5;
+    -moz-opacity: .5;
+    filter: alpha(opacity=50);
+    z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  box-shadow: 0 0 20px 0 #222;
+  -webkit-box-shadow: 0 0 20px 0 #222;
+  -moz-box-shadow: 0 0 20px 0 #222;
+  display: none;
+  height: 240px;
+  left: 33%;
+  /* margin: -120px 0 0 -160px; */
+  /* padding: 10px; */
+  position: fixed;
+  top: 15%;
+  width: 40%;
+  z-index: 1000;
+}
+.mdl-header {
+  background-color: #5B6A9D;
+  padding: 10px 0;
+  color: #fff;
+  font-weight: bold;
+  display: inline-block;
+  width: 100%;
+}
+
+span.mdl-nxt {
+  text-align: right;
+  width: 95%;
+  color: #D12323;
+  font-size: 18px;
+  font-weight: bold;
+  float: right;
+  margin: 40px 20px 10px 10px;
+}
+span.mdl-nxt:hover {
+  text-decoration: underline;
+}
+.box {
+  width: 25%;
+  text-align: center;
+  margin: 5px;
+  display: inline-block;
+  padding: 5px;
+}
+.box:hover {
+  background-color: #BFBCBC;
+}
+.mdl-body {
+  display: inline-block;
+  width: 100%;
+  margin: 15px auto;
+  text-align: center;
+  font-size: 25px;
+  color: #5B6A9D;
+}
+
+#modal-background.active, #modal-content.active {
+    display: block;
+}​
+
+.mdl-body #msgpopup{
+	font-size: 12em;
+	color: red;
+}
+
+#modal-content2
+{
+	height: 350px; 
+}
+
+.box-container {
+  text-align: center;
+  margin-top: 5%;
+}
+
+span#modal-close2 {
+  margin-left: 10px;
+}
+
+div#img-nav-prev {
+  position: absolute;
+  top: 185px;
+}
+
+div#img-nav-next {
+  position: absolute;
+  top: 185px;
+  right: 0;
+}
+
+</style>
+
+<div id="modal-background"></div>
+	<div id="modal-content" class="modal-content">
+		<div class="mdl-header">
+			<br>
+		</div>
+		
+		<div class="mdl-body">
+		  
+
+		</div>
+		<span id="modal-next" class="mdl-nxt">Next</span>
+	</div>​
+
+	<div id="modal-content2" class="modal-content">
+		<div class="mdl-header">
+			<br>
+		</div>
+
+		<div class="mdl-body">
+
+		</div>
+		
+		<div id="img-nav-prev">
+			<?php $path = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . "/frontend/default/unilab2/images/";?>
+			<img src="<?php echo $path . 'milestone_prev.png';?>" width="50px" id="imgprev">
+		</div>
+		
+		<div id="img-nav-next">
+			<img src="<?php echo $path . 'milestone_next.png';?>" width="50px" id="imgnext">
+		</div>
+		
+		
+		<div class="box-container">
+			
+		</div>
+		
+		<input type="hidden" id="imgstart">
+		<input type="hidden" id="imgend">
+		
+		<input type="hidden" id="saveData">
+	</div>
+
+
+<script type="text/javascript">
+  jQuery(function(){
+  
+  
+	jQuery('body').on('click', '.rewardimg', function (){
+	
+		jQuery('#modal-content2').hide();
+		jQuery('#modal-background').hide();
+			
+		var id 			= jQuery(this).attr("id");
+		var saveData 	= jQuery('#saveData').val();
+			saveData	= saveData.split(',')
+		   
+		jQuery.post('<?php echo Mage::getBaseurl() ?>promochecker/validator/savereward/',
+		{
+			
+			prodid 		: id,
+			divisible 	: saveData[0],
+			qtyredeemed : saveData[1],
+			redeemedID	: saveData[2],
+			mileId		: saveData[3]		
+		},
+		
+		function (Data){
+			var objResponse = jQuery.parseJSON(Data);
+			
+			if(objResponse.success== true){
+				jQuery('#submit-btn').click();
+			}
+		
+		});
+	
+	});
+	
+	
+    jQuery("#modal-next").click(function() {
+        jQuery("#modal-content").fadeOut();
+        jQuery("#modal-content2").fadeIn();
+    });
+
+	
+	jQuery("#btn-validate").click(function() {
+	   
+		jQuery.post('<?php echo Mage::getBaseurl() ?>promochecker/validator/',
+		{
+			
+			checkId : 1 },
+			
+		function (DataValidator){
+		
+			var objResponse = jQuery.parseJSON(DataValidator);
+				
+			if(objResponse.success == true){
+			
+				jQuery('#modal-content .mdl-body').html(objResponse.message);
+				jQuery('#modal-content2 .mdl-body').html(objResponse.rewardmsg);
+
+				var prodid = objResponse.prodid;
+					prodid=prodid.split('|');
+				var img = objResponse.prodlist;
+					img=img.split('|');
+				var _imglen = img.length - 2;
+				
+				jQuery('#imgstart').val(0);
+				
+				if(_imglen > 2)
+				{
+					jQuery('#imgend').val(2);
+				}
+				else{
+					jQuery('#imgend').val(_imglen);
+				}
+				
+					var imglen = jQuery('#imgend').val();
+					var i = jQuery('#imgstart').val();
+					var prodimg ='';
+					var divimg = ''
+					
+					while(i<=imglen){
+						prodimg += '<div class="box"><img src="' + img[i] + '" id="' + prodid[i] +'" class="rewardimg" height="150px"></div>';
+						i++;
+					}
+					
+				var saveData = objResponse.divisible + ',' + objResponse.qtyredeemed + ',' + objResponse.redeemedID + ',' + objResponse.mileId;
+					
+				jQuery('#saveData').val(saveData);	
+				
+				jQuery('#modal-content2 .box-container').append(prodimg);
+				jQuery('#modal-content, #modal-background').toggleClass('active');
+				jQuery('#imgprev').hide();
+				
+				//------------------------Prev--------------------------------------------
+				
+				jQuery('#imgprev').click(function(){
+				
+					var start = Number(jQuery('#imgstart').val()) - 3;
+					var end = Number(jQuery('#imgend').val()) - 3;
+					
+					jQuery('#imgstart').val(start);
+					jQuery('#imgend').val(end);
+					
+					var imglen = jQuery('#imgend').val();
+					var i = jQuery('#imgstart').val();
+					var prodimg ='';
+					var divimg = ''
+								
+					while(i<=imglen){
+						prodimg += '<div class="box"><img src="' + img[i] + '" id="' + prodid[i] +'" class="rewardimg" height="150px"></div>';
+						i++;
+					}
+					jQuery('#modal-content2 .box-container').html('');
+					jQuery('#modal-content2 .box-container').append(prodimg);	
+					
+					if(start==0)
+					{
+						jQuery('#imgprev').hide();
+					}
+					
+					if(end>_imglen){
+						jQuery('#imgnext').hide();
+					}
+					else{
+						jQuery('#imgnext').show();	
+					}	
+
+
+				});
+				
+				//------------------------Next--------------------------------------------
+				
+				jQuery('#imgnext').click(function(){
+				
+					var start = Number(jQuery('#imgstart').val()) + 3;
+					var end = Number(jQuery('#imgend').val()) + 3;
+					
+					jQuery('#imgstart').val(start);
+					jQuery('#imgend').val(end);
+					
+					var imglen = jQuery('#imgend').val();
+					var i = jQuery('#imgstart').val();
+					var prodimg ='';
+					var divimg = ''
+								
+					var len = 0;
+					
+					if(imglen>_imglen){
+						len = _imglen;
+					}
+					else{
+						len = imglen;
+					}
+					
+					while(i<=len)
+					{
+						prodimg += '<div class="box"><img src="' + img[i] + '" id="' + prodid[i] +'" class="rewardimg" height="150px"></div>';
+						i++;
+					}
+					jQuery('#modal-content2 .box-container').html('');
+					jQuery('#modal-content2 .box-container').append(prodimg);
+					
+					if(start!=0)
+					{
+						jQuery('#imgprev').show();
+					}
+					
+					if(end>=_imglen){
+						jQuery('#imgnext').hide();
+					}
+					else{
+						jQuery('#imgnext').show();	
+					}	
+				});
+				
+				//------------------------------------------------------------------------
+				
+			
+			}else{
+				jQuery('#submit-btn').click();
+	
+			}
+		
+
+		});
+		
+	});
+		
+});
+</script>

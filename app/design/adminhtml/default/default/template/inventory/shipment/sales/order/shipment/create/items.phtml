@@ -1,0 +1,458 @@
+<?php
+$_items = $this->getShipment()->getAllItems();
+Mage::getSingleton('core/session')->unsArrayQtyProductOrderItem();
+?>
+<?php
+$strOrderItemId = '';
+$arrQtyAllProductOrderItem = array();
+foreach ($_items as $_item) {
+    $sku = $_item->getOrderItem()->getSku();
+    $qtyToShip = $_item->getQty();
+    $productId = Mage::getModel("catalog/product")->getIdBySku($sku);
+    if (!$productId) {
+        $productId = $_item->getProductId();
+    }
+    $product = Mage::getModel('catalog/product')->load($productId);
+    $productType = $product->getTypeID();
+    if ($productType == 'simple') {
+        $orderItemId = $_item->getOrderItem()->getId();
+        $strOrderItemId .= $orderItemId . '|';
+        $arrQtyAllProductOrderItem[$productId][$orderItemId] = $qtyToShip;
+    }
+    //Zend_Debug::dump($productId."-------------".$orderItemId."------------".$productType);
+}
+//die();
+Mage::getSingleton('core/session')->setArrayQtyProductOrderItem($arrQtyAllProductOrderItem);
+?>
+<script>
+    var jsonOrderItemId = '<?php echo $strOrderItemId; ?>';
+
+    var arrs = new Array();
+    function checkArray(Arr){
+        Arr.forEach(function(element, index, array) {
+            //alert("a[" + index + "] = " + element);
+            enableElements('submit-button');
+            if(element == 0){
+                disableElements('submit-button');
+                breack;
+            }
+            return true;
+        }
+    );
+    }
+    function checkStatusShipment(){ 
+        var myarr = jsonOrderItemId.split("|");
+        var myarrLength = myarr.length;
+        enableElements('submit-button');
+        myarr.forEach(function(element, index, array) {
+            if(element != ''){
+                if($('check-shipment[items][' + element + ']').value != ''){
+                    var checkStatus = $('check-shipment[items][' + element + ']').value;
+                    //alert(checkStatus);
+                    if(checkStatus == 0 || checkStatus == ''){
+                        myarrLength--;
+                    }
+                }
+            }
+        }
+    );
+        if(myarrLength < myarr.length){       
+            disableElements('submit-button');
+            return;
+        }
+    }
+    var checkExistNeedTransfer = false;
+    function checkStatusAvailableAOrderItemByEvent(warehouse_id,product_id,qtytoship,order_item_id,order_id,totalQty){
+        var parameters = {
+            warehouse_id: warehouse_id,
+            product_id: product_id,
+            qty: qtytoship,
+            order_item_id:order_item_id,
+            order_id:order_id,
+            total_qty:totalQty
+        }; 
+        var url = '<?php echo $this->getUrl('inventoryadmin/adminhtml_shipment/checkavailablebyevent'); ?>';
+        var request = new Ajax.Request(url,
+        {
+            method:'post',
+            parameters:parameters,
+            onSuccess: function(transport){
+                if(transport.responseText){
+                    if(transport.responseText == 'available'){
+                        $("span-shipment[items]["+order_item_id+"]").innerHTML 
+                            = '<img src="<?php echo Mage::getDesign()->getSkinUrl("images/success_msg_icon.gif", array("_area" => "adminhtml")); ?> "/>'+
+                            '<input type="hidden" id="check-shipment[items]['+order_item_id+']" value="1" />';
+                        checkStatusShipment();
+                    }
+                    if(transport.responseText == 'notavailable'){
+                        $("span-shipment[items]["+order_item_id+"]").innerHTML 
+                            = '<img src="<?php echo Mage::getDesign()->getSkinUrl('images/error_msg_icon.gif', array("_area" => "adminhtml")); ?> "/>\n\ ' +
+                            '<input type="hidden" id="check-shipment[items]['+order_item_id+']" value="0" />'+
+                            '<button type="button"  onclick="tinyboxopen('+order_item_id+','+product_id+',\'warehouse-shipment[items]['+order_item_id+']\','+qtytoship+','+order_id+');"  class="scalable" type="button" ><span><?php echo $this->helper('inventory')->__('Need to Receive Stock'); ?></span></button>';
+                        disableElements('submit-button');
+                    }
+                }
+            }
+        }
+    ); 
+    }
+    function transfersuccess(item_id,product_id,warehouse_id,qtytoship,order_id){
+        window.location.href = window.location.pathname;;
+    }
+    function sendNoticeSuccess(item_id){
+        $("span-shipment[items]["+item_id+"]").innerHTML 
+            = '<img src="<?php echo Mage::getDesign()->getSkinUrl('images/error_msg_icon.gif', array("_area" => "adminhtml")); ?> "/>  <span ><?php echo $this->helper('inventory')->__('Notice was successfully sent!'); ?> </span>'+
+            '<input type="hidden" id="check-shipment[items]['+item_id+']" value="0" />'  ;  
+    }
+</script>
+
+<?php if (Mage::getStoreConfig('inventory/general/enable') && Mage::getStoreConfig('inventory/dropship/enable')): ?>
+    <?php $showDropship = false ?>
+    <?php foreach ($_items as $itemCheck): ?>
+        <?php
+        $supplierP = Mage::getModel('inventory/supplierproduct')
+            ->getCollection()
+            ->addFieldToFilter('product_id', $itemCheck->getProductId())
+            ->getFirstItem();
+        if ($supplierP->getId()) {
+            $showDropship = true;
+            break;
+        }
+        ?>
+    <?php endforeach ?>    
+    <?php if ($showDropship): ?>
+        <div style="padding:10px;">
+            <input type="checkbox" id="check_dropship" name="echeck_dropship" value="1" /> <?php echo $this->__('Use drop shipping') ?>
+        </div>
+    <?php else: ?>
+        <div id="messages">
+            <ul class="messages">
+                <li class="notice-msg">
+                    <ul>
+                        <li>
+                            <span><?php echo Mage::helper('inventorydropship')->__('Drop shipping is not supported. No supplier available to fulfill this order!') ?></span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>        
+    <?php endif ?>
+<?php endif ?>
+
+<div class="grid np">
+    <div class="hor-scroll">
+        <table cellspacing="0" class="data order-tables">
+            <col />
+            <col width="1" />
+            <col width="1" />
+            <col width="1" />
+            <col width="1" />
+            <?php if (!$this->canShipPartiallyItem()): ?>
+                <col width="20" />
+            <?php endif; ?>
+            <thead>
+                <tr class="headings">
+                    <th><?php echo $this->helper('sales')->__('Product') ?></th>
+                    <th><?php echo $this->helper('sales')->__('Image') ?></th>
+                    <th class="a-center"><?php echo $this->helper('sales')->__('Qty') ?></th>
+                    <th<?php if ($this->isShipmentRegular()): ?> class=""<?php endif; ?>><span class="nobr"><?php echo $this->helper('sales')->__('Qty to Ship') ?></span></th>
+                    <th class="a-center"><div id="select_warehouse_supplier"><?php echo $this->helper('sales')->__('Warehouse') ?></div></th>
+            <th class="last a-center"><?php echo $this->helper('sales')->__('Checked') ?></th>
+            <?php if (!$this->canShipPartiallyItem()): ?>
+                <th class="a-center "><span class="nobr"><?php echo $this->helper('sales')->__('Ship') ?></span></th>
+            <?php endif; ?>
+
+            </tr>
+            </thead>
+            <?php
+            $_i = 0;
+            foreach ($_items as $_item): if ($_item->getOrderItem()->getIsVirtual() || $_item->getOrderItem()->getParentItem()): continue;
+                endif;
+                $_i++
+                ?>
+                <tbody class="<?php echo $_i % 2 ? 'odd' : 'even' ?>">
+                <?php echo $this->getItemHtml($_item) ?>
+                <?php echo $this->getItemExtraInfoHtml($_item->getOrderItem()) ?>
+                </tbody>
+<?php endforeach; ?>
+        </table>
+    </div>
+</div>
+<br />
+<div class="box-left entry-edit">
+    <div class="entry-edit-head"><h4><?php echo $this->__('Shipment Comments') ?></h4></div>
+    <fieldset>
+        <div id="order-history_form">
+            <span class="field-row">
+                <label class="normal" for="shipment_comment_text"><?php echo Mage::helper('sales')->__('Shipment Comments') ?></label>
+                <textarea id="shipment_comment_text" name="shipment[comment_text]" rows="3" cols="5" style="height:6em; width:99%;"><?php echo $this->getShipment()->getCommentText(); ?></textarea>
+            </span>
+            <div class="clear"></div>
+        </div>
+    </fieldset>
+</div>
+
+<div class="box-right entry-edit">
+    <div class="order-totals">
+        <div class="order-totals-bottom">
+            <p>
+                <label class="normal" for="notify_customer"><?php echo Mage::helper('sales')->__('Append Comments') ?></label>
+                <input id="notify_customer" name="shipment[comment_customer_notify]" value="1" type="checkbox" />
+            </p>
+<?php if ($this->canSendShipmentEmail()): ?>
+                <p>
+                    <label class="normal" for="send_email"><?php echo Mage::helper('sales')->__('Email Copy of Shipment') ?></label>
+                    <input id="send_email" name="shipment[send_email]" value="1" type="checkbox" />
+                </p>
+                <?php endif; ?>
+            <div class="a-right">
+<?php echo $this->getChildHtml('submit_button') ?>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<script type="text/javascript">
+
+    var sendEmailCheckbox = $('send_email');
+    if (sendEmailCheckbox) {
+        var notifyCustomerCheckbox = $('notify_customer');
+        var shipmentCommentText = $('shipment_comment_text');
+        Event.observe(sendEmailCheckbox, 'change', bindSendEmail);
+        bindSendEmail();
+    }
+    function bindSendEmail()
+    {
+        if (sendEmailCheckbox.checked == true) {
+            notifyCustomerCheckbox.disabled = false;
+        }
+        else {
+            notifyCustomerCheckbox.disabled = true;
+        }
+    }
+    function tinyboxopen(orderItemId,productId,warehouseId,qtytoship,orderid){
+        var warehouseId = $(warehouseId).value;
+        var request = 'item_order_id/'+orderItemId+'/product_id/'+productId+'/warehouse_id/'+warehouseId+'/qty_to_ship/'+qtytoship+'/order_id/'+orderid;
+        var url = "<?php echo $this->getUrl('inventoryadmin/adminhtml_shipment/prepareneedtransfer/') ?>"+request;
+        TINY.box.show(url ,1,500,0,1);
+        return false;
+    }
+    if(checkExistNeedTransfer == true){
+        disableElements('submit-button');
+    }
+<?php if (version_compare(Mage::getVersion(), '1.6.0.0', '>=')): ?>
+        function submitShipment(btn){
+            var checkbox = $(btn).up('.order-totals').select('#create_shipping_label')[0];
+            if (checkbox && checkbox.checked) {
+                packaging.showWindow();
+            } else if(editForm.submit()) {
+                disableElements('submit-button');
+            }
+        }
+<?php endif; ?>
+
+</script>
+<script type="text/javascript">
+    function checkStatusAvailableAOrderItemByEventDropShip(warehouse_id,product_id,qtytoship,order_item_id,order_id,totalQty){
+        var parameters = {
+            warehouse_id: warehouse_id,
+            product_id: product_id,
+            qty: qtytoship,
+            order_item_id:order_item_id,
+            order_id:order_id,
+            total_qty:totalQty
+        }; 
+        var url = '<?php echo $this->getUrl('inventoryadmin/adminhtml_shipment/checkavailablebyevent'); ?>';
+        var request = new Ajax.Request(url,
+        {
+            method:'post',
+            parameters:parameters,
+            onSuccess: function(transport){
+                if(transport.responseText){
+                    if(transport.responseText == 'available'){
+                        $("span-shipment[items]["+order_item_id+"]").innerHTML 
+                            = '<img src="<?php echo Mage::getDesign()->getSkinUrl("images/success_msg_icon.gif", array("_area" => "adminhtml")); ?> "/>'+
+                            '<input type="hidden" id="check-shipment[items]['+order_item_id+']" value="1" />';                            
+                    }
+                    if(transport.responseText == 'notavailable'){
+                        $("span-shipment[items]["+order_item_id+"]").innerHTML 
+                            = '<img src="<?php echo Mage::getDesign()->getSkinUrl('images/error_msg_icon.gif', array("_area" => "adminhtml")); ?> "/>\n\ ' +
+                            '<input type="hidden" id="check-shipment[items]['+order_item_id+']" value="0" />'+
+                            '<button type="button"  onclick="tinyboxopen('+order_item_id+','+product_id+',\'warehouse-shipment[items]['+order_item_id+']\','+qtytoship+','+order_id+');"  class="scalable" type="button" ><span><?php echo $this->helper('inventory')->__('Need to Receive Stock'); ?></span></button>';
+                        disableElements('submit-button');
+                    }
+                    if(transport.responseText == 'waitting'){
+                        $("span-shipment[items]["+order_item_id+"]").innerHTML 
+                            = '<img src="<?php echo Mage::getDesign()->getSkinUrl('images/error_msg_icon.gif', array("_area" => "adminhtml")); ?> "/>  <span ><?php echo $this->helper('inventory')->__(' Waitting for transfer'); ?></span>'+
+                            '<input type="hidden" id="check-shipment[items]['+order_item_id+']" value="0" />'+
+                            '<button type="button"  onclick="tinyboxopen('+order_item_id+','+product_id+',\'warehouse-shipment[items]['+order_item_id+']\','+qtytoship+','+order_id+');"  class="scalable" type="button" ><span><?php echo $this->helper('inventory')->__('Continue new transfer'); ?></span></button>';                               
+                        disableElements('submit-button');
+                    }
+                }
+            }
+        }
+    ); 
+    }
+    Event.observe($('check_dropship'),'click', function(){
+        if($('select_warehouse_supplier')){
+            if($('check_dropship').checked){
+                $('select_warehouse_supplier').innerHTML = '<?php echo $this->__('Supplier') ?>';
+                enableElements('submit-button');
+                $$('button').each(function(el){  		
+                    var el_class = el.className;  		
+                    if (el_class.search('submit-button') != -1){  			
+                        $(el.id).onclick = function(){
+                            submitDropShip(this); 
+                        }    
+                        $('edit_form').action = '<?php echo $this->getUrl('inventorydropshipadmin/adminhtml_inventorydropship/savedropship', array('order_id' => $this->getRequest()->getParam('order_id'))); ?>';
+                        //                        $('edit_form').action = '<?php echo $this->getUrl('inventorydropshipadmin/adminhtml_inventorydropship/savedropship'); ?>';
+                        $(el.id).innerHTML = "<span><?php echo $this->__('Submit Drop Shipment'); ?></span>";  		
+                    }                                              
+                });
+                $$('div').each(function(el){
+                    var div_id = el.id;
+                    if ((div_id.search('show_select_warehouse_supplier') != -1) || (div_id.search('show_select_only_warehouse') != -1) || (div_id.search('show_select_only_supplier') != -1)){
+                        var selectUrl = '<?php echo $this->getUrl('inventorydropshipadmin/adminhtml_inventorydropship/selectsupplier', array('_secure' => true)) ?>';
+                        selectUrl += 'div_id/' + div_id;
+                        new Ajax.Request(selectUrl, {
+                            method: 'post',
+                            parameters: '',
+                            onFailure: '',
+                            onSuccess: function(transport) {                                 
+                                if(transport.status == 200)	{                                            
+                                    var supplierReturn = transport.responseText;
+                                    if(supplierReturn == '1'){
+                                        $(div_id).innerHTML = '';
+                                    }else{
+                                        $(div_id).innerHTML = supplierReturn;
+                                    }
+                                    var res = div_id.replace('show_select_warehouse_supplier_','');
+                                    if(res == div_id)
+                                        var res = div_id.replace('show_select_only_warehouse_','');
+                                    if(res == div_id)
+                                        var res = div_id.replace('show_select_only_supplier_','');                                                                                    
+                                    var res2 = res.split('_');
+                                    var orderItemId = res2[0];
+                                    if(!supplierReturn || supplierReturn=='' || supplierReturn==null){                                                                                        
+                                        if($("span-shipment-dropship[items]["+orderItemId+"]"))
+                                            $("span-shipment-dropship[items]["+orderItemId+"]").innerHTML = '<img src="<?php echo Mage::getDesign()->getSkinUrl('images/error_msg_icon.gif', array("_area" => "adminhtml")); ?> "/>';
+                                        if($("span-shipment[items]["+orderItemId+"]"))
+                                            $("span-shipment[items]["+orderItemId+"]").innerHTML 
+                                            = '<img src="<?php echo Mage::getDesign()->getSkinUrl('images/error_msg_icon.gif', array("_area" => "adminhtml")); ?> "/>\n\ ' +
+                                            '<input type="hidden" id="check-shipment[items]['+orderItemId+']" value="0" />';                                                                                            
+                                    }else{
+                                        if(supplierReturn == '1'){
+                                            if($("span-shipment[items]["+orderItemId+"]"))
+                                                $("span-shipment[items]["+orderItemId+"]").innerHTML = '';
+                                        }else{
+                                            if($("span-shipment-dropship[items]["+orderItemId+"]"))
+                                                $("span-shipment-dropship[items]["+orderItemId+"]").innerHTML 
+                                                = '<img src="<?php echo Mage::getDesign()->getSkinUrl("images/success_msg_icon.gif", array("_area" => "adminhtml")); ?> " />'+
+                                                '<input type="hidden" id="check-shipment[items]['+orderItemId+']" value="1" />';
+                                            if($("span-shipment[items]["+orderItemId+"]"))
+                                                $("span-shipment[items]["+orderItemId+"]").innerHTML 
+                                                = '<img src="<?php echo Mage::getDesign()->getSkinUrl("images/success_msg_icon.gif", array("_area" => "adminhtml")); ?> " />'+
+                                                '<input type="hidden" id="check-shipment[items]['+orderItemId+']" value="1" />';                                                
+                                        }
+                                    }                                        
+                                }
+                            }
+                        });
+                    }
+                });
+            }else{
+                $('select_warehouse_supplier').innerHTML = '<?php echo $this->__('Warehouse') ?>';
+                $$('button').each(function(el){  		
+                    var el_class = el.className;  		
+                    if (el_class.search('submit-button') != -1){  			
+                        $(el.id).innerHTML = "<span><?php echo $this->__('Submit Shipment'); ?></span>";  		
+                        $(el.id).onclick = function(){
+                            submitShipment(this); 
+                        }          
+                        $('edit_form').action = '<?php echo $this->getUrl('admin/sales_order_shipment/save', array('order_id' => $this->getRequest()->getParam('order_id'))); ?>';
+                    }                                              
+                });
+                $$('div').each(function(el){
+                    var div_id = el.id;
+                    if (div_id.search('show_select_warehouse_supplier') != -1 || (div_id.search('show_select_only_warehouse') != -1) || (div_id.search('show_select_only_supplier') != -1)){
+                        var selectUrl = '<?php echo $this->getUrl('inventorydropshipadmin/adminhtml_inventorydropship/selectwarehouse', array('_secure' => true)) ?>';
+                        selectUrl += 'div_id/' + div_id;
+                        new Ajax.Request(selectUrl, {
+                            method: 'post',
+                            parameters: '',
+                            onFailure: '',
+                            onSuccess: function(transport) {                                 
+                                if(transport.status == 200)	{                                            
+                                    var warehouseReturn = transport.responseText;
+                                    $(div_id).innerHTML = warehouseReturn;
+                                    var res = div_id.replace('show_select_warehouse_supplier_','');
+                                    if(res == div_id)
+                                        var res = div_id.replace('show_select_only_warehouse_','');
+                                    if(res == div_id)
+                                        var res = div_id.replace('show_select_only_supplier_','');
+                                    if(div_id.search('show_select_only_warehouse') != -1){
+                                        var res2 = res.split('_');
+                                        var orderItemId = res2[0];
+                                        $("span-shipment-dropship[items]["+orderItemId+"]").innerHTML = '';
+                                        $(div_id).innerHTML = '';                                            
+                                    }
+                                    if(div_id.search('show_select_only_supplier') != -1){
+                                        var res2 = res.split('_');
+                                        var orderItemId = res2[0];
+                                        $("span-shipment-dropship[items]["+orderItemId+"]").innerHTML = '';
+                                        $(div_id).innerHTML = '';                                            
+                                    }
+                                    if(div_id.search('show_select_warehouse_supplier') != -1){
+                                        var res2 = res.split('_');                                       
+                                        var productId = res2[1];
+                                        var orderid = '<?php echo Mage::app()->getRequest()->getParam('order_id'); ?>';
+                                        var warehouseId = $("warehouse-shipment[items]["+res2[0]+"]").value;
+                                        var checkparenturl = '<?php echo $this->getUrl('inventorydropshipadmin/adminhtml_inventorydropship/checkparent', array('_secure' => true)) ?>';
+                                        var orderItemId = res2[0]; 
+                                        checkparenturl += 'itemid/' + orderItemId;
+                                        new Ajax.Request(checkparenturl, {
+                                            method: 'post',
+                                            parameters: '',
+                                            onFailure: '',
+                                            onSuccess: function(transport) {                                 
+                                                if(transport.status == 200)	{                                            
+                                                    var parentIdReturn = transport.responseText;                                                     
+                                                    var qtyToShip = $$('[name="shipment[items]['+parentIdReturn+']"]')[0].value ;
+                                                    var orderItemId = res2[0];                                        
+                                                    checkStatusAvailableAOrderItemByEventDropShip(warehouseId,productId,qtyToShip,orderItemId,orderid,qtyToShip);
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        }
+    }); 
+    
+    function changeviewsupplier(selectSupplier,itemOrdeId)
+    {
+        var itemOrderId = itemOrdeId;
+        var url = '<?php echo $this->getUrl('inventoryadmin/adminhtml_supplier/edit'); ?>';
+        url += 'id/'+$(selectSupplier).value;
+        $('view_supplier-shipment[items]['+itemOrdeId+']').href= url;        
+    }
+
+    function changeviewwarehouse(selectSupplier,itemOrdeId)
+    {
+        var itemOrderId = itemOrdeId;
+        var url = '<?php echo $this->getUrl('inventoryadmin/adminhtml_warehouse/edit'); ?>';
+        url += 'id/'+$(selectSupplier).value;
+        $('view_warehouse-shipment[items]['+itemOrdeId+']').href= url;        
+    }
+    
+    function submitDropShip(btn)
+    {
+        if(editForm.submit()) {
+            disableElements('submit-button');
+        } 
+    }
+</script>

@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<config>	
+    <sections>
+        <advancedquickorder translate="label" module="advancedquickorder">
+            <label>Advanced Quick Order</label>
+            <tab>gubase</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <advancedquickorder_general translate="label">
+                    <label>General Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+                        <route translate="label">
+                            <label>Route</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </route>
+                        <quickdisplay translate="label">
+                            <label>QuickOrder display type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>advancedquickorder/adminhtml_config_quickdisplay</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </quickdisplay>
+                        <rowsofinput translate="label">
+                            <label>Number of input search</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </rowsofinput>
+                        <numberofrows translate="label">
+                            <label>Number of products rows result</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </numberofrows>
+                        
+                        <loggedin translate="label">
+                            <label>Logged In User Only</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                User must login to use quick order
+                            </comment>
+                        </loggedin>
+                        
+                        
+                        <hideaddtocartonitem translate="label">
+                            <label>Hide Add To Cart Button on Item</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>                            
+                        </hideaddtocartonitem>
+                        
+                        <quicklinkmenu translate="label">
+                            <label>Add Quick Order Menu To Top Links</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>It works with default theme</comment>                            
+                        </quicklinkmenu>
+                        
+                        <tophtml translate="label">
+                            <label>Top HTML</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>advancedquickorder/adminhtml_config_block</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tophtml>
+                        
+                        <bottomhtml translate="label">
+                            <label>Bottom HTML</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>advancedquickorder/adminhtml_config_block</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bottomhtml>
+                        
+                        <loadbycategory translate="label">
+                            <label>Load by category</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>                            
+                        </loadbycategory>
+                                                                                      
+                    </fields>
+                </advancedquickorder_general>
+                <advancedquickorder_suggestion translate="label">
+                    <label>Product Suggestion</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <displaytype translate="label">
+                            <label>Products display type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>advancedquickorder/adminhtml_config_displaytype</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </displaytype>
+                        <numberofproducts translate="label">
+                            <label>Number of suggestion products</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </numberofproducts>
+                    </fields>
+                </advancedquickorder_suggestion>
+            </groups>
+        </advancedquickorder>
+    </sections>
+</config>

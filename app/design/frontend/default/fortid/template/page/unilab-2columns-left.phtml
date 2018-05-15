@@ -1,0 +1,73 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9" xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>"> <!--<![endif]-->
+<head>
+<?php echo $this->getChildHtml('head') ?>
+</head>
+<body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
+<?php echo $this->getChildHtml('after_body_start') ?>
+<div class="wrapper">
+    <?php echo $this->getChildHtml('global_notices') ?>
+    <div class="page layout-grid">
+    <div class="row">
+        <?php echo $this->getChildHtml('header') ?>
+        <div class="main-container col2-left-layout">
+            <div class="main">
+                <?php echo $this->getChildHtml('breadcrumbs') ?>
+                <div class="col-left sidebar-top">
+					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('Operated_by')->toHtml(); ?>  
+					<?php echo $this->getChildHtml('left') ?>
+				</div>
+                <div class="col-main">
+                    <?php echo $this->getChildHtml('global_messages') ?>
+                    <?php echo $this->getChildHtml('content') ?>
+					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('shopbycategory')->toHtml(); ?>
+                </div>
+                <div class="col-left sidebar-bottom"><?php echo $this->getChildHtml('left') ?></div>
+            </div>
+        </div>
+        </div>
+        <?php echo $this->getChildHtml('footer') ?>
+    </div>
+</div>
+<?php echo $this->getAbsoluteFooter() ?>
+<script> 
+var ums<?php echo rand(22,4444);?> = UnilabAccord.init({
+                                                headerclass: "expandable2",
+                                                contentclass: "categoryitems2",
+                                                revealtype: "clickForce", 
+                                                mouseoverdelay: 200, 
+                                                collapseprev: true, 
+                                                defaultexpanded: [], 
+                                                onemustopen: false, 
+                                                animatedefault: false, 
+                                                persiststate: false,  
+                                                toggleclass: ["", "openheader"], 
+                                                togglehtml: ["prefix", "", ""],  
+                                                animatespeed: "fast",  
+                                                oninit:function(headers, expandedindices){},
+                                                onopenclose:function(header, index, state, isuseractivated){}
+                                            }) 
+
+
+    var ums<?php echo rand(22,4444);?> = UnilabAccord.init({
+                                                headerclass: "expandable",
+                                                contentclass: "categoryitems",
+                                                revealtype: "clickForce", 
+                                                mouseoverdelay: 200, 
+                                                collapseprev: true, 
+                                                defaultexpanded: [], 
+                                                onemustopen: false, 
+                                                animatedefault: false, 
+                                                persiststate: false,  
+                                                toggleclass: ["", "openheader"], 
+                                                togglehtml: ["prefix", "", ""],  
+                                                animatespeed: "fast",  
+                                                oninit:function(headers, expandedindices){},
+                                                onopenclose:function(header, index, state, isuseractivated){}
+                                            })  
+</script>
+</body>
+</html>

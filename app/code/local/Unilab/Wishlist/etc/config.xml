@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Unilab_Wishlist>
+            <version>1.6.0.0</version>
+        </Unilab_Wishlist>
+    </modules>
+    <global> 		
+		<helpers>
+            <wishlist>
+                <rewrite>
+                    <data>Unilab_Wishlist_Helper_Data</data>
+                </rewrite>
+            </wishlist>
+        </helpers>	
+        <models>
+			<wishlist>
+				<rewrite>
+					<item>Unilab_Wishlist_Model_Item</item>
+				</rewrite>
+			</wishlist>
+		</models>			
+    </global> 
+    <frontend>
+        <routers>
+            <wishlist>
+                <args>
+                    <modules>
+                        <wishlist before="Mage_Wishlist">Unilab_Wishlist</wishlist>
+                    </modules>
+                </args>
+            </wishlist>
+        </routers>
+    </frontend>
+</config>

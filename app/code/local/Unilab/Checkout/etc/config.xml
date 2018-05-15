@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Unilab_Checkout>
+			<version>0.1.0</version>
+		</Unilab_Checkout>
+	</modules>
+	<global>
+		<blocks>
+			<checkout>
+				<rewrite>
+					<cart_item_renderer_configurable>Unilab_Checkout_Block_Cart_Item_Renderer_Configurable</cart_item_renderer_configurable>
+				</rewrite>
+			</checkout>
+		</blocks>
+		
+		<!--
+		<models>
+			<checkout>
+				<rewrite>
+					<observer>Unilab_Checkout_Model_Observer</observer>
+				</rewrite>
+			</checkout>
+		</models>		
+		-->
+		
+		<!--  <events>
+		<checkout_cart_product_add_after>
+		<observers>
+		<check_prescription>
+		<class>Unilab_Checkout_Model_Observer</class>
+		<method>checkPrescription</method>
+		</check_prescription>
+		</observers>
+		</checkout_cart_product_add_after>
+		</events> -->
+
+		<!--
+		<events>
+			<checkout_type_onepage_save_order_after>
+				<observers>
+					<hooktosaveorderafter>
+						<type>singleton</type>
+						<class>checkout/placeorder</class>
+						<method>hookToSaveOrderAfterEvent</method>
+					</hooktosaveorderafter>
+				</observers>
+			</checkout_type_onepage_save_order_after>
+		</events>
+		-->
+		
+
+	</global>
+	<frontend>
+		<routers>
+			<checkout>
+				<args>
+					<modules>
+						<checkout before="Mage_Checkout">Unilab_Checkout</checkout>
+					</modules>
+				</args>
+			</checkout>
+		</routers>
+		
+		<events>
+			<checkout_cart_update_items_before>
+				<observers>
+					<update_cart_items>
+						<type>singleton</type>
+						<class>Unilab_Checkout_Model_Updater</class>
+						<method>updateItemCart</method>
+					</update_cart_items>
+				</observers>
+			</checkout_cart_update_items_before>
+			
+		</events>
+		
+	</frontend>
+</config>

@@ -1,0 +1,34 @@
+<?php	$orderDetails = $this->getordernumber(); ?>
+
+<script type="text/javascript" src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_JS)?>jquery/jquery-1.10.2.min.js"></script>
+
+<script>
+
+	jQuery.noConflict();
+
+	jQuery(document).ready(function (){
+		
+		var orderIds = "<?php echo $orderDetails['increment_id'] ?>";
+		
+		var orderIdsArray = orderIds.split(',');
+		
+		i = 0;
+		
+		while(i	<= (orderIdsArray.length-1)){
+		
+			jQuery.post("<?php echo Mage::getStoreconfig('aonewebservicesection/aonewebservicegroup/returnurl'); ?>",{
+				token: "<?php echo $orderDetails['token']?>",
+				increment_id: orderIdsArray[i],
+				order_status: "<?php echo $orderDetails['order_status']?>"
+
+			}, function (xhr){
+				
+				alert(xhr);
+			});			
+
+			i++;
+		}
+
+		
+	});
+</script>

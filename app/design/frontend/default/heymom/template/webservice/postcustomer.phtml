@@ -1,0 +1,33 @@
+<?php 
+	$customerdata = $this->getData('customerdata'); 
+	$webservicesettings = $this->getData('webservicesettings'); 
+
+	$posturl = $webservicesettings['gateway'] . "cmdEvent=save_existing"; 
+
+	?>
+	<form action="<?php echo $posturl;?>" method="POST" style="display:block;">
+	<input type="text" value="<?php echo $webservicesettings['token']; ?>" name="token"><br>
+	<?php
+
+	foreach ($customerdata as $key => $value){
+		Mage::log($customerdata, null, 'postcustomer.log');
+		Mage::log($webservicesettings, null, 'postcustomer.log');
+
+		?><input type="text" value="<?php echo $value; ?>" name="<?php echo $key;?>"><br><?php
+	}
+
+	?>
+	<input type="submit" id="btnSubmit">
+	</form><?php
+?>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+jQuery(document).ready(function (){	
+		jQuery('#btnSubmit').click();
+});
+
+</script>
+

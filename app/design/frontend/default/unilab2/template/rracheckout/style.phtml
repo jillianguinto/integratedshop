@@ -1,0 +1,438 @@
+<?php
+
+// This page is create by Richel R. Amante for UNILAB use only.
+// Please do not used this software and take with your own risk.
+// Style CSS
+// Thank you!!!
+
+?>
+
+<style>
+	.checkout-nav{
+        text-align: right;
+	}
+	.checkout-nav input{
+		display: inline-block;
+	    border-radius: 5px;
+	    color: #fff2f2;
+	    font-size: 15px;
+	    padding: 5px 10px 5px 10px;
+	    text-decoration: none;
+	    width: 179px;
+	    background-image: linear-gradient(to bottom, #53bfb8, #208881);
+        background-color: #208881;
+	}
+	.heading h1.cls_header {
+	    display: inline-block;
+	    color: #847f7f;
+	    font-size: 20px !important;
+	    padding: 2px 5px 2px 5px;
+	    border-radius: 5px;
+	    font-weight: bold;
+	}
+	.checkout-items{
+		text-align: center;
+	}
+	.items_wrapper .address-preview span.change {
+	    display: inline;
+	    cursor: pointer;
+	    padding-left: 10px;
+	    font-weight: 600;
+	    text-transform: capitalize;
+	    color: #4fa2d4;
+	    font-size: 13px;
+	    font-family: 'calibriregular', tahoma, arial, sans-serif;
+	}
+	.items_wrapper .address-preview h3 {
+	    display: inline;
+	    color: #847f7f;
+	}
+	.address-preview {
+	    display: inline-block;
+	    width: 32%;
+	    height: auto;
+	    vertical-align: top;
+	}
+	.shipping-line {
+    	width: 15%;
+	    border: 1px solid #847f7f;
+	    display: inline-block;
+	    position: relative;
+	    bottom: 5px;
+	}
+
+	.heading
+	{
+		padding:4px 10px 0px 10px;
+		background-color:#<?php echo Mage::getStoreConfig('rracheckoutsection/design/headerskin') ?>;
+		border-radius:8px 8px 0px 0px;
+	}
+	.cls_number
+	{
+		display:inline-block;
+		font-size:20px;
+		padding:2px 5px 2px 5px;
+		border-radius:5px;
+		background-color:#<?php echo Mage::getStoreConfig('rracheckoutsection/design/headernumberbackground') ?>;
+		color: #<?php echo Mage::getStoreConfig('rracheckoutsection/design/headernumber') ?>;
+		font-weight:bold;
+	}
+	.cls_header
+	{
+	    font-size: 30px !important;
+	    color: #847f7f;
+	    display: inline-block;
+	    padding: 2px 5px 2px 5px;
+	    border-radius: 5px;
+	    font-weight: bold;
+	}	
+	.shipping_wrapper, .shipping_method_wraper,.payment_method_wraper,.items_wrapper, .payment_instruction_wrapper
+	{
+		position:relative;
+		border:solid 1px #<?php echo Mage::getStoreConfig('rracheckoutsection/body_skin/bodyborder') ?>;
+		background-color:#<?php echo Mage::getStoreConfig('rracheckoutsection/body_skin/bodybackground') ?>;
+		border-radius:10px 10px 0px 0px;
+		display:inline-block;
+		width: 100%;
+		
+	}
+	.total_wrapper
+	{
+		position:relative;
+		border:solid 1px #<?php echo Mage::getStoreConfig('rracheckoutsection/body_skin/bodyborder') ?>;
+		background-color:#F5F5F5; /*#<?php echo Mage::getStoreConfig('rracheckoutsection/body_skin/bodybackground') ?>;*/
+		display:inline-block;
+		width: 100%;
+		
+	}
+	.cls_body
+	{
+		padding: 10px;
+	}
+	.name-firstname, .name-lastname,
+	.field-telephone,.field-mobile, 
+	.field-city,.field-zip, 
+	.gender, .fax
+	{
+		display: inline-block;
+		width: 100%;
+	}
+	
+	.field-postcode
+	{
+		display:inline-block;
+		width:24%;
+	}	
+	.field-region
+	{
+		display:inline-block;
+		width:74%;
+	}
+	.cls_address
+	{
+		display:inline-block;
+		width:45%;
+	}
+	.container_wapper
+	{
+		margin: 10px 0;
+	}
+	
+	.container_wapper .page-title 
+	{
+		padding: 0;
+	}
+	
+	.rracheckout-checkout-onepage .page-title {
+		background: #e5e3e0;
+	}
+	
+	.rracheckout-checkout-onepage .page-title h1{
+		padding: 10px;
+		font-size: 16px;
+		letter-spacing: .5px;
+		color: #00817b;
+	}
+	
+	#submit_btn{
+		display: inline-block;
+	    border-radius: 5px;
+	    color: #fff2f2;
+	    font-size: 15px;
+	    padding: 5px 10px 5px 10px;
+	    text-decoration: none;
+	    width: 179px;
+	    background-image: linear-gradient(to bottom, #53bfb8, #208881);
+	}
+	#shopping-cart-table thead
+	{
+	    color: #fff;
+		width: 100% !important;
+	}
+	
+	/*.button
+	{
+		background-color:#<?php echo Mage::getStoreConfig('rracheckoutsection/button_skin/buttonbackground') ?> !important;
+		color: #<?php echo Mage::getStoreConfig('rracheckoutsection/button_skin/buttontext') ?> !important;	
+		border-radius: <?php echo Mage::getStoreConfig('rracheckoutsection/button_skin/buttonradius') ?> !important;
+	}	*/
+	
+	.form-list
+	{
+		width:100%;
+	}
+	.form-list li {
+	  margin: 5px 0px 5px 0px !important;
+	}	
+	.input-box select 
+	{
+		padding: 5px;
+		width: 100%;
+	}
+	.form-list li.wide .input-box input.input-text 
+	{
+	  width: 93%;
+	}	
+	fieldset > textarea {
+		width: 98% !important;
+	}
+	
+	.checkout-wrapper {
+		display: inline-flex;
+	}
+	.field-telephone{
+	    display: none !important;
+	}
+
+	.checkout-wrappah {
+		/*width: 65%;
+		float: left;*/
+	}
+	
+	.shipping-method {
+    	width: 35%;
+		margin: 10px auto;
+	}
+	.payment-method{
+	    width: 45%;
+	    margin: 10px auto;
+	}
+
+		
+	.lightcheckout-discount-form {
+		display: inline-flex;
+	}
+	
+	input#coupon_code {
+		margin: 0px 5px;
+		width: 150px;
+	}
+	
+	.prodname {
+		color: #F68A33;
+		font-weight: bold;
+		margin: 0;
+	}
+	
+	td.prodqty {
+		text-align: center;
+	}
+	
+	td.checkout-total {
+		text-align: right;
+	}
+	
+	td.checkout-total.subtotal {
+		width: 80%;
+	}
+	
+	td.checkout-total.grand {
+		font-size: 14px;
+		font-weight: bold;
+	}
+	
+	.footer address {
+		color: #716558;
+		top: 0px;
+		position: relative;
+	}
+
+	.discount.checkout {
+		display: none;
+	}
+	
+	.shipping_wrapper .form-list
+	{
+		width: 50%;
+	}
+	
+	.shipping_wrapper .cls_body {
+		display: inline-flex;
+		width: 100%;
+	}
+	
+	.cls_body_header {
+		display: inline-flex;
+		width: 100%;
+		font-size: 20px;
+		font-weight: bold;
+		color: #847f7f;
+	}
+	
+	.line-header {
+		height: 1px;
+		margin: 10px;
+		width: 20%;
+		background: #847f7f;
+	}
+	
+	.customer-name {
+		width: 100%;
+		display: inline-block;
+	}
+	.field-mobile {
+    	top: 0px; 
+	}
+	
+	.field-telephone .input-box,
+	.field-mobile .input-box,
+	.field-zip .input-box
+	{
+		width: 95% !important
+	}
+
+	.name-firstname .input-box,
+	.name-lastname .input-box,{
+		width: 100% !important;
+	}
+	.input-box {
+	    width: 99% !important;
+	    display: inline-block;
+	}
+	.fields label,
+	.wide label {
+	    float: left;
+	    width: 100%;
+	}
+	.name-firstname {
+	    padding-bottom: 0px;
+	}
+	
+	.field-city .input-box,
+	input#shipping_street1,
+	input#billing_street1
+	{
+		width: 95% 
+	}
+	
+	#billing_address_form li.fields .input-box,
+	#billing_address_form .input-box,
+	#billing_address_id, 
+	#shipping_address_form .input-box{
+		width: 99%;
+	}
+	
+	#shipping_save_in_address_book,
+	#shipping_save_in_address_book_yes,
+	#yes-billing,
+	#no_billing,
+	#not-credicard
+	{
+		width: auto !important;
+	}
+	
+	.use-also-as-billing li {
+		width: 100%;
+	}
+	
+	.shipping_list, .payment_list {
+		font-size: 13px;
+		border: 1px solid #847f7f;
+		padding: 15px;
+		border-radius: 8px;
+	}
+	
+	.div-dotted
+	{
+		width: 5%;
+	}
+	
+	.dottedline
+	{
+		height: 100%;
+		width: 0px;
+		margin: auto;
+		border: 0;
+		border-left: 2px dashed #CCC;
+		background: none;
+	}
+	
+	.choose-address {
+		width: 45%;
+	}
+	
+	.address-list {
+	    width: 97%;
+	    margin: auto;
+	}
+	
+	.address-list li {
+		padding: 10px 0;
+	}
+	
+	.fulladd {
+		margin: 0px 15px;
+		font-size: 14px;
+	}
+	
+	.form-list li label, .address-list li span {
+		font-size: 14px;
+		font-weight: bold;
+	}
+	.cls_header {
+	     text-transform: none !important; 
+	}
+
+/*=============================== RESPONSIVE GOES HERE =================================*/
+/* NOTE: Please always arrange the max-width from top(high value) to bottom (low value))
+ and dont use min-width - leandro */
+
+@media screen and (max-width: 1280px) {
+
+}
+
+@media screen and (max-width: 768px) {
+	.customer-name{
+		display: block;
+	}
+	.choose-address .address-list{
+		padding: 0;
+		width: 100%;
+	}
+	.shipping-line {
+	    width: 4%;
+	}
+	.right-menu {
+    	width: 65%;
+	}
+	.shipping-method, .payment-method {
+	    width: 50%;
+	}
+	.name-lastname,
+	.field-zip{
+		margin-top: 10px;
+	}
+	.input-box {
+	    width: 98% !important;
+	}
+	#shipping_street1,
+	#billing_street1{
+		width: 94% !important;
+	}
+}
+
+
+
+}
+	
+</style>

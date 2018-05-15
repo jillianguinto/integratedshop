@@ -1,0 +1,93 @@
+<style>
+	.expandme,.submenu_selected{
+		color:red;
+		text-decoration:underline;
+	}
+</style>
+
+<?php $_categories 		 = $this->getCategoryNavigationMenu() ?>  
+<?php if($_categories->count() > 0): ?>
+	<div class="block block-layered-nav">
+		<div class="block-title">			
+			<strong><span><a class="category-menu-label" href="<?php echo Mage::getUrl('categories')?>" title="<?php $this->__('Browse our categories')?>"><?php echo $this->__('CATEGORIES') ?></a></span></strong>
+		</div>
+		<div class="block-content">  
+				<p class="block-subtitle"><?php echo $this->__('Shopping Options') ?></p>
+				<dl id="narrow-by-list"> 	
+
+					<div class="faq_accordian">									
+						<div class="arrowlistmenu"> 
+							<h3 class="menuheader"><span class="accordprefix"></span>
+								<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>" title="All Products">
+									All Products
+								</a>
+								<span class="accordsuffix">
+								</span>
+							</h3>
+						</div>
+					 </div> 	
+
+		
+					<?php foreach($_categories as $_category):		
+					
+							$cat_id = $_category->getId();							
+							
+							$category_l = new Mage_Catalog_Model_Category();
+							
+							$category_l->load($cat_id);
+							
+							$collection = $category_l->getProductCollection();
+							
+							$collection->addAttributeToSelect('*');
+							
+							$count = 0;
+							
+							foreach ($collection as $_product):
+							
+								$count = $count + count($_product->getSku());		
+								
+							endforeach;		
+							
+							
+						if ($count >=1): ?>
+						
+						<div class="faq_accordian">
+							<div class="arrowlistmenu"> 
+								<?php if(!$_category->hasChildren()):?>
+									<h3 class="menuheader"><span class="accordprefix"></span><a href="<?php echo $_category->getUrl();?>" title="<?php echo $_category->getName();?>"><?php /*echo Mage::helper('core/string')->truncate($_category->getName(),25);*/ echo $_category->getName(); ?></a><span class="accordsuffix"></span></h3>
+								<?php else:?>
+										<h3 class="menuheader expandable <?php echo $this->canExpandMenu($_category) ? 'openheader expandme' : '';?>"><span class="accordprefix"></span><a href="<?php echo $_category->getUrl();?>" title="<?php echo $_category->getName();?>"><?php echo $_category->getName();?></a><span class="accordsuffix"></span></h3>
+										<?php $_child_categories = $_category->getChildrenCategories();?>
+										<ul style="display: block;" contentindex="5c" class="categoryitems">
+											<?php foreach($_child_categories as $_child_category):?>
+												<li><a href="<?php echo $_child_category->getUrl();?>" class="<?php echo $this->canExpandMenu($_child_category) ? 'submenu_selected' : '';?>"><?php echo $_child_category->getName();?></a></li>
+											<?php endforeach;?>
+										</ul> 
+								<?php endif;?>
+							</div>
+						 </div> 
+						 
+					<?php endif; endforeach;?> 
+				</dl>  
+				<script type="text/javascript">decorateDataList('narrow-by-list')</script>
+		</div>
+	</div>
+	<script> 
+	var ums<?php echo rand(22,4444);?> = UnilabAccord.init({
+													headerclass: "expandable",
+													contentclass: "categoryitems",
+													revealtype: "clickForce", 
+													mouseoverdelay: 200, 
+													collapseprev: true, 
+													defaultexpanded: [], 
+													onemustopen: false, 
+													animatedefault: false, 
+													persiststate: false,  
+													toggleclass: ["", "openheader"], 
+													togglehtml: ["prefix", "", ""],  
+													animatespeed: "fast",  
+													oninit:function(headers, expandedindices){},
+													onopenclose:function(header, index, state, isuseractivated){}
+												}) 
+											</script>
+<?php endif; ?>

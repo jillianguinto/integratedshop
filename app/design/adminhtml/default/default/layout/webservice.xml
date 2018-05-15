@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+
+	 <adminhtml_sales_order_view>
+
+        <reference name="sales_order_tabs">
+
+            <action method="addTab">
+
+                <name>order_view_tab_sendtons</name>
+
+                 <block>webservice/adminhtml_order_view_tab_sendtons</block>
+
+            </action>
+
+        </reference>
+
+	</adminhtml_sales_order_view>
+
+    <adminhtml_sales_order_view>
+        <reference name="sales_order_tabs">
+            <action method="addTab">
+                <name>order_view_tab_receivefromns</name>
+                 <block>webservice/adminhtml_order_view_tab_receivefromns</block>
+            </action>
+        </reference>
+    </adminhtml_sales_order_view>
+ 
+
+	 
+
+  <!--   <adminhtml_customer_edit>
+
+        <reference name="customer_edit_tabs">
+
+            <action method="addTabAfter">
+
+                <name>customer_edit_tab_sendtons</name>
+
+                <block>webservice/adminhtml_customer_edit_tab_sendtons</block>
+
+                <after>customer_info_tabs_tags</after>
+
+            </action>
+
+        </reference>
+
+    </adminhtml_customer_edit> -->
+
+ 
+
+</layout> 

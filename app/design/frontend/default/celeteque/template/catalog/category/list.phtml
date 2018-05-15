@@ -1,0 +1,145 @@
+<style>/* -- Circular Work -- */.gridcontainer {	width: 100%;	margin: auto;}.grid_3 {  display: inline;  float: left;  margin-left: 10px;  margin-right: 10px;  width: 134px;height:145px;}.fmcircle_out {	width: 100px;	height: 100px;	background: rgba(221,221,221,0.3);	text-align: center;	display: block;	margin-left: 20px;	opacity: 0.5;	border-radius: 100px;	-moz-border-radius: 100px;	-webkit-border-radius: 100px;	-o-border-radius: 100px;	-webkit-transition: all 0.2s linear;	-moz-transition: all 0.2s linear;	-o-transition: all 0.2s linear;	-ms-transition: all 0.2s linear;	transition: all 0.2s linear;}	.fmcircle_out:hover {		opacity: 1;					-webkit-transition: all 0.2s linear;		-moz-transition: all 0.2s linear;		-o-transition: all 0.2s linear;		-ms-transition: all 0.2s linear;		transition: all 0.2s linear;	}		.fmcircle_out:hover .fmcircle_in img {		margin: 0px 0px 25px 0px;		width: 90px;		height: 90px;		-webkit-transition: all 0.2s linear;		-moz-transition: all 0.2s linear;		-o-transition: all 0.2s linear;		-ms-transition: all 0.2s linear;		transition: all 0.2s linear;	}	.fmcircle_in {	width: 90px;	height: 90px;	margin: 5px;	display: inline-block;	overflow: hidden;	border-radius: 85px;	-moz-border-radius: 85px;	-webkit-border-radius: 85px;	-o-border-radius: 85px;}.fmcircle_in img {	border: none;	margin: 10px;	width: 64px;	height: 64px;	-webkit-transition: all 0.2s linear;	-moz-transition: all 0.2s linear;	-o-transition: all 0.2s linear;	-ms-transition: all 0.2s linear;	transition: all 0.2s linear;}.fmcircle_in span {	margin: 0;	padding: 0;	border: 0;	vertical-align: baseline;	width: 167px;	background: #fff;	color: #666666;	padding: 5px;	margin: 32px 0 0 -40px;	height: 20px;	text-align: center;	font-weight: bold;	letter-spacing: 0.08em;	text-transform: uppercase;	float: left;	position: absolute;	opacity: 0;	border-radius: 2px;	-moz-border-radius: 2px;	-webkit-border-radius: 2px;	-o-border-radius: 2px;	-webkit-transition: all 0.2s linear;	-moz-transition: all 0.2s linear;	-o-transition: all 0.2s linear;	-ms-transition: all 0.2s linear;	transition: all 0.2s linear;}	.fmcircle_out:hover .fmcircle_in span {		opacity: 1;				-webkit-transition: all 0.2s linear;		-moz-transition: all 0.2s linear;		-o-transition: all 0.2s linear;		-ms-transition: all 0.2s linear;		transition: all 0.2s linear;	}/*** Base64 Patterns ***/.fmcircle_color1 {	background-color: #0F75BF;}.fmcircle_color2 {	background-color: #FCA51A;}.fmcircle_color3 {	background-color: #258981;}.fmcircle_color4 {	background-color: #D10D4B;}.fmcircle_color5 {	background-color: #8F2796;}.fmcircle_color6 {	background-color: #7E363A;}.fmcircle_color7 {	background-color: #FF7473;}.fmcircle_color8 {	background-color: #00618B;}</style>
+
+<!--<?php $store = Mage::app()->getStore();if($store->getCode() == 'celeteque_en') {?>
+<div class="category-list" id="category-list">
+	<h3 class="browse-cat"> <?php echo $this->__("Browse Categories");?></h3>
+	<?php if($category_list = $this->getCategoryLists()):?> 
+
+	  <div class="gridcontainer clearfix">					
+	  <?php $category_count = 1;?>			
+	  <?php foreach($category_list as $_category):?>				
+	  <?php $list_attributes = ($category_count > 6) ? 'to_hide" style="display:none;"' : '"';?>				
+	  <div class="grid_3 <?php echo $list_attributes;?>">			
+   	  <div class="fmcircle_out">						
+	    <a href="<?php echo $_category->getUrl();?>" title="<?php echo $_category->getName();?>">							
+		<div class="fmcircle_border">								
+			<div class="fmcircle_in fmcircle_color<?php echo $category_count;?>">									
+			<span><?php echo Mage::helper('core/string')->truncate($_category->getName(),40);?></span>
+			<img src="https://dl.dropboxusercontent.com/u/1194759/logoceleteque.png" alt="" />
+			</div>							
+		</div>	
+		<span style="font-weight:bold;"><a href="<?php echo $_category->getUrl();?>" style="font-weight:bold;"><?php echo Mage::helper('core/string')->truncate($_category->getName(),40);?></a></span>					
+		</a>					 
+		</div>				
+		</div>		
+		<?php $category_count++;?>			
+		<?php endforeach;?>
+	
+		<div class="clear">&nbsp;</div>
+		<?php if(count($category_list) > 6):?>
+			<p style="width:150px;margin:0 auto;text-align:center;padding:10px;"><a href="javascript:void(0);" id="show_more_categories"><?php echo $this->__("Show More Categories");?></a></p>
+						
+			<script>
+					var show_all_categories   = false;
+					var show_categories_label = "<?php echo $this->__("Show More Categories");?>";
+					var hide_categories_label = "<?php echo $this->__("Hide Categories");?>";
+					
+					Event.observe($("show_more_categories"),"click",function(event)
+					{ 
+						var element 	  = Event.element(event);
+						var _list_wrapper = $("category-list").select("div.to_hide"); 
+						
+						if(show_all_categories){
+							_list_wrapper.each(function(elm){
+								elm.hide();
+							});
+							element.update(show_categories_label);
+							show_all_categories = false;
+						}else{
+							_list_wrapper.each(function(elm){
+								elm.show();
+							});
+							element.update(hide_categories_label);
+							show_all_categories = true;
+						}
+					});
+			</script>
+		<?php endif;?>
+	<?php endif;?>	</div>
+</div><?php }else {?><div class="category-list" id="category-list">	<h3><?php echo $this->__("Browse Our Categories");?></h3>	<?php if($category_list = $this->getCategoryLists()):?>		<ul>			<?php $category_count = 1;?>			
+<?php foreach($category_list as $_category):?>				
+	<?php $list_attributes = ($category_count > 6) ? 'class="to_hide" style="display:none;"' : '';?>				
+	<li <?php echo $list_attributes;?>>					
+		<?php if($_imgUrl = $_category->getListIcon()):?>						
+		<a href="<?php echo $_category->getUrl();?>" title="<?php echo $_category->getName();?>"><img alt="<?php echo $_category->getName();?>" style="width:90px;height:90px;" src="<?php echo Mage::getBaseUrl('media').'catalog/category/'.$_imgUrl;?>" alt="<?php echo $this->htmlEscape($_category->getName());?>" title="<?php echo $this->htmlEscape($_category->getName());?>" /></a>					
+	<?php else:?>						
+	<a href="<?php echo $_category->getUrl();?>" title="<?php echo $_category->getName();?>"><img alt="<?php echo $_category->getName();?>"  style="width:90px;height:90px;" src="<?php echo $this->getSkinUrl("images/_category_default.jpg");?>" alt="<?php echo $this->htmlEscape($_category->getName());?>" title="<?php echo $this->htmlEscape($_category->getName());?>" /></a>					
+<?php endif;?>					
+<b style="display:block;"><a href="<?php echo $_category->getUrl();?>"><?php echo Mage::helper('core/string')->truncate($_category->getName(),40);?></a></b>					
+<p class="desc" style="margin:0px;"><?php echo  Mage::helper('core/string')->truncate($this->htmlEscape($_category->getListTitle(),60));?></p>				
+</li>				
+<?php $category_count++;?>			
+<?php endforeach;?>		
+</ul> 		
+<div class="clear">&nbsp;</div>		
+<?php if(count($category_list) > 6):?>			
+	<p style="width:150px;margin:0 auto;text-align:center;padding:10px;"><a href="javascript:void(0);" id="show_more_categories"><?php echo $this->__("Show More Categories");?></a></p>									
+	<script>					
+	var show_all_categories   = false;					
+	var show_categories_label = "<?php echo $this->__("Show More Categories");?>";					
+	var hide_categories_label = "<?php echo $this->__("Hide Categories");?>";										
+	Event.observe($("show_more_categories"),"click",function(event)					
+	{ 						
+		var element 	  = Event.element(event);						
+		var _list_wrapper = $("category-list").select("li.to_hide"); 												
+		if(show_all_categories){							
+			_list_wrapper.each(function(elm){								
+				elm.hide();							
+			});							
+			element.update(show_categories_label);							
+			show_all_categories = false;						
+		}else{							
+			_list_wrapper.each(function(elm){								
+				elm.show();							
+			});							
+			element.update(hide_categories_label);							
+			show_all_categories = true;						
+		}					
+	});			
+</script>		
+<?php endif;?>	
+<?php endif;?></div><?php }?>
+-->
+
+ <div class="category-list" id="category-list">
+
+	<div class="browse-cat">
+		Browse Categories
+	</div>
+
+		<ul class="cate-ul" style="padding-top: 10px; padding-left: 10%;">
+			<li>
+			<div>
+				<a href="<?php echo Mage::getBaseUrl();?>dermoscience.html" title="DermoScience">
+				<img style="border-radius: 10px 10px 12px 12px; height: 225px" src="<?php echo $this->getSkinUrl();?>images/dermoscience.png" width="100%">
+				</a>
+			</div>
+			</li>
+			
+			<li>
+			<div>
+				<a href="<?php echo Mage::getBaseUrl();?>dermocosmetics.html" title="DermoCosmetics">
+				<img style="border-radius: 10px 10px 12px 12px; height: 225px" src="<?php echo $this->getSkinUrl();?>images/dermocosmetics.png" width="100%">
+				</a>
+			</div>
+			</li>
+
+		</ul>			
+	</div>
+
+
+
+<style>
+.category-list ul li{
+	width: 37%;
+	margin-right: 4%;
+	margin-left: 3%;
+}
+
+div#category-list{
+	display: block;
+    padding-bottom: 19%;
+    padding-top: 10px;
+}
+
+</style>

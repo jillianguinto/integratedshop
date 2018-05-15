@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<config>
+<!--     
+	<menu>
+	    <unilab translate="title" module="unilab">
+			<children>
+				<minimumordervalue translate="title" module="minimumordervalue">
+					<title>MOV Shipping</title>
+					<action>minimumordervalue/adminhtml_minimumordervalue</action>
+					<sort_order>3</sort_order>
+				</minimumordervalue>	
+			</children>
+        </unilab>
+    </menu> -->
+
+    <menu>
+	    <system translate="title" module="system">
+			<children>
+				<minimumordervalue translate="title" module="minimumordervalue">
+					<title>MOV Shipping Maintenance</title>
+					<action>minimumordervalue/adminhtml_minimumordervalue</action>
+					<sort_order>11</sort_order>
+				</minimumordervalue>	
+			</children>
+        </system>
+    </menu>
+	
+<!-- 	
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>				
+					<system translate="title" module="system">
+						<children>
+							<minimumordervalue translate="title" module="minimumordervalue">
+								<title>MOV Shipping</title>
+							
+							</minimumordervalue>
+						</children>
+					</system>	
+				</children>
+			</admin>
+		</resources>   
+	</acl> -->
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>				
+					<system translate="title" module="system">
+						<children>
+							<!-- <webservice translate="title" module="webservice"> -->
+								<children>
+									<minimumordervalue translate="title" module="minimumordervalue">
+									<title>MOV Shipping</title>
+									</minimumordervalue>
+								</children>
+							<!-- </webservice> -->
+						</children>
+					</system>	
+				</children>
+			</admin>
+		</resources>   
+	</acl>
+	
+	<adminhtml>
+        <layout>
+            <updates>
+                <minimumordervalue>
+                    <file>minimumordervalue.xml</file>
+                </minimumordervalue>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>

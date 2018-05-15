@@ -1,0 +1,20 @@
+<?php 
+
+	$code 			= $_SESSION["storename"];
+	
+	$storeId 		= Mage::app()->getStore()->getId();
+	
+	$rootCategoryId = Mage::app()->getStore($storeId)->getRootCategoryId();
+
+	$subcategoryIds = (int) $code;
+	
+	$categories = Mage::getModel('catalog/category')
+						->getCollection()
+						->addAttributeToSelect('*')
+						->addIsActiveFilter()
+						->addAttributeToFilter('level',3)
+						->addAttributeToFilter('path', array('like' => "1/{$rootCategoryId}/%"))
+						->addAttributeToFilter('parent_id',$subcategoryIds);						
+						
+
+?>

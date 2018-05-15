@@ -1,0 +1,30 @@
+<div class="col2-set">
+    <div class="box">
+        <div class="box-title">
+            <h3><?php echo $this->__('Health+ Credits') ?></h3>
+        </div>
+        <div class="box-content">
+            <div class="col-1 my-account-hp">
+                <?php
+
+					$get_current_email = $this->__(Mage::getSingleton('customer/session')->getCustomer()->getEmail());
+
+					$connection = Mage::getModel('core/resource')->getConnection('core_read');
+					$sql = "SELECT *  FROM unilab_health_plus WHERE email ='$get_current_email'";
+					$orders = $connection->fetchRow($sql);
+					$credit_earned = $orders['credit_earned'];
+					$credit_used = $orders['credit_use'];
+					$credit_balance = $orders['credit_balance'];
+					$available_credit_balance = $orders['available_balance'];
+				?>
+				
+				<li>Total Credits earned: <?php echo number_format($credit_earned, 2, '.', ',');?></li>
+				<li>Total Credits used: <?php echo number_format($credit_used, 2, '.', ',');	?></li>
+				<li>Credit Balance: <?php echo number_format($credit_balance, 2, '.', ',');	?></li>
+				<li>Available Credit Balance: <?php echo number_format($available_credit_balance, 2, '.', ','); ?></li>
+				<li class="hint_health_plus">Please note that your Health+Credits will be available for use once your payment has been fully completed, specially for COD and Bank Deposit payment</li>
+            </div>
+
+        </div>
+    </div>
+</div>

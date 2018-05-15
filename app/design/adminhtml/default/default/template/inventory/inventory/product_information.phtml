@@ -1,0 +1,238 @@
+<?php $product = $this->getProductInformation() ?>
+<?php $warehouseproducts = $this->getWarehouseByProductId($product->getId()) ?>
+<?php $supplierproducts = $this->getSupplierByProductId($product->getId()) ?>
+<?php
+$product_id = $product->getId();
+$need_ship = 0;
+$orderItemCollection = Mage::getModel('sales/order_item')->getCollection()
+    ->addFieldToFilter('product_id', $product_id);
+foreach ($orderItemCollection as $item) {
+    $need_ship += ($item->getQtyOrdered() - $item->getQtyCanceled() - $item->getQtyShipped());
+}
+?>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Product Information') ?></h4>
+    </div>
+    <?php if ($product): ?>
+        <div id="product_information_form" class="fieldset ">
+            <div class="hor-scroll">
+                <table cellspacing="0" class="form-list">
+                    <tbody>
+                        <tr>
+                            <td class="label">
+                                <label for="name"><?php echo $this->__('Product Name') ?></label>
+                            </td>
+                            <td class="value">
+                                <?php echo $product->getName() ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                <label for="sku"><?php echo $this->__('Product Sku') ?></label>
+                            </td>
+                            <td class="value">
+                                <?php echo $product->getSku() ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                <label for="status"><?php echo $this->__('Status') ?></label>
+                            </td>
+                            <td class="value">
+                                <?php $statusArray = Mage::getSingleton('catalog/product_status')->getOptionArray() ?>
+                                <?php echo $statusArray[$product->getStatus()] ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                <label for="visibility"><?php echo $this->__('Visibility') ?></label>
+                            </td>
+                            <td class="value">
+                                <?php $visibilityArray = Mage::getModel('catalog/product_visibility')->getOptionArray() ?>
+                                <?php echo $visibilityArray[$product->getVisibility()] ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                <label for="view">
+                                    <a href="<?php echo $this->getUrl('adminhtml/catalog_product/edit', array('id' => $product->getId())) ?>">
+                                        <?php echo $this->__('View Product') ?>
+                                    </a>
+                                </label>
+                            </td>                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <?php endif ?>
+</div>
+
+<div class="entry-edit" style="margin-bottom:15px;">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Warehouse') ?></h4>
+    </div>
+    <?php if ($warehouseproducts): ?>
+        <div class="grid">
+            <div class="hor-scroll">
+                <table cellspacing="0" id="warehouseGrid_table" class="data">
+                    <colgroup>
+                        <col width="50" class="a-center">
+                        <col>
+                        <col width="150" class="a-center">
+                        <col width="80" class="a-center">
+                        <col width="100" class="a-center">
+                    </colgroup>
+                    <thead>
+                        <tr class="headings">
+                            <th><span class="nobr a-center"><?php echo $this->__('ID') ?></span></th>
+                            <th>
+                                <span class="nobr"><?php echo $this->__('Warehouse Name') ?></span>
+                            </th>
+                            <th>
+                                <span class="nobr a-center"><?php echo $this->__('Qty') ?></span>
+                            </th>
+                            <th>
+                                <span class="nobr a-center"><?php echo $this->__('Avail. Qty') ?></span>
+                            </th>
+                            <th>
+                                <span class="nobr a-center"><?php echo $this->__('Status') ?></span>
+                            </th>
+                            <th>
+                                <span class="nobr a-center"><?php echo $this->__('Action') ?></span>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <?php $i = 0; ?>
+                        <?php foreach ($warehouseproducts as $warehouseproduct): ?>
+                            <?php $warehouse = Mage::getModel('inventory/warehouse')->load($warehouseproduct->getWarehouseId()) ?>
+                            <tr class="<?php if ($i % 2 == 0) echo "even"; ?> pointer">
+                                <td class="a-center">
+                                    <?php echo $warehouse->getId() ?>
+                                </td>
+                                <td class="a-left">
+                                    <a href="<?php echo $this->getUrl('inventoryadmin/adminhtml_warehouse/edit', array('id' => $warehouse->getId())) ?>" title="<?php echo $this->__('View Warehouse') ?>">
+                                        <?php echo $warehouse->getName() ?>
+                                    </a>
+                                </td>
+                                <td class="a-center">
+                                    <?php echo $warehouseproduct->getQty() ?>
+                                </td>
+                                 <?php
+                                    $availQty = $warehouseproduct->getQtyAvailable();
+                                ?>
+                                <td class="a-center">
+                                    <?php echo $availQty ?>
+                                </td>
+                                <td class="a-center">
+                                    <?php $warehouseStatus = array('1' => $this->__('Enabled'), '2' => $this->__('Disabled')) ?>
+                                    <?php echo $warehouseStatus[$warehouse->getStatus()] ?>
+                                </td>
+                                <td class="a-center">
+                                    <a href="<?php echo $this->getUrl('inventoryadmin/adminhtml_warehouse/edit', array('id' => $warehouse->getId())) ?>" title="<?php echo $this->__('View Warehouse') ?>">
+                                        <?php echo $this->__('View') ?>
+                                    </a>
+                                </td>
+                            </tr>           
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <?php else: ?>
+        <?php echo $this->__('No warehouse found!') ?>
+    <?php endif ?>
+</div>
+
+<div class="entry-edit" style="margin-bottom:15px;">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Supplier') ?></h4>
+    </div>
+    <?php if ($supplierproducts): ?>
+        <div class="grid">
+            <div class="hor-scroll">
+                <table cellspacing="0" id="supplierGrid_table" class="data">
+                    <colgroup>
+                        <col width="50" class="a-center">
+                        <col>
+                        <col width="150" class="a-center">
+                        <col width="80" class="a-center">
+                        <col width="80" class="a-center">
+                        <col width="80" class="a-center">
+                        <col width="80" class="a-center">
+                        <col width="100" class="a-center">
+                    </colgroup>
+                    <thead>
+                        <tr class="headings">
+                            <th><span class="nobr a-center"><?php echo $this->__('ID') ?></span></th>
+                            <th>
+                                <span class="nobr"><?php echo $this->__('Supplier Name') ?></span>
+                            </th>
+                            <th>
+                                <span class="nobr a-center"><?php echo $this->__('Last Purchase Order') ?></span>
+                            </th>
+                            <th>
+                                <span class="nobr a-center"><?php echo $this->__('Cost') ?></span>
+                            </th>
+                            <th>
+                                <span class="nobr a-center"><?php echo $this->__('Tax(%)') ?></span>
+                            </th>
+                            <th>
+                                <span class="nobr a-center"><?php echo $this->__('Discount(%)') ?></span>
+                            </th>
+                            <th>
+                                <span class="nobr a-center"><?php echo $this->__('Status') ?></span>
+                            </th>
+                            <th>
+                                <span class="nobr a-center"><?php echo $this->__('Action') ?></span>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <?php $i = 0; ?>
+                        <?php foreach ($supplierproducts as $supplierproduct): ?>
+                            <?php $supplier = Mage::getModel('inventory/supplier')->load($supplierproduct->getSupplierId()) ?>
+                            <tr class="<?php if ($i % 2 == 0) echo "even"; ?> pointer">
+                                <td class="a-center">
+                                    <?php echo $supplier->getId() ?>
+                                </td>
+                                <td class="a-left">
+                                    <a href="<?php echo $this->getUrl('inventoryadmin/adminhtml_supplier/edit', array('id' => $supplier->getId())) ?>" title="<?php echo $this->__('View Supplier') ?>">
+                                        <?php echo $supplier->getName() ?>
+                                    </a>
+                                </td>
+                                <td class="a-center">
+                                    <?php echo $supplier->getLastPurchaseOrder() ?>
+                                </td>
+                                <td class="a-center">
+                                    <?php echo Mage::helper('core')->currency($supplierproduct->getCost()) ?>
+                                </td>
+                                <td class="a-center">
+                                    <?php echo $supplierproduct->getTax() ?>
+                                </td>
+                                <td class="a-center">
+                                    <?php echo $supplierproduct->getDiscount() ?>
+                                </td>
+                                <td class="a-center">
+                                    <?php $supplierStatus = array('1' => $this->__('Enable'), '2' => $this->__('Disable')) ?>
+                                    <?php echo $supplierStatus[$supplier->getStatus()] ?>
+                                </td>
+                                <td class="a-center">
+                                    <a href="<?php echo $this->getUrl('inventoryadmin/adminhtml_supplier/edit', array('id' => $supplier->getId())) ?>" title="<?php echo $this->__('View Supplier') ?>">
+                                        <?php echo $this->__('View') ?>
+                                    </a>
+                                </td>
+                            </tr>           
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <?php else: ?>
+        <?php echo $this->__('No supplier found!') ?>
+    <?php endif ?>
+</div>

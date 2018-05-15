@@ -1,0 +1,35 @@
+<div class="shopbycategory-container">
+<div class="shopbycategory-content">
+<div class="shopbycategory-content2">
+SHOP BY CATEGORY
+</div>
+<div style="width:100%">
+
+
+	<?php 
+
+		$shopbyid = Mage::getStoreConfig('oneshop/oneshopsettings/shopbycategory');
+		
+		$category = Mage::getModel('catalog/category')->load($shopbyid); //SHOP BY Category id
+		$subcategories = $category->getChildrenCategories();
+
+		if (count($subcategories) > 0){
+    	foreach($subcategories as $subcategory){
+
+    	$categoryname 	= $subcategory->getName();
+    	$categoryurl 	= $subcategory->getUrl();
+        $categoryimage 	= Mage::getBaseUrl('media').'catalog/category/'.$subcategory->getImage();
+
+
+?>
+<div class="category-container">
+	<div class="category-item">
+		<img  src="<?php echo $categoryimage; ?>">
+		<span class="cat-label"><a href="<?php echo $categoryurl; ?>"><?php echo $categoryname; ?></a></span>	
+	</div>
+</div>
+		<?php }
+	}//endforeach;?>
+</div>
+</div>
+</div>

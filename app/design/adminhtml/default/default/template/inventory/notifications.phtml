@@ -1,0 +1,24 @@
+<?php
+$stock_notice = Mage::getStoreConfig('inventory/notice/stock_notice');
+$notice_for = Mage::getStoreConfig('inventory/notice/notice_for');
+if ($stock_notice == 1) {
+    if ($notice_for == 2) {
+        $messages = $this->getSystemNotice();
+    } elseif ($notice_for == 1) {
+        $messages = $this->getWarehouseNotice();
+    } else {
+        $messages = $this->getBothNotice();
+    }
+    ?>
+    <?php if (count($messages) > 0) { ?>
+        <div class="notification-global">
+            <b><?php echo $this->__('Low Stock Notification(s):') ?></b>
+            <br/>
+            <?php
+            foreach ($messages as $message) {
+                echo $message;
+            }
+            ?>   
+        </div>
+    <?php } ?>
+<?php }; ?>

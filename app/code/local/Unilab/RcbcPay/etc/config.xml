@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * 
+ * BPI Secure Pay Configuration 
+ */
+ * @author: diszo.sasil
+ * @email: diszo.sasil@movent.com
+ * @date: 2013-11-21
+ */
+-->
+<config>
+	<modules>
+		<Unilab_RcbcPay>
+			<version>1.1.0.0</version>
+		</Unilab_RcbcPay>
+	</modules>
+	<global>
+		<models>
+			<rcbcpay>
+				<class>Unilab_RcbcPay_Model</class>
+			</rcbcpay>
+		</models>
+		<blocks>
+			<rcbcpay>
+				<class>Unilab_RcbcPay_Block</class>
+			</rcbcpay>
+		</blocks>
+		<helpers>
+			<rcbcpay>
+				<class>Unilab_RcbcPay_Helper</class>
+			</rcbcpay>
+		</helpers>
+		<payment>			
+			<groups>
+				<offline>Offline Payment Methods</offline>
+			</groups>
+		</payment>
+	</global>
+	<default>
+		<payment>
+			
+			<rcbcpay>				
+				<!-- For API configuration -->
+				<active>1</active>
+				<enable_testmode>1</enable_testmode>
+				<title>BPI SecurePay</title>				
+				<merchant_test>TEST001278233986</merchant_test>						
+				<merchant_live></merchant_live>
+				<merchant_accesscode_test>7DC32619</merchant_accesscode_test>		
+				<merchant_accesscode_live></merchant_accesscode_live>
+				<merchant_secure_hash_secret_test>E979E59165C469541F7E62268578F8DD</merchant_secure_hash_secret_test>
+				<merchant_secure_hash_secret_live></merchant_secure_hash_secret_live>				
+				<order_status>pending</order_status>
+				<allowspecific>0</allowspecific>
+				<payment_action>authorize</payment_action>
+				<model>rcbcpay/method_payment</model>		
+			</rcbcpay>
+						
+		</payment>
+	</default>
+	<frontend>
+		<routers>
+			<rcbcpay>
+				<use>standard</use>
+				<args>
+					<module>Unilab_RcbcPay</module>
+					<frontName>rcbcpay</frontName>
+				</args>
+			</rcbcpay>
+		</routers>
+	</frontend>
+</config>

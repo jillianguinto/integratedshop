@@ -1,0 +1,121 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<!--
+<?php //if($_heading = $this->getContentHeading()): ?>
+    <div class="page-title">
+        <h1><?php //echo $_heading; ?></h1>
+    </div>
+<?php //endif; ?>
+
+
+!-->
+
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+		 <link rel="stylesheet" type="text/css" href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB)?>media/css/lean-slider.css" />
+		  <link rel="stylesheet" type="text/css" href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB)?>media/css/sample-styles.css" />
+		<script type="text/javascript" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB)?>media/js/lean-slider.js"></script>
+			<script type="text/javascript">
+    $(document).ready(function() {
+        var slider = $('#slider').leanSlider({
+            directionNav: '#slider-direction-nav',
+            controlNav: '#slider-control-nav'
+        });
+    });
+    </script>
+
+<?php
+
+	$iconurl = Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . "images/";
+
+	$catID = Mage::getSingleton('core/session')->getCatID();
+	$token = Mage::getSingleton('core/session')->getToken();
+	
+	$connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+	
+	$qry = $connection->select()->from('rra_oneshop_websiteurl', array('*'))
+			->where('categoryid=?', $catID)
+			->where('token=?', $token);
+	$result = $connection->fetchAll($qry);
+	$connection->commit();	
+	
+
+	$query = $connection->select()->from('rra_oneshop_slider', array('*'));
+			// ->where('categoryid=?', $catID)
+			// ->where('isActive=?', 1);
+	$exec = $connection->fetchAll($query);
+	$connection->commit();	
+	// print_r($exec);
+	// die();
+	
+	
+	foreach($result as $key => $value)
+	{
+		foreach($value as $key1 => $value1)
+		{
+			if($key1 == 'banner')
+			{
+				$image_path = $value1;
+			}
+			if($key1 == 'websiteurl')
+			{
+				$websiteurl = $value1;
+			}
+		}
+	
+	}
+	
+	
+		
+?>
+<?php if($catID != null && $token != null) { ?>
+<div style="border:2px solid #022b49"><img src="<?php echo $image_path;?>" style="width:100%"></div>
+<?php } ?>
+
+ 
+	
+		<div class="slider-wrapper">
+			<div id="slider">
+			<?php
+				$a=1;
+				foreach($exec as $key => $value)
+				{
+			?>
+					<div class="slide<?php echo $a; ?>">
+					  <img src="<?php echo $value['slider_path']; ?>" alt="">
+					</div>
+					<?php 
+					$a++;
+				}
+					?>
+					
+			</div>
+        	<div id="slider-direction-nav"></div>
+			
+			<div id="slider-control-nav"></div>
+		</div>
+	
+ 

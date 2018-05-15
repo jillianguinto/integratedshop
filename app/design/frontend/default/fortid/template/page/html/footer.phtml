@@ -1,0 +1,67 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_modern
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<!-- Loading Icon -->
+<div id="loading-icon">
+    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/unilab2/images/loading-icon.gif">
+</div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Work-Place</h2>
+    </div>
+    <div class="modal-body">
+      <p><span id="prodName"></span> was added to your shopping cart</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button"title="<?php echo $this->__('Continue Shopping') ?>" class="button btn-cshopping"><span><?php echo $this->__('Continue Shopping') ?></span></button>
+      <button type="button" returnUrl="<?php echo Mage::helper('checkout/url')->getCartUrl() ?>" title="<?php echo $this->__('Proceed to Cart') ?>" class="button btn-checkout" ><span><?php echo $this->__('Proceed to Cart') ?></span></button>
+    </div>
+  </div>
+</div>
+
+
+
+	<div class="footer-container">
+		<div class="footer">
+			<div class="f-gray">
+				  <div class="row"> 
+						<div class="footer-operated">
+							<!-- Operated by: Workplace Pharmacy Services Inc. -->
+							<!-- Operated by: Clickealth Services, Inc. -->
+						</div>
+				  
+						<div class="footer_highlight">
+							<?php echo $this->getChildHtml() ?>
+						</div>
+					<!--<address><?php echo $this->getCopyright() ?></address>-->
+				</div>
+			</div>
+		</div>
+	</div> 

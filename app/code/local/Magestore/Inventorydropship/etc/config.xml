@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_Inventorydropship
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+-->
+<config>
+    <modules>
+        <Magestore_Inventorydropship>
+            <version>0.1.1</version>
+        </Magestore_Inventorydropship>
+    </modules>
+    <frontend>
+        <routers>
+            <inventorydropship>
+                <use>standard</use>
+                <args>
+                    <module>Magestore_Inventorydropship</module>
+                    <frontName>inventorydropship</frontName>
+                </args>
+            </inventorydropship>
+        </routers>
+        <layout>
+            <updates>
+                <inventorydropship>
+                    <file>inventorydropship.xml</file>
+                </inventorydropship>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Magestore_Inventorydropship>
+                    <files>
+                        <default>Magestore_Inventorydropship.csv</default>
+                    </files>
+                </Magestore_Inventorydropship>
+            </modules>
+        </translate>
+    </frontend>
+    <admin>
+        <routers>
+            <inventorydropshipadmin>
+                <use>admin</use>
+                <args>
+                    <module>Magestore_Inventorydropship</module>
+                    <frontName>inventorydropshipadmin</frontName>
+                </args>
+            </inventorydropshipadmin>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <inventorydropship>
+                    <file>inventorydropship.xml</file>
+                </inventorydropship>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Magestore_Inventorydropship>
+                    <files>
+                        <default>Magestore_Inventorydropship.csv</default>
+                    </files>
+                </Magestore_Inventorydropship>
+            </modules>
+        </translate>
+    </adminhtml>   
+    <global>
+        <models>
+            <inventorydropship>
+                <class>Magestore_Inventorydropship_Model</class>
+                <resourceModel>inventorydropship_mysql4</resourceModel>
+            </inventorydropship>
+            <inventorydropship_mysql4>
+                <class>Magestore_Inventorydropship_Model_Mysql4</class>
+                <entities>
+                    <inventorydropship>
+                        <table>erp_inventory_dropship</table>
+                    </inventorydropship>
+                    <inventorydropshipproduct>
+                        <table>erp_inventory_dropship_product</table>
+                    </inventorydropshipproduct>
+                </entities>
+            </inventorydropship_mysql4>
+        </models>
+        <resources>
+            <inventorydropship_setup>
+                <setup>
+                    <module>Magestore_Inventorydropship</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </inventorydropship_setup>
+            <inventorydropship_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </inventorydropship_write>
+            <inventorydropship_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </inventorydropship_read>
+        </resources>
+        <blocks>
+            <inventorydropship>
+                <class>Magestore_Inventorydropship_Block</class>
+            </inventorydropship>
+        </blocks>
+        <helpers>
+            <inventorydropship>
+                <class>Magestore_Inventorydropship_Helper</class>
+            </inventorydropship>
+        </helpers>
+        <!-- <events>
+            <controller_action_predispatch>
+                <observers>
+                    <inventorydropship_observers>
+                        <class>inventorydropship/observer</class>
+                        <method>controllerActionPredispatch</method>
+                    </inventorydropship_observers>
+                </observers>
+            </controller_action_predispatch>
+        </events> -->
+        
+        <template>
+            <email>
+                <inventory_dropship_email_request_to_supplier translate="label" module="inventorydropship">
+                    <label>Email template when sending drop shipment request from admin to supplier</label>
+                    <file>inventorydropship/request_to_supplier.html</file>
+                    <type>html</type>
+                </inventory_dropship_email_request_to_supplier>
+                <inventory_dropship_email_cancel_to_customer translate="label" module="inventorydropship">
+                    <label>Email template when canceling drop shipment request from admin to supplier</label>
+                    <file>inventorydropship/cancel_to_supplier.html</file>
+                    <type>html</type>
+                </inventory_dropship_email_cancel_to_customer>				
+                <inventory_dropship_email_cancel_to_admin translate="label" module="inventorydropship">
+                    <label>Email template when refusing drop shipment request from supplier to admin</label>
+                    <file>inventorydropship/cancel_to_admin.html</file>
+                    <type>html</type>
+                </inventory_dropship_email_cancel_to_admin>				
+                <inventory_dropship_email_confirm_to_admin translate="label" module="inventorydropship">
+                    <label>Email template when confirming drop shipment request from supplier to admin</label>
+                    <file>inventorydropship/confirm_to_admin.html</file>
+                    <type>html</type>
+                </inventory_dropship_email_confirm_to_admin>				
+                <inventory_dropship_email_approve_to_customer translate="label" module="inventorydropship">
+                    <label>Email template when approving drop shipment confirmation from admin to supplier</label>
+                    <file>inventorydropship/approve_to_supplier.html</file>
+                    <type>html</type>
+                </inventory_dropship_email_approve_to_customer>	
+                <inventory_dropship_email_confirm_shipped_to_admin translate="label" module="inventorydropship">
+                    <label>Email template when confirming shipped order from supplier to admin</label>
+                    <file>inventorydropship/confirm_shipped_to_admin.html</file>
+                    <type>html</type>
+                </inventory_dropship_email_confirm_shipped_to_admin>			
+                <inventory_dropship_email_refund_to_supplier translate="label" module="inventorydropship">
+                    <label>Email template when refunding from admin to supplier</label>
+                    <file>inventorydropship/refund_to_supplier.html</file>
+                    <type>html</type>
+                </inventory_dropship_email_refund_to_supplier>			
+                <inventory_dropship_email_reset_password translate="label" module="inventorydropship">
+                    <label>Email template when resetting supplier's password to supplier</label>
+                    <file>inventorydropship/reset_password_to_supplier.html</file>
+                    <type>html</type>
+                </inventory_dropship_email_reset_password>				
+            </email>
+        </template>        
+    </global>
+    <default>
+        <inventory>
+            <dropship>
+                <enable>0</enable>
+<!--                <confirm>1</confirm>-->
+                <sendemail>1</sendemail>
+                <returntosupplier>0</returntosupplier>
+                <supplier_confirm_provide>1</supplier_confirm_provide>
+                <admin_approve>1</admin_approve>
+                <supplier_confirm_shipped>1</supplier_confirm_shipped>
+                
+                <email_request_to_supplier>inventory_dropship_email_request_to_supplier</email_request_to_supplier>
+                <email_cancel_to_customer>inventory_dropship_email_cancel_to_customer</email_cancel_to_customer>
+                <email_cancel_to_admin>inventory_dropship_email_cancel_to_admin</email_cancel_to_admin>
+                <email_confirm_to_admin>inventory_dropship_email_confirm_to_admin</email_confirm_to_admin>
+                <email_approve_to_customer>inventory_dropship_email_approve_to_customer</email_approve_to_customer>
+                <email_confirm_shipped_to_admin>inventory_dropship_email_confirm_shipped_to_admin</email_confirm_shipped_to_admin>
+                <email_refund_to_supplier>inventory_dropship_email_refund_to_supplier</email_refund_to_supplier>
+                <email_reset_password>inventory_dropship_email_reset_password</email_reset_password>
+            </dropship>
+        </inventory>
+    </default>
+</config>

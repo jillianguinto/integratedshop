@@ -1,0 +1,55 @@
+<div class="category-variants">
+	Select Variants
+</div>
+<div class="variant-container">
+
+<?php 
+
+	function getCategoryImage($category) {
+   		$categoryCollection = Mage::getModel('catalog/category')->setStoreId(Mage::app()->getStore()->getId())->getCollection()->addAttributeToSelect('image')
+   		->addIdFilter($category->getId());
+
+	    foreach($categoryCollection as $category) {
+	        return $category->getImageUrl();
+	    }
+	}
+
+	$layer = Mage::getSingleton('catalog/layer');
+    $_category = $layer->getCurrentCategory();
+   	$currentCategoryId= $_category->getId();
+     	
+    $children = Mage::getModel('catalog/category')->getCategories($currentCategoryId);
+    foreach ($children as $category)
+    {	  			
+
+    	?>
+    	<div class="variants-products">
+
+	    	<?php 
+
+	    	$cat_id = $category->getId();
+
+	   
+    	    $cat_img = explode('/', getCategoryImage($category));
+
+	        ?>
+	      	<a href="<?php echo $category->getRequestPath(); ?>">
+	      		<img src="/media/catalog/category/<?php echo $cat_img[7]; ?>" style="width: 130px;"/>	
+	      	</a>	
+
+	      	<?php 
+
+			?>
+
+		</div>
+	<?php 	
+
+	}				
+
+?>
+	<div class="clear"></div>
+</div>
+
+<div class="clear"></div>
+
+

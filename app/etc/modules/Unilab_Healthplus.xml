@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Unilab_Healthplus>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Unilab_Healthplus>
+    </modules>
+</config>

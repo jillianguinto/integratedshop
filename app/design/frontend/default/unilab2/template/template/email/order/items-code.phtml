@@ -1,0 +1,48 @@
+<?php
+
+	//Get Local Country code from backend waiver setting		
+		
+		$waiver_code = Mage::getStoreConfig('celeteque_section/celeteque_group/waiver_code');
+
+		$waiver_active = Mage::getStoreConfig('celeteque_section/celeteque_group/waiver_active');
+		
+	//Get Country Code
+					
+		$path			= 	Mage::getBaseDir();	
+		
+		$file 			= 	$path . DS .'countrycode.temp';
+					
+		$country_code =  file_get_contents($file);		
+	
+?>
+
+<br/>
+         
+<table width="100%" style="margin:auto;">
+	<tbody>
+		<tr>
+			<td align="right">
+				<span style="color:red;font-weight:bold;font-size:10px;display:block;margin-top:-3px;">VAT Inclusive</span>
+			</td>
+		</tr>
+		<?php 		
+							
+		if  ($waiver_active == 1):
+		
+			if ($country_code != $waiver_code):	 
+			
+				$waiver_other = Mage::getStoreConfig('celeteque_section/celeteque_group/waiver_note');	
+			
+		?>		
+			<tr>
+				<td align="right">
+					<span style="color:red;font-weight:bold;font-size:10px;display:block;margin-top:-3px;"><?php echo $waiver_other; ?></span>
+				</td>
+			</tr>			
+		<?php 		
+			endif; 
+		endif;
+		?>
+	</tbody>
+	
+</table>

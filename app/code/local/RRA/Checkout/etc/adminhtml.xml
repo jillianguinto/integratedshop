@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+
+// This page is create by Richel R. Amante for UNILAB use only.
+// Please do not used this software and take with your own risk.
+
+// Thank you!!!
+
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <rracheckoutsection>
+                                        <title>Unilab Checkout</title>
+                                        <sort_order>998</sort_order>
+                                    </rracheckoutsection>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,418 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_modern
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?> 
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-93906164-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!-- Google Analytics -->
+<?php 
+
+		$currentstoreid   = Mage::app()->getStore()->getStoreId();
+		$currentStorename = Mage::app()->getStore()->getName();
+		
+		$categoryid = Mage::getSingleton('core/session')->getCategoryId();
+		$storeid    = Mage::getSingleton('core/session')->getStoreid();	
+		$storename  = Mage::getSingleton('core/session')->getStorename();			
+		
+		/*if($currentstoreid != $storeid)
+		{
+			$redirectlink = 'http://' . $_SERVER['HTTP_HOST'] . "/errors/unauthorized.php";
+            
+			?> <script> window.location = "<?php echo $redirectlink; ?>"; </script><?php
+		}*/
+		
+		// echo "Currentstoreid = " . Mage::app()->getStore()->getStoreId();
+		// echo "<br>";
+		// echo "CurrentStorename = " . Mage::app()->getStore()->getName();
+		// echo "<br><br>";
+		
+		
+		// echo "Storeid = " . $storeid;
+		// echo "<br>";
+		// echo "Storename = " . $storename;
+		// echo "<br>";
+		// echo "Categoryid = " . $categoryid;
+
+		// die(); 
+
+?>
+
+
+<!-- <script type="text/javascript" src="http://onlinestore.ecomqa.com/skin/frontend/default/celeteque/js/script.js"></script>
+<script type="text/javascript" src="http://onlinestore.ecomqa.com/skin/frontend/default/celeteque/js/jquery.min.js"></script> -->
+<script type="text/javascript">//<![CDATA[ 
+( function($) {
+    $(window).load(function(){
+        $('#menu_btn').click(function(){
+          $('.wrap_menu').slideToggle();
+        })
+
+    });//]]>  
+} ) ( jQuery );
+</script>
+
+
+
+<?php 
+    $website_url = 'http://celetequedermo.com/';
+?>
+
+<div class="header-container">
+    <div class="header"> 
+
+        <div class="logo-holder">
+            <a href="<?php echo Mage::getBaseurl(); ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong>
+    		  <img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" />
+                <!--<p>Operated by: Work-Place Pharmacy Services Inc.</p>-->
+                <p>Operated by: Clickhealth Services, Inc.</p>
+            </a>
+        </div>
+
+        <div class="top-right">
+            <div class="quick-access">
+                <div class="social-icons">
+                    <ul style="margin-right: -5%;left: -3%;width: 105%;">
+                        <li><a href="#"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>/frontend/default/celeteque/images/icon_facebook.gif" alt="fb" border="0"/></a></li>
+                        <li><a href="#"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>/frontend/default/celeteque/images/icon_twitter.gif" alt="twitter" border="0"/></a></li>
+                        <li><a href="#"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>/frontend/default/celeteque/images/icon_instagram.gif" alt="instagram" border="0"/></a></li>
+                        <li><a href="#"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>/frontend/default/celeteque/images/icon_email.gif" alt="email" border="0"/></a></li>
+                    </ul>
+                </div>
+                    <?php //echo $this->getChildHtml('store_language') ?>
+                    <!--<div  class="clear"></div>  
+                    <div class="tagline"><h2 style="margin-top:20px;"><?php echo $this->__("Your health and Wellness Solutions Online");?></h2></div>
+                    <div class="clear"></div>-->
+
+                    <div class="tagline"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>/frontend/default/celeteque/images/txt_try-it-love-it02.gif" alt="tagline"/></div>
+                <?php //echo $this->getChildHtml('topLinks') ?>
+            </div>
+           <div class="clear"></div>
+            <?php // echo $this->getChildHtml('topMenu') ?>
+            <?php //echo $this->getChildHtml('mainSearch') ?>
+            
+        </div>
+
+        
+
+
+<!-- <nav> 
+    <div class="mobile-nav-icon" >
+        <img src="http://www.celetequedermo.com/images/btn_mobile-nav.gif" alt="">
+    </div>
+    <div class="wrap_menu">
+        <ul class="menu">
+            <li>
+                <a href="<?php echo Mage::getUrl("/");?>">HOME</a>
+                <ul class="menu sub-menu">
+                    <li class="top_sub"><a href="<?php echo $website_url;?>what-is-celeteque-dermo.html">WHAT IS CÉLETEQUE DERMO?</a></li>
+                    <li><a href="<?php echo $website_url;?>what-is-dermoscience.html">WHAT IS DERMOSCIENCE?</a></li>
+                    <li><a href="<?php echo $website_url;?>what-is-dermocosmetics.html">WHAT IS DERMOCOSMETICS?</a></li>
+                </ul> 
+            </li>
+            <li>
+                <a href="">SKIN CARE</a>
+                <ul class="menu sub-menu category">
+                    <li> <span class="cat-name">CATEGORY </span></li>
+                    <li><a href="<?php echo $website_url;?>skin-care_cleansers.html">CLEANSERS</a></li>
+                    <li><a href="<?php echo $website_url;?>skin-care_toners.html">TONERS</a></li>
+                    <li><a href="<?php echo $website_url;?>skin-care_treatment.html">TREATMENT</a></li>
+                    <li><a href="<?php echo $website_url;?>skin-care_moisturizers.html">MOISTURIZERS</a></li>
+                </ul>
+                <ul class="menu sub-menu category">
+                    <li> <span class="cat-name">SKIN CONCERN</span></li>
+                    <li><a href="<?php echo $website_url;?>hydration.html">HYDRATION</a>
+                      <ul class="category-child">
+                        <li><a href="<?php echo $website_url;?>hydration_facial-wash.html">Facial Wash</a></li>
+                        <li><a href="<?php echo $website_url;?>hydration_gentle-exfoliating-facial-wash.html">Gentle Exfoliating Facial Wash</a></li>
+                        <li><a href="<?php echo $website_url;?>hydration_alcohol-free-toner.html">Alcohol-Free Toner</a></li>
+                        <li><a href="<?php echo $website_url;?>hydration_facial-moisturizer.html">Facial Moisturizer</a></li>
+                        <li><a href="<?php echo $website_url;?>hydration_cooling-hydrogel-lotion.html">Cooling Hydrogel Lotion</a></li>
+                        <li><a href="<?php echo $website_url;?>hydration_hydrolyzed-moisturizing-mist.html">Hydrolyzed Moisturizing Mist</a></li>
+                        <li><a href="<?php echo $website_url;?>hydration_makeup-remover-cleansing-facial-wipes.html">Make-Up Remover Cleansing Facial Wipes</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="<?php echo $website_url;?>brightening.html">BRIGHTENING</a>
+                      <ul class="category-child">
+                        <li><a href="<?php echo $website_url;?>brightening_facial-wash.html">Facial Wash</a></li>
+                        <li><a href="<?php echo $website_url;?>brightening_tri-benefit-power-cream.html">Tri-Benefit Power Cream</a></li>
+                        <li><a href="<?php echo $website_url;?>brightening_multi-benefit-bb-cream.html">Multi-Benefit BB Cream</a></li>
+                        <li><a href="<?php echo $website_url;?>brightening_radiance-body-cream.html">Radiance Body Cream</a></li>
+                        <li><a href="<?php echo $website_url;?>brightening_dark-spot-corrector.html">Dark Spot Corrector</a></li>
+                        <li><a href="<?php echo $website_url;?>brightening_eye-tuck-plus-dark-circles-lightener.html">Eye Tuck Plus Dark Circles Lightener</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="sun-care.html">SUN CARE</a>
+                      <ul class="category-child">
+                        <li><a href="<?php echo $website_url;?>sun-care_facial-moisturizer.html">Facial Moisturizer</a></li>
+                        <li><a href="<?php echo $website_url;?>sun-care_matte-moisturizer.html">Matte Moisturizer</a></li>
+                        <li><a href="<?php echo $website_url;?>sun-care_face-and-body-sun-defense-cream.html">Face and Body Sun Defense Cream</a></li>
+                        <li><a href="<?php echo $website_url;?>sun-care_skin-relief-after-sun-gel.html">Skin Relief After-Sun Gel</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="<?php echo $website_url;?>acne-solutions.html">ACNE SOLUTIONS</a>
+                      <ul class="category-child">
+                        <li><a href="<?php echo $website_url;?>acne-solutions_acne-cleansing-gel.html">Acne Cleansing Gel</a></li>
+                        <li><a href="<?php echo $website_url;?>acne-solutions_oil-control-toner.html">Oil Control Toner</a></li>
+                        <li><a href="<?php echo $website_url;?>acne-solutions_acne-clearing-facial-moisturizer-gel.html">Acne Clearing Facial Moisturizer Gel</a></li>
+                        <li><a href="<?php echo $website_url;?>acne-solutions_acne-clearing-concealer.html">Acne-Clearing Concealer</a></li>
+                        <li><a href="<?php echo $website_url;?>acne-solutions_acne-spot-corrector-gel.html">Acne Spot Corrector Gel</a></li>
+                        <li><a href="<?php echo $website_url;?>acne-solutions_back-acne-spray.html">Back Acne Spray</a></li>
+                        <li><a href="<?php echo $website_url;?>acne-solutions_pore-minimizing-serum.html">Pore Minimizing Serum</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="<?php echo $website_url;?>advanced-anti-aging.html">ADVANCED ANTI-AGING</a>
+                      <ul class="category-child">
+                        <li><a href="<?php echo $website_url;?>advanced-anti-aging_cleansing-oil.html">Cleansing Oil</a></li>
+                        <li><a href="<?php echo $website_url;?>advanced-anti-aging_anti-wrinkle-facial-moisturizer.html">Anti-Wrinkle Facial Moisturizer</a></li>
+                        <li><a href="<?php echo $website_url;?>advanced-anti-aging_anti-wrinkle-facial-moisturizer-spf15.html">Anti-Wrinkle Facial Moisturizer with  SPF15</a></li>
+                        <li><a href="<?php echo $website_url;?>advanced-anti-aging_anti-wrinkle-collagen-gel.html">Anti-Wrinkle Collagen Gel</a></li>
+                      </ul>
+                    </li>
+                    
+                    <li><a href="<?php echo $website_url;?>hair-and-scalp-care_clarifying-shampoo.html">HAIR AND SCALP CARE</a>
+                      <ul class="category-child">
+                        <li><a href="<?php echo $website_url;?>hair-and-scalp-care_clarifying-shampoo.html">Clarifying Shampoo</a></li>
+                      </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="">COSMETICS</a>
+            </li>
+            <li>
+                <a href="">EXPERIENCE CELETEQUE</a>
+                <ul class="menu sub-menu">
+                    <li class="top_sub"><a href="<?php echo $website_url;?>skin-analyzer.html">SKIN ANALYZER</a></li>
+                    <li><a href="<?php echo Mage::getUrl("/");?>" target="_blank">ONLINE STORE</a></li>
+                    <li><a href="<?php echo $website_url;?>store-locator.html">STORE LOCATOR</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">WHAT'S NEW</a>
+            </li>
+            <li>
+                <a href="<?php echo $website_url;?>contact-us.html">CONTACT US</a>
+            </li>
+        </ul>           
+
+    </div>
+</nav> -->
+
+<nav> 
+  <a herf="#" id="menu_btn"><img class="mobile_menu" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>/frontend/default/celeteque/images/btn_mobile-nav.gif" alt=""></a>
+    <div class="wrap_menu">
+      <ul class="menu">
+        <li><a href="<?php echo Mage::getUrl("/");?>">HOME</a>
+        <ul class="sub-menu">
+          <li class="top_sub"><a href="<?php echo $website_url;?>what-is-celeteque-dermo.html"> WHAT IS CÉLETEQUE DERMO?</a></li>
+            <li><a href="<?php echo $website_url;?>what-is-dermoscience.html">WHAT IS DERMOSCIENCE?</a></li>
+            <li><a href="<?php echo $website_url;?>what-is-dermocosmetics.html"> WHAT IS DERMOCOSMETICS?</a></li>
+          </ul>
+        </li>
+        <li><a href="#">SKIN CARE</a>
+          <ul class="sub-menu2" style="width:430px;">
+ 
+            <div class="dropLeft category">
+            <ul style="width:200px;">
+            <li> <span>CATEGORY </span></li>
+            <li><a href="<?php echo $website_url;?>skin-care_cleansers.html">CLEANSERS</a></li>
+            <li><a href="<?php echo $website_url;?>skin-care_toners.html"> TONERS</a></li>
+            <li><a href="<?php echo $website_url;?>skin-care_treatment.html">TREATMENT</a></li>
+            <li><a href="<?php echo $website_url;?>skin-care_moisturizers.html">MOISTURIZERS</a></li>
+            <li><span class="space01"></span></li>
+          </ul>
+            </div>
+            <div class="dropRight">
+          
+            <ul style="width:200px;">
+            <li> <span>SKIN CONCERN</span></li>
+            <li><a href="<?php echo $website_url;?>hydration.html">HYDRATION</a>
+              <ul>
+                <li><a href="<?php echo $website_url;?>hydration_facial-wash.html">Facial Wash</a></li>
+                <li><a href="<?php echo $website_url;?>hydration_gentle-exfoliating-facial-wash.html">Gentle Exfoliating Facial Wash</a></li>
+                 <li><a href="<?php echo $website_url;?>hydration_alcohol-free-toner.html">Alcohol-Free Toner</a></li>
+                <li><a href="<?php echo $website_url;?>hydration_facial-moisturizer.html">Facial Moisturizer</a></li>
+                <li><a href="<?php echo $website_url;?>hydration_cooling-hydrogel-lotion.html">Cooling Hydrogel Lotion</a></li>
+                <li><a href="<?php echo $website_url;?>hydration_hydrolyzed-moisturizing-mist.html">Hydrolyzed Moisturizing Mist</a></li>
+                <li><a href="<?php echo $website_url;?>hydration_makeup-remover-cleansing-facial-wipes.html">Make-Up Remover Cleansing Facial Wipes</a></li>
+              </ul>
+            </li>
+            <li><a href="<?php echo $website_url;?>brightening.html">BRIGHTENING</a>
+              <ul>
+                <li><a href="<?php echo $website_url;?>brightening_facial-wash.html">Facial Wash</a></li>
+                <li><a href="<?php echo $website_url;?>brightening_tri-benefit-power-cream.html">Tri-Benefit Power Cream</a></li>
+                <li><a href="<?php echo $website_url;?>brightening_multi-benefit-bb-cream.html">Multi-Benefit BB Cream</a></li>
+                <li><a href="<?php echo $website_url;?>brightening_radiance-body-cream.html">Radiance Body Cream</a></li>
+                <li><a href="<?php echo $website_url;?>brightening_dark-spot-corrector.html">Dark Spot Corrector</a></li>
+                <li><a href="<?php echo $website_url;?>brightening_eye-tuck-plus-dark-circles-lightener.html">Eye Tuck Plus Dark Circles Lightener</a></li>
+              </ul>
+            </li>
+            <li><a href="<?php echo $website_url;?>sun-care.html">SUN CARE</a>
+              <ul>
+                <li><a href="<?php echo $website_url;?>sun-care_facial-moisturizer.html">Facial Moisturizer</a></li>
+                <li><a href="<?php echo $website_url;?>sun-care_matte-moisturizer.html">Matte Moisturizer</a></li>
+                <li><a href="<?php echo $website_url;?>sun-care_face-and-body-sun-defense-cream.html">Face and Body Sun Defense Cream</a></li>
+                <li><a href="<?php echo $website_url;?>sun-care_skin-relief-after-sun-gel.html">Skin Relief After-Sun Gel</a></li>
+              </ul>
+            </li>
+            <li><a href="<?php echo $website_url;?>acne-solutions.html">ACNE SOLUTIONS</a>
+              <ul>
+                <li><a href="<?php echo $website_url;?>acne-solutions_acne-cleansing-gel.html">Acne Cleansing Gel</a></li>
+                <li><a href="<?php echo $website_url;?>acne-solutions_oil-control-toner.html">Oil Control Toner</a></li>
+                <li><a href="<?php echo $website_url;?>acne-solutions_acne-clearing-facial-moisturizer-gel.html">Acne Clearing Facial Moisturizer Gel</a></li>
+                <li><a href="<?php echo $website_url;?>acne-solutions_acne-clearing-concealer.html">Acne-Clearing Concealer</a></li>
+                <li><a href="<?php echo $website_url;?>acne-solutions_acne-spot-corrector-gel.html">Acne Spot Corrector Gel</a></li>
+                <li><a href="<?php echo $website_url;?>acne-solutions_back-acne-spray.html">Back Acne Spray</a></li>
+                <li><a href="<?php echo $website_url;?>acne-solutions_pore-minimizing-serum.html">Pore Minimizing Serum</a></li>
+              </ul>
+            </li>
+            <li><a href="<?php echo $website_url;?>advanced-anti-aging.html">ADVANCED ANTI-AGING</a>
+              <ul>
+                <li><a href="<?php echo $website_url;?>advanced-anti-aging_cleansing-oil.html">Cleansing Oil</a></li>
+                <li><a href="<?php echo $website_url;?>advanced-anti-aging_anti-wrinkle-facial-moisturizer.html">Anti-Wrinkle Facial Moisturizer</a></li>
+                <li><a href="<?php echo $website_url;?>advanced-anti-aging_anti-wrinkle-facial-moisturizer-spf15.html">Anti-Wrinkle Facial Moisturizer with  SPF15</a></li>
+                <li><a href="<?php echo $website_url;?>advanced-anti-aging_anti-wrinkle-collagen-gel.html">Anti-Wrinkle Collagen Gel</a></li>
+              </ul>
+            </li>
+            
+            <li><a href="<?php echo $website_url;?>hair-and-scalp-care_clarifying-shampoo.html">HAIR AND SCALP CARE</a>
+              <ul>
+                <li><a href="<?php echo $website_url;?>hair-and-scalp-care_clarifying-shampoo.html">Clarifying Shampoo</a></li>
+              </ul>
+            </li>
+          </ul>
+            </div>
+          </ul>
+        </li>
+      <li><a href="#"> COSMETICS</a>
+          <ul class="sub-menu2" style="width:430px;">
+                <div class="dropLeft category">
+            <ul style="width:200px;">
+            <li> <span>CATEGORY </span></li>
+            <li><a href="<?php echo $website_url;?>cosmetics_face.html">FACE</a></li>
+            <li><a href="<?php echo $website_url;?>cosmetics_lips-and-cheeks.html">LIPS AND CHEEKS</a></li>
+            <li><a href="<?php echo $website_url;?>cosmetics_eyes.html">EYES</a></li>
+          </ul>
+            </div>
+            <div class="dropRight">
+          
+            <ul style="width:200px;">
+            <li> <span>SKIN BENEFITS</span></li>
+            <li><a href="<?php echo $website_url;?>anti-aging-benefits.html">ANTI-AGING BENEFITS</a>
+              <ul>
+                <li><a href="<?php echo $website_url;?>anti-aging-benefits_24-hr-photoready-liquid-foundation.html">24-Hour Photoready Liquid Foundation</a></li>
+                <li><a href="<?php echo $website_url;?>anti-aging-benefits_dual-cc-matte-powder.html">Dual CC Matte Powder</a></li>
+                <li><a href="<?php echo $website_url;?>anti-aging-benefits_dark-spot-concealer-stick.html">Dark Spot Concealer Stick</a></li>
+              </ul>
+            </li>
+            <li><a href="<?php echo $website_url;?>nourishing-benefits.html">NOURISHING BENEFITS</a>
+              <ul>
+                <li><a href="<?php echo $website_url;?>nourishing-benefits_matte-lip-stick.html">Matte Lip Stick</a></li>
+                <li><a href="<?php echo $website_url;?>nourishing-benefits_cheek-color-stick.html">Cheek Color Stick</a></li>
+                <li><a href="<?php echo $website_url;?>nourishing-benefits_blush-and-face-contour-kit.html">Blush and Face Contour Kit</a></li>
+                <li><a href="<?php echo $website_url;?>nourishing-benefits_eyebrow-nourishing-serum.html">Eyebrow Nourishing Serum</a></li>
+                <li><a href="<?php echo $website_url;?>nourishing-benefits_24-hr-volumizer-mascara.html">24-Hour Volumizer Mascara</a></li>
+              </ul>
+            </li>
+            <li><span class="space02"></span></li>
+            </ul>
+            </div>
+          </ul>
+        </li>
+        <li><a href="skin-analyzer.html">EXPERIENCE CÉLETEQUE</a>
+          <ul class="sub-menu">
+            <li class="top_sub"><a href="<?php echo $website_url;?>skin-analyzer.html">SKIN ANALYZER</a></li>
+            <li><a href="<?php echo Mage::getBaseurl(); ?>">ONLINE STORE</a></li>
+            <li><a href="<?php echo $website_url;?>store-locator.html">STORE LOCATOR</a></li>
+          </ul>
+        </li>
+        
+        <li><a href="<?php echo $website_url;?>whats-new.html">WHAT’S NEW</a></li>
+        
+        <li><a href="<?php echo $website_url;?>contact-us.html">CONTACT US</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+<script type="text/javascript"> 
+jQuery(document).ready(function(){
+    jQuery('.mobile-nav-icon').click(function(){
+        jQuery(".wrap_menu").slideToggle("slow");
+    });
+});
+</script>
+
+
+    </div>
+
+    <?php echo $this->getChildHtml('topBar') ?>
+    <?php echo $this->getChildHtml('topContainer'); ?>
+</div>
+
+
+<!-- <link rel="stylesheet" href="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>banner/popup.css" type="text/css" /> -->
+
+<div class="top-blue">
+
+    <ul class="view-cart-checkout">
+		<?php 
+			if(!Mage::getSingleton('customer/session')->isLoggedIn()){
+    	?>	
+
+		<li><a href="<?php echo Mage::getUrl('customer/account/login'); ?>"><?php echo $this->__("LOGIN");?></a></li>
+		<li><a href="<?php echo Mage::getUrl('customer/account/create'); ?>"><?php echo $this->__("SIGNUP");?></a></li>
+		<?php } else {?>
+		
+			<li><a href="<?php echo Mage::getUrl('customer/account'); ?>"><?php echo $this->__("ACCOUNT");?></a></li>
+			<li><a href="<?php echo Mage::getUrl('customer/account/logout'); ?>"><?php echo $this->__("LOGOUT");?></a></li>
+		<?php } ?>
+		
+	
+        <li><a class="top-cart" href="<?php echo Mage::helper('checkout/cart')->getCartUrl(); ?>">VIEW CART(<?php echo Mage::helper('checkout/cart')->getCart()->getItemsCount(); ?>)</a></li>
+        <li><a href="<?php echo Mage::helper('checkout/url')->getCheckoutUrl();?>">CHECKOUT</a></li>
+    </ul>
+    
+</div>
+
+<!-- <div class="promo_banner">
+	<label class="promo_close">x</label>
+	<img src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA)?>promobanner/pop_up_banner.png" / >
+</div>
+<script src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_JS)?>banner/popup.js"></script>
+ -->

@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!--
+KBANK
+-->
+<config>
+	<modules>
+		<Unilab_Perapal>
+			<version>1.1.0.0</version>
+		</Unilab_Perapal>
+	</modules>
+	<global>
+		<models>
+			<perapal>
+				<class>Unilab_Perapal_Model</class>
+			</perapal>
+		</models>
+		<blocks>
+			<perapal>
+				<class>Unilab_Perapal_Block</class>
+			</perapal>
+		</blocks>
+		<helpers>
+			<perapal>
+				<class>Unilab_Perapal_Helper</class>
+			</perapal>
+		</helpers>
+		<payment>			
+			<groups>
+				<offline>Offline Payment Methods</offline>
+			</groups>
+		</payment>
+
+        <events>
+            <sales_order_invoice_save_after>
+                <observers>
+                    <perapal>
+                        <type>model</type>
+                        <class>perapal/observer</class>
+                        <method>changeOrderStatus</method>
+                    </perapal>
+                </observers>
+            </sales_order_invoice_save_after>
+        </events>
+
+	</global>
+	<default>
+		<payment>
+			<perapal>				
+				<model>perapal/method_payment</model>		
+				<active>1</active>
+				<order_status>perapal</order_status>
+				<title>Cebuana Perapal</title>							
+				<payment_action>sales</payment_action>
+				<allowspecific>0</allowspecific>	
+			</perapal>
+		</payment>
+	</default>
+	<frontend>
+		<routers>
+			<perapal>
+				<use>standard</use>
+				<args>
+					<module>Unilab_Perapal</module>
+					<frontName>perapal</frontName>
+				</args>
+			</perapal>
+		</routers>
+		<layout>
+            <updates>
+                <perapal>
+                    <file>perapal.xml</file>
+                </perapal>
+            </updates>
+        </layout>		
+	</frontend>
+</config>

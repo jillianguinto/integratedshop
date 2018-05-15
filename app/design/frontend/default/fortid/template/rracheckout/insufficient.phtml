@@ -1,0 +1,111 @@
+<?php
+
+// This page is create by Richel R. Amante for UNILAB use only.
+// Please do not used this software or take with your own risk.
+// Thank you!!!
+
+?>
+
+<link rel="stylesheet" href="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>logincss/style.css" type="text/css" />
+
+
+<style>
+
+	.wait_msg
+	{
+	  color: green;
+		padding: 10px 5px 10px 45px;
+	  margin-bottom: 10px;
+	  background-image: url(<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'wysiwyg/loading.gif'?>);
+	  background-repeat: no-repeat;
+	  background-size: 40px 40px;
+	  
+	}
+	td
+	{
+		padding: 5px 10px 5px 10px;
+	}
+	.cls_details
+	{
+		border:solid 1px #000;	
+	}
+	th
+	{
+		border:solid 1px #000;
+		background-color:#ccc;
+		padding: 5px 10px 5px 10px;
+		font-weight:bold;
+	}
+	.mod_body, .mod_header, .mod_footer
+	{
+		width:45%;
+		left: 27.5%;
+	}
+	.cls_txntype
+	{
+	
+	  cursor:pointer;
+		
+	}
+	.cls_txntype:hover
+	{
+		background-color:#EAEAEA;
+		
+	}
+	.cls_txnname
+	{
+	  color: #006CC7;	
+	  font-weight: bold;
+	}
+	.cls_info
+	{
+	  color: #008002;
+	  font-weight: bold;
+	}
+	.login_form
+	{
+		overflow:auto;
+	}
+</style>
+
+<div id="modal_wrapper">
+	<div class="mod_header">
+		<h1 class="header_title">Insufficient Balance</h1>
+	</div>
+	<div class="mod_body">	
+		
+		<div class="login_form">
+			<p class="err_msg">Insufficient Balance. Please remove any item(s) to proceed checkout.</p>
+		</div>		
+				
+	</div>
+	
+	<div class="mod_footer">
+		<div class="save_empinfo">
+			<div class="form_group">
+				<label class="btn-logout">Ok</label>
+			</div>
+		</div>	
+	</div>	
+</div>
+
+<script>
+
+	jQuery(document).ready(function () {
+	
+	
+		jQuery('#modal_wrapper').append('<div class="black_back"></div>');	
+	
+
+		
+		jQuery('.btn-back').click(function (){
+			window.location.href = "<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_WEB)?>";
+		});		
+		
+		jQuery('.btn-logout').click(function (){		
+			window.location.href = "<?php echo Mage::getBaseurl()?>checkout/cart/";
+		});		
+		
+	
+	});
+</script>

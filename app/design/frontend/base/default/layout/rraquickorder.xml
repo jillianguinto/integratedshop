@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+	<default>
+	   <reference name="top.links">
+	   
+	        <reference name="head">
+                <action method="addJs"><script>rraquickorder/jquery-1.8.2.min.js</script></action>
+				<action method="addJs"><script>rraquickorder/custom.js</script></action>
+				<action method="addCss"><stylesheet>rraquickorder/css/style.css</stylesheet></action>
+            </reference>
+
+			<action method="addLink" translate="label title" module="rraquickorder">
+				<label>Quick Order</label><url helper="rraquickorder/getQuickorderlink"/>
+				<title>Quick order</title><prepare/><urlParams/><position>1</position>
+			</action>
+		</reference>
+		
+	</default>
+
+	<rraquickorder_addtocart_index>
+		<update handle="customer_account"/>
+		<reference name="my.account.wrapper">
+			<block type="rraquickorder/order" name="quick.order.popup" template="rraquickorder/popup.phtml"/>
+			<block type="rraquickorder/order" name="quick.order.content" template="rraquickorder/content.phtml"/>
+		</reference>
+	</rraquickorder_addtocart_index>		
+		
+</layout> 

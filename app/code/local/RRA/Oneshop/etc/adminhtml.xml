@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<config>	
+	<menu>        
+		<system translate="title" module="system">			
+			<children>                
+				<oneshop translate="title" module="oneshop">                    
+				<title>One Shop Module</title>					
+				<sort_order>11</sort_order>           					
+					<children>						
+						<websiteurl module="oneshop">							
+							<title>Website URL</title>							
+							<sort_order>2</sort_order>							
+							<action>oneshop/adminhtml_websiteurl</action>						
+						</websiteurl>	
+
+						<slider module="oneshop">							
+							<title>Slider</title>							
+							<sort_order>3</sort_order>							
+							<action>oneshop/adminhtml_slider</action>						
+						</slider>						
+					</children>				
+				</oneshop>			
+			</children>		
+		</system>	
+	</menu>	    
+	
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>				
+					<system translate="title" module="system">
+						<children>
+							<oneshop translate="title" module="oneshop">
+								<title>One Shop Module</title>
+								<children>
+									<websiteurl translate="title" module="oneshop">
+										<title>Website URL</title>
+									</websiteurl>
+									
+									<slider translate="title" module="oneshop">
+										<title>Slider</title>
+									</slider>
+								</children>
+							</oneshop>
+						</children>
+					</system>	
+				</children>
+			</admin>
+		</resources>   
+	</acl>
+	
+	
+	<adminhtml>
+        <layout>
+            <updates>
+                <oneshop>
+                    <file>oneshop.xml</file>
+                </oneshop>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>

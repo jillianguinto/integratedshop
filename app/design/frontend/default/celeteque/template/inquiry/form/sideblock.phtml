@@ -1,0 +1,35 @@
+<div class="block block-account contactus_blocks"> 
+    <div class="contactus_block block-content">
+        <div class="doctor" id="contactus_doctor">
+			<img src="<?php echo $this->getSkinUrl("images/doctor.png");?>">
+			<!--
+			<p><?php echo $this->__("Good Day! I'm a Doctor. Not Feeling well? Send us an email and we'll get back to you.");?></p>
+			-->
+		</div>
+		<div class="contactus_block pharmacist" id="contactus_pharmacist">
+			<img src="<?php echo $this->getSkinUrl("images/pharmacist.png");?>">
+			<!--
+			<p><?php echo $this->__("Good Day! I'm a Pharmacist.Don't know what meds to take? Send us an email and we'll get back to you.");?></p>
+			-->
+		</div> 
+	</div>
+</div>
+<script> 
+		Event.observe($("contactus_doctor"),'click',function(elm){
+			jQuery.fancybox({closeBtn: false,
+							closeClick: false,
+							type: 'ajax',
+							href: '<?php echo $this->getUrl("inquiry/index/showform", array('code' => $this->getHashDepartmentCode('DOCTOR'))); ?>',
+							helpers: { overlay : {closeClick : false,
+												  locked:	   true}}});
+		});
+		
+		Event.observe($("contactus_pharmacist"),'click',function(elm){
+			jQuery.fancybox({closeBtn: false,
+							closeClick: false,
+							type: 'ajax',
+							href: '<?php echo $this->getUrl("inquiry/index/showform", array('code' => $this->getHashDepartmentCode('PHARMACIST'))); ?>',
+							helpers: { overlay : {closeClick : false,
+												  locked:	   true}}});
+		});
+</script>

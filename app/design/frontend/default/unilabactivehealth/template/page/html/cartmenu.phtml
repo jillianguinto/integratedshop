@@ -1,0 +1,147 @@
+
+<style>
+
+	.small-user-menu
+	{
+		display:none;
+	}	
+	
+	.small-user-menu li> a
+	{
+		color:#fff;
+	}
+	
+
+@media screen and (max-width:720px) and (min-width:480px)
+{
+	
+	.small-user-menu li
+	{
+		display:inline-block !important;
+	}
+	
+	.small-user-menu
+	{
+		display: block !important;
+		position: relative;
+		top: 0px;
+		left: 1px;
+		font-size: 16px;
+		color: #fff;
+		width: 100%;
+		text-align: center;		
+			
+		
+	}
+	.user-menu, .cart2
+	{
+		display:none !important;
+	}
+	.left-menu {
+    width: 100% !important;
+}
+	
+}
+
+@media screen and (max-width:480px) and (min-width:120px)
+{
+	
+	.small-user-menu li
+	{
+		display:inline-block !important;
+	}
+	
+	.small-user-menu
+	{
+		display: block !important;
+		position: relative;
+		top: 0px;
+		left: 1px;
+		font-size: 16px;
+		color: #fff;
+		width: 320px;
+		text-align: center;		
+		
+	}
+	.user-menu, .cart2
+	{
+		display:none !important;
+	}
+	
+}
+
+
+</style>
+
+<?php $count = (int) $this->helper('checkout/cart')->getSummaryCount(); ?>
+
+<div class="cart-menu">
+
+	<div class="left-menu">
+		<ul class="user-menu">
+			<?php
+					if (Mage::getSingleton('customer/session')->isLoggedIn()) 
+					{ 
+						$customer = Mage::getSingleton('customer/session')->getCustomer();	
+						
+			?>
+					<li><span class="hello">Hello </span>
+						<a href="<?php echo Mage::getBaseurl();?>customer/account"><?php echo $customer->getFirstname();?></a>
+					 </li>
+					<li><a href="<?php echo Mage::getBaseurl();?>customer/account/logout/">Logout </a></li>
+			<?php } else { ?>
+					<li><a href="<?php echo Mage::getBaseurl();?>customer/account/login/">My Account</a></li>
+					<li><a href="<?php echo Mage::getUrl('customer/account/create');?>">Signup</a></li>	
+					<li><a href="<?php echo Mage::getBaseurl();?>customer/account/login/">Login</a></li>		
+					
+					
+			<?php } ?>	
+		
+		</ul>
+		
+		<ul class="small-user-menu">
+			<?php
+					if (Mage::getSingleton('customer/session')->isLoggedIn()) 
+					{ 
+						$customer = Mage::getSingleton('customer/session')->getCustomer();	
+						
+			?>
+					<li><span class="hello">Hello </span>
+						<a href="<?php echo Mage::getBaseurl();?>customer/account"><?php echo $customer->getFirstname();?></a>
+					 </li>
+					<li><a href="<?php echo Mage::getBaseurl();?>customer/account/logout/">Logout </a></li>
+			<?php } else { ?>
+					<li><a href="<?php echo Mage::getBaseurl();?>customer/account/login/">My Account</a> | </li>
+					<li><a href="<?php echo Mage::getUrl('customer/account/create');?>">Signup</a> | </li>	
+					<li><a href="<?php echo Mage::getBaseurl();?>customer/account/login/">Login</a></li>		
+					
+					
+			<?php } ?>	
+			
+			
+			<li> &nbsp;&nbsp;
+				<a href="<?php echo Mage::helper('checkout/cart')->getCartUrl() ?>">
+					Cart (<?php echo $count; ?>)
+				</a>
+			</li>
+			<li>
+				<a  href="<?php echo Mage::helper('checkout/url')->getCheckoutUrl() ?>"><?php echo $this->__('Checkout')?></a>
+			</li>
+
+		</ul>
+	</div>
+	
+	<div class="right-menu">
+		<ul class="cart2">
+			<li>
+				<a href="<?php echo Mage::helper('checkout/cart')->getCartUrl() ?>">
+					Cart (<?php echo $count; ?>)
+				</a>
+			</li>
+			<li>
+				<a  href="<?php echo Mage::helper('checkout/url')->getCheckoutUrl() ?>"><?php echo $this->__('Checkout')?></a>
+			</li>
+		</ul>
+	</div>
+
+</div>

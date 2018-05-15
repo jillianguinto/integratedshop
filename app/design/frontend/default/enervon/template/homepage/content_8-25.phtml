@@ -1,0 +1,280 @@
+<script>
+    digitalData.page={ 
+      pageInfo:{
+        pageName:"ch:homepage",
+        site: "clickhealth"     
+      },
+      category:{
+        pageType:"home",
+        primaryCategory:"home", 
+        subCategory1: "",
+        subCategory2: "",
+        subCategory3: ""        
+      }
+    }
+</script>
+
+<div class="slider-container">
+    <img src="<?php echo $this->getSkinUrl('images/carouselbanner.jpg'); ?>" />
+</div>
+
+<div id="loading-icon"><img src="<?php echo $this->getSkinUrl('images/ajax-loader.gif');?>"></div>
+
+<?php 
+
+	$currentUrl = Mage::helper('core/url')->getCurrentUrl(); 
+	$baseurl = Mage::getBaseUrl();
+	$buttonTitle = $this->__('Add to Cart');
+	
+	
+	$storeid 		= 	Mage::app()->getStore()->getStoreId();
+	$currentCategoryId = Mage::getStoreConfig('oneshop/oneshopsettings/storecategory', $storeid);
+
+	$categories = Mage::getModel('catalog/category')->load($currentCategoryId)->getProductCollection()
+			->addAttributeToSelect('image')
+			->addAttributeToSelect('name')
+			->addAttributeToSelect('unilab_brand')
+			->addAttributeToSelect('unilab_size')
+			->addAttributeToSelect('*')
+			->addAttributeToFilter('price', array('neq' => 0.0000))
+			->addAttributeToFilter('status', 1)
+			->addAttributeToFilter('visibility', 4)
+			->setOrder('unilab_sort', 'asc')
+			->setPageSize(7);
+
+	$slider_content_num = count($categories);
+
+?>
+
+<input type="hidden" class="counter" value="<?php echo $slider_content_num; ?>">
+<section id="demos">
+    <div class="">
+		<div class="large-12 columns">
+			<div class="owl-carousel owl-theme">
+				
+			<?php 
+				foreach ($categories as $category)
+				{
+					$cat_id 	= $category->getId();
+					$skin_url 	= $category->getImageUrl(); 
+					$url_path 	= $baseurl.$category->getUrlPath();
+					$name 		= $category->getName();
+					$g_name 	= $category->getGenericName();
+					$price 		= $category->getPrice();
+					$p 			= number_format($price, 2, '.','');
+					$brand    	= $category->getUnilabBrand();
+					$size     	= $category->getUnilabSize();
+					
+					
+					$productid 	 = $category->getId();
+					$imgurl 	 = $category->getImageUrl(); 
+					
+					$producturl  = $baseurl.$category->getUrlPath();
+					
+					$productname = $category->getName();
+					$genericname = $category->getGenericName();
+					//$price		 = Mage::helper('core')->currency($category->getPrice(),true,false);
+					$price 		= number_format($category->getPrice(), 2, '.','');
+					$brand    	= $category->getUnilabBrand();
+					$size     	= $category->getUnilabSize();
+				
+			?>            
+
+					<div class="gallery__item">
+
+						<a href="<?php echo $producturl; ?>" class="gallery__link">
+							<?php
+								$product = Mage::getModel('catalog/product')->load($productid);
+								$full_path_url = Mage::helper('catalog/image')->init($product, 'thumbnail');
+							?>							
+							<center>
+							
+								<div class="img-container">
+									<img src="<?php echo $full_path_url; ?>" class="gallery__img" alt="" title="<?php echo $productname; ?>" />
+								</div>
+						
+							<center>
+						</a>
+						
+						<center><div class="dbox"><div class="generic-name-box"><h5><strong><?php echo $genericname; ?></strong></h5></div></div></center>
+			  
+						<ul class="item-name-price">
+							<li></li>
+							<li>
+								<div class="health-plus-catalog">
+									<?php
+										$storeid            =   Mage::app()->getStore()->getStoreId();
+										$healthplusEnabled  = Mage::getStoreConfig('healthplus/healthplussettings/enabled', $storeid);
+
+										if($healthplusEnabled == '1')
+										{
+
+											if(Mage::getConfig()->getModuleConfig('Unilab_Healthplus')->is('active', 'true'))
+											{
+												$attributeValue = Mage::getModel('catalog/product')->load($product->getId())->getAttributeText('unilab_healthplus');    
+
+												if($attributeValue == 'Yes')
+												{
+													?>
+														<a href="<?php echo $producturl; ?>" class="gallery__link">
+															<h6><?php echo $productname; ?></h6>
+														</a>
+														<img src="<?php echo $this->getSkinUrl('images/health-plus-logo.png'); ?>" alt="health plus" class="hp_img"/> <span class="gallery-price">PHP <?php echo $price; ?></span>
+													<?php   
+												} else{
+												?>
+													<a href="<?php echo $producturl; ?>" class="gallery__link">
+													<h6><?php echo $productname.'</h6></a> <span class="gallery-price">PHP '.$price.'</span>' ?>
+													<?php    
+												}   
+											}
+										}else{
+											?>
+											<a href="<?php echo $producturl; ?>" class="gallery__link"><h6><?php echo $productname.'</h6></a> <span class="gallery-price">PHP '.$price.'</span>' ?>
+											<?php
+											}
+
+									?>
+								</div>       
+							</li>          
+						</ul>
+
+					   <?php 
+							$login = Mage::getUrl('customer/account/login');
+
+							$_product = Mage::getModel('catalog/product')->load($productid);
+							$_producturl = Mage::helper('checkout/cart')->getAddUrl($_product);
+							$redirect = Mage::getUrl('checkout/cart');
+
+							$unilab_brand_text = Mage::getModel('admincontroller/convertattrib')->idtotext($productid, $brand, 'unilab_brand');
+							$unilab_size_text = Mage::getModel('admincontroller/convertattrib')->idtotext($productid, $size, 'unilab_size');
+							
+							if(Mage::getSingleton('customer/session')->isLoggedIn()){ ?>
+
+								<button type="button" id="btncart"  returnId="<?php echo $_product->getId(); ?>" itemprice="<?php echo $_product->getPrice(); ?>" returnName="<?php echo $_product->getName(); ?>" itemsku="<?php echo $_product->getSku();?>" itembrand="<?php echo $unilab_brand_text;?>" itemsize="<?php echo $unilab_size_text; ?>" returnUrl="<?php echo Mage::helper('checkout/cart')->getCartUrl(); ?>" viewUrl="<?php echo $_product->getProductUrl() ?>" title="<?php echo $buttonTitle ?>" class="button btn-cart" ><span><?php echo $buttonTitle ?></span></button>
+							
+							<?php } else { ?>
+
+								<button type="button" id="btncart"  returnId="<?php echo $_product->getId(); ?>" itemprice="<?php echo $_product->getPrice(); ?>" returnName="<?php echo $_product->getName(); ?>" itemsku="<?php echo $_product->getSku();?>" itembrand="<?php echo $unilab_brand_text;?>" itemsize="<?php echo $unilab_size_text; ?>" returnUrl="<?php echo Mage::getUrl('customer/account/login'); ?>" viewUrl="<?php echo $_product->getProductUrl() ?>" title="<?php echo $buttonTitle ?>" class="button btn-cart" ><span><?php echo $buttonTitle ?></span></button>
+						  
+							<?php } 
+						?>
+							   
+					</div>
+			 
+				<?php   
+				}          
+				?> 
+			</div>
+        </div>
+	</div>
+
+</section>    
+
+   
+        </div> <!-- .gallery -->
+    </div> <!--.gallery-wrap -->
+</div> <!-- #content -->
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<!-- redirect to signin if not logged in -->
+
+<script>
+jQuery(document).on('click','#btncart',function(){
+
+    jQuery('#loading-icon').show();
+    var product = jQuery(this).attr('returnId');
+    var productName = jQuery(this).attr('returnName');
+    var returnUrl = jQuery(this).attr('returnUrl');
+    var view_product = jQuery(this).attr('viewUrl');
+	
+	var itemprice = jQuery(this).attr('itemprice');
+	var sku = jQuery(this).attr('itemsku');
+	var brand = jQuery(this).attr('itembrand');
+	var size = jQuery(this).attr('itemsize'); 
+
+    jQuery.ajax({
+
+		type: 'Post',
+
+		url:'<?php echo Mage::getBaseUrl()?>checkout/cart/addtoCart',
+
+    data: {
+
+        product: product
+
+    },
+
+    }).done(function(data){
+		
+		var objresponse = jQuery.parseJSON(data);
+
+        if(objresponse.msg == 'success')
+		{
+			
+			//ADOBE Analytics
+			digitalData.cartValue = itemprice;
+			
+			if(objresponse.cartcount == 0){
+				digitalData.events = "scOpen,scAdd";
+			}else{
+				digitalData.events = "scAdd";
+			}
+			
+			digitalData.product=[{ 
+				productInfo: {
+					productID: sku,
+					productName: productName,
+					productBrand: brand,
+					productSize: size
+				}
+			}]
+			
+			_satellite.track('cart-add');
+			
+			window.location = returnUrl;
+
+        }else{
+
+            window.location = view_product;
+        }
+
+    });
+
+});
+</script>
+
+<!-- AMO Conversion Tags -->
+<script type='text/javascript'>
+    (function() {
+        var f = function() {
+              EF.init({ eventType: "transaction",
+                        transactionProperties : "ev_Landing Page=1&ev_transid=<transid>",
+                        segment : "27898", 
+                        searchSegment : "",
+                        sku : "",
+                        userid : "940",
+                        pixelHost : "pixel.everesttech.net"
+                        
+                        , allow3rdPartyPixels: 1});
+              EF.main();
+        };
+        window.EF = window.EF || {}; 
+        if (window.EF.main) {
+            f();
+            return;
+        }
+        window.EF.onloadCallbacks = window.EF.onloadCallbacks || [];
+        window.EF.onloadCallbacks[window.EF.onloadCallbacks.length] = f;
+        if (!window.EF.jsTagAdded) {
+            var efjs = document.createElement('script'); efjs.type = 'text/javascript'; efjs.async = true;
+            efjs.src = 'https://www.everestjs.net/static/st.v3.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(efjs, s);
+            window.EF.jsTagAdded=1;
+        }
+    })();
+</script>
+<noscript><img src="https://pixel.everesttech.net/940/t?ev_Landing Page=1&ev_transid=<transid>" width="1" height="1"/></noscript>
+<!-- AMO Conversion Tags -->

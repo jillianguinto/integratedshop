@@ -1,0 +1,17 @@
+<div class="content-header">
+    <table cellspacing="0">
+        <tbody><tr>
+                <td style="width:50%;"><h3 class="icon-head head-adminhtml-inventory">
+                        <?php if (Mage::app()->getRequest()->getActionName() == 'productpurchased'): ?>
+                            <?php echo $this->__('Stock Receipt Reports'); ?>
+                        <?php endif; ?>
+                        <?php if (Mage::app()->getRequest()->getActionName() == 'productmoved'): ?>
+                            <?php echo $this->__('Stock Issue Reports'); ?>
+                        <?php endif; ?>
+                        <?php if (Mage::app()->getRequest()->getActionName() == 'productinfo'): ?>
+                            <?php echo $this->__('Inventory Product Reports'); ?>
+                        <?php endif; ?>
+                    </h3></td>
+            </tr>
+        </tbody></table>
+</div>

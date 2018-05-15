@@ -1,0 +1,269 @@
+<?php $_product = $this->getProduct(); ?>
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+<?php if($_product->isSaleable()): ?>
+    <div class="add-to-cart">
+        <?php if(!$_product->isGrouped()): ?>
+        <label for="qty"><?php echo $this->__('Qty:') ?></label>
+        
+        <?php $xQty = ($this->getProductDefaultQty() * 1) == 0 ? 1 : $this->getProductDefaultQty() * 1; ?>
+        
+        
+        <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $xQty ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+        <?php endif; ?>
+		
+		<?php if($_product->getUnilabRx()):?>
+			<button type="button" id="btnAddToCart" title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="productAddToCartForm.askPrescription(this);"><span><span><?php echo $buttonTitle ?></span></span></button>
+        <?php else:?>
+			<button type="button" id="btnAddToCart"  returnId="<?php echo $_product->getId(); ?>" returnName="<?php echo $_product->getName(); ?>" returnUrl="<?php echo Mage::helper('checkout/url')->getCartUrl(); ?>" title="<?php echo $buttonTitle ?>" class="button btn-cart" ><span><?php echo $buttonTitle ?></span></button>
+        <?php endif;?>
+		
+
+		<?php  
+		 if( $_product->getAttributeSetId() == 12) //OTC Attribute Set
+			$this->getChildHtml('', true, true); ?>
+    </div>
+	<script>
+		var addtocart = document.getElementById("qty");
+
+		addtocart.addEventListener("keypress", function(event) {
+			if (event.keyCode == 13){
+				jQuery("#btnAddToCart").trigger("click");
+				event.preventDefault();
+				return;
+			}
+		});
+	</script>
+<?php endif; ?>
+
+<style type="text/css">
+#modal_terms, #modal_waiver {display:none;}
+
+/* Overlay */
+#simplemodal-overlay {background-color:#000;}
+
+/* Container */
+#simplemodal-container {height:360px; width:600px; color:#bbb; background-color:white; padding:12px; top:20px !important; width:70% !important;}
+
+.term-text {
+	max-height: 230px !important;
+	height: 230px !important;
+}
+.ag_dg {
+	background-color: black;
+	color: white;
+	width: 90px;
+}
+</style>
+ <script type="text/javascript">
+ jQuery.noConflict();
+
+function showmodal(sku, location){
+    jQuery.post("<?php echo Mage::getBaseUrl()?>monthlyproducthighlight/checkpromo/passsku",{
+    
+            //sku: jQuery('#btncart').attr('data-sku')
+            sku: sku,
+            loc: location
+        },
+        function (dataRes)
+        {
+            //NO PROMO
+            var ObjRes = jQuery.parseJSON(dataRes);
+
+            var sku = ObjRes.eskeyu;
+            if(ObjRes.success == true){
+
+            jQuery.fancybox.showLoading();
+            jQuery.ajax({
+                type:"GET",
+                url:location,
+                success:function(data){
+                     window.location.href = "<?php echo Mage::getBaseurl();?>checkout/cart/";
+                }
+             });
+
+            }else{
+                // PROMO
+                jQuery('#modal_terms').modal(sku);
+            }
+        }
+    );
+}
+
+function validatecode(){
+    jQuery.post("<?php echo Mage::getBaseUrl()?>monthlyproducthighlight/checkpromo/validatecoupon",{
+
+        promocode: jQuery('#inp-mod').val(),
+        location: jQuery('.terms-ag').attr('data-loc')
+    },
+
+    function (dataRess)
+        {
+            var ObjRes = jQuery.parseJSON(dataRess);
+
+            var what = ObjRes.what;
+
+            var loca = ObjRes.loc;
+            if(ObjRes.success == true){
+                //COUPON CODE MATCHED
+                    jQuery.fancybox.showLoading();
+                    jQuery.ajax({
+                        type:"GET",
+                        url:loca,
+                        success:function(data){
+                             window.location.href = "<?php echo Mage::getBaseurl();?>checkout/cart/";
+                        }
+                     });
+
+
+            }else{
+                 alert(what);
+
+            }
+        }
+    );
+}
+
+function addtocart(location){
+    jQuery.post("<?php echo Mage::getBaseUrl()?>monthlyproducthighlight/checkpromo/addornot",{
+
+    databtn: jQuery('.terms-dg').attr('data-btn')
+    },
+
+    function   (datadata)
+    {
+    var ObjRes = jQuery.parseJSON(datadata);
+
+        if(ObjRes.success == true){
+
+            jQuery.fancybox.showLoading();
+            jQuery.ajax({
+                type:"GET",
+                url:location,
+                success:function(data){
+                     window.location.href = "<?php echo Mage::getBaseurl();?>checkout/cart/";
+                }
+             });
+        }
+    }
+    );
+}
+
+</script>
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+
+   jQuery(document).on('click','.btn-cart',function(){
+        var product = jQuery(this).attr('returnId');
+        var productName = jQuery(this).attr('returnName');
+        var returnUrl = jQuery(this).attr('returnUrl');
+        jQuery.ajax({
+        type: 'Post',
+        url:'<?php echo Mage::getBaseUrl()?>checkout/cart/addtoCart',
+        data: {
+            product: product
+        },
+        }).done(function(data){
+            if(data == 'success'){
+            // jQuery("#prodName").html(productName);    
+            // var count = jQuery("#item_count").html();
+            // count = Number(count) + Number(1);
+            // jQuery("#item_count").html(count);  
+            //jQuery("#myModal").show();
+            jQuery("#loading-icon").hide(); 
+             window.location = returnUrl;
+            }
+        });
+    });
+
+});
+</script>
+
+<style type="text/css">
+#modal_terms, #modal_waiver {display:none;}
+
+/* Overlay */
+#simplemodal-overlay {background-color:#000;}
+
+/* Container */
+/*#simplemodal-container {height:360px; width:600px; color:#bbb; background-color:white; padding:12px; top:20px !important; width:70% !important;}*/
+#simplemodal-container {
+    height: 360px;
+    width: 600px;
+    color: #000;
+    background-color: white;
+    padding: 12px;
+    top: 20% !important;
+    width: 30% !important;
+    left: 35% !important;
+    height: 26% !important;
+    border-radius: 0.5em;
+}
+
+.term-text {
+    max-height: 230px !important;
+    height: 230px !important;
+}
+.ag_dg {
+    background-color: black;
+    color: white;
+    width: 30%;
+    margin-top: 8%;
+}
+
+input.inp-mod {
+    margin-left: 10%;
+}
+
+label.lab-mod {
+    margin-left: 7%;
+	font-weight: bold;
+}
+
+.btn-cart{
+    /* margin-top: 8%; */
+}
+
+.btn-coupon{
+	margin: 10px;
+}
+
+#modal_terms{
+    border: 1px solid #eee;
+    padding: 10px;
+}
+
+.btn-container{
+	text-align:center; 
+}
+
+.modal-msg{
+	text-align:center;
+	color: #053167;
+}
+
+span.enter {
+    font-weight: bold;
+}
+</style>
+
+<script type='text/javascript' src='<?php echo $this->getSkinUrl(); ?>js/jquery.simplemodal.js'></script>
+<div id="modal_terms">
+    <div class="txtarea">
+		<div style="text-align: center;"><input type="text" class="inp-mod" id="inp-mod"></input></div>
+		<p class="modal-msg">
+			<span class="enter">Enter Promo Code to get FREE</span> <br>
+			Trisopure 60ml Travel Buddy Pack <br>
+			or <br>
+			Ceelin Drops 10ml
+		</p>
+		
+		
+        <div class="btn-container">
+            <button class="button btn-cart terms-ag btn-coupon" data-loc="<?php echo Mage::getSingleton('core/session')->getprodloc();?>" data-btn="1" onclick="validatecode()">APPLY PROMO CODE</button>
+            <button class="button btn-cart terms-dg  btn-coupon" data-loc="<?php echo Mage::getSingleton('core/session')->getprodloc();?>" data-btn="0" onclick="addtocart('<?php echo Mage::getSingleton('core/session')->getprodloc() ?>')">NO PROMO CODE</button>                
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,281 @@
+<style type="text/css">
+	.prescription_types_wrapper li{
+		text-align:left;
+		line-height: 30px;
+		color: #0A263C;
+	}
+	.prescription_detail_wrapper{
+		height:360px;
+		width:600px;
+		margin-top:20px;
+	}
+	.prescription_detail_wrapper h3{
+		text-align:left;
+	}
+	.prescription_details{
+		padding-left:15px;
+	}
+	.prescription_details table tr td{
+		padding-left:10px;
+	}
+</style>
+<script>
+		var prescriptionForm = new VarienForm('product_addtocart_prescription_form');  
+</script>
+<div class="prescription_detail_wrapper">
+	<?php if($current_prescription = $this->getPrescription()):?>
+	
+		<h3><?php echo $this->__("Editing prescription.");?></h3>		
+		<?php $product_cart_form_fields = $this->getProductToCartFormFields();?>		
+		<form id="product_addtocart_prescription_form" action="<?php echo $product_cart_form_fields['form_action'];?>" method="post" enctype="multipart/form-data">
+			<?php unset($product_cart_form_fields['form_action']);?> 
+			<?php while( list( $field, $value ) = each($product_cart_form_fields )):?>	
+				  <?php if(is_array($value)):?>	 
+						<?php $attr_value = current($value);?> 
+						<input type="hidden" name="<?php echo $field;?>[<?php echo key($value);?>]" value="<?php echo $attr_value;?>"/> 
+				  <?php else:?>		  
+						<input type="hidden" name="<?php echo $field;?>" value="<?php echo $value;?>"/> 
+				  <?php endif;?>		  
+			<?php endwhile;?>  
+			<ul class="prescription_types_wrapper" id="prescription_types_wrapper">
+				<li><input  class="prescription_types" type="radio" name="prescription[type]" id="new_prescription" value="<?php echo Unilab_Prescription_Model_Prescription::TYPE_NEW;?>" <?php if($this->getPrescriptionType() =="NEW"):?> checked="checked" <?php endif;?> />
+				
+					<?php if($this->getPrescriptionType() =="NEW"):?>
+						<input type="hidden" name="prescription[prescription_id]" value="<?php echo $current_prescription->getPrescriptionId();?>"/>
+					<?php endif;?>
+
+					<label for="new_prescription">Option 1: Input Prescription Details</label>
+					<div class="prescription_details" <?php if($this->getPrescriptionType() !="NEW"):?> style="display:none;" <?php endif;?>>
+						<table>
+							<tr>
+								<td>
+									<label for="prescription_prescription_date"><?php echo $this->__("Prescribe Date:");?></label>
+								</td> 
+								<td>
+									<input type="text" name="prescription[date_prescribed]" id="prescription_date_prescribed" class="required-entry required" value="<?php echo $current_prescription->getDatePrescribed();?>"/>
+								</td> 
+								<td>							
+									<label for="prescription_patient_name"><?php echo $this->__("Patient's Name:");?></label>
+								</td> 
+								<td>
+									<input type="text" name="prescription[patient_name]" id="prescription_patient_name" class="required-entry required" value="<?php echo $current_prescription->getPatientName();?>"/>
+								</td>  
+							</tr>
+							<tr>
+								<td>
+									<label for="prescription_doctor_name"><?php echo $this->__("Doctor's Name:");?></label>
+								</td> 
+								<td>
+									<input type="text" name="prescription[doctor]" id="prescription_doctor_name" class="required-entry required" value="<?php echo $current_prescription->getDoctor();?>"/>
+								</td> 
+								<td>
+									<label for="prescription_prt_no"><?php echo $this->__("PTR Number:");?></label>
+								</td> 
+								<td>
+									<input type="text" name="prescription[ptr_no]" id="prescription_ptr_no" class="required-entry required" value="<?php echo $current_prescription->getPtrNo();?>"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="prescription_clinic"><?php echo $this->__("Clinic:");?></label>
+								</td> 
+								<td>
+									<input type="text" name="prescription[clinic]" id="prescription_clinic" class="required-entry required" value="<?php echo $current_prescription->getClinic();?>"/>
+								</td> 
+								<td>
+									<label for="prescription_clinic_address"><?php echo $this->__("Clinic Address:");?></label>
+								</td> 
+								<td>
+									<input type="text" name="prescription[clinic_address]" id="prescription_clinic_address" class="required-entry required" value="<?php echo $current_prescription->getClinicAddress();?>"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="prescription_contact_number"><?php echo $this->__("Contact Number/s:");?></label>
+								</td> 
+								<td>
+									<input type="text" name="prescription[contact_number]" id="prescription_contact_number" class="required-entry required" value="<?php echo $current_prescription->getContactNumber();?>"/>
+								</td> 
+								<td>
+									<label for="prescription_expiry_date"><?php echo $this->__("Expiry Date:");?></label>
+								</td> 
+								<td>
+									<input type="text" name="prescription[expiry_date]" id="prescription_expiry_date" class="required-entry required" value="<?php echo $current_prescription->getExpiryDate();?>"/>
+								</td>
+							</tr> 
+						</table>
+					</div> 
+				</li>
+				<li><input class="prescription_types" type="radio" name="prescription[type]" id="upload_prescription" value="<?php echo Unilab_Prescription_Model_Prescription::TYPE_PHOTO;?>" <?php if($this->getPrescriptionType() =="SCANNED_RX"):?> checked="checked" <?php endif;?>/><label for="upload_prescription">Option 2: Upload Photo Of Prescription</label>
+					<div id="upload_prescription_details"  <?php if($this->getPrescriptionType() =="NEW"):?> style="display:none;" <?php endif;?> class="prescription_details">
+						<table>
+							<tr>
+								<td> 
+									<input type="file" name="prescription[scanned_rx]" id="prescription_scanned_rx" class="required-file validate-file-type validate-file-size required-file-u" />
+									<?php if($this->getPrescriptionType() =="SCANNED_RX"):?>
+										<a href="javascript:void(0);" onclick="window.open('<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'prescriptions/'.$current_prescription->getScannedRx();?>','_blank')">Preview</a>
+									<?php endif;?>
+								</td>
+							</tr> 
+						</table>
+					</div> 
+				</li> 
+					<?php if($prescription_lists = $this->getPrescriptions()):?>
+						<li><input  class="prescription_types" <?php if($prescription_lists->count() < 1): ?>disabled="disabled"<?php endif;?> type="radio" name="prescription[type]" id="existing_prescription" value="<?php echo Unilab_Prescription_Model_Prescription::TYPE_EXISTING;?>"  <?php if($this->getPrescriptionType() =="EXISTING"):?>checked="checked"<?php endif;?>/><label for="existing_prescription">Option 3: Use Existing Prescription</label>
+							<div id="existing_prescription_details" <?php if($this->getPrescriptionType() !="EXISTING"):?> style="display:none;" <?php endif;?> class="prescription_details">
+								<table>
+									<?php if($prescription_lists->count() > 0):?>
+										<?php foreach($prescription_lists as $prescription):?> 									
+											<tr>
+												<td>
+													<input type="radio" value="<?php echo $prescription->getPrescriptionId();?>" name="prescription[prescription_id]"  class="validate-one-required-by-name required-one" <?php echo ($prescription->getPrescriptionId() == $current_prescription->getPrescriptionId()) ? 'checked="checked"' : '';?>id="prescription_prescription_id_<?php echo $prescription->getPrescriptionId();?>"/>
+													<?php if($prescription->getScannedRx() !=""):?>
+														<label for="prescription_prescription_id_<?php echo $prescription->getPrescriptionId();?>"><?php echo $prescription->getScannedRx();?></label>
+													<?php else:?>
+														<label for="prescription_prescription_id_<?php echo $prescription->getPrescriptionId();?>"><?php echo $prescription->getDoctor();?> - <?php echo $prescription->getDatePrescribed();?></label>
+													<?php endif;?>
+												</td>
+											</tr>
+										<?php endforeach; ?> 
+									<?php else:?>
+										<tr>
+											<td><?php echo $this->__("No Available Prescriptions.");?></td>
+										</tr>
+									<?php endif;?>
+								</table> 
+							</div>
+						</li> 
+					<?php endif;?>
+				<li><input  class="prescription_types no_prescription" type="radio" name="prescription[type]" id="no_prescription" value="<?php echo Unilab_Prescription_Model_Prescription::TYPE_NONE;?>"/><label for="no_prescription">Option 4: No Available Prescription</label></li>
+				 
+			</ul>
+			<input type="button" class="save" value="Submit" id="save_prescription" onclick="prescriptionForm.submit(this);"/>
+			<input type="button" class="button" value="Cancel" id="cancel_prescription"/>
+		</form>
+		
+	<?php else:?>
+	
+		<h3><?php echo $this->__("You have indicated that you have a prescription.");?></h3>		
+		<?php $product_cart_form_fields = $this->getProductToCartFormFields();?>		
+		<form id="product_addtocart_prescription_form" action="<?php echo $product_cart_form_fields['form_action'];?>" method="post" enctype="multipart/form-data">
+			<?php unset($product_cart_form_fields['form_action']);?> 
+			<?php while( list( $field, $value ) = each($product_cart_form_fields )):?>	
+				  <?php if(is_array($value)):?>	 
+						<?php $attr_value = current($value);?> 
+						<input type="hidden" name="<?php echo $field;?>[<?php echo key($value);?>]" value="<?php echo $attr_value;?>"/> 
+				  <?php else:?>		  
+						<input type="hidden" name="<?php echo $field;?>" value="<?php echo $value;?>"/> 
+				  <?php endif;?>		  
+			<?php endwhile;?>  
+			<ul class="prescription_types_wrapper" id="prescription_types_wrapper">
+				<li><input  class="prescription_types" type="radio" name="prescription[type]" id="new_prescription" value="<?php echo Unilab_Prescription_Model_Prescription::TYPE_NEW;?>" checked="checked" />
+					<label for="new_prescription"><?php echo $this->__("Option 1: Input Prescription Details");?></label>
+					<div class="prescription_details">
+						<table>
+							<tr>
+								<td>
+									<label for="prescription_prescription_date"><?php echo $this->__("Prescribe Date:");?></label>
+								</td> 
+								<td>
+									<input type="text" name="prescription[date_prescribed]" id="prescription_date_prescribed" class="required-entry required"/>
+								</td> 
+								<td>							
+									<label for="prescription_patient_name"><?php echo $this->__("Patient's Name:");?></label>
+								</td> 
+								<td>
+									<input type="text" name="prescription[patient_name]" id="prescription_patient_name" class="required-entry required"/>
+								</td>  
+							</tr>
+							<tr>
+								<td>
+									<label for="prescription_doctor_name"><?php echo $this->__("Doctor's Name:");?></label>
+								</td> 
+								<td>
+									<input type="text" name="prescription[doctor]" id="prescription_doctor_name" class="required-entry required"/>
+								</td> 
+								<td>
+									<label for="prescription_prt_no"><?php echo $this->__("PTR Number:");?></label>
+								</td> 
+								<td>
+									<input type="text" name="prescription[ptr_no]" id="prescription_ptr_no" class="required-entry required"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="prescription_clinic"><?php echo $this->__("Clinic:");?></label>
+								</td> 
+								<td>
+									<input type="text" name="prescription[clinic]" id="prescription_clinic" class="required-entry required"/>
+								</td> 
+								<td>
+									<label for="prescription_clinic_address"><?php echo $this->__("Clinic Address:");?></label>
+								</td> 
+								<td>
+									<input type="text" name="prescription[clinic_address]" id="prescription_clinic_address" class="required-entry required"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="prescription_contact_number"><?php echo $this->__("Contact Number/s:");?></label>
+								</td> 
+								<td>
+									<input type="text" name="prescription[contact_number]" id="prescription_contact_number" class="required-entry required"/>
+								</td> 
+								<td>
+									<label for="prescription_expiry_date"><?php echo $this->__("Expiry Date:");?></label>
+								</td> 
+								<td>
+									<input type="text" name="prescription[expiry_date]" id="prescription_expiry_date" class="required-entry required"/>
+								</td>
+							</tr> 
+						</table>
+					</div> 
+				</li>
+				<li><input class="prescription_types" type="radio" name="prescription[type]" id="upload_prescription" value="<?php echo Unilab_Prescription_Model_Prescription::TYPE_PHOTO;?>" /><label for="upload_prescription"><?php echo $this->__("Option 2: Upload Photo Of Prescription");?></label>
+					<div id="upload_prescription_details" style="display:none;" class="prescription_details">
+						<table>
+							<tr>
+								<td> 
+									<input type="file" name="prescription[scanned_rx]" id="prescription_scanned_rx" class="required-file validate-file-type validate-file-size required-file-u"/>
+								</td>
+							</tr> 
+						</table>
+					</div> 
+				</li>
+				<?php if($prescription_lists = $this->getPrescriptions()):?>
+						<li><input  class="prescription_types" <?php if($prescription_lists->count() < 1): ?>disabled="disabled"<?php endif;?> type="radio" name="prescription[type]" id="existing_prescription" value="<?php echo Unilab_Prescription_Model_Prescription::TYPE_EXISTING;?>"  /><label for="existing_prescription"><?php echo $this->__("Option 3: Use Existing Prescription");?></label>
+							<div id="existing_prescription_details"  style="display:none;" class="prescription_details">
+								<table>
+									<?php if($prescription_lists->count() > 0):?>
+										<?php foreach($prescription_lists as $prescription):?> 									
+											<tr>
+												<td>
+													<input type="radio" value="<?php echo $prescription->getPrescriptionId();?>" name="prescription[prescription_id]"  class="validate-one-required-by-name required-one"  id="prescription_prescription_id_<?php echo $prescription->getPrescriptionId();?>"/>
+													<?php if($prescription->getScannedRx() !=""):?>
+														<label for="prescription_prescription_id_<?php echo $prescription->getPrescriptionId();?>"><?php echo $prescription->getScannedRx();?></label>
+													<?php else:?>
+														<label for="prescription_prescription_id_<?php echo $prescription->getPrescriptionId();?>"><?php echo $prescription->getDoctor();?> - <?php echo $prescription->getDatePrescribed();?></label>
+													<?php endif;?>
+												</td>
+											</tr>
+										<?php endforeach; ?> 
+									<?php else:?>
+										<tr>
+											<td><?php echo $this->__("No Available Prescription.");?></td>
+										</tr>
+									<?php endif;?>
+								</table> 
+							</div>
+						</li> 
+					<?php endif;?>
+			</ul>
+			<input type="button" class="save" value="Submit" id="save_prescription" onclick="prescriptionForm.submit(this);"/>
+			<input type="button" class="button" value="Cancel" id="cancel_prescription"/>
+		</form>
+	<?php endif;?>
+</div> 
+<script type="text/javascript">
+//<![CDATA[
+	var prescriptions = new PrescriptionSwitcher('prescription_types_wrapper','prescription_types');
+//]]>
+</script>

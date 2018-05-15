@@ -1,0 +1,32 @@
+<?php 
+$quote = Mage::getSingleton('checkout/session')->getQuote();
+$billingAddress = $quote->getBillingAddress();
+$firstname  = $billingAddress->getFirstname();
+$lastname   = $billingAddress->getLastname();
+
+$company    = $billingAddress->getCompany();
+
+$street     = $billingAddress->getStreet(1);
+$city       = $billingAddress->getCity();
+$region    = $billingAddress->getRegion();
+$zipcode    = $billingAddress->getPostcode();
+
+$country    = $billingAddress->getCountryId();
+
+$telephone  = $billingAddress->getTelephone();
+
+$mobile     = $billingAddress->getMobile();
+
+
+
+
+
+?>
+
+<p><?php echo $firstname." ".$lastname; ?></p>
+<p><?php echo $company; ?></p>
+<p><?php echo $street; ?></p>
+<p><?php echo $city.", ".$region.", ".$zipcode; ?></p>
+<p><?php echo $country; ?></p>
+<p><?php echo "T:". $telephone; ?></p>
+<p><?php echo "M:". $mobile; ?></p>

@@ -1,0 +1,250 @@
+<?php
+
+	$customer = Mage::getSingleton('customer/session')->getCustomer();
+	
+	$defaultShippping = $customer->getPrimaryShippingAddress();
+
+?>
+
+<div class="shipping_wrapper">
+	
+	<div class="cls_body">
+		<ul class="form-list">
+		
+			<div class="heading">
+				<div class="shipping-line"></div>
+				<h1 class="cls_header">
+					Choose Shipping Address
+				</h1>
+				<div class="shipping-line" ></div>
+			</div>
+		
+		<form action="" id="shipping_address_form">	
+			<input type="hidden" name="shipping[emailaddress]" id="emailaddress" value="<?php echo $customer->getEmail(); ?>" >
+			<input type="hidden" name="shipping_address_id" class="hide" id="shippingAddressId" value="0">
+			
+			<!--- Name -->
+			<li class="fields">
+				<div class="customer-name">
+					<div class="name-firstname">
+						<label for="shipping_firstname" class="required"><em>*</em>First Name</label>
+						<div class="input-box">
+							<input type="text" id="shipping_firstname" name="shipping[firstname]" value="" title="First Name" class="input-text required-entry absolute-advice validation-passed" autocomplete="off">
+						</div>
+					</div>
+					<div class="name-lastname">
+						<label for="shipping_lastname" class="required"><em>*</em>Last Name</label>
+						<div class="input-box">
+							<input type="text" id="shipping_lastname" name="shipping[lastname]" value="" title="Last Name" class="input-text required-entry absolute-advice validation-passed" autocomplete="off">
+						</div>
+					</div>
+				</div>
+			</li> 
+			
+			<!--- Country -->
+			<li class="wide">
+				<label for="shipping_country_id" class="required"><em>*</em>Country</label>
+				<div class="input-box input-box-country shipping-country">
+					<?php 
+					
+						$_countries = Mage::getResourceModel('directory/country_collection')->loadData()->toOptionArray(false);
+						$countryCode = Mage::getStoreConfig('general/country/default');
+					?>
+					<?php if (count($_countries) > 0): ?>
+						<select name="shipping[country_id]" id="shipping_country_id" class="required-entry absolute-advice" title="Country" autocomplete="off">
+							<option value="">-- Please Select --</option>
+							<?php foreach($_countries as $_country): ?>
+								<?php if ($_country['value'] == $countryCode ): ?>
+								<option value="<?php echo $_country['value'] ?>" selected>
+									<?php echo $_country['label'] ?>
+								</option>
+							<?php else: ?>
+								<option value="<?php echo $_country['value'] ?>">
+									<?php echo $_country['label'] ?>
+								</option>
+							<?php endif; endforeach; ?>
+						</select>
+					<?php endif; ?>
+				</div>
+			</li>
+
+			<!--- Province -->
+			<li class="wide">
+				<label for="shipping_region_id" class=" required "><em>*</em>State/Province</label>
+				<div class="input-box input-box-country shipping-country">
+					<select id="shipping_region_id" name="shipping[region_id]" title="State/Province" class="input-text required-entry absolute-advice validate-select" defaultvalue="" autocomplete="off">
+						<?php 
+
+							if(!empty($defaultShippping)):
+								$customerregionID = $customer->getPrimaryShippingAddress()->getRegionId();
+								echo '<option value="" >Select address</option>'; 								
+							else:
+								$customerregionID = 0;
+								echo '<option value="" selected="selected">Select Province</option>'; 								
+							endif;
+							
+								$collection = Mage::getModel('directory/region')->getResourceCollection()->addCountryFilter('PH')->load();
+								
+								foreach($collection as $region) 
+								{
+									$regionName = $region['name'];
+									echo '<option value="'.$region['region_id'].'" >'.$region['name'].'</option> ';									
+								}
+						?>
+					</select>
+					<input type="text" id="shipping_region" name="shipping[region]" value="<?php echo $regionName ?>" title="State/Province" class="input-text required-entry absolute-advice" style="display: none;" autocomplete="off">
+				</div>
+			</li>
+
+
+			<!-- City and Zip -->
+			<li class="fields">
+				<div class="customer-name">
+					<div class="field-city">
+						<label for="shipping_city" class=" required "><em>*</em>City</label>	
+						<div  class="input-box" id="citylist">	
+							<?php 
+							
+								$connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+								$connection->beginTransaction();
+								
+								if(!empty($defaultShippping))
+								{
+									$city			= $customer->getPrimaryshippingAddress()->getCity();
+									$provinceid 	= $customer->getPrimaryshippingAddress()->getRegionId();
+									
+									$qrycities = $connection->select()->from('unilab_cities', array('*')) 
+											//->where('region_id=?',$provinceid)	
+											->order(array('name ASC'));
+									$cities = $connection->fetchAll($qrycities);
+									
+								}
+							?>
+							<!--<select  name="shipping[city]" id="shipping_city" class="input-text required-entry absolute-advice" title="City"  onchange="onchangeShippingSave()"> -->
+							<select  name="shipping[city]" id="shipping_city"  class="input-text required-entry absolute-advice  validate-select" title="City">
+								<?php							
+									echo '<option value="0" selected="selected">Select City</option>'; 	
+								
+									foreach ($cities as $value) 
+									{ 
+										$cities_id = $value['city_id'];
+										$cities_name = $value['name'];
+										
+										echo "<option value='$cities_id'>$cities_name</option>";
+										
+									}	
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="field-zip">
+						<label for="shipping_postcode" class=" required "><em>*</em>Zip/Postal</label>
+						<div class="input-box">
+							<input type="text" name="shipping[postcode]" id="shipping_postcode" value="" title="Zip/Postal" class=" input-text required-entry absolute-advice " autocomplete="off">
+						</div>
+					</div>
+				</div>
+			</li>
+
+			<!-- Street -->
+			<li class="wide">
+				<label for="shipping_street1" class=" required "><em>*</em>Address</label>
+				<div class="input-box">
+					<input type="text" title="Street Address" name="shipping[street][]" id="shipping_street1" value="" class=" input-text required-entry absolute-advice " autocomplete="off">
+				</div>
+			</li>
+			
+			<!-- Telephone and Mobile -->	
+			<li class="fields">
+				<div class="customer-name">
+					<div class="field-mobile">
+						<label for="shipping_mobile" class="required"><em>*</em>Mobile</label><span class="err_mssg_shipping" style="color:red; display:none;"><em>This field is required</em></span>
+						<div class="input-box">
+							<input type="text" name="shipping[mobile]" id="shipping_mobile" value="" title="Mobile" class="required-entry numbersOnly input-text " autocomplete="off">
+						</div>
+					</div>
+					<div class="field-telephone">
+						<!-- <label for="shipping_telephone" class="">Telephone</label><span class="err_mssg_shipping" style="color:red; display:none;"><em>This field is required</em></span> -->
+						<div class="input-box">
+							<!--<input type="text" name="shipping[telephone]" id="shipping_telephone" value="<?php if(!empty($defaultShippping)):  echo $customer->getPrimaryshippingAddress()->getTelephone(); endif; ?>" title="Telephone" class=" input-text required-entry absolute-advice " autocomplete="off"> -->
+						</div>
+					</div>
+				</div>
+			</li> 
+
+		<input type="text" name="billing[tin]" id="billing_tin" value="" title="Tin Number" class="numbersOnly input-boxtext absolute-advice hide" autocomplete="off" >
+
+
+
+			<li id="shipping_siab" class="control control-siab">
+				<p><em style="color:red;">*</em>&nbsp;&nbsp;Is this address also your billing address (the address that appears on your credit card?)</p>
+				<ul class="use-also-as-billing">
+				    <li><input type="text" name="select-billing-yes-no" id="billing_select_button" class="required-entry hide billing_select_button" value=""></li>
+					<li><input type="radio" name="select-billing" id="yes-billing" class="yes-billing select_billing_yes_no "  value="1"> Yes</li>
+					<li><input type="radio" name="select-billing" id="no_billing" class="no_billing select_billing_yes_no " value="0"> No (If not, we'll ask you for it in a moment)</li>
+					<li><input type="checkbox" name="not-credicard" id="not-credicard"> I will not use a credit card for my transaction</li>
+					<li><input type="checkbox" name="shipping_save_in_address_book_yes" id="shipping_save_in_address_book_yes" class="checkbox" value="0"> Save shipping address</li>
+					<input type="checkbox" name="shipping[save_in_address_book]" id="shipping_save_in_address_book" class="checkbox" value="0" style="display:none;">
+				</ul>
+			</li>
+		</form>			
+		</ul>
+		
+		<div class="div-dotted">
+			<hr class="dottedline">
+		</div>
+		
+		<div class="choose-address">			
+		
+
+			<div class="heading" style="background-color: transparent;">
+				<div class="shipping-line"></div>
+				<h1 class="cls_header">
+					Choose Shipping Address
+				</h1>
+				<div class="shipping-line" ></div>
+			</div>
+
+
+			<div>
+				<ul class="address-list">
+				<?php									
+					foreach ($customer->getAddresses() as $address) 
+					{
+						if (!empty($address['entity_id'])):
+							$defaultbilling = $customer->getPrimaryShippingAddress()->getId();
+							$billingfulladd = $address['firstname'] . " " .$address['lastname'] . ", " . $address['street'] . ", " . $address['city'] . ", " . $address['region'] . ", " . $address['postcode'];
+						
+							$address_firstname = $address['firstname'];
+							$address_lastname = $address['lastname'];
+						
+							?>
+								<li>
+									<input type="radio" name="shippingaddress_id" class="shipping_address_id"  value="<?php echo $address['entity_id']; ?>"> <span><?php echo $address_firstname . " " . $address_lastname ?></span><br>
+									<div class="fulladd"> 
+									<?php
+										echo $address['street'] . "<br>";
+										echo $address['city'] . ", " . $address['region'] . "<br>";
+										echo $address['country_id'] . " " . $address['postcode'] . "<br>";
+										echo "Mobile: " . $address['mobile'];
+									?>
+									</div>
+								</li>
+							<?php
+						
+						
+							
+						endif;
+					}
+				?>		
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="loading_icon_checkout" style="display:none;width:100%;height:100%; position:fixed;z-index: 9999999;top:0;left:0;background-color: rgba(0, 0, 0, 0.31);"><img src='<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/unilab2/images/loading-icon.gif' width="64" height="64" style="position: absolute;top: 50%;left: 50%;" /><br> </div>
+<script type="text/javascript">	
+$('.select_billing_yes_no').click(function(){
+	document.getElementById("billing_select_button").value = 1;
+});
+</script>

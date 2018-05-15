@@ -1,0 +1,80 @@
+<?php
+
+// This page is create by Richel R. Amante for UNILAB use only.
+// Please do not used this software and take with your own risk.
+
+// Thank you!!!
+
+?>
+
+
+<?php
+
+	$setting 			= Mage::getSingleton('core/session')->getSetting();
+	$shipppingAddress  	= Mage::getSingleton('core/session')->getShippingadd();	
+	$dataAmount 		= Mage::getSingleton('core/session')->getdataAmount();
+	$storeId = Mage::app()->getStore()->getStoreId();
+	
+	//var_dump($dataAmount);
+	
+?>
+<div class="total_wrapper">
+	<table id="shopping-cart-total" class="data-table cart-table">
+		<tbody>
+			<tr>
+				<td class="checkout-total subtotal">Subtotal</td>
+				<td class="checkout-total"><?php echo Mage::helper('core')->currency($dataAmount['SubtotalExclTax'],true,false) ?></td>
+			</tr>
+			<?php if($setting['subtotalincl']  == 1): ?>
+				<tr>
+					<td class="checkout-total">Subtotal Incl. tax </td>
+					<td class="checkout-total"><?php echo Mage::helper('core')->currency($dataAmount['SubtotalinclTax'],true,false) ?></td>
+				</tr>
+			<?php endif; ?>			
+			<?php if($dataAmount['discount']  > 0): ?>
+				<tr>
+					<td class="checkout-total">Discount <?php if (!empty($quoteData['coupon_code'])): echo '('.$quoteData['coupon_code'].')'; endif; ?></td>
+					<td class="checkout-total"><?php echo '-'.Mage::helper('core')->currency($dataAmount['discount'],true,false) ?></td>
+				</tr>
+			<?php endif; ?>
+			<?php //if(!empty($shipppingAddress['shipping_description'])): ?>
+			<tr class="trshipping_fee">
+				<input type="hidden" value="<?php echo $shipppingAddress['shipping_description'];?>" id="inputshipping_desc">
+				<td class="checkout-total">Shipping and Handling (<?php echo '<span class="shipping_name">'.$shipppingAddress['shipping_description'].'</span>' ?>)</td>
+				<td class="checkout-total"><?php echo '<span class="shipping_amount">'.Mage::helper('core')->currency($shipppingAddress['shipping_amount'],true,false).'</span>' ?></td>
+			</tr>
+			<?php //endif; ?>
+			<?php if($setting['grandtotalincl']  == 1): ?>
+				<tr>
+					<td class="checkout-total">Grand Total Excl. tax </td>
+					<td class="checkout-total"><?php echo Mage::helper('core')->currency($GtotalExcl,true,false) ?></td>
+				</tr>
+			<?php endif; ?>					
+
+			<?php if($setting['taxAmount']  == 1): ?>
+				<tr>
+					<td class="checkout-total">Tax</td>
+					<td class="checkout-total"><?php echo Mage::helper('core')->currency($shipppingAddress['tax_amount'],true,false) ?></td>
+				</tr>
+			<?php endif; ?>
+			
+			
+			<tr>
+				<td class="checkout-total grand">Grand Total</td>
+				<td id="grandAmt" class="checkout-total grand"><?php echo Mage::helper('core')->currency($dataAmount['grandTotal'],true,false) ?></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<script type="text/javascript">
+jQuery(document).ready(function (){	
+
+	if(jQuery("#inputshipping_desc").val() == "")
+	{
+		jQuery('.trshipping_fee').css('display', 'none');
+		
+	}
+ });
+
+</script>

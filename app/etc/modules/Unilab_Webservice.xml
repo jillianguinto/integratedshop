@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+
+
+	-> Author 	: Michael Albela
+
+	
+
+	-> Email	: mike.albela@gmail.com
+
+	
+
+	-> Date		: March 31, 2015
+
+	
+ */
+-->
+<config>
+    <modules>
+        <Unilab_Webservice>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Unilab_Webservice>
+    </modules>
+</config>

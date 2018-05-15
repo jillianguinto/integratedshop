@@ -1,0 +1,221 @@
+<?php
+
+// This page is create by Richel R. Amante for UNILAB use only.
+// Please do not used this software and take with your own risk.
+// Style CSS
+// Thank you!!!
+
+?>
+
+<style>
+.heading
+{
+	/*padding:4px 10px 0px 10px;*/
+	/*background-color:#<?php echo Mage::getStoreConfig('rracheckoutsection/design/headerskin') ?>;*/
+	/*border-radius:8px 8px 0px 0px;*/
+
+	padding: 10px;
+	/* border-radius: 8px 8px 0px 0px; */
+	background-color: #98B090;
+	color: #fff;
+}
+.cls_number
+{
+	display:inline-block;
+	font-size:14px;
+	/*border:solid 1px #fff;*/
+	padding:2px 5px 2px 5px;
+	border-radius:5px;
+	background-color:#<?php echo Mage::getStoreConfig('rracheckoutsection/design/headernumberbackground') ?>;
+	color: #<?php echo Mage::getStoreConfig('rracheckoutsection/design/headernumber') ?>;
+	font-weight:bold;
+}
+.cls_header
+{
+	display:inline-block;
+	font-size:14px;
+	padding:2px 5px 2px 5px;
+	border-radius:5px;
+	font-weight:bold;
+	color: '#<?php echo Mage::getStoreConfig('rracheckoutsection/design/headertext') ?>';
+	text-transform: uppercase;
+}	
+.shipping_wrapper, .shipping_method_wraper,.payment_method_wraper,.items_wrapper, .payment_instruction_wrapper
+{
+	position:relative;
+	border:solid 1px #<?php echo Mage::getStoreConfig('rracheckoutsection/body_skin/bodyborder') ?>;
+	background-color:#<?php echo Mage::getStoreConfig('rracheckoutsection/body_skin/bodybackground') ?>;
+	border-radius:10px 10px 0px 0px;
+	display:inline-block;
+	width: 100%;
+
+}
+.total_wrapper
+{
+	position:relative;
+	border:solid 1px #<?php echo Mage::getStoreConfig('rracheckoutsection/body_skin/bodyborder') ?>;
+	background-color:#F5F5F5; /*#<?php echo Mage::getStoreConfig('rracheckoutsection/body_skin/bodybackground') ?>;*/
+	display:inline-block;
+	width: 100%;
+
+}
+.cls_body
+{
+	padding:6px 10px;
+}
+.name-firstname, .name-lastname
+{
+	display:inline-block;
+	width:90%;
+}
+
+.field-telephone,.field-mobile, .gender, .fax
+{
+	/*display:inline-block;*/
+	width:45%;
+}
+.customer-name, .postcode-region, .telephone-mobile, .customer-dob-gender, .faxgender
+{
+	/*width: 365px;*/
+	max-width: 100%;
+}
+
+.field-postcode
+{
+	display:inline-block;
+	width:24%;
+}	
+.field-region
+{
+	display:inline-block;
+	width:74%;
+}
+.cls_address
+{
+	display:inline-block;
+	width:45%;
+}
+.container_wapper
+{
+	margin-top: 155px;
+	margin-bottom: 40px;
+}
+#shopping-cart-table
+{
+	width: 100% !important;
+}
+
+.button
+{
+	background-color:#<?php echo Mage::getStoreConfig('rracheckoutsection/button_skin/buttonbackground') ?> !important;
+	color: #<?php echo Mage::getStoreConfig('rracheckoutsection/button_skin/buttontext') ?> !important;	
+	border-radius: <?php echo Mage::getStoreConfig('rracheckoutsection/button_skin/buttonradius') ?> !important;
+}	
+.form-list
+{
+	width:100% !important;
+}
+.form-list li {
+	margin: 5px 0px 5px 0px !important;
+}	
+.input-box select 
+{
+	padding: 3px 9px;
+	/*width: 99%;*/
+}
+.form-list li.wide .input-box input.input-text 
+{
+	/*width: 93%;*/
+}	
+fieldset > textarea {
+	width: 98% !important;
+}
+
+.checkout-wrapper {
+	display: inline-flex;
+}
+
+.billing-address {
+	width: 35%;
+}
+
+.checkout-wrappah {
+	/*width: 65%;*/
+	float: left;
+}
+
+.shipping-method {
+	/*width: 32%;*/
+	width: initial;
+	float: left;
+	margin-top: -35px;
+
+}
+
+.payment-method {
+	width: 32%;
+	float: right;
+	margin-top: -35px;
+}
+
+.payment-instructions{
+	width: 99%;
+	float: left;
+}
+
+.lightcheckout-discount-form {
+	display: inline-flex;
+}
+
+input#coupon_code {
+	margin: 0px 5px;
+	width: 150px;
+}
+
+.prodname {
+	color: #F68A33;
+	font-weight: bold;
+	margin: 0;
+}
+
+td.prodqty {
+	text-align: center;
+}
+
+td.checkout-total {
+	text-align: right;
+}
+
+td.checkout-total.subtotal {
+	width: 80%;
+}
+
+td.checkout-total.grand {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.footer address {
+	color: #716558;
+	top: 0px;
+	position: relative;
+}
+
+.discount.checkout {
+	display: none;
+}
+
+.shipping_wrapper input {
+	width:100%;
+}
+
+.field-mobile{
+	margin: -44px 7px 0 0;
+	float: right;
+}
+
+.form-list li.control + li.control input {
+	width: initial;
+}
+
+</style>

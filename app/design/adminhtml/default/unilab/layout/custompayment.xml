@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <custompayment_adminhtml_custompayment_index>
+        <reference name="content">
+            <block type="custompayment/adminhtml_custompayment" name="custompayment" />
+        </reference>
+    </custompayment_adminhtml_custompayment_index>
+</layout>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Unilab_Fee>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Unilab_Fee>
+    </modules>
+</config>

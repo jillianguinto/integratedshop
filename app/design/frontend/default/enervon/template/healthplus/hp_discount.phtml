@@ -1,0 +1,283 @@
+<?php 
+	if(Mage::getSingleton('customer/session')->isLoggedIn()){
+?>
+
+<div class="health-credits-container">
+	
+<?php 
+$cart = Mage::getModel('checkout/cart')->getQuote();
+$total = 0;
+foreach ($cart->getAllVisibleItems() as $item) 
+{ 
+  $attributeValue =  $item->getProduct()->getAttributeText('unilab_healthplus');
+  if ($attributeValue == 'Yes') {
+	  	$qty = $item->getQty();
+		$price = $item->getProduct()->getPrice();
+		$subtotal = $price * $qty;
+		$total = $total + $subtotal;
+  }
+}
+
+$order_value = Mage::getStoreConfig('healthplus/healthplussettings/ordervalue'); //500
+$credit_value = Mage::getStoreConfig('healthplus/healthplussettings/creditvalue'); //20
+$subtotal = floor($total / $order_value);
+
+if($subtotal > 0){
+	$points = $subtotal * $credit_value;
+	echo 'Credits earned for next purchase: ₱'.$points;
+}else{
+	echo 'You can earn P20 credits for the first P500 transaction';
+}
+//echo $credit_points;
+?>
+
+
+	<h2>Health + Credits</h2>
+	<hr style="width: 22%;"/>
+	<ul>
+
+		<?php
+
+			$get_current_email = $this->__(Mage::getSingleton('customer/session')->getCustomer()->getEmail());
+
+			$connection = Mage::getModel('core/resource')->getConnection('core_read');
+			$sql = "SELECT SUM(points) as earning, email  FROM unilab_credit_earned WHERE email ='$get_current_email'";
+			$orders = $connection->fetchAll($sql);
+
+
+			foreach ($orders as $values) {
+			    $email = $values['email'];
+			    $credit_earned = $values['earning'];
+			    if($credit_earned == "" || $credit_earned == "0"){
+			    	echo '<li>Total Credits earned: ₱ 0 </li>';		  
+			    }else{
+			    	echo '<li>Total Credits earned: ₱'.$credit_earned.' </li>';		  
+			    }
+			   
+			}
+
+			$sql_credit_use = "SELECT credit_use FROM unilab_health_plus WHERE email = '$get_current_email'";
+			$result_use = $connection->fetchAll($sql_credit_use);
+			
+			foreach($result_use as $credit){
+				$credit_use = $credit['credit_use'];
+			}
+
+			$credit_balance = $credit_earned - $credit_use;
+
+			//echo Mage::helper('customer')->getCustomerEmail();
+		?>
+
+
+		
+		<li>Total Credits used: 
+			<?php 
+				if($credit_use == "" || $credit_use =="0"){
+					echo "₱ 0";
+				}else{
+					echo '₱ '.$credit_use;
+				}
+			 ?>
+		</li>
+		<li>Credit Balance: 
+			<?php 
+				if($credit_balance <= 0){
+					echo "₱0";
+				}else{
+					echo "₱".$credit_balance;
+				}
+			?>
+		</li>
+		<!-- <li>Available Credit Balance: 
+			<?php 
+				if($credit_earned == "" || $credit_earned == "0"){
+			    	echo '₱ 0';		  
+			    }else{
+			    	echo '₱'.$credit_earned;		  
+			    }
+			?>
+		</li> -->
+
+		<input type="hidden" class="total-credits-earned" value="<?php echo $credit_earned; ?>"/>
+		<input type="hidden" class="credit-balance" value="<?php echo $credit_balance; ?>"/>
+		
+
+	</ul>
+
+	<?php
+		$session        = Mage::getSingleton('checkout/session');
+        $quote_id       = $session->getQuoteId();
+
+        $sql_check_hc = "SELECT * FROM sales_flat_quote WHERE entity_id = '$quote_id'";
+        $result_hc = $connection->fetchRow($sql_check_hc); 
+        $health_discount = $result_hc['healthcredit'];
+
+        $entity_id = $result_hc['entity_id'];
+        //echo $entity_id;
+
+        if($health_discount == 1){
+        	//echo '<button type="button" title="healthplus" class="button unuse_healthplus" style="background-color:#CCC;"><span>Un-use Health Plus</span></button>';
+        	// echo 'uncheck';
+        }else{
+        	//echo '<button type="button" title="healthplus" class="button use_healthplus"><span>Use Health Plus</span></button>';
+        	//echo 'checked';
+        }
+	?>
+
+
+	<button type="button" title="healthplus" class="button unuse_healthplus" style="background-color:#CCC;"><span>Un-use Health Plus</span></button>
+
+	<button type="button" title="healthplus" class="button use_healthplus"><span>Use Health Plus</span></button>
+	
+	
+	
+
+</div>
+
+<div id="loading-icon">
+    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/unilab2/images/loading-icon.gif">
+</div>
+
+
+<?php } ?>
+
+
+<?php
+	Mage::getSingleton('core/session')->setMysession($points);
+?>
+
+<script>
+
+jQuery(document).ready(function() {
+
+
+	//Get the sum of all products with healtplus tag
+	var totalPoints = 0;
+
+	jQuery('.cart-price .row-total').each(function(){
+	    totalPoints += parseInt(jQuery(this).val());
+	});
+	//alert(totalPoints);
+	jQuery('.total_credits_earned').html(totalPoints);
+
+	jQuery('.cart-gtotal-sign').hide();
+
+	jQuery('.unuse_healthplus').hide();
+
+});
+
+
+</script>
+
+
+<script>
+
+
+
+jQuery(document).ready(function (){
+
+    jQuery.post( '<?php echo Mage::getBaseUrl();?>healthplus/healthcredit/checkcartwithHC/', 
+	{
+
+	},
+	function (data)
+	{
+		var dataobj = jQuery.parseJSON(data);
+		if(dataobj.healthcredit == 1)
+		{
+			jQuery('.use_healthplus').click();
+		}   
+    });
+});
+
+
+
+jQuery('.use_healthplus').on( "click", function() {
+
+	var cart_grand_total = jQuery('.cart-grandtotal').val();
+	//alert(cart_grand_total);
+	var credit_balance = jQuery('.credit-balance').val();
+
+	var total_hp_credit_earned = 0;
+	if(credit_balance == "" || credit_balance == "0"){
+		total_hp_credit_earned = '0';
+	}else{
+		total_hp_credit_earned = credit_balance;
+	}
+	//alert('discount-'+total_hp_credit_earned);
+
+	var get_subtotal = jQuery('.subtotal').val();
+	//alert(get_subtotal);
+
+	var shipping_fee = jQuery('.cart_shipping').val();
+	if(shipping_fee == null){
+		shipping_fee = 0;
+	}
+	
+	//alert(shipping_fee);
+	
+	if(parseInt(get_subtotal) > parseInt(total_hp_credit_earned)){
+		alert('Your Avaialble Healthplus points must be greater than your accumulated item value');
+		return false;
+	}
+	
+	var cart_total_with_healthplus = get_subtotal - total_hp_credit_earned;
+	//alert(cart_total_with_healthplus);
+
+	if(cart_total_with_healthplus < 0){
+		cart_total = 0;
+	}else{
+		var cart_total = parseFloat(shipping_fee) + parseFloat(cart_total_with_healthplus);
+		//alert(cart_total);
+	}
+
+	jQuery('.health-credit').show();
+	jQuery('.hc-discount').html(total_hp_credit_earned);
+	jQuery('.cart-gtotal').html("₱"+cart_total.toFixed(2));
+	jQuery('.cart-gtotal-sign').show();
+	
+	jQuery.post( '<?php echo Mage::getBaseUrl();?>healthplus/healthcredit/addhealthcredit/', 
+	{
+		//sku: prodsku
+	},
+	function (data){
+
+	});
+
+	jQuery('.unuse_healthplus').show();
+	jQuery('.use_healthplus').hide();
+
+
+});
+
+jQuery('.unuse_healthplus').on( "click", function() {
+
+
+	var get_subtotal = jQuery('.subtotal').val();
+	//alert(get_subtotal);
+
+	var shipping_fee = jQuery('.cart_shipping').val();
+
+	var unuse_total = get_subtotal + shipping_fee;
+	//alert(unuse_total);
+
+	jQuery('.health-credit').hide();
+
+
+	jQuery('.cart-gtotal').html("₱"+ parseInt(unuse_total));
+
+	jQuery.post( '<?php echo Mage::getBaseUrl();?>healthplus/healthcredit/unusehealthcredit/', 
+	{
+		//sku: prodsku
+	},
+	function (data){
+
+	});
+
+	jQuery('.unuse_healthplus').hide();
+	jQuery('.use_healthplus').show();
+
+
+});
+
+</script>

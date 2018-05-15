@@ -1,0 +1,312 @@
+<?php
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+$data = Mage::app()->getRequest()->getParams();
+$supplierId = $data['supplierid'];
+?>
+<div class="content-header">
+    <h3 class="icon-head head-adminhtml-supplier"><?php echo $this->__('PURCHASE ORDER, DELIVERY, RETURN ORDER REPORT ') ?></h3>
+</div>
+<div>
+    <div  style="width: 46%;float:left;">
+        <strong><?php echo $this->__('Supplier'); ?>:</strong>
+        <?php
+        $supplierInfo = Mage::helper('inventory/supplier')->getSupplierInfoBySupplierId($supplierId);
+        echo $supplierInfo;
+        ?>
+    </div>
+    <div  style="width: 46%;float:right;">
+        <strong><?php echo $this->__('Product Name'); ?>:</strong> <?php echo Mage::getModel('catalog/product')->load($data['productid'])->getName(); ?><br/>
+        <strong><?php echo $this->__('SKU'); ?>:</strong> <?php echo Mage::getModel('catalog/product')->load($data['productid'])->getSku(); ?><br/>
+        <strong><?php echo $this->__('Total Qty'); ?>:</strong> 
+        <?php echo (int) Mage::getModel('cataloginventory/stock_item')
+                ->loadByProduct(Mage::getModel('catalog/product')->load($data['productid']))->getQty()
+        ?><br/>
+    </div>
+    <div class="clear"></div>
+</div><br/>
+<div class="grid">
+    <div class="hor-scroll" style="max-height:230px;overflow-y:auto;">
+        <?php
+        $purchaseorder_products = Mage::getModel('inventory/purchaseorderproduct')
+                ->getCollection()
+                ->addFieldToFilter('product_id', $data['productid']);
+        $purchaseorder_products->getSelect()
+                ->joinLeft(
+                        array('purchaseorder' => $purchaseorder_products->getTable('inventory/purchaseorder')), 'main_table.purchase_order_id=purchaseorder.purchase_order_id', array('purchase_on', 'warehouse_name', 'status', 'create_by', 'bill_name', 'supplier_id')
+        );
+        $purchaseorder_products->getSelect()
+                ->where('purchaseorder.supplier_id = \'' . $supplierId . '\'');
+        ?>
+        <br/>
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Report on all purchase orders of the product provided by this supplier') ?></h4>
+            </div>
+            <table cellspacing="0" id="supplier_history_id_table" class="data">
+                <?php if ($purchaseorder_products->getFirstItem()->getData()): ?>    
+                    <colgroup>
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                    </colgroup>
+                    <thead>
+                        <tr class="headings">
+                            <th>
+                                <span class="nobr">
+                                    <span class="sort-title"><?php echo $this->__('Purchase Order ID') ?></span>
+                                </span>
+                            </th>
+                            <th>
+                                <span class="nobr">
+                                    <span class="sort-title"><?php echo $this->__('Purchased On') ?></span>
+                                </span>
+                            </th>
+                            <th>
+                                <span class="nobr">
+                                    <span class="sort-title">
+                                        <?php echo $this->__('Created By'); ?>
+                                    </span>         
+                                </span>
+                            </th>
+                            <th>
+                                <span class="nobr">
+                                    <span class="sort-title">
+                                        <?php echo $this->__('Bill to Name'); ?>
+                                    </span>         
+                                </span>
+                            </th>
+                            <th>
+                                <span class="nobr">
+                                    <span class="sort-title">
+                                        <?php echo $this->__('Warehouse'); ?>
+                                    </span>         
+                                </span>
+                            </th>
+                            <th>
+                                <span class="nobr">
+                                    <span class="sort-title">
+                                        <?php echo $this->__('Qty Purchased'); ?>
+                                    </span>         
+                                </span>
+                            </th>
+                            <th>
+                                <span class="nobr">
+                                    <span class="sort-title">
+                                        <?php echo $this->__('Status'); ?>
+                                    </span>         
+                                </span>
+                            </th>
+                        </tr>   
+                    </thead>    
+                    <tbody>
+                        <?php foreach ($purchaseorder_products as $purchaseorder_product): ?>
+                            <tr class="even pointer">
+                                <td class=" ">
+                                    <?php echo $purchaseorder_product->getPurchaseOrderId(); ?>
+                                </td>
+                                <td class=" ">
+                                    <?php //echo $purchaseorder_product->getPurchaseOn();  ?>
+                                    <?php echo Mage::helper('core')->formatDate($purchaseorder_product->getPurchaseOn(), 'medium', $showTime = false); ?>
+                                </td>
+                                <td class=" ">
+                                    <?php echo $purchaseorder_product->getCreateBy(); ?>                            
+                                </td>
+                                <td class=" last">
+                                    <?php echo $purchaseorder_product->getBillName(); ?>
+                                </td>
+                                <td class=" ">
+                                    <?php //echo $purchaseorder_product->getWarehouseName();  ?>
+                                    <?php
+                                    $resource = Mage::getSingleton('core/resource');
+                                    $readConnection = $resource->getConnection('core_read');
+                                    $sql = "SELECT `warehouse_name` from " . $resource->getTableName('erp_inventory_purchase_order_product_warehouse') . " WHERE (purchase_order_id = " . $purchaseorder_product->getPurchaseOrderId() . ")";
+                                    $warehousePurchases = $readConnection->fetchAll($sql);
+                                    foreach ($warehousePurchases as $warehousePurchase) {
+                                        echo $warehousePurchase['warehouse_name'] . '<br />';
+                                    }
+                                    ?>
+                                </td>
+                                <td class=" ">
+                                    <?php echo $purchaseorder_product->getQty(); ?>                               
+                                </td>
+                                <td class=" last">
+                                    <?php
+                                    $statusId = $purchaseorder_product->getStatus();
+                                    $statusArr = Mage::helper('inventory/purchaseorder')
+                                            ->getPurchaseOrderStatus();
+                                    echo $statusArr[$statusId];
+                                    ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                <?php else: echo '<tr class="even pointer">' . $this->__('Not found any purchase order history!') . "</tr>";
+                endif; ?>
+            </table></div>
+        <?php
+        $deliveries = Mage::getModel('inventory/delivery')
+                ->getCollection()
+                ->addFieldToFilter('product_id', $data['productid']);
+        $deliveries->getSelect()->joinLeft(
+                array('purchaseorder' => $purchaseorder_products->getTable('inventory/purchaseorder')), 'main_table.purchase_order_id=purchaseorder.purchase_order_id', array('supplier_id')
+        );
+        $deliveries->getSelect()
+                ->where('purchaseorder.supplier_id = \'' . $supplierId . '\'');
+        ?>
+        <br/>
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Report on all partial shipments of the product provided by this supplier') ?></h4>
+            </div> 
+            <table cellspacing="0" id="supplier_history_id_table" class="data">
+                <?php if ($deliveries->getFirstItem()->getData()): ?>       
+                    <colgroup>
+                        <col>
+                        <col >
+                        <col >
+                        <col >
+                    </colgroup>
+                    <thead>
+                        <tr class="headings">
+                            <th>
+                                <span class="nobr">
+                                    <span class="sort-title"><?php echo $this->__('Delivery Date') ?></span>
+                                </span>
+                            </th>
+                            <th>
+                                <span class="nobr">
+                                    <span class="sort-title">
+                                        <?php echo $this->__('Qty Received'); ?>
+                                    </span>         
+                                </span>
+                            </th>
+                            <th>
+                                <span class="nobr">
+                                    <span class="sort-title">
+                                        <?php echo $this->__('Created By'); ?>
+                                    </span>         
+                                </span>
+                            </th>
+                            <th>
+                                <span class="nobr">
+                                    <span class="sort-title">
+                                        <?php echo $this->__('Purchase Order ID'); ?>
+                                    </span>         
+                                </span>
+                            </th>
+                        </tr>   
+                    </thead>    
+                    <tbody>
+                        <?php foreach ($deliveries as $delivery): ?>
+                            <tr class="even pointer">
+                                <td class=" ">
+                                    <?php //echo $delivery->getDeliveryDate();  ?>
+                                    <?php echo Mage::helper('core')->formatDate($delivery->getDeliveryDate(), 'medium', $showTime = false); ?>
+                                </td>
+                                <td class=" ">
+                                    <?php echo $delivery->getQtyDelivery(); ?>
+                                </td>
+                                <td class=" ">
+                                    <?php echo $delivery->getCreateBy(); ?>
+                                </td>
+                                <td class=" ">
+                                    <?php echo $delivery->getPurchaseOrderId(); ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                <?php else: echo "<tr>" . $this->__('Not found any delivery history!') . "</tr>";
+                endif; ?>
+            </table>
+        </div>
+        <?php
+        $returnorder_products = Mage::getModel('inventory/returnwarehouse')
+                ->getCollection()
+                ->addFieldToFilter('product_id', $data['productid']);
+        $returnorder_products->getSelect()->joinLeft(
+                array('purchaseorder' => $purchaseorder_products->getTable('inventory/purchaseorder')), 'main_table.purchase_order_id=purchaseorder.purchase_order_id', array('supplier_id')
+        );
+        $returnorder_products->getSelect()
+                ->where('purchaseorder.supplier_id = \'' . $supplierId . '\'');
+        ?>
+        <br/>
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Report on all return orders of the product provided by this supplier') ?></h4>
+            </div>
+            <table cellspacing="0" id="supplier_history_id_table" class="data">    
+<?php if ($returnorder_products->getFirstItem()->getData()): ?>     
+                    <colgroup>
+                        <col>
+                        <col >
+                        <col >
+                        <col >
+                        <col >
+                    </colgroup>
+                    <thead>
+                        <tr class="headings">
+                            <th>
+                                <span class="nobr">
+                                    <span class="sort-title">
+    <?php echo $this->__('Returned On'); ?>
+                                    </span>         
+                                </span>
+                            </th>
+                            <th>
+                                <span class="nobr">
+                                    <span class="sort-title">
+    <?php echo $this->__('Qty Returned'); ?>
+                                    </span>         
+                                </span>
+                            </th>
+                            <th>
+                                <span class="nobr">
+                                    <span class="sort-title"><?php echo $this->__('Warehouse') ?></span>
+                                </span>
+                            </th>
+                            <th>
+                                <span class="nobr">
+                                    <span class="sort-title"><?php echo $this->__('Create By') ?></span>
+                                </span>
+                            </th>
+                            <th>
+                                <span class="nobr">
+                                    <span class="sort-title"><?php echo $this->__('Purchase Order ID') ?></span>
+                                </span>
+                            </th>
+                        </tr>   
+                    </thead>    
+                    <tbody>
+    <?php foreach ($returnorder_products as $returnorder_product): ?>
+                            <tr class="even pointer">
+                                <td class=" ">
+        <?php //echo $returnorder_product->getReturnedOn();  ?>
+                                    <?php echo Mage::helper('core')->formatDate($returnorder_product->getReturnedOn(), 'medium', $showTime = false); ?>
+                                </td>
+                                <td class=" ">
+        <?php echo $returnorder_product->getQtyReturn(); ?>                             
+                                </td>
+                                <td class=" last">
+        <?php echo $returnorder_product->getWarehouseName(); ?>
+                                </td>
+                                <td class=" last">
+        <?php echo $returnorder_product->getCreateBy(); ?>
+                                </td>
+                                <td class=" last">
+        <?php echo $returnorder_product->getPurchaseOrderId(); ?>
+                                </td>
+                            </tr>
+    <?php endforeach; ?>
+                    </tbody>
+                    <?php else: echo "<tr>" . $this->__('Not found any return order history!') . "</tr>";
+                    endif; ?>
+            </table></div>
+    </div>
+</div>

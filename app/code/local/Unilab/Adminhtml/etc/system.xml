@@ -1,0 +1,40 @@
+<?xml version="1.0"?> 
+<config>
+    <tabs>
+        <unilab module="unilab">
+            <label>Movent Ext</label>
+            <sort_order>999999999</sort_order>
+        </unilab>
+    </tabs>
+	<!-- <sections>
+		<unilab translate="label" module="unilab">
+			<label>Extensions &amp; Support</label>
+			<tab>unilab</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>999999</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+                <extensions translate="label">
+                    <label>Extensions Information</label>
+                    <frontend_type>text</frontend_type>
+                    <frontend_model>unilab/system_config_form_fieldset_unilab_extensions</frontend_model>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </extensions>
+                <support translate="label">
+                    <label>Get Support</label>
+                    <frontend_type>text</frontend_type>
+                    <frontend_model>unilab/system_config_form_fieldset_unilab_support</frontend_model>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </support>
+			</groups>
+		</unilab>
+	</sections>-->
+</config>

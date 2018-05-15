@@ -1,0 +1,51 @@
+ <style>
+.divCategory
+{
+width:19%;height:100%;float:left;margin-right:1%;background-color:#2a9cda;margin-top:1%;
+}
+.divCategory:hover
+{
+width:17%;height:100%;float:left;margin-right:1%;background-color:#fff;margin-top:1%;
+}
+.divCategoryLast
+{
+width:16%;height:100%;float:right;background-color:#2a9cda;margin-top:1%;
+}
+
+</style>
+<?php
+	$iconurl = Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . "images/";
+	//echo $count;
+?>
+
+<div style="margin-top:25px">
+<div style="background-color:#e5e3e0;width:100%;color:#208881;text-align:center;font-size:16px;padding: 10px 0px;font-weight:bold;">
+SHOP BY CATEGORY
+</div>
+<div style="margin:15px 0;width:100%">
+
+
+	<?php 
+
+		$attribute_code = "unilab_segment"; 
+
+		$attribute_details = Mage::getSingleton("eav/config")->getAttribute("catalog_product", $attribute_code); 
+
+
+		$data = $attribute_details->getSource()->getAllOptions(false); 
+		foreach($data as $_item):
+
+			$value = $_item['value'];
+
+			$label = $_item['label'];
+?>
+<div class="category-container">
+	<div class="category-item">
+		<img  src="<?php echo $iconurl.$label?>.jpg">
+		<span class="cat-label"><?php echo $label; ?></span>	
+	</div>
+</div>
+<?php endforeach;?>
+</div>
+</div>
+

@@ -1,0 +1,163 @@
+<?php 
+	if(Mage::getSingleton('customer/session')->isLoggedIn()){
+?>
+
+
+<?php
+
+$cart_qty = (int) Mage::getModel('checkout/cart')->getQuote()->getItemsQty();
+
+if($cart_qty) {
+?>
+
+<?php
+	$storeid 		= 	Mage::app()->getStore()->getStoreId();
+	$healthplusEnabled = Mage::getStoreConfig('healthplus/healthplussettings/enabled', $storeid);
+
+	if($healthplusEnabled == '1'){
+?>
+
+<div class="health-credits-container">
+	
+<?php 
+
+$points = Mage::getModel('healthplus/healthplus')->getPointsbyQuote();
+
+if($points > 0){
+	echo 'Credits earned for next purchase: '.$points;
+}else{
+	echo 'You can earn 20 Health+ Credits for every ₱500 worth of purchases with the Health+ icon';
+}
+
+
+?>
+
+
+	<h2>Health + Credits</h2>
+	<ul>
+
+		<?php
+		
+			$healthplusData = Mage::getModel('healthplus/healthplus')->healthplusData();
+			
+		?>
+
+		<li>Total Credits earned: <?php echo number_format($healthplusData['credit_earned'], 2, '.', ',');?></li>
+		<li>Total Credits used: <?php echo number_format($healthplusData['credit_use'], 2, '.', ',');	?></li>
+		<li>Credit Balance: <?php echo number_format($healthplusData['credit_balance'], 2, '.', ',');	?></li>
+		<li>Available Credit Balance: <?php echo number_format($healthplusData['available_balance'], 2, '.', ','); ?></li>
+
+	</ul>
+	
+
+
+	<button type="button" title="healthplus" class="button unuse_healthplus" style="background-color:#CCC;display:none;"><span>UN-USE MY HEALTH+ CREDIT</span></button>
+
+	<button type="button" title="healthplus" class="button use_healthplus"><span>Apply Health+ Credits</span></button>
+	<p>Please note that you can only apply Health+ Credits items with the Health+ icon</p>
+
+</div>
+
+
+<?php 
+	}
+}
+?>
+
+
+
+<div id="loading-icon">
+    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/unilab2/images/loading-icon.gif">
+</div>
+
+
+<?php } ?>
+
+
+<script>
+
+	jQuery(document).ready(function (){
+
+		jQuery.post( '<?php echo Mage::getBaseUrl();?>healthplus/healthcredit/checkcartwithHC/', 
+		{
+
+		},
+		function (data)
+		{
+			var dataobj = jQuery.parseJSON(data);
+			if(dataobj.healthcredit == 1)
+			{
+				//jQuery('.use_healthplus').click();
+
+
+				jQuery('.unuse_healthplus').show();
+				jQuery('.use_healthplus').hide();
+
+				jQuery('.health-credit').show();
+
+				jQuery('.hc-discount').html(dataobj.discountAmount);
+				jQuery('.hc-discount').html(dataobj.discountAmt);
+				jQuery('.cart-gtotal').html(dataobj.grandTotal);
+				jQuery('.cart-gtotal-sign').show();
+
+			}   
+		});
+	});
+
+
+
+	jQuery('.use_healthplus').on( "click", function() {
+		
+		var cart_grand_total = jQuery('.cart-grandtotal').val();
+
+		jQuery.post( '<?php echo Mage::getBaseUrl();?>healthplus/healthcredit/addhealthcredit/', 
+		{
+			grandtotal : cart_grand_total
+		},
+		function (data){
+			var dataobj = jQuery.parseJSON(data);
+
+			if(dataobj.success == true)
+			{
+				jQuery('.health-credit').show();
+				jQuery('.hc-discount').html('');
+				//jQuery('.hc-discount').html(dataobj.discountAmount);
+				jQuery('.hc-discount').html(dataobj.discountAmount);
+				jQuery('.hc-discount').html(dataobj.discountAmt);
+				jQuery('.cart-gtotal').html(dataobj.grandTotal);
+				jQuery('.cart-gtotal-sign').show();
+				
+				jQuery('.unuse_healthplus').show();
+				jQuery('.use_healthplus').hide();
+			}else{
+				alert(dataobj.message);
+			}
+			
+		});
+
+	});
+
+	jQuery('.unuse_healthplus').on( "click", function() {
+
+		jQuery.post( '<?php echo Mage::getBaseUrl();?>healthplus/healthcredit/unusehealthcredit/', 
+		{
+
+		},
+		function (data){
+			
+			var dataobj = jQuery.parseJSON(data);
+			
+			jQuery('.health-credit').hide();
+			jQuery('.unuse_healthplus').hide();
+			jQuery('.use_healthplus').show();
+			
+			
+			jQuery('.cart-gtotal').html(dataobj.grandTotal);
+			
+			location.reload(true);
+
+		});
+		
+	});
+
+</script>

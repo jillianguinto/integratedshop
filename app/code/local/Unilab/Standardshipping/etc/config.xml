@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+
+<config>
+	<modules>
+		<Unilab_Standardshipping>
+			<version>1.1.0.0</version>
+		</Unilab_Standardshipping>
+	</modules>
+
+	<global>
+		<models>
+			<standardshipping>
+				<class>Unilab_Standardshipping_Model</class>
+				<resourceModel>standardshipping_resource</resourceModel>
+            </standardshipping>
+		</models>
+		<blocks>
+			<standardshipping>
+				<class>Unilab_Standardshipping_Block</class>
+			</standardshipping>
+		</blocks>
+		<helpers>
+			<standardshipping>
+				<class>Unilab_Standardshipping_Helper</class>
+			</standardshipping>
+		</helpers>
+		<events>
+			<checkout_onepage_controller_success>
+				<observers>
+					<process_waybill>
+						<class>Unilab_Xend_Model_Observer_Sales</class>
+						<method>processWaybill</method>
+					</process_waybill>
+				</observers>
+			</checkout_onepage_controller_success>
+		</events>
+	</global> 
+
+	<default>
+        <carriers>
+            <standardshipping>
+                <active>1</active>
+                <model>standardshipping/mycarrier_carrier</model>
+                <title>Standard Shipping</title>
+                <sort_order>10</sort_order>
+                <sallowspecific>0</sallowspecific>
+            </standardshipping>
+        </carriers>
+    </default>
+	
+	<frontend>
+		<routers>
+			<standardshipping>
+				<use>standard</use>
+				<args>
+					<module>Unilab_Standardshipping</module>
+					<frontName>standardshipping</frontName>
+				</args>
+			</standardshipping>
+		</routers>
+	</frontend>
+	
+	<admin>
+        <routers>
+            <standardshipping>
+                <use>admin</use>
+                <args>
+                    <module>Unilab_Standardshipping</module>
+                    <frontName>standardshipping</frontName>
+                </args>
+            </standardshipping>
+        </routers>
+    </admin>  	
+	
+</config>

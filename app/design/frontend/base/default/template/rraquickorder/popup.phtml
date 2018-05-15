@@ -1,0 +1,73 @@
+<input type="hidden" value="<?php echo Mage::getBaseurl() ?>" name="jsbaseurl" >
+<input type="hidden" value="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>" name="jsbaseDir" >
+
+<!--div class="page-title">
+    <h1><?php echo $this->__('Quick Order') ?></h1>
+</div-->
+
+<?php //if ($customer = $this->getCustomer()): ?>
+<?php //else: ?>
+
+	<div class="quickorder_wrapper">
+
+		<h4>Search product</h4>
+		<p>
+			<form name="searchproduct" action="?" method="POST">
+				<input type="text" id="product_name" name="product_name" placeholder="Search product here..." value="">			
+			</form>	
+		<p>
+		<h4 class="cartItems">Shopping Cart Item(s): 0</h4>
+		<p class="waitloading"></p>
+		<div class="cart_item_wrapper">
+		
+		<ul>
+			<?php 
+			
+				$countItems = 0;
+				
+				$CartSession = Mage::getSingleton('checkout/session');
+				
+				foreach($CartSession->getQuote()->getAllItems() as $item){
+					
+
+					$productIncPrice 	= $item->getPriceInclTax();
+					
+					$productname	 	= $item->getName();
+					
+					$qty	 			= $item->getQty();
+					
+					$pricecurrency = Mage::helper('core')->currency($productIncPrice, true, false);
+					
+					$url =  Mage::getModel('catalog/product')->loadByAttribute('sku',$item->getSku())->getImageUrl();
+					echo "<li style='margin-bottom:5px;'><div class='image_cls'><img src='" .$url . "'></div><div class='description_cls'>" . 
+								$productname . "<br/><span>Price : " . $pricecurrency . "<span> &nbsp;<span>Qty : " . 
+								$qty . "<span><br><a href='javascript::void(0)' id='" .
+								$item->getId() . "' class='remove_item button btn-cart' onclick='removeItem(this)'>REMOVE</a></div><br/><br/></li>";
+				
+				$countItems++;
+				
+				}
+			
+			?>
+			
+			<?php if($countItems > 0) {?>
+			
+				<script>
+					jQuery(document).ready(function (){
+						
+						jQuery(".cart_item_wrapper").fadeIn();
+						jQuery(".cartItems").html("Shopping Cart Item(s): <?php echo $countItems?>");
+					});
+				</script>
+			
+			<?php } ?>
+		</ul>
+		</div>
+		<div class="product_wrapper"></div>
+		
+		<br/>
+		<a href="<?php echo Mage::getBaseurl()?>" class='button btn-cart'>CLOSE</a>
+		<a href="<?php echo Mage::getBaseurl()?>checkout/cart/" class='button btn-cart'>VIEW SHOPPING CART</a>
+
+	</div>
+	<div class="blur_back"></div>

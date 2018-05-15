@@ -1,0 +1,799 @@
+<?php
+    
+    $categoryid = Mage::getSingleton('core/session')->getCategoryId();
+    
+    // if(isset($categoryid))
+    // {
+    //     $_productCollection = Mage::getSingleton('catalog/category')->load($categoryid)
+    //             ->getProductCollection()
+    //             ->addAttributeToSelect('*');        
+    // }else{
+        $categoryid = Mage::getSingleton('core/session')->getCategoryId();
+        $_productCollection=$this->getLoadedProductCollection($categoryid);      
+    // }   
+    
+    $_helper = $this->helper('catalog/output');
+    
+$redirect =  'yes';
+
+$redirectUrl =  Mage::getUrl('customer/account/login');
+if(Mage::getSingleton('customer/session')->isLoggedIn()){
+    $redirect =  'no';
+    $redirectUrl =  '';
+}
+    
+?>
+<?php if(!$_productCollection->count()): ?>
+    <?php echo $this->getToolbarHtml();?>
+    <p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+<?php else: ?>
+
+<div class="category-products">
+    <input id="redirectHere" data-value="<?php echo $redirect; ?>" data-url="<?php echo $redirectUrl; ?>" class="hide";>
+    <?php //echo $this->getToolbarBlock()->setTemplate('catalog/product/list/toolbar_top.phtml')->toHtml(); ?> 
+    <?php echo $this->getToolbarHtml();?>
+    <?php // List mode ?>
+    <?php if($this->getMode()!='grid'): ?>
+    <?php $_iterator = 0; ?>
+    <ol class="products-list" id="products-list">
+    <?php foreach ($_productCollection as $_product): ?>
+    <?php
+        $storeId    = Mage::app()->getStore()->getStoreId();
+        $prodname = trim($_product->getName());
+
+        $_productCollection = Mage::getModel('catalog/product')
+                            ->getCollection()
+                            ->addAttributeToSelect('*')
+                            ->addAttributeToFilter('status',1)
+                            ->addAttributeToFilter('short_description', $prodname)
+                            ->setStoreId($storeId)
+                            ->addStoreFilter($storeId)
+                            ->load();
+                            
+        $withsizes = count($_productCollection);                    
+
+    ?>
+        <li class="item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
+            <?php if($_product->getUnilabRx() == 1) :  ?>
+                    <div class="productrx"></div>
+                <?php endif; ?>
+        
+            <?php // Product Image ?>
+            <div class="onsale-category-container-list view-list">
+                <?php echo Mage::helper('onsale')->getCategoryLabelHtml($_product); ?>
+                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_product->getUnilabRx() ? $this->__("Requires Prescription") : $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true);?>" class="product-image here"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(252); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
+            </div>
+            <?php // Product description ?>
+            <div class="product-shop view-list">
+                <div class="f-fix">
+                    <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
+                    <h2 class="product-name view-list">
+                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped; ?>">
+                            <?php echo $_helper->productAttribute($_product, $_product->getName() , 'name'); ?>
+                        </a>
+                    </h2>
+                    <div>
+                        <?php echo $_product->getGenericName()?>
+                    </div>
+                    <?php if($_product->getRatingSummary()): ?>
+                    <?php echo $this->getReviewsSummaryHtml($_product) ?>
+                    <?php endif; ?>
+
+                    <div class="health-plus-catalog view-list">
+                        <?php
+
+							$storeid 		= 	Mage::app()->getStore()->getStoreId();
+							$healthplusEnabled = Mage::getStoreConfig('healthplus/healthplussettings/enabled', $storeid);
+				
+							if($healthplusEnabled == 1)
+							{
+								if(Mage::getConfig()->getModuleConfig('Unilab_Healthplus')->is('active', 'true'))
+								{
+									$attributeValue = Mage::getModel('catalog/product')->load($_product->getId())->getAttributeText('unilab_healthplus');    
+
+									if($attributeValue == 'Yes')
+									{
+										?><img src="<?php echo $this->getSkinUrl('images/health-plus-logo.png'); ?>" alt="health plus"/><?php   
+									}          
+								}
+							 }
+                    ?>
+                   </div>
+                    <?php echo $this->getPriceHtml($_product, true) ?>
+                    <?php if($_product->isSaleable()): ?>
+                <?php if($_product->getUnilabRx()):?>
+                    <p><button type="button" id="addToCart" title="<?php echo $buttonTitle ?>" class="button btn-cartrx askPrescription" returnUrl="<?php echo $this->getSubmitUrl($_product);?>" returnId="<?php echo $_product->getId();?>" returnName="<?php echo $_product->getName(); ?>" returnMoq="1"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+                <?php else: ?>
+
+                    <?php if($withsizes > 0){?>
+                        <button type="button" id="btncart" returnId="<?php echo $_product->getId(); ?>" returnName="<?php echo $_product->getName(); ?>" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart-flavor" ><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                        <?php } else { ?>
+                        <button type="button" id="btncart" returnId="<?php echo $_product->getId(); ?>" returnName="<?php echo $_product->getName(); ?>" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" ><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                    <?php } ?>
+
+                    <!-- <p><button type="button" title="<?php //echo $this->__('Add to Cart') ?>" class="button btn-cart " onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php //echo $this->__('Add to Cart') ?></span></span></button></p> -->
+                <?php endif; ?>
+                        <p><button type="button" id="btncart2" title="<?php echo $this->__('View Product') ?>" class="button btn-view" returnUrl="<?php echo $_product->getProductUrl() ?>"><span><span><?php echo $this->__('View Product') ?></span></span></button> </p>
+                    <?php else: ?>
+                         <button type="button" id="btncartNoStock" title="<?php echo $this->__('Out of Stock') ?>" class="button btn-cart"  disabled><span><span><?php echo $this->__('Out of Stock') ?></span></span></button><br>
+                       <button type="button" id="btncart2" title="<?php echo $this->__('View Product') ?>" class="button btn-view" returnUrl="<?php echo $_product->getProductUrl() ?>"><span><span><?php echo $this->__('View Product') ?></span></span></button>
+                    <?php endif; ?>
+                    <div class="desc std view-list">
+                        <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped ?>" class="link-learn"><?php echo $this->__('Learn More') ?></a>
+                    </div>
+                    <ul class="add-to-links">
+                        <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                           <!-- <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li> -->
+                        <?php endif; ?>
+                        <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                           <?php /* <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li> */ ?>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+            </div>
+        </li>
+    <?php endforeach; ?>
+    </ol>
+    <script type="text/javascript">decorateList('products-list', 'none-recursive')</script>
+
+    <?php else: ?>
+
+    <?php // Grid Mode ?>
+
+    
+    <?php $_collectionSize = $_productCollection->count() ?>
+    <?php $_columnCount = $this->getColumnCount(); ?>
+        <?php $_iterator = 0; ?>
+        <ul class="products-grid">    
+        <?php $i=0; foreach ($_productCollection as $_product): ?>
+        <?php
+                    $storeId    = Mage::app()->getStore()->getStoreId();
+                    $prodname = trim($_product->getName());
+
+                    $_productCollection = Mage::getModel('catalog/product')
+                                        ->getCollection()
+                                        ->addAttributeToSelect('*')
+                                        ->addAttributeToFilter('status',1)
+                                        ->addAttributeToFilter('short_description', $prodname)
+                                        ->setStoreId($storeId)
+                                        ->addStoreFilter($storeId)
+                                        ->load();
+                                        
+                   $withsizes = count($_productCollection);                    
+
+                ?>
+            <li class="item">
+                
+                
+                <?php if($_product->getUnilabRx() == 1) :  ?>
+                    <div class="productrx"></div>
+                <?php endif; ?>
+                
+                <div class="pro_topadst">
+                
+                    <div class="onsale-category-container-list" style="float:none;">
+                    <?php echo Mage::helper('onsale')->getCategoryLabelHtml($_product); ?>
+                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_product->getUnilabRx() ? $this->__("Requires Prescription") : $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true);?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(252); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
+                    </div>
+                <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
+                <div class="sale-label">
+                    <?php if($_product->getUnilabWithPromo() == 1):?>
+                        <strong><?php echo $_product->getUnilabSaleLabel();?></strong>
+                    <?php endif; ?>
+                </div>
+                <div class="genericname"><?php echo $_product->getGenericName()?></div>
+                <?php if($_product->getRatingSummary()): ?>
+                <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                <?php endif; ?>
+
+                <div class="health-plus-catalog">
+                    <?php
+
+					$storeid 		= 	Mage::app()->getStore()->getStoreId();
+					$healthplusEnabled = Mage::getStoreConfig('healthplus/healthplussettings/enabled', $storeid);
+		
+					if($healthplusEnabled == 1)
+					{
+						if(Mage::getConfig()->getModuleConfig('Unilab_Healthplus')->is('active', 'true'))
+						{
+							$attributeValue = Mage::getModel('catalog/product')->load($_product->getId())->getAttributeText('unilab_healthplus');    
+
+							if($attributeValue == 'Yes')
+							{
+								?><img src="<?php echo $this->getSkinUrl('images/health-plus-logo.png'); ?>" alt="health plus"/><?php   
+							}          
+						}
+					 }
+
+                    ?>
+               </div>
+
+                <?php echo $this->getPriceHtml($_product, true) ?>
+                </div>
+                <div class="actions">
+                <?php if($_product->isSaleable()): ?>
+                    <?php if($_product->getUnilabRx()):?>
+                        <button type="button" id="addToCart" title="<?php echo $buttonTitle ?>" class="button btn-cartrx askPrescription" returnUrl="<?php echo $this->getSubmitUrl($_product);?>" returnId="<?php echo $_product->getId();?>" returnName="<?php echo $_product->getName(); ?>" returnMoq="1"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                    <?php else: ?>
+                        <?php if($withsizes > 0){?>
+                        <button type="button" returnId="<?php echo $_product->getId(); ?>" returnName="<?php echo $_product->getName(); ?>" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart-flavor" ><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                        <?php } else { ?>
+                         <button type="button" id="btncart" returnId="<?php echo $_product->getId(); ?>" returnName="<?php echo $_product->getName(); ?>" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" ><span><span><?php echo $this->__('Add to Cart') ?></span></span></button> 
+                
+                        <?php } ?>
+                    <?php endif; ?> 
+                  <button type="button" id="btncart2" title="<?php echo $this->__('View Product') ?>" class="button btn-view" returnUrl="<?php echo $_product->getProductUrl() ?>"><span><span><?php echo $this->__('View Product') ?></span></span></button> 
+                    <?php else: ?>
+                       <button type="button" id="btncartNoStock" title="<?php echo $this->__('Out of Stock') ?>" class="button btn-cart" 
+                        disabled><span><span><?php echo $this->__('Out of Stock') ?></span></span></button>
+                       <button type="button" id="btncart2" title="<?php echo $this->__('View Product') ?>" class="button btn-view" returnUrl="<?php echo $_product->getProductUrl() ?>"><span><span><?php echo $this->__('View Product') ?></span></span></button>
+                    <?php endif; ?>
+                    <ul class="add-to-links">
+                        <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                           <!-- <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li> -->
+                        <?php endif; ?>
+                        <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                           <?php /*  <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li> */ ?>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+            </li>  
+        <?php endforeach ?>
+        </ul>
+        <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+    <?php endif; ?>
+
+    <div class="toolbar-bottom">
+        <?php echo $this->getToolbarBlock()->setTemplate('catalog/product/list/toolbar_bottom.phtml')->toHtml(); ?>
+    </div>
+</div>
+<?php //endif; ?><!--comment !-->
+
+
+<?php endif; ?>
+
+<!-- Loading Icon -->
+<div id="loading-icon">
+    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/unilab2/images/loading-icon.gif">
+</div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Online Store</h2>
+    </div>
+    <div class="modal-body">
+      <p><span id="prodName"></span> was added to your shopping cart</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button"title="<?php echo $this->__('Continue Shopping') ?>" class="button btn-cshopping"><span><?php echo $this->__('Continue Shopping') ?></span></button>
+      <button type="button" returnUrl="<?php echo Mage::helper('checkout/url')->getCartUrl() ?>" title="<?php echo $this->__('Proceed to Cart') ?>" class="button btn-checkout" ><span><?php echo $this->__('Proceed to Cart') ?></span></button>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">    
+
+    var productAddToCartForm = new VarienForm('product_addtocart_form');            
+    
+    var disable_submission   = false;           
+
+    var prevent_submission   = false;    
+
+jQuery(document).ready(function (){ 
+
+
+jQuery(".sort-by select  option:contains('Sort Order')").remove();
+
+    jQuery('.askPrescription').click(function (){
+
+         var url = jQuery(this).attr('returnUrl');
+
+         var product = jQuery(this).attr('returnId');
+
+         var moq = jQuery(this).attr('returnMoq');
+
+                                             // var product = jQuery(this).attr('returnId');
+                                    var productName = jQuery(this).attr('returnName');
+
+
+         jQuery('#product_addtocart_form').attr('action',url);
+
+         jQuery('#product').val(product);
+
+         jQuery('#qty').val(moq);
+
+         jQuery.fancybox.showLoading();                  
+
+            
+
+            var prescription_askuser_url  = '<?php echo $this->getUrl('prescription/index/askuser');?>';                    
+
+
+            //var parameters  =  Form.serialize(this.form);                       
+
+            var parameters = '&form_action='+url;  
+
+            parameters += '&product='+product; 
+
+            parameters += '&qty='+moq; 
+
+            var request = new Ajax.Request(prescription_askuser_url, {                          
+
+          
+
+                parameters: parameters,               
+
+                
+
+                onSuccess: function(transport){                                                             
+
+                
+                    if(transport.status == 200) {                                   
+   
+
+                        var response = transport.responseText.evalJSON();                               
+
+                            // alert(response.proceed_to_cart);
+
+
+                            if(response.proceed_to_cart){                                   
+                                //if rx product is already in cart
+                               // jQuery('#product_addtocart_form').submit(); 
+
+                                    jQuery("#loading-icon").show();
+                                    jQuery.ajax({
+                                    type: 'Post',
+                                    url:'<?php echo Mage::getBaseUrl()?>checkout/cart/addtoCart',
+                                    data: {
+                                        product: product
+                                    },
+                                    }).done(function(data){
+                                        if(data == 'success'){
+                                        jQuery("#prodName").html(productName);    
+                                        var count = jQuery("#item_count").html();
+                                        count = Number(count) + Number(1);
+                                        jQuery("#item_count").html(count); 
+                                        jQuery("#loading-icon").hide(); 
+                                        jQuery("#myModal").show();
+                                        }
+                                    });   
+
+
+                            }else{                                          
+
+                             // alert('false');
+
+                                showDialog(response.askuser_dialog);                                                                    
+
+                                
+
+                                askUserControls(response);                              
+
+                            
+
+                            }                                                           
+
+                            
+
+                        }                       
+
+                    
+
+                    },                      
+
+                    
+
+                    onFailure: '',                      
+
+                    
+
+                    onComplete: function(){
+
+
+
+                        jQuery.fancybox.hideLoading();                      
+
+                        
+
+                    }                   
+
+                    
+
+            });                    
+
+
+
+    });
+
+
+
+});
+
+
+//<![CDATA[         
+
+
+
+    
+
+    var askUserControls = function(response) {              
+
+    
+
+        jQuery("#no_prescription").click(function(){                    
+
+            
+
+            showDialog(response.cancel_dialog);                                         
+
+            
+
+            jQuery("#btnCancelPrescription").click(function(){                      
+
+            
+
+                jQuery.fancybox.close();                    
+
+                
+
+            });             
+
+            
+
+        });                 
+
+        
+
+        jQuery("#has_prescription").click(function(){                           
+
+        
+
+            prescriptionControls(response);                                             
+
+            
+
+        });         
+
+        
+
+    }           
+
+    
+
+    var showConfirmCancelPrescriptionDialog = function(response) {                          
+
+    
+
+        showDialog(response.cancel_trans_dialog);                               
+
+        
+
+        jQuery("#btnCancelPrescriptionTransaction").click(function(){                   
+
+        
+
+            jQuery.fancybox.close();                
+
+            
+
+        });                 
+
+        
+
+        jQuery("#btnCancelPrescriptionCancelTransaction").click(function(){                  
+
+        
+
+            prescriptionControls(response);             
+
+            
+
+        });                             
+
+        
+
+    }           
+
+    
+
+    var prescriptionControls = function(response) {                     
+
+    
+
+        showDialog(response.prescription_dialog);               
+
+        
+
+        jQuery("#cancel_prescription").click(function(){                    
+
+        
+
+            showConfirmCancelPrescriptionDialog(response);                                  
+
+            
+
+        });                 
+
+        
+
+        prescriptionForm.submit = function(button, url) {                   
+
+        
+
+            if(disable_submission) {            
+
+            
+
+                return false;                   
+
+            }                   
+
+            
+
+            if (prescriptionForm.validator.validate())  {       
+
+
+
+                //prevent double submission                     
+
+                
+
+                if(prevent_submission){                                                     
+
+                
+
+                    return false;                       
+
+                    
+
+                }                       
+
+                
+
+                prevent_submission = true;                      
+
+                
+
+                VarienForm.prototype.submit.bind(prescriptionForm)();                   
+
+                
+
+                
+
+            }               
+
+            
+
+        }           
+
+    
+
+    }       
+
+    
+
+    //]]>    
+
+     jQuery('.AddToCartNoRx').click(function (){
+
+         jQuery.fancybox.showLoading();
+
+         var url = jQuery(this).attr('returnUrl');
+
+         var product = jQuery(this).attr('returnId');
+
+         var moq = jQuery(this).attr('returnMoq');
+
+
+
+         jQuery('#product_addtocart_form').attr('action',url);
+
+         jQuery('#product').val(product);
+
+         jQuery('#qty').val(moq);
+
+        
+
+         jQuery('#product_addtocart_form').submit();
+
+    });     
+
+    
+
+</script> 
+
+
+
+<script>
+   jQuery(document).on('click','.btn-view',function(){
+        window.location = jQuery(this).attr('returnUrl');
+   });
+
+   jQuery(document).on('click','.close',function(){
+        jQuery("#myModal").hide();
+    });
+
+    jQuery(document).on('click','.btn-cshopping',function(){
+        location.reload();
+    });
+
+    jQuery(document).on('click','.btn-checkout',function(){
+        window.location = jQuery(this).attr('returnUrl');
+
+    });
+</script>
+
+
+<script type="text/javascript">
+// jQuery(document).ready(function() {
+//    jQuery(document).on('click','.btn-view',function(){
+//         window.location = jQuery(this).attr('returnUrl');
+//    });
+
+//    jQuery(document).on('click','.btn-cart',function(){
+//         jQuery("#loading-icon").show();
+//         var product = jQuery(this).attr('returnId');
+//         var productName = jQuery(this).attr('returnName');
+//         jQuery.ajax({
+//         type: 'Post',
+//         url:'<?php echo Mage::getBaseUrl()?>checkout/cart/addtoCart',
+//         data: {
+//             product: product
+//         },
+//         }).done(function(data){
+//             if(data == 'success'){
+//             jQuery("#prodName").html(productName);    
+//             var count = jQuery("#item_count").html();
+//             count = Number(count) + Number(1);
+//             jQuery("#item_count").html(count); 
+//             jQuery("#loading-icon").hide(); 
+//             jQuery("#myModal").show();
+//             }
+//         });
+//     });
+
+//    jQuery(document).on('click','.close',function(){
+//         jQuery("#myModal").hide();
+//     });
+
+//     jQuery(document).on('click','.btn-cshopping',function(){
+//         location.reload();
+//     });
+
+//     jQuery(document).on('click','.btn-checkout',function(){
+//         window.location = jQuery(this).attr('returnUrl');
+
+//     });
+   
+//});
+</script>
+
+<script>
+jQuery(document).on('click','.btn-cart',function(){
+
+    var redirectHere = jQuery('#redirectHere').data('value');
+
+    if(redirectHere == 'yes'){
+        window.location.href = jQuery('#redirectHere').data('url');; 
+        return false;
+    }
+
+
+    jQuery("#loading-icon").show();
+    var product = jQuery(this).attr('returnId');
+    var productName = jQuery(this).attr('returnName');
+    
+    jQuery.post("<?php echo Mage::getBaseUrl()?>checkout/cart/addtoCart",
+    {
+        product: product            
+
+    },function (data){
+
+        var objresponse = jQuery.parseJSON(data);
+        
+        if(objresponse.msg == 'success'){
+            
+            jQuery("#prodName").html(productName);    
+            var count = jQuery("#item_count").html();
+            count = Number(count) + Number(1);
+            jQuery("#item_count").html(count); 
+            jQuery("#loading-icon").hide(); 
+            jQuery("#myModal").show();
+            
+            
+        }
+
+    });
+});
+</script>
+
+
+
+
+<div class="modalflavor modal">
+    <div id="loading-icon"><img src="<?php echo $this->getSkinUrl('images/ajax-loader.gif');?>"></div>
+    <div class="modal-content" style="height: 215px;">
+        <div class="modal-header">
+          <h2>Online Store</h2>
+        </div>
+        <div class="modal-body">
+          <p><span id="prodName">SELECT FLAVORS</span></p>
+          <p id='selflavors'>
+            <select id="flavorlist">
+            </select>
+        </p>
+        <small id="err_msg_flavor" style="color:red;display:none;"> Please Select Flavor</small>
+        </div>
+        
+        <hr />
+        <button id="btnFlavorAdd" class="btnAddFlavors button" returnPName="" >Add to Cart</button>
+    </div>
+</div>
+<script>
+
+    jQuery(".btn-cart-flavor").click(function() {
+
+        //alert('ok');
+
+           var productid = jQuery(this).attr('returnid'); 
+           var prodname = jQuery(this).attr('returnname');  
+           // var prodname = trim($_product->getName());
+           jQuery("#btnFlavorAdd").attr("returnPName", prodname);
+           var filePath = '<?php echo Mage::getBaseUrl()?>checkout/cart/list/';
+           jQuery.post(filePath,
+           {
+                productid: productid,
+                prodname: prodname              
+
+            },function (data){
+                
+                var objresponse = jQuery.parseJSON(data);
+
+                jQuery('#selflavors').html(objresponse.flavorlist);
+            
+            }); 
+            
+            jQuery(".modalflavor").show();
+            jQuery("#loading-icon").hide();
+            jQuery(".modal-content").show();
+    });
+
+    jQuery(".closeFlavor").click(function(){
+            jQuery(".modalflavor").hide();
+        });
+        
+        jQuery(".btnAddFlavors").click(function() 
+        {   
+            var prodid  = jQuery("#flavorlist").val();
+            if(prodid == '' ){
+                jQuery('#err_msg_flavor').show();
+                return false;
+            }
+            var prodname = jQuery(this).attr('returnPName');  
+                   jQuery("#myModal").show();
+                   jQuery("#loading-icon").show();
+                   jQuery(".modal-content").hide();
+
+                    jQuery.ajax({
+                    type: 'Post',
+                    url:'<?php echo Mage::getBaseUrl()?>checkout/cart/addtoCart',
+                    data: {
+                        product: prodid     
+                    },
+                    }).done(function(data){                     
+                        if(data == 'success'){
+                            jQuery("#prodName").html(prodname);  
+                            var count = jQuery("#item_count").html();
+                            count = Number(count) + Number(1);
+                            jQuery("#item_count").html(count);  
+                            jQuery(".loading").hide();
+                            jQuery(".modalflavor").hide();
+                            jQuery(".modal-content").show();
+                        }
+                    });
+        });
+
+</script>

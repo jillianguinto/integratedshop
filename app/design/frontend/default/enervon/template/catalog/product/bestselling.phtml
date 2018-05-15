@@ -1,0 +1,173 @@
+		<?php 
+		
+			$itemcount = 0;
+		
+			$_helper = $this->helper('catalog/output');
+			
+			$storeId = Mage::app()->getStore()->getId();
+			
+			$products = Mage::getResourceModel('reports/product_collection')
+			
+				->addOrderedQty()
+				
+				->addAttributeToSelect('*')
+				
+				->addAttributeToSelect(array('name', 'price', 'small_image'))
+				
+				->addStoreFilter($storeId)
+				
+				->setOrder('ordered_qty', 'desc'); 
+					
+			$productInfo 	= $products->getData();
+			
+			$code 			= $_SESSION["storename"];	
+			
+				
+			foreach($productInfo as $_items){
+					
+				$_product = Mage::getModel('catalog/product')->load($_items['entity_id']);
+				
+				$ids = $_product->getCategoryIds();
+				
+				if (in_array($code, $ids)){
+								
+					$itemcount++;
+					
+				}
+				
+			}
+			
+			
+		?>
+
+<?php if($itemcount >=1): ?>
+
+<style>
+	.head-wrapper{
+		background-color: #ccc;
+		padding: 5px;
+		font-size: 15px;
+		font-weight: bold;
+		color: #0069AF;
+	}
+	
+	.head-wrapper p{
+		margin:0px !important;
+	}
+</style>
+
+	<div class="head-wrapper">
+
+		<p>Best Selling</p>
+
+	</div>
+
+	<div class="items-wrapper">
+
+		<ul class="products-grid">    
+
+			<?php 
+			// for($a=0;$a<6;$a++)
+			// {
+				$itemcount = 0;
+				
+				foreach($productInfo as $_items){
+						
+					$_product = Mage::getModel('catalog/product')->load($_items['entity_id']);
+					
+					$ids = $_product->getCategoryIds();
+					
+					if (in_array($code, $ids)){
+						
+						if($itemcount <=6){
+							
+							?>					
+							
+							<li class="item">
+								
+								
+								<?php if($_product->getUnilabRx() == 1) :  ?>
+								
+									<div class="productrx"></div>
+									
+								<?php endif; ?>
+								
+								<div class="pro_topadst">
+								
+									<div class="onsale-category-container-list" style="float:none;">
+									
+									<?php echo Mage::helper('onsale')->getCategoryLabelHtml($_product); ?>
+									
+									<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_product->getUnilabRx() ? $this->__("Requires Prescription") : $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true);?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(252); ?>" width="252" height="252" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
+									
+									</div>
+								
+								<h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
+								
+								<div class="genericname"><?php echo $_product->getGenericName()?></div>
+								
+								<?php if($_product->getRatingSummary()): ?>
+								
+								<?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+								
+								<?php endif; ?>
+								
+								<?php echo $this->getPriceHtml($_product, true) ?>
+								
+								<p><strong>
+									<?php
+									
+										$formattedPrice = Mage::helper('core')->currency($_product->getPrice(), true, false);
+
+										echo $formattedPrice;
+
+									?>
+								</strong></p>
+								</div>
+								
+								<div class="actions">
+								
+									<?php if($_product->isSaleable()): ?>
+									
+										<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php //echo $this->__('Add to Cart') ?></span></span></button>
+									
+									<?php else: ?>
+									
+										<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+									
+									<?php endif; ?>
+									
+									<ul class="add-to-links">
+									
+										<?php if ($this->helper('wishlist')->isAllow()) : ?>
+										   <!-- <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li> -->
+										<?php endif; ?>
+										<?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+										   <?php /*  <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li> */ ?>
+										<?php endif; ?>
+										
+									</ul>
+									
+								</div>
+								
+							</li>	
+							
+						<?php					
+							
+							$itemcount++;
+							
+						}
+						
+						
+					}
+					
+				}
+				
+				// }
+			?>
+		</ul>
+
+	</div>
+
+<?php endif; ?>
+

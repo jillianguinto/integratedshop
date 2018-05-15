@@ -1,0 +1,33 @@
+
+<div id="navigation">
+	
+	<ul class="menu">
+		<li><a href="http://www.unilabactivehealth.com/index.html"><?php echo $this->__("Home");?></a></li>
+		<!--<li><a href="<?php //echo Mage::getUrl("aboutus");?>"><?php //echo $this->__("About Us");?></a></li>-->
+		<!-- <li class="last"><a href="<?php //echo Mage::getUrl("contacts");?>""><?php //echo $this->__("Contact Us");?></a></li>  -->
+		<li><a href="http://www.unilabactivehealth.com/events.html"><?php echo $this->__("Events");?></a></li>
+		<li><a href="http://www.unilabactivehealth.com/training-articles_coach-ani-training-tips-for-21k.html"><?php echo $this->__("Training");?></a></li>
+		<li><a><?php echo $this->__("Nutrition");?></a></li>
+		<li><a href="<?php echo Mage::getUrl("/");?>"><?php echo $this->__("Shop");?></a></li>
+
+	</ul>
+	
+	
+	<form id="search_main_form" action="<?php echo $this->helper('catalogsearch')->getResultUrl() ?>" method="get">
+		<div class="form-search-main">
+			<label for="search"><?php echo $this->__('Search') ?></label>
+			<input id="main_search" type="text" name="<?php echo $this->helper('catalogsearch')->getQueryParamName() ?>" value="<?php echo $this->helper('catalogsearch')->getEscapedQueryText() ?>" class="input-text" />
+			<input type="submit" title="<?php echo $this->__('Go') ?>" value="<?php echo $this->__("Search");?>" class="button search-button">
+			<div id="search_autocomplete" class="search-autocomplete"></div>
+			<script type="text/javascript">
+			//<![CDATA[
+				var searchForm = new Varien.searchForm('search_main_form', 'main_search', '<?php echo $this->__('Search') ?>');
+				searchForm.initAutocomplete('<?php echo $this->helper('catalogsearch')->getSuggestUrl() ?>', 'search_autocomplete');
+			//]]>
+			</script>
+		</div>
+	</form> 	
+	
+</div>
+
+

@@ -1,0 +1,107 @@
+<?php
+        if (Mage::getSingleton('customer/session')->isLoggedIn()) {  			
+			$seturl = Mage::getBaseurl().'customer/account';
+			$action='';
+        }
+		else
+		{
+			$seturl = "#";
+			$action = "sign_in()";
+		}
+ ?>
+
+
+<?php $count = (int) $this->helper('checkout/cart')->getSummaryCount(); 
+
+	//Put your site URL here
+	
+	$siteUrl = Mage::getStoreConfig('heymom_section/heymom_group/heymom_url');
+	
+?>
+
+<link href='<?php echo $siteUrl; ?>css/style.css' rel='stylesheet' type='text/css' />	
+<div id="navigation-container" class="rounded">
+	<div id="home-btn">
+		<a href="<?php echo $siteUrl; ?>"></a>	
+	</div>
+	<div class="navigation custom">
+		<div class="">
+			<a href="<?php echo $siteUrl; ?>" class="expecting top-rounded">EXPECTING</a>
+		</div>	
+		<div class="">	
+			<a href="<?php echo $siteUrl; ?>new/blog" class="new top-rounded">NEW</a>
+		</div>	
+		<div class="">	
+			<a href="<?php echo $siteUrl; ?>experienced/blog" class="experienced top-rounded">EXPERIENCED</a>
+		</div>	
+		<div class="">	
+			<a href="<?php echo $siteUrl; ?>forum/hot-topics" class="forum top-rounded">FORUM</a>
+		</div>	
+		<div class="">	
+			<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);?>" target="_blank" class="onlinestore top-rounded">SHOP</a>
+		</div>	
+	</div>	
+	<div class="clear"></div>
+	<div id="sub-navigation" style="background-color: #98B090;" class="box-shadow">					
+		<ul>
+			<li><a class="expecting_link" href="<?php echo Mage::getBaseurl();?>aboutus/">ABOUT US</a></li>
+			<li><a class="expecting_link" href="<?php echo Mage::getBaseurl();?>faq/">FAQS</a></li>
+			<li><a class="expecting_link" href="<?php echo Mage::getBaseurl();?>contacts/">CONTACT US</a></li>
+			<li style="float:right; margin-right:10px;">
+				<a href="<?php echo $seturl ?>" class="expecting_link" onclick="<?php echo $action.';' ?>"><?php echo $this->__('MY ACCOUNT')?></a>
+			</li>
+			<li style="float:right;">										
+				<a class="expecting_link" href="<?php echo Mage::helper('checkout/cart')->getCartUrl() ?>" ><?php echo $this->__('SHOPPING CART')?>
+					<?php echo '('.$count.')'; ?>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>	
+
+<!-- default --
+<div id="navigation-container" class="rounded">
+	<div id="home-btn"><a href="<?php echo $siteUrl; ?>"></a></div>
+	<div id="navigation">
+		<ul>
+			<li><a href="<?php echo $siteUrl; ?>" class="expecting top-rounded">EXPECTING</a></li>
+			<li><a href="<?php echo $siteUrl; ?>new/blog" class="new top-rounded">NEW</a></li>
+			<li><a href="<?php echo $siteUrl; ?>experienced/blog" class="experienced top-rounded">EXPERIENCED</a></li>
+			<li><a href="<?php echo $siteUrl; ?>forum/hot-topics" class="forum top-rounded">FORUM</a></li>
+			<li><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);?>" target="_blank" class="onlinestore top-rounded">SHOP</a></li>
+		</ul>
+	</div>
+	<div id="search-bar">			
+		<form id="search_main_form" action="<?php echo $this->helper('catalogsearch')->getResultUrl() ?>" method="get">
+			<div class="form-search-main">
+				<label for="search"><?php echo $this->__('Search') ?></label>
+				<input id="main_search" type="text" name="<?php echo $this->helper('catalogsearch')->getQueryParamName() ?>" value="<?php echo $this->helper('catalogsearch')->getEscapedQueryText() ?>"  class="rounded" placeholder="Search"/>
+				<button type="submit"><img src="<?php echo $siteUrl; ?>img/layout/search.png" style="width: 15px"></button>
+				<div id="search_autocomplete" class="search-autocomplete"></div>
+				<script type="text/javascript">
+				//<![CDATA[
+				var searchForm = new Varien.searchForm('search_main_form', 'main_search', '<?php echo $this->__('Search') ?>');
+				searchForm.initAutocomplete('<?php echo $this->helper('catalogsearch')->getSuggestUrl() ?>', 'search_autocomplete');
+				//]]>
+				</script>
+			</div>
+		</form> 
+	</div>			
+	<div class="clear"></div>
+	<div id="sub-navigation" style="background-color: #98B090;" class="box-shadow">					
+		<ul>
+			<li><a class="expecting_link" href="<?php echo Mage::getBaseurl();?>aboutus/">ABOUT US</a></li>
+			<li><a class="expecting_link" href="<?php echo Mage::getBaseurl();?>faq/">FAQS</a></li>
+			<li><a class="expecting_link" href="<?php echo Mage::getBaseurl();?>contacts/">CONTACT US</a></li>
+			<li style="float:right; margin-right:10px;">
+				<a href="<?php echo $seturl ?>" class="expecting_link" onclick="<?php echo $action.';' ?>"><?php echo $this->__('MY ACCOUNT')?></a>
+			</li>
+			<li style="float:right;">										
+				<a class="expecting_link" href="<?php echo Mage::helper('checkout/cart')->getCartUrl() ?>" ><?php echo $this->__('SHOPPING CART')?>
+					<?php echo '('.$count.')'; ?>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>	
+-->

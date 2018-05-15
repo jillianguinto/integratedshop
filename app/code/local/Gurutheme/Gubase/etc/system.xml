@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <gubase translate="label" module="gubase">
+            <label>Gurutheme</label>
+            <sort_order>400</sort_order>
+        </gubase>
+    </tabs>
+    <sections>
+        <gubase_info translate="label" module="gubase">
+            <label>About</label>
+            <tab>gubase</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>2000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <info>
+                    <frontend_model>gubase/system_config_info</frontend_model>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </info>
+            </groups>
+        </gubase_info>
+    </sections>
+    
+</config>

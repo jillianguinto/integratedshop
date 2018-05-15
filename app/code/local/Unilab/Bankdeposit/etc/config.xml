@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!--
+KBANK
+-->
+<config>
+	<modules>
+		<Unilab_Bankdeposit>
+			<version>1.1.0.0</version>
+		</Unilab_Bankdeposit>
+	</modules>
+	<global>
+		<models>
+			<bankdeposit>
+				<class>Unilab_Bankdeposit_Model</class>
+			</bankdeposit>
+		</models>
+		<blocks>
+			<bankdeposit>
+				<class>Unilab_Bankdeposit_Block</class>
+			</bankdeposit>
+		</blocks>
+		<helpers>
+			<bankdeposit>
+				<class>Unilab_Bankdeposit_Helper</class>
+			</bankdeposit>
+		</helpers>
+		<payment>			
+			<groups>
+				<offline>Offline Payment Methods</offline>
+			</groups>
+		</payment>
+
+        <events>
+            <sales_order_invoice_save_after>
+                <observers>
+                    <bankdeposit>
+                        <type>model</type>
+                        <class>bankdeposit/observer</class>
+                        <method>changeOrderStatus</method>
+                    </bankdeposit>
+                </observers>
+            </sales_order_invoice_save_after>
+        </events>
+
+	</global>
+	<default>
+		<payment>
+			<bankdeposit>				
+				<model>bankdeposit/method_payment</model>		
+				<active>1</active>
+				<order_status>pending</order_status>
+				<title>Bank Transfer</title>							
+				<payment_action>sale</payment_action>
+				<allowspecific>0</allowspecific>	
+			</bankdeposit>
+		</payment>
+	</default>
+	<frontend>
+		<routers>
+			<bankdeposit>
+				<use>standard</use>
+				<args>
+					<module>Unilab_Bankdeposit</module>
+					<frontName>bankdeposit</frontName>
+				</args>
+			</bankdeposit>
+		</routers>
+		<layout>
+            <updates>
+                <bankdeposit>
+                    <file>bankdeposit.xml</file>
+                </bankdeposit>
+            </updates>
+        </layout>		
+	</frontend>
+</config>

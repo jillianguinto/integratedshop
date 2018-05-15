@@ -1,0 +1,277 @@
+<?php 
+
+
+
+
+
+	$id 					= $this->getRequest()->getParam('id');
+
+	$customer 				= Mage::getModel('customer/customer')->load($id);
+
+
+
+  	$transaction_ids[] 		= $customer->getEntityId();
+  	$customerid				= $customer->getEntityId();
+
+
+
+	$addressesCollection 	= Mage::getResourceModel('customer/address_collection');
+
+
+
+	$addressesCollection->addAttributeToSelect('*'); 
+
+	$addressesCollection->addFieldToFilter('parent_id',$id); 
+
+
+
+	foreach ($addressesCollection as $address) {
+
+		$transaction_ids[] 	= $address->getEntityId(); 
+		$Addressid[]		= $address->getEntityId();		
+	}
+
+
+
+	$collection = Mage::getModel('webservice/netsuitelogs')->getCollection();
+
+
+
+	$collection->addFieldToFilter('transaction_id',$transaction_ids);		
+
+	// echo  $collection->getSelect()->__toString();
+
+
+
+	$is_sent 	= false;
+
+
+
+	
+
+?>
+
+
+
+
+
+<div class="entry-edit">
+
+			
+
+	<div class="entry-edit-head">
+
+
+
+		<h4 class="icon-head head-products"><?php echo Mage::helper('sales')->__('History of Sending Customer to Netsuite') ?></h4>
+
+
+
+	</div>
+
+	
+
+		<div class="grid np">	
+
+		
+
+			<div class="hor-scroll">	
+
+				<fieldset id="my-fieldset">	
+
+				
+
+					<table cellspacing="0" class="data order-tables">	
+
+					
+
+					<thead>	
+
+					
+
+						<tr class="headings">
+
+						
+
+							<th><center><?php echo $this->helper('webservice')->__('#') ?></center></th>
+
+
+
+							<th><?php echo $this->helper('webservice')->__('Response From ') ?></th>
+
+														
+
+							<th><?php echo $this->helper('webservice')->__('Customer ID') ?></th>
+
+
+
+							<th><?php echo $this->helper('webservice')->__('Command Event') ?></th>
+
+							
+
+							<th><?php echo $this->helper('webservice')->__('Status') ?></th>
+
+							
+
+							<th><?php echo $this->helper('webservice')->__('Message Log') ?></th>
+
+
+
+							<th><?php echo $this->helper('webservice')->__('Date and Time') ?></th>
+
+							
+
+						</tr>	
+
+						
+
+					</thead>		
+
+					
+
+						<tbody>	
+
+						
+
+						<?php 
+
+							
+
+							$senttoNetsuite = $collection->getData();
+
+							 
+
+							if(count($senttoNetsuite)){
+
+								
+
+								$count		= 1;	
+
+								$TItems		= 0;
+
+								$is_sent 	= false;
+								$is_display	= 0;
+
+								
+
+								foreach ($senttoNetsuite as $_value):
+
+
+
+									echo "<tr>";
+									
+									if ($_value['transaction_id'] == $customerid  ) {
+										$is_display = 1;
+									}
+
+									foreach ($Addressid as $key => $value) {
+											if ($value == $_value['transaction_id'] && $_value['cmdEvent']!= 'CreateCustomer'&& $_value['cmdEvent'] != 'UpdateCustomer') {
+												$is_display = 1;
+												
+											}
+										}
+										
+											foreach($_value as $key=>$_item):
+												if ($is_display == 1) {
+											
+												
+												if($key == 'id'){
+
+													echo "<td>". $count . "</td>";	
+
+												}elseif($key == 'cmdEvent'){
+
+													echo "<td>". $_item . "</td>";											
+
+												}elseif($key == 'transaction_id'){
+
+													echo "<td>". $_item . "</td>";	
+
+												}elseif($key == 'status'){
+
+													if($_item == 1){
+
+														$is_sent = true;
+
+														echo "<td style='background: rgb(0, 189, 7);font-weight: bold; color: #fff; padding: 5px;font-size: 12px;'><center>Yes</center></td>";	
+
+													}else{
+
+														echo "<td style='background: red;font-weight: bold; color: #fff; padding: 5px;font-size: 12px;'><center>No</center></td>";		
+
+													}
+
+												}elseif($key == 'logs'){
+
+													echo '<td >'.str_replace('\\' , ' ' ,$_item) . "</td>";	
+
+												}elseif($key == 'date'){
+
+													echo "<td>". $_item . "</td>";	
+
+											 	}elseif($key == 'data_from'){
+
+													echo "<td>". $_item . "</td>";	
+
+												}
+
+												}	
+
+											endforeach;	
+
+										echo "</tr>";	
+										if ($is_display == 1) {
+												$count++;	}			
+
+									
+
+								endforeach;	
+
+							}else{
+
+								echo "<tr><td colspan='6'><center>NO Record Found!</center></td></tr>";
+
+							}
+
+								
+
+						 ?>										
+
+						
+
+						</tbody>	
+
+						
+
+					</table>
+
+				
+
+				</fieldset>		
+
+			</div>
+
+		</div>
+
+			
+
+
+
+</div>
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+    var resendForm = new varienForm('resend_form');	
+
+
+
+</script>
+
+
+

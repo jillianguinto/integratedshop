@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Lepape_CatalogRule>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Lepape_CatalogRule>
+    </modules>
+</config>

@@ -1,0 +1,255 @@
+<script>
+jQuery(document).ready(function() {
+    jQuery(".tabs-menu a").click(function(event) {
+        event.preventDefault();
+        jQuery(this).parent().addClass("current");
+        jQuery(this).parent().siblings().removeClass("current");
+        var tab = jQuery(this).attr("href");
+        jQuery(".tab-content").not(tab).css("display", "none");
+        jQuery(tab).fadeIn();
+    });
+});
+</script>
+<?php $_helper  = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?><script type="text/javascript"> 
+   var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+   </script>
+   <div id="messages_product_view">
+	<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+   </div>
+   <div class="product-view">
+
+    <div class="banner" style="text-align: justify; border: 1px solid #192e6f; padding: 10px; word-wrap: break-word; font-size: 15px; color: #192e6f; font-weight: bold; background: rgba(221, 221, 221, 0.7);">
+    <span style="color: red; font-size: 16px;">Important:</span>
+    <p style="margin-top:0;">This is to infrom you that our warehouse will be closed on March 1-3. All orders received on this date will be delivered within 5-7 days for Metro Manila, Central Luzon and South Luzon. Additional 2 days will also apply for Visayas, Mindanao and North Luzon.</p>
+    <p>We apologize for the inconvenience this may cause you. Normal operations and delivery timelines will be in place by March 4. Thank you for your understanding.</p>
+</div>
+<br/>
+
+
+
+   <div class="product-essential">  
+
+    <div class="product-essential">   
+      <div class="prod-name-top"><h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1></div>
+    </div>
+
+   <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>    
+   <?php echo $this->getBlockHtml('formkey') ?>       
+   <div class="no-display">           
+   <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />     
+   <input type="hidden" name="related_product" id="related-products-field" value="" />	
+   <input type="hidden" name="actual_product" id="actual_product" value="<?php echo $_product->getId() ?>" />   
+   </div>       
+   <div>     
+   <!-- <div style="width:40%;" class="product-img-box"> --> 
+   <div class="product-img-box">       
+   <?php echo $this->getChildHtml('media') ?>      
+   </div>   
+
+  <!-- <div style="width:58%;float:right;" class="product-shop"> -->  
+  <div  class="product-shop">
+<!--    <div class="product-name">    
+   <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>  
+   </div>     -->        
+   <div class="generic-name">
+   <h1><?php echo $_product->getGenericName(); ?></h1>
+   </div>									
+   <div class="add-to-wl">
+   <?php echo $this->getChildHtml('addto') ?>			
+   </div>
+   <?php if ($this->canEmailToFriend()): ?>
+   <p class="email-friend"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to Friend') ?></a></p>
+   <?php endif; ?>
+   <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+   <?php echo $this->getChildHtml('alert_urls') ?> 
+   <?php echo $this->getChildHtml('product_type_data') ?> 
+   <?php echo $this->getTierPriceHtml() ?> 
+   <?php echo $this->getChildHtml('extrahint') ?>
+   <?php if ($_product->getShortDescription()):?>  
+   <div class="short-description"> 
+   <h2><?php echo $this->__('Quick Overview') ?></h2>   
+   <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
+   </div>               
+   </div>            
+   <?php endif;?>          
+   <?php echo $this->getChildHtml('other');?> 
+   <?php if ($_product->isSaleable() && $this->hasOptions()):?>   
+   <?php echo $this->getChildChildHtml('container1', '', true, true) ?>      
+   <?php endif;?>    
+ <div class="clearer"></div>        
+   <?php if ($_product->isSaleable() && $this->hasOptions()):?>            
+   <?php echo $this->getChildChildHtml('container2', '', true, true) ?>       
+   <?php endif;?>				 
+   <?php if (!$this->hasOptions()):?>  
+   <div class="add-to-box">           
+   <?php if($_product->isSaleable()): ?>     
+   <?php echo $this->getChildHtml('addtocart') ?>    
+   <?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?> 
+   <!-- <span class="or"><?php echo $this->__('OR') ?></span>   -->
+   <?php endif; ?>                   
+   <?php endif; ?>     
+   </div>              
+   <?php echo $this->getChildHtml('extra_buttons') ?>    
+   <?php elseif (!$_product->isSaleable()): ?>   
+   <div class="add-to-box">                   
+   <?php echo $this->getChildHtml('addto') ?>   
+   </div>            
+   <?php endif; ?>	   
+   </div>    
+   
+   </div>
+  	
+   </form>    
+   <script type="text/javascript">		
+   //<![CDATA[			
+   var productAddToCartForm = new VarienForm('product_addtocart_form');	
+   var disable_submission   = false;			
+   var prevent_submission   = false;			
+   productAddToCartForm.submit = function(button, url) {		
+   if (this.validator.validate()) {					
+   var form = this.form;		
+   var oldUrl = form.action;					
+   if (url) {					  
+   form.action = url;					
+   }					
+   var e = null;			
+   try {						
+   this.form.submit();				
+   jQuery.fancybox.showLoading();		
+   } catch (e) {					
+   }					
+   this.form.action = oldUrl;	
+   if (e) {					
+   throw e;					
+   }				
+   if (button && button != 'undefined') {	
+   button.disabled = true;					
+   }				
+   }			
+   }.bind(productAddToCartForm);
+   productAddToCartForm.submitLight = function(button, url){
+   if(this.validator) {				
+   var nv = Validation.methods;			
+   delete Validation.methods['required-entry'];	
+   delete Validation.methods['validate-one-required'];	
+   delete Validation.methods['validate-one-required-by-name'];	
+   // Remove custom datetime validators					
+   for (var methodName in Validation.methods) {			
+   if (methodName.match(/^validate-datetime-.*/i)) {	
+   delete Validation.methods[methodName];				
+   }					
+   }					
+   if (this.validator.validate()) {
+   if (url) {							
+   this.form.action = url;		
+   }					
+   this.form.submit();				
+   jQuery.fancybox.showLoading();		
+   }				
+   Object.extend(Validation.methods, nv);
+   }		
+   }.bind(productAddToCartForm);	
+   productAddToCartForm.askPrescription = function(button)	
+   {				
+   if(this.validator.validate()){
+   jQuery.fancybox.showLoading();	
+   var prescription_askuser_url  = '<?php echo $this->getUrl('prescription/index/askuser');?>'; 	
+   var parameters				  =  Form.serialize(this.form);	
+   parameters				 += '&form_action=<?php echo $this->getSubmitUrl($_product) ?>';
+   var request = new Ajax.Request(prescription_askuser_url, {			
+   parameters: parameters,					
+   onSuccess: function(transport){ 		  		
+   if(transport.status == 200)	{ 	 			
+   var response = transport.responseText.evalJSON();	
+   if(response.proceed_to_cart){						
+   productAddToCartForm.submit(button);						
+   }else{  									
+   showDialog(response.askuser_dialog); 	
+   askUserControls(response);					
+   }						
+   }					
+   },						
+   onFailure: '',				
+   onComplete: function(){			
+   jQuery.fancybox.hideLoading();	
+   }				
+   }); 				
+   }		
+   }.bind(productAddToCartForm);
+   var askUserControls = function(response)	
+   {			
+   jQuery("#no_prescription").click(function(){		
+   showDialog(response.cancel_dialog); 	
+   jQuery("#btnCancelPrescription").click(function(){	
+   jQuery.fancybox.close(); 				
+   });			
+   });	 		
+   jQuery("#has_prescription").click(function(){	
+   prescriptionControls(response);			
+   });						
+   } 					
+   var showConfirmCancelPrescriptionDialog = function(response)	
+   { 				
+   showDialog(response.cancel_trans_dialog);	
+   jQuery("#btnCancelPrescriptionTransaction").click(function(){	
+   jQuery.fancybox.close(); 			
+   });	  								
+   jQuery("#btnCancelPrescriptionCancelTransaction").click(function(){	
+   prescriptionControls(response);			
+   });	    					
+   }						
+   var prescriptionControls = function(response)	
+   {						
+   showDialog(response.prescription_dialog);	
+   jQuery("#cancel_prescription").click(function(){		
+   showConfirmCancelPrescriptionDialog(response);	
+   });	   								
+   prescriptionForm.submit = function(button, url) {		
+   if(disable_submission){   				
+   return false;					
+   }				
+   if (prescriptionForm.validator.validate()) {	
+   //prevent double submission					
+   if(prevent_submission){						
+   return false;					
+   }					
+   prevent_submission = true;
+   VarienForm.prototype.submit.bind(prescriptionForm)();
+   }			
+   }		
+   } 		//]]>		   
+   </script>   
+
+   
+   </div>     
+   
+<div id="tabs-container">
+    <ul class="tabs-menu">
+        <li class="current"><a href="#tab-1">product details</a></li>
+        <li><a href="#tab-2">ingredients</a></li>
+        <li><a href="#tab-3">reviews</a></li>
+        <li><a href="#tab-4">directions</a></li>
+    </ul>
+    <div class="tab">
+        <div id="tab-1" class="tab-content">
+           <p><?php echo $_product->description; ?></p>
+        </div>
+        <div id="tab-2" class="tab-content">
+            <!-- <p><?php echo $_product->unilab_ingredients; ?></p> -->
+            <p><?php echo $_product->ingredients; ?></p>
+        
+        </div>
+        <div id="tab-3" class="tab-content">
+            <!-- <p>Duis egestas fermentum ipsum et commodo. Proin bibendum consectetur elit, hendrerit porta mi dictum eu. Vestibulum adipiscing euismod laoreet. Vivamus lobortis tortor a odio consectetur pulvinar. Proin blandit ornare eros dictum fermentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur laoreet, ante aliquet molestie laoreet, lectus odio fringilla purus, id porttitor erat velit vitae mi. Nullam posuere nunc ut justo sollicitudin interdum. Donec suscipit eros nec leo condimentum fermentum. Nunc quis libero massa. Integer tempus laoreet lectus id interdum. Integer facilisis egestas dui at convallis. Praesent elementum nisl et erat iaculis a blandit ligula mollis. Vestibulum vitae risus dui, nec sagittis arcu. Nullam tortor enim, placerat quis eleifend in, viverra ac lacus. Ut aliquam sapien ut metus hendrerit auctor dapibus justo porta. </p> -->
+        </div>
+        <div id="tab-4" class="tab-content">
+           <p><?php echo $_product->unilab_directions; ?></p>
+        </div>
+    </div>
+</div>
+
+    <div>
+   <?php echo $this->getChildHtml('related_products') ?>  
+   <?php echo $this->getChildHtml('product_additional_data') ?> 
+   </div>

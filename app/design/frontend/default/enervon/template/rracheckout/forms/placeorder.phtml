@@ -1,0 +1,207 @@
+	<style>
+		.loading_gif
+		 {
+		  display:none;
+		}
+		.cont_wrapper
+		{
+			z-index: 99999;
+			position: fixed;
+			top: 25%;
+			left: 40%;
+			background-color: #fff;
+			padding: 16px;
+			width: 25%;
+		}
+		.black_background
+		{
+		  position: fixed;
+		  top: 0px;
+		  left: 0px;
+		  min-height: 1024px;
+		  z-index: 9999;
+		  background-color: #000;
+		  height: 100vh;
+		  width: 100%;
+		  opacity: .8;
+		}
+		.text_close
+		{
+		  cursor: pointer;
+		  border: 1px solid #ccc;
+		  float: left;
+		  padding: 5px;
+		  margin-top: 5px;
+		  display:none;
+		  color:#000 !important;
+		}
+		
+	</style>
+
+	<div class="loading_gif">	
+		<div class="cont_wrapper">
+			<div class="img_wrapper">
+				<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)?>wysiwyg/ajax-loader.gif" alt="loading" style="width:100%; height:15px; display:inline-block; position: relative;" />
+			</div>
+			<div class="text_wrapper">
+				Please wait. Redirecting to gateway URL.
+			</div>
+			<div class="text_close">
+				Close
+			</div>				
+		</div>	
+		<div class="black_background">
+		</div>		
+	</div>
+
+	<button id="submit_btn" type="submit" title="Place Order" class="button btn-checkout" style="float: right;">
+	  <span><span style="font-size:16px;">Place Order</span></span>
+	</button>	
+
+<script>
+
+	jQuery('.text_close').click(function () {	
+		jQuery('.loading_gif').fadeOut();
+	});
+	
+	jQuery('#submit_btn').click(function() {
+
+			var bil_mobile = jQuery('#billing_mobile').val();
+			var ship_mobile = jQuery('#shipping_mobile').val();
+
+			if(bil_mobile == ''){
+				jQuery('.err_mssg_mobile').show();
+				return false;
+			}
+
+			if(ship_mobile ==''){
+				jQuery('.err_mssg_shipping_mbl').show();
+				return false;
+			}
+
+
+			jQuery('.text_close').fadeOut();
+			jQuery('.text_wrapper').html('Please wait. Redirecting to gateway URL.');	
+			jQuery('.img_wrapper').fadeIn();
+			jQuery('.loading_gif').fadeIn();
+			
+			var paymentdata = jQuery("#payment-method-form").serialize();
+			jQuery.post( '<?php echo Mage::getBaseUrl();?>checkout/onepage/savePayment/', 
+		
+				paymentdata,
+				
+
+			function (paymentdataret)
+			{
+				var dataobj = jQuery.parseJSON(paymentdataret);
+				
+				if(dataobj.goto_section == 'review')
+				{
+			
+					jQuery.post('<?php echo Mage::getBaseUrl();?>checkout/onepage/saveShippingMethod', 
+					{ 
+						shipping_method: jQuery('#selectedShippingMethod').val()
+					},
+					function (datashipping)
+					{	
+					
+						var dataobj = jQuery.parseJSON(datashipping);
+							if(dataobj.goto_section == 'payment')
+							{
+								var dataserialized = jQuery("#payment-method-form").serialize();
+								
+								jQuery.post( '<?php echo Mage::getBaseUrl()?>checkout/onepage/saveOrder/form_key/<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>/', 
+										dataserialized,
+
+									function (getdata)
+									{
+										var dataobj = jQuery.parseJSON(getdata);
+										if(dataobj.success == true)
+										{
+
+											digitalData.cart={ 
+												item: [
+
+													<?php 
+														$cart = Mage::getModel('checkout/cart')->getQuote();
+														foreach ($cart->getAllVisibleItems() as $item) 
+														{	
+															$product2 = Mage::getModel('catalog/product')->load($item->getProductId());
+															$prod_qty = $item->getQty();
+
+															$brand = $product2->getUnilabBrand();
+															$size = $product2->getUnilabSize();
+
+															$unilab_brand_text = Mage::getModel('admincontroller/convertattrib')->idtotext($item->getProductId(), $brand, 'unilab_brand');
+															$unilab_size_text = Mage::getModel('admincontroller/convertattrib')->idtotext($item->getProductId(), $size, 'unilab_size');
+													?>
+															{
+																productinfo: 
+																	{
+																	productID: "<?php echo $product2->getSku();?>",
+																	productName: "<?php echo $product2->getName();?>",
+																	productBrand: "<?php echo $unilab_brand_text;?>",
+																	productSize: "<?php echo $unilab_size_text;?>",
+																	productUnits: "<?php echo $prod_qty;?>",
+																	productPrice: "<?php echo $product2->getPrice();?>"
+																	}
+															},
+													<?php 
+														}
+													?>
+														
+												]
+											}
+											
+											jQuery('.loading_gif').fadeOut();
+											var redirect_url = dataobj.redirect;														
+											window.location.href = redirect_url;					
+											
+										}
+										else
+										{											
+											jQuery('.text_close').fadeIn();
+											jQuery('.img_wrapper').fadeOut();
+											jQuery('.text_wrapper').html(dataobj.message);	  
+											
+											if(dataobj.check == true)
+											{
+												window.location.reload()
+												
+												setTimeout(function(){
+
+													window.location.reload()
+													
+												}, 3000);
+											}
+										}	
+									});
+							}
+							else
+							{
+								jQuery('span.shipping_desc').css('display', 'none');
+								jQuery('input[name=shippingmethod]').attr('checked', false);
+								
+								jQuery('.text_close').fadeIn();
+								jQuery('.img_wrapper').fadeOut();
+								jQuery('.text_wrapper').html(dataobj.message);
+								//jQuery('.loading_gif').fadeOut();
+								//alert(dataobj.error);
+
+							}
+					});
+				}	
+				else
+				{
+				
+					jQuery('.text_close').fadeIn();				
+					jQuery('.img_wrapper').fadeOut();
+					jQuery('.text_wrapper').html(dataobj.message);
+					//jQuery('.loading_gif').fadeOut();
+					//alert(dataobj.error);
+
+				}
+			});		
+		});
+</script>
+

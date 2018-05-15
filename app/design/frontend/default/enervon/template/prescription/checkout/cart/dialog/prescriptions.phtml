@@ -1,0 +1,575 @@
+<div class="prescription_detail_wrapper" style="height:360px;overflow:auto;"> 
+<script type="txt/javascript" src="<?php echo $this->getSkinUrl("js/jquery/jquery.form.min.js");?>"></script>
+	<?php echo $this->getChildHtml("html_calendar");?>
+	<script>	 				
+			var prescriptionForm 		  = new VarienForm('product_addtocart_prescription_form',true);  
+			var confirm_prescription_html = '';  
+			var prescription_form_in_progress = false; 
+			var has_next_upload			  	 = false;
+			var disable_submission  		 = false;
+			var prevent_submission  		 = false;
+			
+			prescriptionForm.submit = function(button, url) {  
+					if(disable_submission){
+						return false;
+					}			
+					if (this.validator.validate()){ 
+						var form = this.form;
+						var oldUrl = form.action;
+
+						if (url) {
+						   form.action = url;
+						}
+						var e = null;
+						try {
+						
+							//check if no prescription is selected
+							var wrapper = prescriptions.wrapper;					
+							if(wrapper.select("input#no_prescription").length > 0)
+							{ 
+								var no_rescription = wrapper.select("input#no_prescription")[0];
+								if(no_rescription.checked){    
+									closeNoPrescription(form); 					
+								}else{		
+									if(prevent_submission){
+										return false;
+									}
+									prevent_submission = true;
+									this.form.submit();  
+									jQuery.fancybox.showLoading();
+								}							
+							} else{		
+								if(prevent_submission){
+									return false;
+								}
+								prevent_submission = true;
+								this.form.submit(); 
+								jQuery.fancybox.showLoading();
+							}
+						} catch (e) {
+						}
+						this.form.action = oldUrl;
+						if (e) {
+							throw e;
+						}
+
+						if (button && button != 'undefined') {
+							button.disabled = true;
+						}
+					}
+					prescription_form_in_progress = false;
+				}.bind(prescriptionForm);
+				
+			var closeNoPrescription = function(frm)
+			{
+				showDialog(confirm_prescription_html);
+				jQuery("#form_wrapper_cancelled").html(frm);
+				
+				jQuery("#btnCancelPrescription").click(function(){ 
+					frm.submit();
+					jQuery.fancybox.close();  
+				});
+				
+				jQuery("#btnCancelPrescriptionRemove").click(function(){ 	 
+					prescriptionControls(prescription_response);
+				});
+			}
+	</script>
+	<?php if($current_prescription = $this->getPrescription()):?> 
+			<h3><?php echo $this->__("Editing prescription.");?></h3>	
+			
+			<?php $product_cart_form_fields = $this->getProductToCartFormFields();?>		
+			<form id="product_addtocart_prescription_form" action="<?php echo $product_cart_form_fields['form_action'];?>" method="post" enctype="multipart/form-data">
+				<?php unset($product_cart_form_fields['form_action']);?> 
+				<?php while( list( $field, $value ) = each($product_cart_form_fields )):?>	
+						<?php if(is_array($value)):?>	 
+							<?php foreach($value as $sub_key=>$sub_value):?>
+								<input type="hidden" name="<?php echo $field;?>[<?php echo $sub_key;?>]" value="<?php echo $sub_value;?>"/> 
+							<?php endforeach;?>
+					  <?php else:?>		  
+							<input type="hidden" name="<?php echo $field;?>" value="<?php echo $value;?>"/> 
+					  <?php endif;?>		  
+				<?php endwhile;?>  
+			<ul class="prescription_types_wrapper" id="prescription_types_wrapper">
+				<li><input  class="prescription_types" type="radio" name="prescription[type]" id="new_prescription" value="<?php echo Unilab_Prescription_Model_Prescription::TYPE_NEW;?>" <?php if($this->getPrescriptionType() =="NEW"):?> checked="checked" <?php endif;?> />
+				
+					<?php // if($this->getPrescriptionType() =="NEW"):?>
+						<input type="hidden" name="prescription[prescription_id]" value="<?php echo $current_prescription->getPrescriptionId();?>"/>
+					<?php //endif;?>
+
+					<label for="new_prescription">Option 1: Input Prescription Details</label>
+					<div class="prescription_details" <?php if($this->getPrescriptionType() !="NEW"):?> style="display:none;" <?php endif;?>> 
+								<p>
+									<label for="prescription_prescription_date"><?php echo $this->__("Prescribe Date:");?></label>								 
+									<span class="entry_wrapper field-row">
+										<input type="text" autocomplete="off"  name="prescription[date_prescribed]" id="prescription_date_prescribed" class="required-entry required" value="<?php echo $current_prescription->getDatePrescribed();?>"/>
+									</span>
+								</p>
+								<p>								
+									<label for="prescription_patient_name"><?php echo $this->__("Patient's Name:");?></label> 
+									<input type="text" name="prescription[patient_name]" id="prescription_patient_name" class="required-entry required" value="<?php echo $current_prescription->getPatientName();?>"/>
+								</p>  
+								<p> 
+									<label for="prescription_doctor_name"><?php echo $this->__("Doctor's Name:");?></label> 
+									<input type="text" name="prescription[doctor]" id="prescription_doctor_name" class="required-entry required" value="<?php echo $current_prescription->getDoctor();?>"/>
+								</p>
+								<p>
+									<label for="prescription_prt_no"><?php echo $this->__("PTR Number:");?></label> 
+									<input type="text" name="prescription[ptr_no]" id="prescription_ptr_no" class="required-entry required" value="<?php echo $current_prescription->getPtrNo();?>"/>
+								</p>
+								<p>
+									<label for="prescription_clinic"><?php echo $this->__("Clinic:");?></label> 
+									<input type="text" name="prescription[clinic]" id="prescription_clinic" class="required-entry required" value="<?php echo $current_prescription->getClinic();?>"/>
+								</p>
+								<p>
+									<label for="prescription_clinic_address"><?php echo $this->__("Clinic Address:");?></label> 
+									<input type="text" name="prescription[clinic_address]" id="prescription_clinic_address" class="required-entry required" value="<?php echo $current_prescription->getClinicAddress();?>"/>
+								</p>
+								<p>
+									<label for="prescription_contact_number"><?php echo $this->__("Contact Number:");?></label> 
+									<input type="text" name="prescription[contact_number]" maxlength="11" id="prescription_contact_number" class="required-entry required validate-contactnumber" value="<?php echo $current_prescription->getContactNumber();?>"/>
+								</p>
+								<p>
+									<label for="prescription_expiry_date"><?php echo $this->__("Expiry Date:");?></label> 
+									<span class="entry_wrapper field-row">
+										<input type="text" autocomplete="off"  name="prescription[expiry_date]" id="prescription_expiry_date" class="required-entry required" value="<?php echo $current_prescription->getExpiryDate();?>"/>
+									</span>
+								</p>  
+							<div class="clear"></div> 
+					</div> 
+				</li>
+				<li><input class="prescription_types" type="radio" name="prescription[type]" id="upload_prescription" value="<?php echo Unilab_Prescription_Model_Prescription::TYPE_PHOTO;?>" <?php if($this->getPrescriptionType() =="SCANNED_RX"):?> checked="checked" <?php endif;?>/><label for="upload_prescription">Option 2: Upload Photo Of Prescription</label>
+					<div id="upload_prescription_details"  <?php if($this->getPrescriptionType() !="SCANNED_RX"):?> style="display:none;" <?php endif;?> class="prescription_details">
+						<div class="prescription_details">  
+								<p class="full_width">
+									<label style="width:104px;" for="prescription_date_prescribed_2"><?php echo $this->__("Prescribe Date:");?></label> 
+									<span class="entry_wrapper" style="float:left;">
+										<span class="field-row">
+											<input type="text" autocomplete="off"  name="prescription[date_prescribed_2]" id="prescription_date_prescribed_2" class="required-entry required" value="<?php echo $current_prescription->getDatePrescribed();?>"/>
+										</span>
+									</span>
+									<span style="float:left;width:1px;"><input style="width:0px;height:0px;overflow:hidden;" type="file" id="file_attacher" name="prescription[scanned_rx][prescription_scanned_rx]" id="prescription_scanned_rx" class="required-file-u validate-filetype validate-filesize"/> </span>
+									<span style="float: left;"><a style="width:100px;padding:0px;font-size: 12px; display: block; padding-top: 0px; padding-bottom: 0px; height: 20px; text-align: center; vertical-align: middle; cursor: pointer;line-height: 20px;" class="button"><label  id="attach_file" style="cursor: pointer;width: 100px;" for="file_attacher"><?php echo $this->__("Attach  FILE");?></label></a>
+									<input type="hidden" name="filecounter" value="0" id="filecounter" class="validatefiles validate-filetype validate-filesize"/></span>
+								</p>
+								<br/>
+								<div id="scanned_prescription_lists"> 
+									<div class="full_width" id="main_presc_scanned">									
+										<?php if($this->getPrescriptionType() =="SCANNED_RX"):?>
+												<?php $rxs = explode(",",$current_prescription->getScannedRx());?>
+													<?php foreach($rxs as $rx):?>
+															<?php $rand_rx_id = md5(time());?>
+															<div style="width:80px;float:left;position:relative;" id="<?php echo $rand_rx_id;?>">
+																<a href="javascript:void(0);" onclick="window.open('<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'prescriptions/'.$rx;?>','_blank')" target="_blank"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'prescriptions/'.$rx;?>" width="70" height="70"/></a>
+																<span style="position:absolute;right:10px;">
+																<a href="javascript:void(0);" style="display: block; background-color:#FB3561; text-align: center; color: #FFFFFF; font-weight: bold; height: 15px; line-height: 15px; width: 17px;" onclick="removeRx('<?php echo $rand_rx_id;?>')">x</a></span>
+																<input type="hidden" value="<?php echo $rx;?>" name="prescription[scanned_rxs][<?php echo $rand_rx_id;?>]"/>
+															</div>
+													<?php endforeach;?>
+										<?php endif;?>
+									</div>  
+									<div style="clear:both;"></div>
+									<div id="loader_rx" style="display:none;"><img src="<?php echo $this->getSkinUrl("images/loader.gif");?>"></div>
+									<input name="prescription[current_rx_image_selected]" type="hidden" value="" id="current_rx_image_selected"/>
+								</div>
+							<div class="clear"></div> 
+						</div>
+					</div> 
+				</li> 
+				<li><input  class="prescription_types"  type="radio" name="prescription[type]" id="existing_prescription" value="<?php echo Unilab_Prescription_Model_Prescription::TYPE_EXISTING;?>"  <?php if($this->getPrescriptionType() =="EXISTING"):?>checked="checked"<?php endif;?>/><label for="existing_prescription">Option 3: Use Existing Prescription</label>
+							<div id="existing_prescription_details" <?php if($this->getPrescriptionType() !="EXISTING"):?> style="display:none;" <?php endif;?> class="prescription_details">
+								<?php $prescription_lists = $this->getPrescriptions();?>
+								<?php if($prescription_lists->count() > 0):?>
+										<ul>
+											<?php foreach($prescription_lists as $prescription):?> 									
+												<li>
+													<input type="radio" value="<?php echo $prescription->getPrescriptionId();?>" name="prescription[prescription_id]"  class="validate-one-required-by-name required-one" <?php echo ($prescription->getPrescriptionId() == $current_prescription->getPrescriptionId()) ? 'checked="checked"' : '';?>id="prescription_prescription_id_<?php echo $prescription->getPrescriptionId();?>"/>
+													<?php if($prescription->getScannedRx() !=""):?>
+														<?php if(strpos($prescription->getScannedRx(), ',') === FALSE):?> 
+															<?php $rxs = array($prescription->getScannedRx());?> 
+															<?php $orif_file_names = array($prescription->getOriginalFilename());?> 
+														<?php else:?>
+															<?php $rxs 			   = explode(",",$prescription->getScannedRx());?> 
+															<?php $orif_file_names = explode(",",$prescription->getOriginalFilename());?> 
+														<?php endif;?>
+															<label title="<?php echo $prescription->getScannedRx();?>" for="prescription_prescription_id_<?php echo $prescription->getPrescriptionId();?>">
+																
+																<?php echo $this->__('Attached RXs ');?> - <?php echo Mage::helper('core')->formatDate($prescription->getDatePrescribed(), 'medium', false) ;?>
+																<a style="cursor:pointer;margin-left:4px;" title="<?php echo $this->__("Show Prescription Attachments");?>"  class="show_details_rxs"><?php echo $this->__("(+)");?></a>
+																<div style="display:none;border:1px solid #FB3561;padding:10px;" class="presc_details_view_rxs">  
+																	<?php foreach($rxs as $indx=>$rx):?> 
+																		<a href="javascript:void(0);" onclick="window.open('<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'prescriptions/'.$rx;?>','_blank')"><?php echo Mage::helper('core/string')->truncate($orif_file_names[$indx],50);?></a>, 
+																	<?php endforeach;?>
+																</div>
+															</label> 
+													<?php else:?>
+														<label for="prescription_prescription_id_<?php echo $prescription->getPrescriptionId();?>"><?php echo $prescription->getDoctor();?> - <?php echo Mage::helper('core')->formatDate($prescription->getDatePrescribed(), 'medium', false) ;?></label>
+														 <a style="cursor:pointer;margin-left:4px;" title="<?php echo $this->__("Show Prescription Details");?>"  class="show_details"><?php echo $this->__("(+)");?></a>
+														<div style="display:none;border:1px solid #FB3561;" class="presc_details_view">
+															<p>
+																<label style="width:35%;"><?php echo $this->__("Prescribe Date:");?></label>								 
+																<span class="entry_wrapper field-row"> <?php echo $prescription->getDatePrescribed();?></span>
+															</p>
+															<p>								
+																<label style="width:35%;"><?php echo $this->__("Patient's Name:");?></label> 
+																<?php echo $prescription->getPatientName();?> 
+															</p>  
+															<p> 
+																<label style="width:35%;"><?php echo $this->__("Doctor's Name:");?></label> 
+																 <?php echo $prescription->getDoctor();?> 
+															</p>
+															<p>
+																<label style="width:35%;"><?php echo $this->__("PTR Number:");?></label> 
+																<?php echo $prescription->getPtrNo();?>
+															</p>
+															<p>
+																<label style="width:35%;"><?php echo $this->__("Clinic:");?></label> 
+																<?php echo $prescription->getClinic();?> 
+															</p>
+															<p>
+																<label style="width:35%;"><?php echo $this->__("Clinic Address:");?></label> 
+																<?php echo $prescription->getClinicAddress();?>
+															</p>
+															<p>
+																<label style="width:35%;"><?php echo $this->__("Contact Number:");?></label> 
+																<?php echo $prescription->getContactNumber();?>
+															</p>
+															<p>
+																<label style="width:35%;"><?php echo $this->__("Expiry Date:");?></label> 
+																<span class="entry_wrapper field-row">
+																	<?php echo $prescription->getExpiryDate();?> 
+																</span>
+															</p>  
+															<div class="clear"></div>
+														</div>
+													<?php endif;?> 
+												</li>
+											<?php endforeach; ?>  
+										</ul> 
+									<?php else:?>
+										<?php if($this->helper('customer')->isLoggedIn()):?>
+												<p><?php echo $this->__("You have no existing prescription.");?><input type="hidden"  id="pre_prescription" class="validate-existing-prescriptions"/></p>
+											<?php else:?> 
+												<p><?php echo $this->__("Please <a href='%s' style='color:#D90202;'>log in</a> to display your existing prescription.",Mage::helper('customer')->getLoginUrl());?><input type="hidden" id="pre_prescription" class="validate-existing-prescriptions"/></p>
+										<?php endif;?>
+										<div class="clear"></div> 
+										<div style="height:10px;">&nbsp;</div>
+								<?php endif;?>	
+							</div>
+						</li> 
+				<li><input  class="prescription_types no_prescription" type="radio" name="prescription[type]" id="no_prescription" value="<?php echo Unilab_Prescription_Model_Prescription::TYPE_NONE;?>"/><label for="no_prescription">Option 4: No Available Prescription</label></li>
+				 
+			</ul>
+			<input type="button" class="save button" value="Submit" id="save_prescription" onclick="prescriptionForm.submit(this);"/>
+			<input type="button" class="button" value="Cancel" id="cancel_prescription"/>
+		</form>
+		
+	<?php else:?>
+	
+		<h3><?php echo $this->__("You have indicated that you have a prescription.");?></h3>		
+		<?php $product_cart_form_fields = $this->getProductToCartFormFields();?>	 
+		<form id="product_addtocart_prescription_form" action="<?php echo $product_cart_form_fields['form_action'];?>" method="post" enctype="multipart/form-data">
+			<?php unset($product_cart_form_fields['form_action']);?> 
+			<?php while( list( $field, $value ) = each($product_cart_form_fields )):?>	
+				  <?php if(is_array($value)):?>	 
+						<?php foreach($value as $sub_key=>$sub_value):?>
+							<input type="hidden" name="<?php echo $field;?>[<?php echo $sub_key;?>]" value="<?php echo $sub_value;?>"/> 
+						<?php endforeach;?>
+				  <?php else:?>		  
+						<input type="hidden" name="<?php echo $field;?>" value="<?php echo $value;?>"/> 
+				  <?php endif;?>		  
+			<?php endwhile;?>  
+			<ul class="prescription_types_wrapper" id="prescription_types_wrapper">
+				<li><input  class="prescription_types" type="radio" name="prescription[type]" id="new_prescription" value="<?php echo Unilab_Prescription_Model_Prescription::TYPE_NEW;?>" checked="checked" />
+					<label for="new_prescription"><?php echo $this->__("Option 1: Input Prescription Details");?></label>
+					<div class="prescription_details"> 
+							<p>
+								<label for="prescription_prescription_date"><?php echo $this->__("Prescribe Date:");?></label> 
+								<span class="entry_wrapper field-row">
+									<input type="text" autocomplete="off"  name="prescription[date_prescribed]" id="prescription_date_prescribed" class="required-entry required"/>
+								</span>
+							</p>
+							<p class="col2">							
+								<label for="prescription_patient_name"><?php echo $this->__("Patient's Name:");?></label> 
+								<input type="text" name="prescription[patient_name]" id="prescription_patient_name" class="required-entry required"/>
+							</p>
+							<p> 
+								<label for="prescription_doctor_name"><?php echo $this->__("Doctor's Name:");?></label> 
+								<input type="text" name="prescription[doctor]" id="prescription_doctor_name" class="required-entry required"/>
+							</p>
+							<p class="col2"> 
+								<label for="prescription_prt_no"><?php echo $this->__("PTR Number:");?></label> 
+								<input type="text" name="prescription[ptr_no]" id="prescription_ptr_no" class="required-entry required"/>
+							</p>
+							<p> 
+								<label for="prescription_clinic"><?php echo $this->__("Clinic:");?></label> 
+								<input type="text" name="prescription[clinic]" id="prescription_clinic" class="required-entry required"/>
+							</p>
+							<p class="col2"> 
+								<label for="prescription_clinic_address"><?php echo $this->__("Clinic Address:");?></label> 
+								<input type="text" name="prescription[clinic_address]" id="prescription_clinic_address" class="required-entry required"/>
+							</p>
+							<p> 
+								<label for="prescription_contact_number"><?php echo $this->__("Contact Number:");?></label> 
+								<input type="text"  maxlength="11" name="prescription[contact_number]" id="prescription_contact_number" class="required-entry required validate-contactnumber"/>
+							</p>
+							<p class="col2"> 
+								<label for="prescription_expiry_date"><?php echo $this->__("Expiry Date:");?></label> 
+								<span class="entry_wrapper  field-row">
+									<input type="text" autocomplete="off"  name="prescription[expiry_date]" id="prescription_expiry_date" class="required-entry required "/>
+								</span>
+							</p> 
+							<div class="clear"></div> 
+					</div> 
+				</li>
+				<li><input class="prescription_types" type="radio" name="prescription[type]" id="upload_prescription" value="<?php echo Unilab_Prescription_Model_Prescription::TYPE_PHOTO;?>" /><label for="upload_prescription"><?php echo $this->__("Option 2: Upload Photo Of Prescription");?></label>
+					<div id="upload_prescription_details" style="display:none;" class="prescription_details">
+						<div class="prescription_details"> 
+								<p class="full_width">
+									<label  style="width:104px;" for="prescription_date_prescribed_2"><?php echo $this->__("Prescribe Date:");?></label> 
+									<span class="entry_wrapper" style="float:left;">
+										<span class="field-row">
+											<input type="text" autocomplete="off"  name="prescription[date_prescribed_2]" id="prescription_date_prescribed_2" class="required-entry required" value=""/>
+										</span>
+									</span>
+									<span style="float:left;width:1px;"><input style="width:0px;height:0px;overflow:hidden;" type="file" id="file_attacher" name="prescription[scanned_rx][prescription_scanned_rx]" id="prescription_scanned_rx" class="required-file-u validate-filetype validate-filesize"/> </span>
+									<span style="float: left;"><a style="width:100px;padding:0px;font-size: 12px; display: block; padding-top: 0px; padding-bottom: 0px; height: 20px; text-align: center; vertical-align: middle; cursor: pointer;line-height: 20px;" class="button"><label id="attach_file" style="cursor: pointer;width: 100px;" for="file_attacher"><?php echo $this->__("Attach  FILE");?></label></a>
+									<input type="hidden" name="filecounter" value="0" id="filecounter" class="validatefiles validate-filetype validate-filesize"/></span>
+								</p>
+								<br/>
+								<div id="scanned_prescription_lists"> 
+									<div class="full_width" id="main_presc_scanned"></div>  
+									<div style="clear:both;"></div>
+									<div id="loader_rx" style="display:none;"><img src="<?php echo $this->getSkinUrl("images/loader.gif");?>"></div>
+									<input name="prescription[current_rx_image_selected]" type="hidden" value="" id="current_rx_image_selected"/>
+								</div>
+							<div class="clear"></div> 
+						</div> 
+					</div> 
+				</li>
+						<li><input  class="prescription_types" type="radio" name="prescription[type]" id="existing_prescription" value="<?php echo Unilab_Prescription_Model_Prescription::TYPE_EXISTING;?>"  /><label for="existing_prescription"><?php echo $this->__("Option 3: Use Existing Prescription");?></label>
+							<div id="existing_prescription_details"  style="display:none;padding-left:20px;" class="prescription_details">							
+								<?php $prescription_lists = $this->getPrescriptions();?>
+								<?php if($prescription_lists->count() > 0):?>
+									<ul>
+										<?php foreach($prescription_lists as $prescription):?> 									
+											<li>
+												<input type="radio" value="<?php echo $prescription->getPrescriptionId();?>" name="prescription[prescription_id]"  class="validate-one-required-by-name required-one"  id="prescription_prescription_id_<?php echo $prescription->getPrescriptionId();?>"/>
+												<?php if($prescription->getScannedRx() !=""):?>
+														<?php if(strpos($prescription->getScannedRx(), ',') === FALSE):?> 
+															<?php $rxs = array($prescription->getScannedRx());?> 
+															<?php $orif_file_names = array($prescription->getOriginalFilename());?> 
+														<?php else:?>
+															<?php $rxs 			   = explode(",",$prescription->getScannedRx());?> 
+															<?php $orif_file_names = explode(",",$prescription->getOriginalFilename());?> 
+														<?php endif;?>
+															<label title="<?php echo $prescription->getScannedRx();?>" for="prescription_prescription_id_<?php echo $prescription->getPrescriptionId();?>">
+																
+																<?php echo $this->__('Attached RXs ');?> - <?php echo Mage::helper('core')->formatDate($prescription->getDatePrescribed(), 'medium', false) ;?>
+																<a style="cursor:pointer;margin-left:4px;" title="<?php echo $this->__("Show Prescription Attachments");?>"  class="show_details_rxs"><?php echo $this->__("(+)");?></a>
+																<div style="display:none;border:1px solid #FB3561;padding:10px;" class="presc_details_view_rxs">  
+																	<?php foreach($rxs as $indx=>$rx):?> 
+																		<a href="javascript:void(0);" onclick="window.open('<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'prescriptions/'.$rx;?>','_blank')"><?php echo Mage::helper('core/string')->truncate($orif_file_names[$indx],50);?></a>, 
+																	<?php endforeach;?>
+																</div>
+															</label> 
+												<?php else:?>
+													<label for="prescription_prescription_id_<?php echo $prescription->getPrescriptionId();?>"><?php echo $prescription->getDoctor();?> - <?php echo Mage::helper('core')->formatDate($prescription->getDatePrescribed(), 'medium', false) ;?></label> 
+													 <a style="cursor:pointer;margin-left:4px;" title="<?php echo $this->__("Show Prescription Details");?>"  class="show_details"><?php echo $this->__("(+)");?></a>
+														<div style="display:none;border:1px solid #FB3561;" class="presc_details_view">
+															<p>
+																<label style="width:35%;"><?php echo $this->__("Prescribe Date:");?></label>								 
+																<span class="entry_wrapper field-row"> <?php echo $prescription->getDatePrescribed();?></span>
+															</p>
+															<p>								
+																<label style="width:35%;"><?php echo $this->__("Patient's Name:");?></label> 
+																<?php echo $prescription->getPatientName();?> 
+															</p>  
+															<p> 
+																<label style="width:35%;"><?php echo $this->__("Doctor's Name:");?></label> 
+																 <?php echo $prescription->getDoctor();?> 
+															</p>
+															<p>
+																<label style="width:35%;"><?php echo $this->__("PTR Number:");?></label> 
+																<?php echo $prescription->getPtrNo();?>
+															</p>
+															<p>
+																<label style="width:35%;"><?php echo $this->__("Clinic:");?></label> 
+																<?php echo $prescription->getClinic();?> 
+															</p>
+															<p>
+																<label style="width:35%;"><?php echo $this->__("Clinic Address:");?></label> 
+																<?php echo $prescription->getClinicAddress();?>
+															</p>
+															<p>
+																<label style="width:35%;"><?php echo $this->__("Contact Number:");?></label> 
+																<?php echo $prescription->getContactNumber();?>
+															</p>
+															<p>
+																<label style="width:35%;"><?php echo $this->__("Expiry Date:");?></label> 
+																<span class="entry_wrapper field-row">
+																	<?php echo $prescription->getExpiryDate();?> 
+																</span>
+															</p>  
+															<div class="clear"></div>
+														</div>  
+														<br/>
+												<?php endif;?>
+											</li>
+										<?php endforeach; ?>  
+									</ul> 
+								<?php else:?>
+									<?php if($this->helper('customer')->isLoggedIn()):?>
+										<p><?php echo $this->__("You have no existing prescription.");?><input type="hidden" id="pre_prescription" class="validate-existing-prescriptions"/></p>
+										
+									<?php else:?> 
+										<p><?php echo $this->__("Please <a href='%s' style='color:#D90202;'>log in</a> to display your existing prescription",Mage::helper('customer')->getLoginUrl());?><input type="hidden" id="pre_prescription" class="validate-existing-prescriptions"/></p>
+									<?php endif;?>
+									<div class="clear"></div> 
+									<div style="height:10px;">&nbsp;</div>
+								<?php endif;?>								
+							</div>
+						</li>  
+			</ul>
+			<input type="button" class="save button" value="Submit" id="save_prescription" onclick="prescriptionForm.submit(this);"/>
+			<input type="button" class="button" value="Cancel" id="cancel_prescription"/>
+		</form>
+		
+	<?php endif;?> 
+		
+	<script type="text/javascript">
+	//<![CDATA[
+	
+		var prescriptions = new PrescriptionSwitcher('prescription_types_wrapper','prescription_types');
+		var userAgent = navigator.userAgent.toLowerCase();
+ 
+		var Browser = {
+			Mozilla: /mozilla/.test(userAgent) && !/(compatible|webkit)/.test(userAgent)
+		};
+		jQuery(document).ready(function($){  
+			
+			$(".show_details").click(function(){
+				var target_element = $(this).next(".presc_details_view");
+				if($(this).hasClass("open")){ 
+					$(this).removeClass("open");
+					$(this).html('<?php echo $this->__("(+)");?>');
+					target_element.hide();
+				}else{
+					$(this).addClass("open");
+					target_element.show();
+					$(this).html('<?php echo $this->__("(-)");?>');
+				}
+			});
+			
+			$(".show_details_rxs").click(function(){
+				var target_element = $(this).next(".presc_details_view_rxs");
+				if($(this).hasClass("open")){ 
+					$(this).removeClass("open");
+					$(this).html('<?php echo $this->__("(+)");?>');
+					target_element.hide();
+				}else{
+					$(this).addClass("open");
+					target_element.show();
+					$(this).html('<?php echo $this->__("(-)");?>');
+				}
+			});
+			
+			if(Browser.Mozilla){  
+				  $('label#attach_file').click(function(event){
+					var input = jQuery('#'+$(this).attr('for'));
+					input.click();
+					return false;
+				  }); 
+			}
+		
+			$("#prescription_date_prescribed").datepicker({
+				showOn: "both",
+				buttonImage: "<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif';?>",
+				buttonImageOnly: true,
+				dateFormat: 'yy-mm-dd',
+				maxDate: "+0D"			
+			});
+			$("#prescription_date_prescribed_2").datepicker({
+				showOn: "both",
+				buttonImage: "<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif';?>",
+				buttonImageOnly: true,
+				dateFormat: 'yy-mm-dd',
+				maxDate: "+0D"
+			});
+			
+			$("#prescription_expiry_date").datepicker({
+				showOn: "both",
+				buttonImage: "<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif';?>",
+				buttonImageOnly: true,
+				dateFormat: 'yy-mm-dd',
+				minDate: "-0D"
+			}); 
+			 
+			jQuery("#upload_prescription_details").on("change","input[id=file_attacher]",function(e){   
+				prescription_form_in_progress = true;
+				var date = new Date();
+				var file_obj      = jQuery(this); 
+				jQuery("#loader_rx").show();
+				
+				var main_action   = jQuery("#product_addtocart_prescription_form").attr('action');
+				jQuery("#product_addtocart_prescription_form").attr('action','<?php echo $this->getUrl("prescription/index/presavescannedrx?_=");?>'+date.getTime());	
+			 	jQuery("#product_addtocart_prescription_form").ajaxForm({ 
+												dataType: "json",
+												beforeSubmit: function() {  
+													if(disable_submission == true){
+														has_next_upload = true;
+													}else{
+														disable_submission = true;
+													}
+												},
+												uploadProgress: function(event, position, total, percentComplete) { 
+												},
+												error: function()
+												{ 
+												},
+												success: function(xhr){ 
+													jQuery("#product_addtocart_prescription_form").attr('action',main_action);
+													file_obj.parent().find('.preview_rx').html('');
+													if(has_next_upload == false){
+														disable_submission = false;  
+													}
+													
+												},
+												complete: function(xhr) {     													
+													try{
+														jQuery("#loader_rx").hide();
+														//var response_data = eval("("+xhr.responseText+")");	  
+														var response_data =jQuery.parseJSON(xhr.responseText);  
+														if(response_data.success == true){ 	
+															var ranid = '<?php  echo md5(time());?>' + date.getTime();
+															var temp = '<div id="'+ranid+'" style="width:80px;float:left;position:relative;"' +  
+																	   '<a href="'+response_data.scanned_rx_list+'" target="_blank">'+
+																	   '<img src="'+response_data.scanned_rx_list+'" width="70" height="70"></a>'+
+																	   '<span style="position:absolute;right:10px;"><a href="javascript:void(0);" style="display: block; background-color:#FB3561; text-align: center; color: #FFFFFF; font-weight: bold; height: 15px; line-height: 15px; width: 17px;" onclick="removeRx(\''+ranid+'\')">x</a></span>'+
+																	   '<input type="hidden" value="'+response_data.image_name+'" name="prescription[scanned_rxs]['+response_data.orig_image_name+']">'+
+																	   '</div> ';
+															  jQuery("#main_presc_scanned").append(temp); 
+														}else if(response_data.error == 'TYPE'){  
+															alert("<?php echo Mage::helper("prescription")->__("Invalid File Type") ;?>");
+														}else if(response_data.error == 'SIZE'){
+															alert("<?php echo Mage::helper("prescription")->__("Invalid File Size") ;?>");
+														}else{
+															alert("<?php echo Mage::helper("prescription")->__("Error in Uploading. File maybe too large or invalid. Please try again.") ;?>");
+										
+														}
+													}catch(err){ 
+														alert("<?php echo Mage::helper("prescription")->__("Error in Uploading. File maybe too large or invalid. Please try again. ") ;?>");
+													}
+												}});
+				jQuery("#product_addtocart_prescription_form").submit();  	
+			});
+		});
+		 
+		 
+		 function removeRx(ref_id){ 
+			jQuery("#"+ref_id).remove();
+		 }
+		 
+	//]]>
+	</script>
+</div> 

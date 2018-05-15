@@ -1,0 +1,118 @@
+<?php
+$data = Mage::app()->getRequest()->getParams();
+$qtyInWarehouse = Mage::helper('inventory/warehouse')->getQtyOneProductInWarehouse($data['warehouse_id'], $data['product_id']);
+$qtyNeedTransfer = $data['qty_to_ship'] - $qtyInWarehouse;
+$productWarehouseQties = Mage::getModel('inventory/warehouseproduct')->getCollection()
+        ->addFieldToFilter('product_id', $data['product_id']);
+$qtyStock = 0;
+foreach ($productWarehouseQties as $productWarehouseQty)
+    $qtyStock += $productWarehouseQty->getQty();
+//    $qtyStock = Mage::getModel('cataloginventory/stock_item')
+//            ->loadByProduct($data['product_id'])
+//            ->getQty();
+
+$productName = Mage::getModel('catalog/product')->load($data['product_id'])->getName();
+?>
+<?php if ($data['qty_to_ship'] <= $qtyStock): ?>
+    <h1><?php echo $this->helper('inventory')->__('Request'); ?> <?php echo Mage::helper('inventory')->getProductNameByProductId($data['product_id']); ?>
+        <?php echo $this->helper('inventory')->__('to Warehouse'); ?> <?php echo Mage::helper('inventory/warehouse')->getWarehouseNameByWarehouseId($data['warehouse_id']); ?>
+    </h1><br/>
+    <ul class="messages"><li class="notice-msg"><ul><li><span><?php echo $this->helper('inventory')->__('Need ') ?> <?php echo $qtyNeedTransfer; ?><?php echo $this->helper('inventory')->__(' more') ?> <?php echo $this->helper('inventory')->__(' product(s) to ship') ?>.<br/></span></li></ul></li></ul>
+
+    <h2><?php echo $this->helper('inventory')->__('Select Source Warehouse'); ?></h2>
+    <?php echo Mage::helper('inventory/warehouse')->selectboxWarehouseToTransfer($data['product_id'], $qtyNeedTransfer, $data['warehouse_id']); ?>
+    <br/><br/>
+    <div><?php echo $this->helper('inventory')->__('Qty for request'); ?><span class='required'> * </span><input type="text" name="qty-for-transfer" id="qty-for-transfer" /><br/></div><br/>
+    <p id="loading_mask_loader_tinybox" class="loader" style="display:none"><img alt="Loading..." src="<?php echo Mage::getDesign()->getSkinUrl('images/ajax-loader-tr.gif', array('_area' => 'adminhtml')); ?>"><br><?php echo $this->helper('inventory')->__('Please wait...') ?></p>
+    <button type='button'  onclick='requestTransfer()' style="margin-left: 210px" ><span><?php echo $this->helper('inventory')->__('Submit'); ?></span></button>
+<?php else: ?>
+    <?php $qtyNeedPurchase = $data['qty_to_ship'] - $qtyStock; ?>    
+    <h3> <?php echo $this->helper('inventory')->__('Because the Qty of ') ?> [ <?php echo $productName ?> ] <?php echo $this->helper('inventory')->__(' in all warehouses '); ?> [ <?php echo $qtyStock * 1 ?> ]<?php echo $this->helper('inventory')->__(' is smaller than the Qty that you want to ship '); ?> [ <?php echo $data['qty_to_ship'] ?> ] ,<br/><?php echo $this->helper('inventory')->__(' a backorder request should be created to inform admin about the need of stock replenishment.'); ?>
+    </h3><br/>
+    <ul class="messages"><li class="notice-msg"><ul><li><span><?php echo $this->helper('inventory')->__('Need ');?> <?php echo $qtyNeedPurchase; ?><?php echo $this->helper('inventory')->__(' more'); ?> <?php echo $this->helper('inventory')->__(' product(s) to ship.'); ?><br/></span></li></ul></li></ul>
+    <br/>
+    <h4><label><?php echo $this->helper('inventory')->__('Comment for this backorder request'); ?></label></h4>
+    <textarea rows="5" cols="91" id="notice_comment" name="notice_comment"></textarea> <br/><br/>
+    <p id="loading_mask_loader_tinybox" class="loader" style="display:none"><img alt="Loading..." src="<?php echo Mage::getDesign()->getSkinUrl('images/ajax-loader-tr.gif', array('_area' => 'adminhtml')); ?>"><br>Please wait...</p>
+    <button type='button'  onclick='requestPurchase()' style="margin-left: 210px" ><span><?php echo $this->helper('inventory')->__('Send Request'); ?></span></button>
+<?php endif; ?>
+
+<script>
+    function requestTransfer(){
+        var qtyneedtransfer = $('qty-for-transfer').value;
+        if(qtyneedtransfer && qtyneedtransfer!= 0){
+            //$("loading_mask_loader_tinybox").setStyle({display:'block'});
+            var productId = '<?php echo $data['product_id']; ?>';
+            var warehouseId = '<?php echo $data['warehouse_id']; ?>';
+            var orderId = '<?php echo $data['order_id']; ?>';
+            var qty_need = '<?php echo $qtyNeedTransfer; ?>';
+            var item_id = '<?php echo $data['item_order_id']; ?>';
+            var qty = $("qty-for-transfer").value;
+            var warehouse_from_id = $("warehouse-can-transfer").value;
+            var parameters = {
+                warehouse_id: warehouseId,
+                product_id: productId,
+                qty_need: qty_need,
+                order_id:orderId,
+                item_id:item_id,
+                qty:qty,
+                warehouse_from_id:warehouse_from_id
+            };
+            var url = '<?php echo $this->getUrl('inventoryadmin/adminhtml_shipment/requestProduct'); ?>';
+            var request = new Ajax.Request(url,
+            {
+                method:'post',
+                parameters:parameters,
+                onSuccess: function(transport){
+                    if(transport.responseText){
+                        //alert(transport.responseText);
+                        if(transport.responseText == 'success'){
+                            //$("loading_mask_loader_tinybox").setStyle({display:'none'});
+                            //alert(item_id+'---'+productId+'---'+warehouseId+'---'+orderId);
+                            window.parent.transfersuccess(item_id,productId,warehouseId,'<?php echo $data['qty_to_ship']; ?>',orderId);
+                            window.parent.TINY.box.hide();
+                        }
+
+                    }
+                }
+            }
+        );
+        }
+        else{
+            alert('<?php echo $this->helper('inventory')->__('more than one qty product to transfer!'); ?>');
+        }
+    }
+    
+    function requestPurchase(){
+        //$("loading_mask_loader_tinybox").setStyle({display:'block'});
+        var productId = '<?php echo $data['product_id']; ?>';
+        var orderId = '<?php echo $data['order_id']; ?>';
+        var qtyneedpurchase = "<?php echo $qtyNeedPurchase; ?>"
+        var item_id = '<?php echo $data['item_order_id']; ?>';
+        var notice_comment = $("notice_comment").value;
+        var parameters = {
+            product_id: productId,
+            qtyneedpurchase: qtyneedpurchase,
+            order_id:orderId,
+            item_id:item_id,
+            notice_comment:notice_comment
+        };
+        var url = '<?php echo $this->getUrl('inventoryadmin/adminhtml_shipment/noticepurchase'); ?>';
+        var request = new Ajax.Request(url,
+        {
+            method:'post',
+            parameters:parameters,
+            onSuccess: function(transport){
+                if(transport.responseText){
+                    if(transport.responseText == 'success'){
+                        //$("loading_mask_loader_tinybox").setStyle({display:'none'});
+                        window.parent.sendNoticeSuccess(item_id);
+                        window.parent.TINY.box.hide();
+                    }
+
+                }
+            }
+        }
+    );
+    }
+</script>

@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<config>
+   <sections>
+        <payment translate="label">
+            <label>Payment Methods</label>
+            <tab>sales</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>400</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <ipay88 translate="label" module="ipay88">
+                    <label>Ipay88 Payment</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>200</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                    	
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </active>
+                        
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends> 
+								<active>1</active>
+							</depends>
+                        </title>
+                        
+						<enable_testmode translate="label">
+                            <label>Is Sandbox mode?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+								<active>1</active>
+							</depends>
+                        </enable_testmode>
+                       
+						<gatewayurl_live translate="label comment">
+                            <label>Gateway URL</label>
+                            <frontend_type>text</frontend_type> 
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>		
+							<validate>required-entry validate-url</validate>
+							<depends>
+								<enable_testmode>0</enable_testmode>
+								<active>1</active>
+							</depends>
+							<comment><![CDATA[<p>Ex: https://payment.ipay88.com.ph/epayment/entry.asp</p>]]></comment>
+                        </gatewayurl_live> 
+                        
+						<merchant_key_live translate="label">
+                            <label>Merchant Key</label>
+                            <frontend_type>text</frontend_type> 
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>		
+							<validate>required-entry</validate>
+							<depends>
+								<enable_testmode>0</enable_testmode>
+								<active>1</active>
+							</depends>
+                        </merchant_key_live>
+                        
+						<merchant_code_live translate="label">
+                            <label>Merchant Code</label>
+                            <frontend_type>text</frontend_type> 
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<validate>required-entry</validate>
+							<depends>
+								<active>1</active>
+								<enable_testmode>0</enable_testmode>
+							</depends>
+                        </merchant_code_live>
+                        				
+                        <gatewayurl_test translate="label comment">
+                            <label>Gateway URL</label>
+                            <frontend_type>text</frontend_type> 
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>		
+							<validate>required-entry validate-url</validate>
+							<depends>
+								<enable_testmode>1</enable_testmode>
+								<active>1</active>
+							</depends>
+							<comment><![CDATA[<p>Ex: https://sandbox.ipay88.com.ph/epayment/entry.asp</p>]]></comment>
+                        </gatewayurl_test> 
+                        
+						<merchant_key_test translate="label">
+                            <label>Merchant Key</label>
+                            <frontend_type>text</frontend_type> 
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<validate>required-entry</validate>
+							<depends>
+								<enable_testmode>1</enable_testmode>
+								<active>1</active>
+							</depends>
+                        </merchant_key_test> 
+                        
+						<merchant_code_test translate="label">
+                            <label>Merchant Code</label>
+                            <frontend_type>text</frontend_type> 
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<validate>required-entry</validate>
+							<depends>
+								<enable_testmode>1</enable_testmode>
+								<active>1</active>
+							</depends>
+                        </merchant_code_test>                        
+				
+                        <order_status translate="label">
+                            <label>New Order Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status_new</source_model>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<depends>
+								<active>1</active>
+							</depends>
+                        </order_status>
+                        
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>180</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_class>validate-number</frontend_class>
+							<depends>
+								<active>1</active>
+							</depends>
+                        </sort_order>                  
+                            
+                    </fields>
+                </ipay88> 
+            </groups>
+        </payment>
+    </sections>
+</config>

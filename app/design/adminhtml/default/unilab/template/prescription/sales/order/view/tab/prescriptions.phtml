@@ -1,0 +1,23 @@
+<div class="entry-edit">
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-products"><?php echo Mage::helper('sales')->__('Items Ordered') ?></h4>
+	</div>
+</div>
+<?php echo $this->getItemsHtml() ?> 
+
+<script type="text/javascript">// <![CDATA[
+function showPrescription(url) {
+    winPrescription = new Window({className:'magento',
+							      title:'Prescriptions',
+								  windowClassName: 'item_prescription_dialog',
+							      url:url,
+							      width:700,
+							      height:490,
+							      minimizable:false,
+							      maximizable:false,
+							      showEffectOptions:{duration:0.4},
+							      hideEffectOptions:{duration:0.4}});
+    winPrescription.setZIndex(100);
+    winPrescription.showCenter(true);
+}
+// ]]></script>

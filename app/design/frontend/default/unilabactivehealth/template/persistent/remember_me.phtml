@@ -1,0 +1,10 @@
+<li id="remember-me-box" class="control" style="margin:0px;">
+    <?php $rememberMeId = 'remember_me' . Mage::helper('core')->getRandomString(10); ?>
+    <div class="input-box" style="margin-right:0px;">
+        <input type="checkbox" name="persistent_remember_me" class="checkbox" id="<?php echo $rememberMeId; ?>"<?php if ($this->isRememberMeChecked()): ?> checked="checked"<?php endif; ?> title="<?php echo $this->__('Remember Me') ?>" />
+    </div>
+    <label for="<?php echo $rememberMeId; ?>"><?php echo $this->__('Remember Me') ?></label>
+    <!--
+    <a class="link-tip" href="javascript:void(0);"><?php echo $this->__('What\'s this?') ?></a>
+    -->
+</li>

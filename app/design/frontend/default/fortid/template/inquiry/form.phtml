@@ -1,0 +1,79 @@
+<?php
+$readonly = "";
+if(Mage::helper('customer')->isLoggedIn()){
+	$readonly = "readonly";	
+}
+?>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="page-title">
+    <h1><?php echo Mage::helper('inquiry')->__('Contact Us') ?></h1>
+</div>
+<p>We would appreciate your comments, feedback or queries if any, and we would be more than glad to assist you.</p>
+<!-- <p>Work-Place Pharmacy Services, Inc.<br /> 359 Dansalan St., Brgy. Malamig,<br /> Mandaluyong City, Philippines 1550</p> -->
+<p><?php echo Mage::getStoreConfig('general/store_information/name');?><br /> <?php echo Mage::getStoreConfig('general/store_information/address'); ?></p>
+<?php       
+    $storePhone = Mage::getStoreConfig('general/store_information/phone');      
+    
+    echo $this->__('<p><strong>CSI Hotline Number: </strong>'.$storePhone.'</p>');   
+    
+?>
+<p>Operating Hours: Monday to Friday 8am to 5pm</p>
+<?php echo $this->getCmsBlockHtml() ?>
+<?php if ($this->isFormEnabled()): ?>
+<form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
+    <div class="fieldset">
+        <h2 class="legend"><?php echo Mage::helper('inquiry')->__('Personal Information') ?></h2>
+        <ul class="form-list">
+            <li class="fields">
+                <div class="field">
+                    <label for="name" class="required"><em>*</em><?php echo Mage::helper('inquiry')->__('Name') ?></label>
+                    <div class="input-box">
+                        <input name="name" id="name" title="<?php echo Mage::helper('inquiry')->__('Name') ?>" value="<?php echo $this->htmlEscape($this->helper('inquiry')->getUserName()) ?>" class="input-text required-entry" type="text" <?php echo $readonly;?>/>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="email" class="required"><em>*</em><?php echo Mage::helper('inquiry')->__('Email Address') ?></label>
+                    <div class="input-box">
+                        <input name="email" id="email" title="<?php echo Mage::helper('inquiry')->__('Email') ?>" value="<?php echo $this->htmlEscape($this->helper('inquiry')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" <?php echo $readonly;?>/>
+                    </div>
+                </div>
+            </li>
+            <li class="fields">
+            	<!--
+                <div class="field">
+                    <label for="subject"><?php echo Mage::helper('inquiry')->__('Subject') ?></label>
+                    <div class="input-box">
+                        <input name="subject" id="subject" title="<?php echo Mage::helper('inquiry')->__('Subject') ?>" value="<?php echo $this->htmlEscape($this->getFormData('subject')) ?>" class="input-text" type="text"/>
+                    </div>
+                </div>
+               -->
+                <?php if ($departmentHtmlSelect = $this->getDepartmentHtmlSelect($this->getFormData('department'), 'validate-select')): ?>
+                <div class="field">
+                    <label for="department" class="required"><em>*</em><?php echo Mage::helper('inquiry')->__('Reason') ?> </label>
+                    <div class="input-box">
+                    <?php echo $departmentHtmlSelect ?>
+                    </div>
+                </div>
+                <?php endif ?>
+            </li>
+            <li class="wide">
+                <!-- <label for="comment" class="required"><em>*</em><?php //echo Mage::helper('inquiry')->__('Message') ?></label> -->
+                <div class="input-box">
+                    <label for="comment" class="required"><em>*</em><?php echo Mage::helper('inquiry')->__('Message') ?></label>
+                    <textarea name="comment" id="comment" title="<?php echo Mage::helper('inquiry')->__('Message') ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="buttons-set">
+        <p class="required"><?php echo Mage::helper('inquiry')->__('* Required Fields') ?></p>
+        <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+        <button type="submit" title="<?php echo Mage::helper('inquiry')->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('inquiry')->__('Submit') ?></span></span></button>
+    </div>
+</form>
+<?php endif ?>
+<script type="text/javascript">
+//<![CDATA[
+    var contactForm = new VarienForm('contactForm', true);
+//]]>
+</script>

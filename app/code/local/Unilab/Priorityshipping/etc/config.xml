@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Unilab_Priorityshipping>
+			<version>1.1.0.0</version>
+		</Unilab_Priorityshipping>
+	</modules>
+
+	<global>
+		<models>
+			<priorityshipping>
+				<class>Unilab_Priorityshipping_Model</class>
+				<resourceModel>priorityshipping_resource</resourceModel>
+            </priorityshipping>
+		</models>
+		<blocks>
+			<priorityshipping>
+				<class>Unilab_Priorityshipping_Block</class>
+			</priorityshipping>
+		</blocks>
+		<helpers>
+			<priorityshipping>
+				<class>Unilab_Priorityshipping_Helper</class>
+			</priorityshipping>
+		</helpers>
+		<events>
+			<checkout_onepage_controller_success>
+				<observers>
+					<process_waybill>
+						<class>Unilab_Xend_Model_Observer_Sales</class>
+						<method>processWaybill</method>
+					</process_waybill>
+				</observers>
+			</checkout_onepage_controller_success>
+		</events>
+	</global> 
+
+	<default>
+        <carriers>
+            <priorityshipping>
+                <active>1</active>
+                <model>priorityshipping/mycarrier_carrier</model>
+                <title>Priority Shipping</title>
+                <sort_order>20</sort_order>
+                <sallowspecific>0</sallowspecific>
+            </priorityshipping>
+        </carriers>
+    </default>
+	
+	<frontend>
+		<routers>
+			<priorityshipping>
+				<use>standard</use>
+				<args>
+					<module>Unilab_Priorityshipping</module>  
+					<frontName>priorityshipping</frontName>
+				</args>
+			</priorityshipping>
+		</routers>
+	</frontend>
+	
+	<admin>
+        <routers>
+            <priorityshipping>
+                <use>admin</use>
+                <args>
+                    <module>Unilab_Priorityshipping</module>
+                    <frontName>priorityshipping</frontName>
+                </args>
+            </priorityshipping>
+        </routers>
+    </admin>  	
+
+</config>

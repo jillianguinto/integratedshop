@@ -1,0 +1,19 @@
+<?xml version="1.2"?>
+<!--
+/**
+ * 
+ * Extension Root
+ */
+ * @author: Richel.R.Amante
+ * @email: richelramante@gmail.com
+ * @date: 2014-02-12
+ */
+-->
+<config>
+    <modules>
+        <RRA_Extmod>
+            <active>true</active>
+            <codePool>local</codePool>
+        </RRA_Extmod>
+    </modules>
+</config>

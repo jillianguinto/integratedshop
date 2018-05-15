@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+    <modules>
+        <Gurutheme_Gubase>
+            <active>false</active>
+            <codePool>local</codePool>
+        </Gurutheme_Gubase>
+    </modules>
+</config>

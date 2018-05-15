@@ -1,0 +1,21 @@
+<?php $supplier = Mage::getSingleton('inventorydropship/session')->getSupplier() ?>
+<div class="header-container">
+    <div class="header">
+        <?php if ($this->getIsHomePage()):?>
+        <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+        <?php else:?>
+        <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+        <?php endif?>
+        <div class="quick-access">                             
+            <p class="welcome-msg">
+                <?php if($supplier): ?>
+                    <?php echo $this->__('Hello, ').$supplier->getContactName().'('.$supplier->getName().')' ?><br />
+                    <a href="<?php echo $this->getUrl('inventorydropship/supplier/logout') ?>" title="<?php echo $this->__('Log Out') ?>"><?php echo $this->__('Log Out') ?></a>
+                <?php else: ?>
+                    <?php echo $this->getWelcome() ?> <?php echo $this->getAdditionalHtml() ?><br />
+                    <a href="<?php echo $this->getUrl('inventorydropship/supplier/login') ?>" title="<?php echo $this->__('Log In') ?>"><?php echo $this->__('Log In') ?></a>
+                <?php endif ?>
+            </p>                        
+        </div>        
+    </div>
+</div>

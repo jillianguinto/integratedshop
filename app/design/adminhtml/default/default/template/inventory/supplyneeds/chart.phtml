@@ -1,0 +1,42 @@
+<?php
+$date = date('Y-m-d');
+$D = array();
+$productId = $this->getRequest()->getParam('product_id');
+for ($i = 1; $i < 13; $i++) {
+    $orderIds = array();
+    $month_qty = array();
+    $j = $i - 1;
+    $today = strftime('%Y-%m', strtotime(date("Y-m-d", strtotime($date)) . " -$j month"));
+    $lastperiod = strftime('%Y-%m', strtotime(date("Y-m-d", strtotime($date)) . " -$i month"));
+    $orders = Mage::getModel('sales/order')->getCollection()
+        ->addFieldToFilter('created_at', array('from' => $lastperiod, 'to' => $today));
+    foreach ($orders as $order) {
+        array_push($orderIds, $order->getEntityId());
+    }
+    $order_item = Mage::getModel('sales/order_item')->getCollection()
+        ->addFieldToFilter('product_id', $productId)
+        ->addFieldToFilter('order_id', array('in' => $orderIds));
+    foreach ($order_item as $item) {
+        array_push($month_qty, $item->getQtyShipped());
+    }
+    array_push($D, array_sum($month_qty));
+}
+$label = array();
+for ($k = 1; $k<14; $k++) {
+    $month = strftime('%m/%y', strtotime(date("Y-m-d", strtotime($date)) . " -$k month"));
+    array_push($label,$month);
+}
+$RL = array_reverse($label);
+$chart_label = implode('|',$RL);
+$RD = array_reverse($D);
+$max = max($RD);
+$chart_data = implode(',', $RD);
+$part_chart = 100 / 12;
+$divide = floor($max * 0.25);
+if($divide<1){
+    $divide = 1;
+}
+?>
+<div id="chart_div" style="width: 800px; height: 400px; background-color: #E3E3E3;alignment-adjust: central">
+    <img src="http://chart.apis.google.com/chart?chs=780x380&chtt=Sales Information From <?php echo strftime('%m/%Y', strtotime((date("Y-m-d", strtotime($date)) . " -13 month"))); ?> To <?php echo strftime('%m/%Y', strtotime((date("Y-m-d", strtotime($date)) . " -1 month"))); ?>&chts=FF0000,20,c&cht=lc&chco=FF0000&chd=t:<?php echo $chart_data; ?>&chds=0,<?php echo $max; ?>&chxt=x,y,y&chxl= 2:|Quantity(items)|0:|<?php echo $chart_label?>|&chxr=0,0,12,1|1,0,<?php echo $max; ?>,<?php echo $divide ; ?>&chg=<?php echo $part_chart; ?>,25&chxp=2,110&chdl=Product quantity&chdls=FF0000,16&chf=bg,s,E3E3E3&chxs=1N*fzs0*" alt=""/>
+</div>

@@ -1,0 +1,73 @@
+
+<?php $_product = $this->getProduct(); ?>
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+<?php if($_product->isSaleable()): ?>
+    <div class="add-to-cart">
+        <?php if(!$_product->isGrouped()): ?>
+        <div class="qty-container">
+        <label for="qty"><?php echo $this->__('Qty:') ?></label>
+        
+        <?php $xQty = ($this->getProductDefaultQty() * 1) == 0 ? 1 : $this->getProductDefaultQty() * 1; ?>
+
+        <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $xQty ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+        </div>
+        <?php endif; ?>
+		<?php if($_product->getUnilabRx()):?>
+            <div class="btnAdd-container">
+    			<button type="button" id="btnAddToCart" title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="productAddToCartForm.askPrescription(this);"><span><span><?php echo $buttonTitle ?></span></span></button><br>
+    			<a href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submit(this, this.href); return false;" class=""><?php echo $this->__('Add to Wishlist') ?></a>
+            </div>
+        <?php else:?>
+            <div class="btnAdd-container">
+    			<button type="button" id="btnAddToCart"  title="<?php echo $buttonTitle ?>" class="button btn-cart" returnId="<?php echo $_product->getId(); ?>" returnName="<?php echo $_product->getName(); ?>" returnUrl="<?php echo Mage::helper('checkout/url')->getCartUrl(); ?>"><span><span><?php echo $buttonTitle ?></span></span></button><br>
+    			
+    			<a href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submit(this, this.href); return false;" class=""><?php echo $this->__('Add to Wishlist') ?></a>
+            </div>    
+        <?php endif;?>
+		<?php  
+		 if( $_product->getAttributeSetId() == 12) //OTC Attribute Set
+			$this->getChildHtml('', true, true); ?>
+    </div>
+    
+	<script>
+		var addtocart = document.getElementById("qty");
+
+		addtocart.addEventListener("keypress", function(event) {
+			if (event.keyCode == 13){
+				jQuery("#btnAddToCart").trigger("click");
+				event.preventDefault();
+				return;
+			}
+		});
+	</script>
+
+<?php endif; ?>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+
+	jQuery("#loading-icon").show(); 
+   jQuery(document).on('click','.btn-cart',function(){
+        var product = jQuery(this).attr('returnId');
+        var productName = jQuery(this).attr('returnName');
+        var returnUrl = jQuery(this).attr('returnUrl');
+        jQuery.ajax({
+        type: 'Post',
+        url:'<?php echo Mage::getBaseUrl()?>checkout/cart/addtoCart',
+        data: {
+            product: product
+        },
+        }).done(function(data){
+            if(data == 'success'){
+            // jQuery("#prodName").html(productName);    
+            // var count = jQuery("#item_count").html();
+            // count = Number(count) + Number(1);
+            // jQuery("#item_count").html(count);  
+            //jQuery("#myModal").show();
+            jQuery("#loading-icon").hide(); 
+             window.location = returnUrl;
+            }
+        });
+    });
+
+});
+</script>

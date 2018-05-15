@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+	    <promo translate="title" module="catalogrule">
+			<children>
+				<promomechanics translate="title" module="promomechanics">
+					<title>Promo Mechanics</title>
+					<sort_order>900</sort_order> 
+					<children>	
+						<promovouchers module="promovouchers">						
+							<title>Promo Vouchers</title>						
+							<sort_order>4</sort_order>						
+							<action>promovouchers/adminhtml_promovouchers</action>						
+						</promovouchers>					
+					</children>
+				</promomechanics>	
+			</children>
+        </promo>
+    </menu>
+
+	<layout>
+		<updates>
+			<promomechanics>
+				<file>promomechanics.xml</file>
+			</promomechanics>
+		</updates>
+	</layout>
+</config>

@@ -1,0 +1,265 @@
+<?xml version="1.0"?>
+<config>
+	<sections>	
+        <rracheckoutsection translate="label">
+            <label>Unilab Checkout</label>
+            <sort_order>200</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+			<tab>RRAExtmod</tab>
+			<groups>
+				<rracheckoutgrounp translate="label">
+					<label>General</label>
+						 <sort_order>10</sort_order>
+						 <show_in_default>1</show_in_default>
+						 <show_in_website>1</show_in_website>
+						 <show_in_store>1</show_in_store>						 
+						<fields>
+							<active translate="label">
+								<label>Enabled</label>
+								<frontend_type>select</frontend_type>
+								<source_model>adminhtml/system_config_source_yesno</source_model>
+								<sort_order>1</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>0</show_in_store>
+							</active>
+							<shipaddressbook translate="label">
+								<label>Save in address book</label>
+								<frontend_type>select</frontend_type>
+								<source_model>rracheckout/system_config_source_yesnocheck</source_model>
+								
+								<sort_order>3</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>0</show_in_store>
+								<depends><active>1</active></depends>
+							</shipaddressbook>
+							
+							<shiptoaddress translate="label">
+								<label>Ship to this address</label>
+								<frontend_type>select</frontend_type>
+								<source_model>rracheckout/system_config_source_yesnocheck</source_model>
+								<sort_order>6</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>0</show_in_store>
+								<depends><active>1</active></depends>
+							</shiptoaddress>								
+						</fields>			
+						
+				</rracheckoutgrounp>
+				
+				<designmain translate="label">
+					<label>Skin Design</label>
+						 <sort_order>11</sort_order>
+						 <show_in_default>1</show_in_default>
+						 <show_in_website>1</show_in_website>
+						 <show_in_store>1</show_in_store>						 
+						<fields>
+							<active translate="label">
+								<label>Enabled</label>
+								<frontend_type>select</frontend_type>
+								<source_model>adminhtml/system_config_source_yesno</source_model>
+								<sort_order>1</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>0</show_in_store>
+							</active>						
+						</fields>						
+				</designmain>	
+				
+				<design>
+					<label>Header</label>
+						 <sort_order>12</sort_order>
+						 <show_in_default>1</show_in_default>
+						 <show_in_website>1</show_in_website>
+						 <show_in_store>1</show_in_store>				
+						<fields>
+							<headerskin translate="label">
+								<label>Background Color</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>rracheckout/adminhtml_system_config_color</frontend_model>
+								<sort_order>10</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<validate>required-entry</validate>
+								<comment>Color must be like this: "fff"  or "ffffff"</comment>
+							</headerskin>
+							<headertext translate="label">
+								<label>Text Color</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>rracheckout/adminhtml_system_config_color</frontend_model>
+								<sort_order>11</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<validate>required-entry</validate>
+								<comment>Color must be like this: "fff"  or "ffffff"</comment>
+							</headertext>
+							<headernumberbackground translate="label">
+								<label>Pagination Background Color</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>rracheckout/adminhtml_system_config_color</frontend_model>
+								<sort_order>12</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<validate>required-entry</validate>
+								<comment>Color must be like this: "fff"  or "ffffff"</comment>
+							</headernumberbackground>								
+							<headernumber translate="label">
+								<label>Pagination Text Color</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>rracheckout/adminhtml_system_config_color</frontend_model>
+								<sort_order>13</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<validate>required-entry</validate>
+								<comment>Color must be like this: "fff"  or "ffffff"</comment>
+							</headernumber>						
+						</fields>						
+				</design>
+				<body_skin>
+					<label>Body</label>
+						 <sort_order>14</sort_order>
+						 <show_in_default>1</show_in_default>
+						 <show_in_website>1</show_in_website>
+						 <show_in_store>1</show_in_store>				
+						<fields>
+							<bodybackground translate="label">
+								<label>Background Color</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>rracheckout/adminhtml_system_config_color</frontend_model>
+								<sort_order>1</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<validate>required-entry</validate>
+								<comment>Color must be like this: "fff"  or "ffffff"</comment>
+							</bodybackground>				
+							<bodyborder translate="label">
+								<label>Border Color</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>rracheckout/adminhtml_system_config_color</frontend_model>
+								<sort_order>2</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<validate>required-entry</validate>
+								<comment>Color must be like this: "fff"  or "ffffff"</comment>
+							</bodyborder>				
+						</fields>						
+				</body_skin>				
+				<button_skin>
+					<label>Button</label>
+						 <sort_order>15</sort_order>
+						 <show_in_default>1</show_in_default>
+						 <show_in_website>1</show_in_website>
+						 <show_in_store>1</show_in_store>				
+						<fields>
+							<buttonbackground translate="label">
+								<label>Background Color</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>rracheckout/adminhtml_system_config_color</frontend_model>
+								<sort_order>10</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<validate>required-entry</validate>
+								<comment>Color must be like this: "fff"  or "ffffff"</comment>
+							</buttonbackground>
+							<buttontext translate="label">
+								<label>Text Color</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>rracheckout/adminhtml_system_config_color</frontend_model>
+								<sort_order>11</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<validate>required-entry</validate>
+								<comment>Color must be like this: "fff"  or "ffffff"</comment>
+							</buttontext>					
+							<buttonradius translate="label">
+								<label>Button Radius</label>
+								<frontend_type>text</frontend_type>
+								<sort_order>12</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Radius must be like this: 8px 8px 0px 0px</comment>
+							</buttonradius>					
+						</fields>						
+				</button_skin>
+				<rracheckouttaxdetails translate="label">
+					<label>Tax Details</label>
+						 <sort_order>16</sort_order>
+						 <show_in_default>1</show_in_default>
+						 <show_in_website>1</show_in_website>
+						 <show_in_store>1</show_in_store>						 
+						<fields>
+							<active_tax translate="label">
+								<label>Enabled</label>
+								<frontend_type>select</frontend_type>
+								<source_model>adminhtml/system_config_source_yesno</source_model>
+								<sort_order>1</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>0</show_in_store>
+							</active_tax>			
+							<subtotalincl translate="label">
+								<label>Show Subtotal Incl Tax</label>
+								<frontend_type>select</frontend_type>
+								<source_model>adminhtml/system_config_source_yesno</source_model>
+								<sort_order>2</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>0</show_in_store>
+								<depends><active_tax>1</active_tax></depends>
+							</subtotalincl>						
+							<taxAmount translate="label">
+								<label>Show Tax Amount</label>
+								<frontend_type>select</frontend_type>
+								<source_model>adminhtml/system_config_source_yesno</source_model>
+								<sort_order>3</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>0</show_in_store>
+								<depends><active_tax>1</active_tax></depends>
+							</taxAmount>
+							<grandtotalincl translate="label">
+								<label>Show Grand Total Excl Tax</label>
+								<frontend_type>select</frontend_type>
+								<source_model>adminhtml/system_config_source_yesno</source_model>
+								<sort_order>4</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>0</show_in_store>
+								<depends><active_tax>1</active_tax></depends>
+							</grandtotalincl>									
+						</fields>						
+				</rracheckouttaxdetails>	
+				<rracheckoutactivationkey translate="label">
+					<label>Activation Key</label>
+						 <sort_order>17</sort_order>
+						 <show_in_default>1</show_in_default>
+						 <show_in_website>1</show_in_website>
+						 <show_in_store>1</show_in_store>						 
+						<fields>
+							<active translate="label">
+								<label>Enter Activation key</label>
+								<frontend_type>text</frontend_type>
+								<sort_order>1</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>0</show_in_store>
+							</active>						
+						</fields>						
+				</rracheckoutactivationkey>				
+			</groups>			
+		</rracheckoutsection>
+	</sections>
+</config>

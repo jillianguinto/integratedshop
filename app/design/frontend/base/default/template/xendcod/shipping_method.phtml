@@ -1,0 +1,28 @@
+<script>
+
+				
+		var form = $('#gcheckout-onepage-form');	
+		
+		form.find('#billing_city').on('change', function() {	
+			$('body').append('<div class="loadinfo">Updating information, please wait...</div>');				
+			postdata();
+		});		
+		
+		form.find('#shipping_city').on('change', function() {	
+			$('body').append('<div class="loadinfo">Updating information, please wait...</div>');				
+			postdata();
+		});		
+		  		  
+		function postdata(){	  
+			$('[name=action]').val('get_methods');
+			$.ajax( {
+			  type: "POST",
+			  url: '<?php echo Mage::getBaseurl()?>gomage_checkout/onepage/ajax/',
+			  data: form.serialize(),
+			  success: function( response ) {			  		
+				 location.reload(); 
+			  }
+			});				
+		}
+	
+</script>

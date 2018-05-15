@@ -1,0 +1,199 @@
+<style>
+.button{
+border-radius : 2px !important;
+}
+.divAddToCart
+{
+background-color:#eaeaea;
+padding : 2%;
+height : 60px;
+}
+.divButton
+{
+float:right;
+}
+</style>
+<?php $_product = $this->getProduct(); ?>
+<?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+<?php if($_product->isSaleable()): ?>
+
+<div id="modalloading" style="display:none;">
+  <div class="loading">
+    <img src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/unilab2/images/ajax-loader.gif">
+  </div>
+</div>
+
+<div class="add-to-cart divAddToCart">
+  
+	<div style="margin-top:1%">
+
+    <?php
+      $storeId  = Mage::app()->getStore()->getStoreId();
+      $prodname = trim($_product->getName());
+
+      $_productCollection = Mage::getModel('catalog/product')
+                ->getCollection()
+                ->addAttributeToSelect('*')
+                ->addAttributeToFilter('status',1)
+                ->addAttributeToFilter('short_description', $prodname)
+                ->setStoreId($storeId)
+                ->addStoreFilter($storeId)
+                ->load();
+                
+      $withsizes = count($_productCollection);          
+      
+      if($withsizes != 0)
+      {
+        
+        echo "<span class='sizelabel'>Flavors: </span>";
+        echo "<select name='sizelist' id='sizelist'>";
+        echo "<option></option>";
+        
+        foreach ($_productCollection as $size)
+        {
+
+          $id = $size->getId();
+
+          $name = $size->getDescription();
+
+          echo "<option value='$id'>$name</option>";
+
+        }
+      
+        echo "</select>";
+        
+      }
+    ?>
+
+        <?php if(!$_product->isGrouped()): ?>
+        <b><label for="qty"><?php echo $this->__('Qty:') ?></label></b>
+        
+        <?php $xQty = ($this->getProductDefaultQty() * 1) == 0 ? 1 : $this->getProductDefaultQty() * 1; ?>
+        
+        
+        <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $xQty ?> " title="<?php echo $this->__('Qty') ?>" class="input-text qty numbersOnly" />
+        <?php endif; ?>
+		<div class="divButton">
+		<?php if($_product->getUnilabRx()):?>
+			<button type="button" id="btnAddToCart" title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="productAddToCartForm.askPrescription(this);"><span><span><?php echo $buttonTitle ?></span></span></button>
+        <?php else:?>
+			<!-- <button type="button" id="btnAddToCart"  returnId="<?php echo $_product->getId(); ?>" returnName="<?php echo $_product->getName(); ?>" returnUrl="<?php echo Mage::helper('checkout/url')->getCartUrl(); ?>" title="<?php echo $buttonTitle ?>" class="button btn-cart" ><span><?php echo $buttonTitle ?></span></button> -->
+
+      <?php if($withsizes == 0): ?>
+      
+          <button type="button" id="btnAddToCart"  title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="productAddToCartForm.submit(this)"><span><span><?php echo $buttonTitle ?></span></span></button>
+          
+        <?php else: ?>
+          
+          <button type="button" id="btnAddwithsizes"  title="<?php echo $buttonTitle ?>" class="button"><span><span><?php echo $buttonTitle ?></span></span></button>
+         <!-- <button type="button" id="btnAddwithsizes"  title="<?php echo $buttonTitle ?>" class="button" onclick="productAddToCartForm.submit(this)"><span><span><?php echo $buttonTitle ?></span></span></button> -->
+        
+        <?php endif; ?>
+
+        <?php endif;?>
+        <br/><br/>
+		<a href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submit(this, this.href); return false;" class="btn-wishlist"><?php echo $this->__('Add to Wishlist') ?></a>
+		</div>
+		<?php echo $this->getChildHtml('', true, true) ?>
+		</div>
+     <span class="sizeErrMsg" style="display:none; color:red;">Please select flavors</span>
+    </div>
+	<script>
+		var addtocart = document.getElementById("qty");
+
+		addtocart.addEventListener("keypress", function(event) {
+			if (event.keyCode == 13){
+				jQuery("#btnAddToCart").trigger("click");
+				event.preventDefault();
+				return;
+			}
+		});
+	</script>
+<?php endif; ?>
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+   jQuery(document).on('click','.btn-view',function(){
+        window.location = jQuery(this).attr('returnUrl');
+   });
+
+   jQuery(document).on('click','.btn-cart',function(){
+        var product = jQuery(this).attr('returnId');
+        var productName = jQuery(this).attr('returnName');
+        var returnUrl = jQuery(this).attr('returnUrl');
+        jQuery.ajax({
+        type: 'Post',
+        url:'<?php echo Mage::getBaseUrl()?>checkout/cart/addtoCart',
+        data: {
+            product: product
+        },
+        }).done(function(data){
+            if(data == 'success'){
+            // jQuery("#prodName").html(productName);    
+            // var count = jQuery("#item_count").html();
+            // count = Number(count) + Number(1);
+            // jQuery("#item_count").html(count);  
+            //jQuery("#myModal").show();
+             window.location = returnUrl;
+            }
+        });
+    });
+
+   // jQuery(document).on('click','.close',function(){
+   //      jQuery("#myModal").hide();
+   //  });
+
+   //  jQuery(document).on('click','.btn-cshopping',function(){
+   //      jQuery("#myModal").hide();
+   //  });
+
+   //  jQuery(document).on('click','.btn-checkout',function(){
+   //      window.location = jQuery(this).attr('returnUrl');
+   //  });
+   
+});
+</script>
+ 
+<script>
+  jQuery('.numbersOnly').keyup(function () { 
+    this.value = this.value.replace(/[^0-9\.]/g,'');
+  });
+</script>
+
+<script>
+
+jQuery(function(){ 
+    jQuery("#btnAddwithsizes").click(function() 
+    {
+       var prodid   = jQuery("#sizelist").val();
+       
+      if(prodid == "")
+      {
+        jQuery(".sizeErrMsg").show();
+        
+        
+      }else{
+        jQuery(".sizeErrMsg").hide();
+        //jQuery("#modalloading").show();
+        
+        jQuery.ajax({
+        type: 'Post',
+        url:'<?php echo Mage::getBaseUrl()?>checkout/cart/addtoCart',
+        data: {
+          product: prodid   
+        },
+        }).done(function(data){           
+          if(data ==  'success'){
+            window.location = '<?php echo Mage::helper('checkout/cart')->getCartUrl(); ?>';
+          }
+        });
+
+      }
+
+      
+    });
+});
+
+</script>
+ 

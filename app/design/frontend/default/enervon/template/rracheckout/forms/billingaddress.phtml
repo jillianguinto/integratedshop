@@ -1,0 +1,257 @@
+<?php
+
+$customer = Mage::getSingleton('customer/session')->getCustomer();
+
+$defaultBilling = $customer->getDefaultBillingAddress();
+
+?>
+
+<div class="shipping_wrapper">
+	<div class="cls_body">
+		<ul class="form-list">
+		<div class="heading">
+			<div class="shipping-line"></div>
+			<h1 class="cls_header">
+				Enter a new Billing Addres
+			</h1>
+			<div class="shipping-line" ></div>
+		</div>
+		
+		<form action="" id="billing_address_form">
+			<input type="hidden" name="billing[billing_id]" id="billing_id" value="0" >
+			<input type="hidden" name="billing[emailaddress]" id="emailaddress" value="<?php echo $customer->getEmail(); ?>" >
+			
+			<!--- Name -->
+			<li class="fields">
+				<div class="customer-name">
+					<div class="name-firstname">
+						<label for="billing_firstname" class="required"><em>*</em>First Name</label>
+						<div class="input-box">
+							<input type="text" id="billing_firstname" name="billing[firstname]" value="" title="First Name" class="input-text required-entry absolute-advice validation-passed" autocomplete="off">
+						</div>
+					</div>
+					<div class="name-lastname">
+						<label for="billing_lastname" class="required billing_lastname"><em>*</em>Last Name</label>
+						<div class="input-box">
+							<input type="text" id="billing_lastname" name="billing[lastname]" value="" title="Last Name" class="input-text required-entry absolute-advice validation-passed" autocomplete="off">
+						</div>
+					</div>
+				</div>
+			</li> 
+			
+			<!--- Country -->
+			<li class="wide">
+				<label for="billing_country_id" class="required"><em>*</em>Country</label>
+				<div class="input-box input-box-country billing-country">
+					<?php 
+					
+						$_countries = Mage::getResourceModel('directory/country_collection')->loadData()->toOptionArray(false);
+						$countryCode = Mage::getStoreConfig('general/country/default');
+					?>
+					<?php if (count($_countries) > 0): ?>
+						<select name="billing[country_id]" id="billing_country_id" class="required-entry absolute-advice" title="Country" autocomplete="off">
+							<option value="">-- Please Select --</option>
+							<?php foreach($_countries as $_country): ?>
+								<?php if ($_country['value'] == $countryCode ): ?>
+								<option value="<?php echo $_country['value'] ?>" selected>
+									<?php echo $_country['label'] ?>
+								</option>
+							<?php else: ?>
+								<option value="<?php echo $_country['value'] ?>"> 
+									<?php echo $_country['label'] ?>
+								</option>
+							<?php endif; endforeach; ?>
+						</select>
+					<?php endif; ?>
+				</div>
+			</li>
+
+			<!--- Province -->
+			<li class="wide">
+				<label for="billing_region_id" class=" required "><em>*</em>State/Province</label>
+				<div class="input-box input-box-country billing-country">
+					<select id="billing_region_id" name="billing[region_id]" title="State/Province" class="input-text required-entry absolute-advice validate-select" defaultvalue="" autocomplete="off">
+						<?php 
+
+							if(!empty($defaultBilling)):
+								$customerregionID = $customer->getPrimaryBillingAddress()->getRegionId();
+								echo '<option value="0" >Select Province</option>'; 								
+							else:
+								$customerregionID = 0;
+								echo '<option value="0" selected="selected">Select Province</option>'; 								
+							endif;
+							
+								$collection = Mage::getModel('directory/region')->getResourceCollection()->addCountryFilter('PH')->load();
+								
+								foreach($collection as $region) 
+								{
+					
+									$regionName = $region['name'];
+									echo '<option value="'.$region['region_id'].'" >'.$region['name'].'</option> ';									
+								}
+						?>
+					</select>
+					<input type="text" id="billing_region" name="billing[region]" value="<?php echo $regionName ?>" title="State/Province" class="input-text required-entry absolute-advice" style="display: none;" autocomplete="off">
+				</div>
+			</li>
+
+			<!-- City and Zip -->
+			<li class="fields">
+				<div class="customer-name">
+					<div class="field-city">
+						<label for="billing_city" class=" required "><em>*</em>City</label>
+						<div  class="input-box billing_city" id="citylist">	
+							<?php 
+
+								$connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+								$connection->beginTransaction();
+								
+								if(!empty($defaultBilling))
+								{
+									$city			= $customer->getPrimaryBillingAddress()->getCity();
+									$provinceid 	= $customer->getPrimaryBillingAddress()->getRegionId();
+									
+									$qrycities = $connection->select()->from('unilab_cities', array('*')) 
+											//->where('region_id=?',$provinceid)	
+											->order(array('name ASC'));
+									$cities = $connection->fetchAll($qrycities);
+									
+								}
+
+							?>
+							<select id="billing_city" name="billing[city]" class="input-text required-entry absolute-advice" title="City" >
+								<?php										
+									echo '<option value="0" selected="selected">Select City</option>'; 
+											
+										foreach ($cities as $value) 
+										{ 
+											$cities_id = $value['city_id'];
+											$cities_name = $value['name'];
+											
+											echo "<option value='$cities_id'>$cities_name</option>";
+											
+										}	
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="field-zip">
+						<label for="billing_postcode" class=" required "><em>*</em>Zip/Postal</label>
+						<div class="input-box">
+							<input type="text" name="billing[postcode]" id="billing_postcode" value="" title="Zip/Postal" class=" input-text required-entry absolute-advice " autocomplete="off">
+						</div>
+					</div>
+				</div>
+			</li> 
+
+			<!-- Street -->
+			<li class="wide">
+				<label for="billing_street1" class=" required "><em>*</em>Address</label>
+				<div class="input-box">
+					<input type="text" title="Street Address" name="billing[street][]" id="billing_street1" value="" class=" input-text required-entry absolute-advice " autocomplete="off" >
+				</div>
+			</li>
+
+			<!-- Telephone and Mobile -->	
+			<li class="fields">
+				<div class="customer-name">
+					<div class="field-mobile">
+						<label for="billing_mobile" class="required"><em>*</em>Mobile</label><span class="err_mssg_mobile" style="color:red; display:none;"><em>This field is required</em></span>
+						<div class="input-box">
+							<input type="text" name="billing[mobile]" id="billing_mobile" value="" title="Mobile" class=" required-entry numbersOnly input-text  " autocomplete="off" >
+						</div>
+					</div>
+					<div class="field-telephone">
+						<div class="input-box">
+						</div>
+					</div>
+				</div>
+			</li> 
+
+			<li class="wide">
+					<div class="field-tin">
+						<label for="billing_tin" class="required">TIN</label>
+						<div class="input-box">
+							<input type="text" name="billing[tin]" id="billing_tin" value="" title="Tin Number" class="numbersOnly input-text absolute-advice " autocomplete="off" >
+						</div>
+					</div>
+
+			</li>
+			
+			<li id="billing_siab" class="control control-siab">
+				<input type="checkbox" name="billing_save_in_address_book_yes"  id="billing_save_in_address_book_yes" class="checkbox" autocomplete="off">
+				<label for="billing_save_in_address_book">Save in address book</label> 
+				<input type="checkbox" name="billing[save_in_address_book]"  id="billing_save_in_address_book" class="checkbox" autocomplete="off" style="display:none;"> 
+
+			</li>
+
+			<?php if (Mage::getStoreConfig('rracheckoutsection/rracheckoutgrounp/shipaddressbook') > 0):	?>
+			
+			<?php endif; ?>
+			
+			<?php if (Mage::getStoreConfig('rracheckoutsection/rracheckoutgrounp/shiptoaddress') > 0):	?>
+				
+ 				<li class="control control-stta" style="display:none;">
+ 					<span class="ship_address">Ship to this address</span>
+					<input type="checkbox" name="billing[use_for_shipping]" id="billing_use_for_shipping_yes" value="<?php if (Mage::getStoreConfig('rracheckoutsection/rracheckoutgrounp/shiptoaddress') == 2) echo 1;	?>" title="Ship to this address" <?php if (Mage::getStoreConfig('rracheckoutsection/rracheckoutgrounp/shiptoaddress') == 2) echo 'checked';	?> class="radio" autocomplete="off">
+					<label for="billing_use_for_shipping_yes">Ship to this address</label>
+				</li>
+				
+			<?php else: ?>		
+				<input type="hidden" name="billing[use_for_shipping]" id="billing_use_for_shipping_yes" value="1" title="Ship to this address" >
+			<?php endif; ?>
+		</form>			
+		</ul>
+		
+		<div class="div-dotted">
+			<hr class="dottedline">
+		</div>
+		
+		<div class="choose-address">	
+			<div class="heading">
+				<div class="shipping-line"></div>
+				<h1 class="cls_header">
+					Choose Billing Address
+				</h1>
+				<div class="shipping-line" ></div>
+			</div>		
+			
+			<div>
+				<ul class="address-list">
+				<?php									
+					foreach ($customer->getAddresses() as $address) 
+					{
+						if (!empty($address['entity_id'])):
+							$defaultbilling = $customer->getPrimaryBillingAddress()->getId();
+							$billingfulladd = $address['firstname'] . " " .$address['lastname'] . ", " . $address['street'] . ", " . $address['city'] . ", " . $address['region'] . ", " . $address['postcode'];
+						
+							$address_firstname = $address['firstname'];
+							$address_lastname = $address['lastname'];
+						
+							?>
+								<li>
+									<input type="radio" name="billingaddress_id" class="billing_address_id" value="<?php echo $address['entity_id']; ?>"> <span><?php echo $address_firstname . " " . $address_lastname ?></span><br>
+									<div class="fulladd"> 
+									<?php
+										echo $address['street'] . "<br>";
+										echo $address['city'] . ", " . $address['region'] . "<br>";
+										echo $address['country_id'] . " " . $address['postcode'] . "<br>";
+										echo "Mobile: " . $address['mobile'];
+									?>
+									</div>
+								</li>
+							<?php
+						
+						
+							
+						endif;
+					}
+				?>		
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="loading_icon_checkout_billing" style="display:none;width:100%;height:100%; position:fixed;z-index: 9999999;top:0;left:0;background-color: rgba(0, 0, 0, 0.31);"><img src='<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/enervon/images/loading-icon.gif' width="64" height="64" style="position: absolute;top: 50%;left: 50%;" /><br> </div>
+
+

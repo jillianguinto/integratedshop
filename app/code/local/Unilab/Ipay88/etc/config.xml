@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Magento
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Academic Free License (AFL 3.0)
+* that is bundled with this package in the file LICENSE_AFL.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/afl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@magentocommerce.com so we can send you a copy immediately.
+*
+* DISCLAIMER
+*
+* Do not edit or add to this file if you wish to upgrade Magento to newer
+* versions in the future. If you wish to customize Magento for your
+* needs please refer to http://www.magentocommerce.com for more information.
+*
+* @category    Mage
+* @package     Mage_Payment
+* @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+* @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+*/
+-->
+<config>
+	<modules>
+		<Unilab_Ipay88>
+			<version>1.1.0.0</version>
+		</Unilab_Ipay88>
+	</modules>
+	<global>
+		<models>
+			<ipay88>
+				<class>Unilab_Ipay88_Model</class>
+			</ipay88>
+		</models>
+		<blocks>
+			<ipay88>
+				<class>Unilab_Ipay88_Block</class>
+			</ipay88>
+		</blocks>
+		<helpers>
+			<ipay88>
+				<class>Unilab_Ipay88_Helper</class>
+			</ipay88>
+		</helpers>
+		<payment>			
+			<groups>
+				<offline>Offline Payment Methods</offline>
+			</groups>
+		</payment>
+	</global>
+	<default>
+		<payment>
+			
+			<ipay88>
+				
+				<!-- For API configuration -->
+				<enable_testmode>1</enable_testmode>
+				<gatewayurl_live><![CDATA[https://payment.ipay88.com.ph/epayment/entry.asp]]></gatewayurl_live>
+				<merchant_key_live>SCB2B2C_LIVE</merchant_key_live>
+				<merchant_code_live>gbdww</merchant_code_live>
+				<gatewayurl_test><![CDATA[https://sandbox.ipay88.com.ph/epayment/entry.asp]]></gatewayurl_test>
+				<merchant_key_test>4b3d4qFoFm</merchant_key_test>
+				<merchant_code_test>PH00135</merchant_code_test>
+				<active>1</active>
+				<title>iPay88</title>				
+				<order_status>pending</order_status>
+				<allowspecific>0</allowspecific>
+				<payment_action>authorize</payment_action>
+				<model>ipay88/method_payment</model>
+				
+			</ipay88>
+						
+		</payment>
+	</default>
+	<frontend>
+		<routers>
+			<ipay88>
+				<use>standard</use>
+				<args>
+					<module>Unilab_Ipay88</module>
+					<frontName>ipay88</frontName>
+				</args>
+			</ipay88>
+		</routers>
+		<layout>
+            <updates>
+                <ipay88>
+                    <file>ipay88.xml</file>
+                </ipay88>
+            </updates>
+        </layout>		
+	</frontend>
+</config>

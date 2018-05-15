@@ -1,0 +1,54 @@
+<?xml version="1.0"?> 
+<config>
+    <sections>
+        <socialmedia translate="label" module="socialmedia">
+            <label>Social Media</label>
+            <tab>customconfig</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <mediaurls translate="label" module="socialmedia">
+                    <label>Media URLs</label> 
+                    <sort_order>90</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields> 
+                        <facebook translate="label comment">
+                            <label>Facebook</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry validate-url</validate>
+                            <comment>http://www.faceboo.com/myfanpage</comment>
+                        </facebook> 
+						 <twitter translate="label comment">
+                            <label>Twitter</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry validate-url</validate>
+                            <comment>http://www.twitter.com/myfanpage</comment>
+                        </twitter> 
+						<youtube translate="label comment">
+                            <label>Youtube Channel URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry validate-url</validate> 
+                        </youtube> 
+                    </fields>
+                </mediaurls>
+            </groups>
+        </socialmedia>
+    </sections>
+</config>

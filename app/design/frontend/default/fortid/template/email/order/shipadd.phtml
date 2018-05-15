@@ -1,0 +1,40 @@
+<?php
+$_order 	= $this->getOrder(); 
+$orderid 	= $_order->getIncrementId();
+
+$order 		= Mage::getModel('sales/order')->loadByIncrementId($orderid);
+$firstname 	= $order->getCustomerName();
+
+$billing 	= $order->getBillingAddress();
+$shipping 	= $order->getShippingAddress();
+
+$Add_billing = $billing->getStreetFull() . $billing->getCity() . $billing->getRegion() . $billing->getPostcode();		
+$Add_shipping = $shipping->getStreetFull() . $shipping->getCity() . $shipping->getRegion() . $shipping->getPostcode();		
+
+if($Add_billing==$Add_shipping):
+	$label 	 = "Billing Information:";
+	$address = $billing->format("html");
+else:
+	$label 	 = "Shipping Information:";
+	$address = $shipping->format("html"); 
+endif;
+
+
+
+die();
+?>
+
+<table cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: 0 auto;">
+	<thead>
+		<tr>
+			<th align="left" width="325" bgcolor="#EAEAEA" style="font-size:13px; padding:5px 9px 6px 9px; line-height:1em;"><?php echo $label;?></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td valign="top" align="left" style="font-size:12px; padding:7px 9px 9px 9px; border-left:1px solid #EAEAEA; border-bottom:1px solid #EAEAEA; border-right:1px solid #EAEAEA;">
+				<?php echo $address;?>
+			</td>
+		</tr>
+	</tbody>
+</table>

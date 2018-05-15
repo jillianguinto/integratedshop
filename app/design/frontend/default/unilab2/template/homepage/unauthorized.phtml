@@ -1,0 +1,16 @@
+<?php
+ $categoryid = Mage::getSingleton('core/session')->getCategoryId();		
+		
+		if($categoryid=="")
+		{			
+			$redirectlink = 'http://' . $_SERVER['HTTP_HOST'] . "/errors/unauthorized.php";
+			// Mage::app()->getFrontController()->getResponse()->setRedirect($redirectlink);
+			
+			?>
+			<script>
+			window.location.href = "<?php echo $redirectlink; ?>";
+			</script>
+			<?php
+
+		}
+?>

@@ -1,0 +1,7 @@
+<body>
+	<div>
+	<h1>Dear {{var username}}</h1>
+	<p>Thank You</p>
+	<div>{{var storename}} ({{var store_url}})</div>
+	</div>
+</body>

@@ -1,0 +1,658 @@
+
+
+
+
+ <html data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+
+
+
+ <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('cms/content_heading.phtml')->toHtml(); ?>
+
+
+
+ <div class="account-create">
+
+    <br/>
+
+    <div class="account-create-content">
+
+        <?php echo $this->getChildHtml('form_fields_before')?>
+
+
+
+        <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+
+
+         <h2 class="legend"><?php echo $this->__('Create Account') ?></h2>
+
+
+
+        <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="form-validate">
+
+
+
+            <div class="fieldset">
+
+
+
+                <ul class="form-list">
+
+                   
+
+
+
+                    <li class="fields email">
+
+
+
+                        <label for="email_address" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+
+
+
+                        <div class="input-box">
+
+
+
+                            <input type="text" name="email" id="email_address" value="<?php echo $this->escapeHtml($this->getFormData()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text validate-email required-entry" />
+
+
+
+                        </div>
+
+
+
+                    </li>
+
+
+
+                     <li class="fields">
+
+                        <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
+
+                    </li>
+
+
+
+                    
+
+
+
+                    <?php // echo $this->getChildHtml('persistent.remember.me'); ?>
+
+
+
+                </ul> 
+
+
+
+            </div>
+
+
+
+            <div class="fieldset">
+
+
+
+                <input type="hidden" name="success_url" value="<?php echo $this->getSuccessUrl() ?>" />
+
+
+
+                <input type="hidden" name="error_url" value="<?php echo $this->getErrorUrl() ?>" />
+
+
+
+                <ul class="form-list">
+
+
+
+                    
+
+
+
+
+
+
+
+                <?php $_civil_status = $this->getLayout()->createBlock('customer/widget_civilstatus') ?>
+
+
+
+                <?php if ($_civil_status->isEnabled()): ?>
+
+
+
+                    <li class="ddl-reg fields civilstatus"><?php echo $_civil_status->setCivilStatus($this->getFormData()->getCivilStatus())->toHtml() ?></li>
+
+
+
+                <?php endif ?>
+
+
+
+
+
+
+
+                <?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
+
+
+
+                <?php if ($_taxvat->isEnabled()): ?>
+
+
+
+                    <li class="ddl-reg fields"><?php echo $_taxvat->setTaxvat($this->getFormData()->getTaxvat())->toHtml() ?></li>
+
+
+
+                <?php endif ?>
+
+
+
+
+
+
+
+                <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+
+
+
+                <?php if ($_gender->isEnabled()): ?>
+
+
+
+                    <li class="ddl-reg-gender fields"><?php echo $_gender->setGender($this->getFormData()->getGender())->toHtml() ?></li>
+
+
+
+                <?php endif ?>
+
+
+
+
+
+
+
+                <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
+
+
+
+                <?php if ($_dob->isEnabled()): ?>
+
+
+
+                    <li class="fields"><?php echo $_dob->setDate($this->getFormData()->getDob())->toHtml() ?></li>
+
+
+
+                <?php endif ?>
+
+
+
+                <li class="fields">
+
+
+
+                        <!-- <div class="field"> -->
+
+
+
+                            <label for="password" class="required"><em>*</em><?php echo $this->__('Password') ?></label>
+
+
+
+                            <div class="input-box">
+
+
+
+                                <input type="password" name="password" id="password" title="<?php echo $this->__('Password') ?>" class="input-text required-entry validate-password" />
+
+
+
+                            </div>
+
+
+
+                        <!-- </div> -->
+
+
+
+                        <!-- <div class="field"> -->
+
+
+
+                    </li>
+
+
+
+                    <li class="fields">
+
+
+
+                    
+
+
+
+                            <label for="confirmation" class="required"><em>*</em><?php echo $this->__('Confirm Password') ?></label>
+
+
+
+                            <div class="input-box">
+
+
+
+                                <input type="password" name="confirmation" title="<?php echo $this->__('Confirm Password') ?>" id="confirmation" class="input-text required-entry validate-cpassword" />
+
+
+
+                            </div>
+
+
+
+                        <!-- </div> -->
+
+
+
+                    </li> 
+
+
+
+                </ul>
+
+
+
+            </div>
+
+
+
+        <?php // if($this->getShowAddressFields(true)): ?>
+
+
+
+        <?php //endif; ?> 
+
+
+
+            <div class="fieldset catpcha-container">
+
+
+
+                <h2 class="legend"><?php echo $this->__('Security Check') ?></h2>
+
+
+
+                <hr class="div">
+
+
+
+                <ul class="form-list captcha">
+
+
+
+
+
+
+
+                    <?php echo $this->getChildHtml('form.additional.info'); ?>
+
+
+
+                </ul>
+
+
+
+
+
+                <hr class="div">
+
+
+
+            </div>
+
+
+
+            
+
+
+
+            <div class="fieldset">
+
+
+
+                <ul class="form-list terms">
+
+
+
+                    <?php if ($this->isNewsletterEnabled()): ?>
+
+
+
+                    <li class="control">
+
+
+
+                            <div class="input-box div_checkbox">
+
+
+
+                                <input type="checkbox" name="is_subscribed" title="<?php echo $this->__('I want to receive email from CSI and its partners') ?>" value="1" id="is_subscribed" class="checkbox" />
+
+
+
+                                <label class="terms" for="is_subscribed"><?php echo $this->__('I want to receive email from CSI and its partners') ?></label>
+
+
+
+                            </div>
+
+
+
+                    </li>
+
+
+
+                    <?php endif ?>
+
+
+
+                     <?php $_terms = $this->getLayout()->createBlock('customer/widget_terms') ?>
+
+
+
+                    <?php if ($_terms->isEnabled()): ?>
+
+
+
+                        <li class="control"><?php echo $_terms->setAgreeOnTerms($this->getFormData()->getAgreeOnTerms())->toHtml() ?></li>
+
+
+
+                    <?php endif ?> 
+
+
+
+                </ul>
+
+
+
+                <div class="clear"></div>
+
+
+
+            </div>
+
+
+
+            <div class="buttons-set">
+
+
+
+                <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+
+
+
+                <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>" class="back-link"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+
+
+
+                <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button" id="submit-reg" ><span><span><?php echo $this->__('Create An Account') ?></span></span></button>
+
+
+
+            </div>
+
+
+
+            <?php if (Mage::helper('checkout')->isContextCheckout()): ?>
+
+
+
+                <input name="context" type="hidden" value="checkout" />
+
+
+
+            <?php endif; ?>
+
+
+
+        </form>
+
+    </div>
+
+</div>
+
+    <script type="text/javascript">
+
+  jQuery.noConflict();
+        var dataForm = new VarienForm('form-validate', true);
+
+        jQuery('#submit-reg').click(function(){
+            // var error_fields = "";
+            dataForm.validator.validate();
+            // if (!dataForm.validator.validate()){
+            //     jQuery(".validation-failed").each(function() {
+                    
+            //         error_fields = error_fields + jQuery(this).attr('id') + "|";
+                
+            //     });
+                
+                
+            //     digitalData.registration={
+            //         formName:"Create Account:Account Management",
+            //         formError: error_fields.slice(0, -1)
+            //     }
+            //     _satellite.track("form-error");
+
+            // }
+        });
+
+
+    //<![CDATA[
+
+        // jQuery.noConflict();
+
+        // var dataForm = new VarienForm('form-validate', true);
+
+        
+
+        // RegionUpdater.prototype.update = RegionUpdater.prototype.update.wrap(function(parentMethod){            
+
+
+
+        //     parentMethod();         
+
+
+
+        //     if(this.countryEl.value == "PH"){               
+
+
+
+        //         if($("mobile") && $("mobile").value == "" ){
+
+
+
+        //             $("mobile").value = "+63";
+
+
+
+        //         }
+
+
+
+        //     }else{
+
+
+
+        //         if($("mobile") && $("mobile").value != "" ){
+
+
+
+        //             $("mobile").value = "";
+
+
+
+        //         }
+
+
+
+        //     }           
+
+
+
+        // });       
+
+
+
+
+
+        // new RegionUpdater('country', 'region', 'region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'zip');
+
+
+
+        // var updater = new jQuery.CityUpdater('country','region_id','city','<?php echo json_encode(Mage::helper('citydropdown')->getCities()); ?>','<?php echo $this->getFormData()->getCity() ; ?>','PH');        
+
+
+
+        
+
+
+
+        // jQuery(document).ready(function($){
+
+
+
+        //     $('#country').change(function(e){
+
+
+
+        //         var streets = $('input[id=street_1]');
+
+
+
+        //         if(streets.length > 0){
+
+
+
+        //             streets.each(function(i,elm){
+
+
+
+        //                 $(elm).val(''); 
+
+
+
+        //             });
+
+
+
+        //         } 
+
+
+
+        //     }); 
+
+
+
+        //     $('select#region_id').change(function(e){
+
+
+
+        //         if($(this).val() == ""){
+
+
+
+        //             return ;
+
+
+
+        //         }
+
+
+
+        //         var streets = $('input[id=street_1]');
+
+
+
+        //         if(streets.length > 0){
+
+
+
+        //             streets.each(function(i,elm){
+
+
+
+        //                 $(elm).val(''); 
+
+
+
+        //             });
+
+
+
+        //         } 
+
+
+
+        //     });
+
+
+
+        // });
+
+
+
+        
+
+// jQuery(document).ready(function(){
+   
+//     jQuery(".account-create-content input#firstname,.account-create-content input#lastname").keypress(function(e) {
+//         var regex = new RegExp("^[a-zA-Z\\-\\s]+$");
+//         var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+//         if(!e.charCode){
+//               return true;
+//           }else
+//           {
+//             if (regex.test(str)) {
+//                 return true;
+//             }
+//             else
+//             {
+//             e.preventDefault();
+//             // alert('Please Enter Alphabate');
+//             return false;
+//             }
+//          }
+        
+//     });
+// });
+
+    //]]>
+    
+
+
+
+    </script>
+
+
+
+</div>
+
+
+
+<script>
+
+
+
+var doc = document.documentElement;
+
+
+
+doc.setAttribute('data-useragent', navigator.userAgent);
+
+
+
+</script>
+
+
+

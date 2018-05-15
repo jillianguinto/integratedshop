@@ -1,0 +1,183 @@
+<?php
+ // if($_GET['id'])
+ // {
+// $catID = $_GET['id'];
+// $token=$_GET['token'];
+
+// if(Mage::getSingleton('core/session')->getCatID() <> $_GET['id'] && Mage::getSingleton('core/session')->getToken() <> $_GET['token'])
+	// {
+	// unset($_SESSION['catID']);
+	// unset($_SESSION['token']);
+// $_SESSION['catID']	= $catID;
+// $_SESSION['token']	= $token;
+	// }
+	
+// elseif(!Mage::getSingleton('core/session')->getCatID()){
+// $_SESSION['catID']	= $catID;
+// $_SESSION['token']	= $token;
+	// }
+	// }
+	
+$categoryID = Mage::getSingleton('core/session')->getCatID();
+$tokenValue = Mage::getSingleton('core/session')->getToken();
+	$connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+	
+	$qry = $connection->select()->from('rra_oneshop_websiteurl', array('*'))
+	->where('categoryid=?', $categoryID)
+	->where('token=?', $tokenValue);
+	$result = $connection->fetchAll($qry);
+	$connection->commit();	
+	
+	// print_r($result);
+	foreach($result as $key => $value)
+	{
+		foreach($value as $key1 => $value1)
+		{
+			if($key1 == 'banner')
+			{
+				$image_path = $value1;
+			}
+			if($key1 == 'websiteurl')
+			{
+				$websiteurl = $value1;
+			}
+		}
+	
+	}
+	$selectCategoryName 	=	$connection->select()->from('catalog_category_entity_varchar', array('value'))
+						->where('entity_id=?',$categoryID)
+						->where('attribute_id=?',41)
+						; 
+		$category 			= $connection->fetchRow($selectCategoryName);
+		$categoryName		= $category['value'];
+?>
+<style>
+#search-button
+{
+display:none;
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+.imgCartLI
+{
+display:none;
+}
+.backToPageLI
+{
+display:block;
+}
+.formSearch
+{
+width:91%;
+}
+
+}
+
+@media only screen and (min-width: 768px){
+.divNav 
+{
+float:right;margin-right:4%;
+}
+.checkoutLI
+{
+width:100px;
+}
+.imgCartLI
+{
+width:25px !important;
+}
+.backToPage
+{
+width:20%;background-color:#2a9cda;float:left;height:36px;margin-top: 2%;margin-left: 2%;
+}
+.backToPageLI
+{
+display:none;
+}
+.formSearch
+{
+	float: left;
+    height: 23px;
+    margin-top: 15px;
+    width: 260px;
+    padding-left: 4px;
+    margin-right: 2px;
+}
+.imgBtn
+{
+margin-top:5%
+}
+.buttonCheckout
+{
+    background-color: #2a9cda;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 2px;
+    border: none;
+    display: inline-block;
+    color: #fff;
+    font-weight: bold;
+    font-family: 'calibriregular',arial;
+    font-size: 12px;
+    padding: 3px 10px 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+
+}
+</style>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+   jQuery('.newSearchButton').click(function(){
+   // alert('asdasd');
+       jQuery('#search-button').click();
+    });
+});
+</script>
+<?php
+	$iconurl = Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . "images/";
+	// echo $count;
+?>
+<div class="nav-container">
+	
+	<ul class="top_navigation">
+		<li><a href="<?php echo Mage::getUrl("/");?>"><?php echo $this->__("Home");?></a></li>
+		<li><a href="<?php echo Mage::getUrl("aboutus");?>"><?php echo $this->__("About Us");?></a></li>
+		<li class="last"><a href="<?php echo Mage::getUrl("contacts");?>"><?php echo $this->__("Contact Us");?></a></li> 
+		<div class="divNav">
+		<li class="last imgCartLI"><img style="width:25px" src="<?php echo $iconurl?>cart.png"></li> 
+		<li class="last"><a href="<?php echo Mage::helper('checkout/cart')->getCartUrl() ?>">View Cart</a></li>
+		<li class="checkoutLI"><a href="<?php echo Mage::helper('checkout/url')->getCheckoutUrl() ?>"><button class="buttonCheckout">Checkout</button></a></li>
+		<?php if(Mage::getSingleton('customer/session')->isLoggedIn()):?>
+		<li><a href="<?php echo Mage::getUrl('customer/account');?>">Account</a></li> 
+		<li class="last" ><a href="<?php echo Mage::getUrl('customer/account/logout');?>">Logout</a></li> 
+		<?php else:?>
+		<li class="last" ><a href="<?php echo Mage::getUrl('customer/account/login');?>">Login</a></li> 
+		<?php endif;?> 
+		<li class="last backToPageLI" ><a href="<?php echo $websiteurl; ?>">Back To <?php echo $categoryName; ?> Page</a></li> 
+		</div>
+	</ul>
+	<div>
+	<div class="backToPage">
+		<b style="position:absolute;font-size:12px;padding:1%;text-transform: uppercase;"><a style="color:#fff !important;" href="<?php echo $websiteurl; ?>">Back To <?php echo $categoryName; ?> Page</a></b>
+		</div>
+	<form id="search_main_form" style="margin-right:4%;" action="<?php echo $this->helper('catalogsearch')->getResultUrl() ?>" method="get">
+		<div>
+			<input class="formSearch" type="text" name="<?php echo $this->helper('catalogsearch')->getQueryParamName() ?>" value="<?php echo $this->helper('catalogsearch')->getEscapedQueryText() ?>" class="input-text" />
+			<input type="submit" id="search-button" title="<?php echo $this->__('Go') ?>" value="<?php echo $this->__("Search");?>" class="button search-button">
+			<a href="#" class="newSearchButton"><img src="<?php echo $iconurl; ?>search.png" class="imgBtn"></a>
+			<div id="search_autocomplete" class="search-autocomplete"></div>
+			<script type="text/javascript">
+			//<![CDATA[
+				var searchForm = new Varien.searchForm('search_main_form', 'main_search', '<?php echo $this->__('Search') ?>');
+				searchForm.initAutocomplete('<?php echo $this->helper('catalogsearch')->getSuggestUrl() ?>', 'search_autocomplete');
+			//]]>
+			</script>
+			</div>			
+
+	
+	</form> 
+		</div>
+	
+	
+</div>

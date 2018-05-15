@@ -1,0 +1,87 @@
+<?php   
+$resource = Mage::getSingleton('core/resource');
+$writeConnection = $resource->getConnection('core_write');
+$readConnection = $resource->getConnection('core_read');
+
+$customerData = Mage::getSingleton('customer/session')->getCustomer();
+$query = 'SELECT item.product_id 
+FROM sales_flat_order_item item
+LEFT JOIN sales_flat_order orders ON item.order_id = orders.entity_id
+WHERE orders.customer_id = '.$customerData->getId().' ORDER BY orders.entity_id DESC LIMIT 3';
+
+$results = $readConnection->fetchAll($query);
+
+
+if(Mage::getSingleton('customer/session')->isLoggedIn()) {
+?> 
+<div class="block-title sidebar-category recentlyadded">
+<strong>
+<span><a class="category-menu-label recentlyadded" title="">Recently Added</a></span>
+</div>
+<div class="recentlyadded-container">
+
+<?php
+foreach($results as $_item){
+            $product_model = Mage::getModel('catalog/product')->load($_item['product_id']);
+            //echo "-_-".$product_model->getName();
+            $productname = $product_model->getName();
+            $productimage = $this->helper('catalog/image')->init($product_model, 'small_image')->resize(252);
+            $productprice = $product_model->getPrice();
+            ?>
+        <script type="text/javascript">
+            jQuery(document).ready(function (){
+                jQuery('.block-title.sidebar-category.recentlyadded').css("display", "block");
+            });
+        </script>
+        <div class="recentlyadded-thumbnails">
+           <div class="img-container">
+                <img class="recentlyadded-img" src="<?php echo $productimage; ?>">
+            </div>
+            <div class="recentlyadded-details">
+                 <h3><?php echo $productname; ?></h3>
+                <label class="recentlyadded-price"><strong>PHP <?php echo number_format($productprice, 2); ?></strong></label>
+                <button type="button" id="add" returnId="<?php echo $product_id; ?>" returnName="<?php echo $productname; ?>" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart recentlyadded" ><span><span><?php echo $this->__('Add to Cart') ?></span></span></button> 
+            </div>
+        </div>                              
+<?php } ?>
+    </strong>
+</div>
+
+<script type="text/javascript">
+   jQuery(document).on('click','#add',function(){
+        jQuery("#loading-icon").show();
+        var product = jQuery(this).attr('returnId');
+        var productName = jQuery(this).attr('returnName');
+        jQuery.ajax({
+        type: 'Post',
+        url:'<?php echo Mage::getBaseUrl()?>checkout/cart/addtoCart',
+        data: {
+            product: product
+        },
+        }).done(function(data){
+            if(data == 'success'){
+            jQuery("#prodName").html(productName);    
+            var count = jQuery("#item_count").html();
+            count = Number(count) + Number(1);
+            jQuery("#item_count").html(count); 
+            jQuery("#loading-icon").hide(); 
+            jQuery("#myModal").show();
+            }
+        });
+    });
+
+   jQuery(document).on('click','.close',function(){
+        jQuery("#myModal").hide();
+    });
+
+    jQuery(document).on('click','.btn-cshopping',function(){
+        location.reload();
+    });
+
+    jQuery(document).on('click','.btn-checkout',function(){
+        window.location = jQuery(this).attr('returnUrl');
+
+    });
+   
+</script>
+<?php } ?>

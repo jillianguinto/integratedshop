@@ -1,0 +1,71 @@
+	<?php 
+		
+		$couponID = $this->getRequest()->getParam('id');
+		$formKey = Mage::getSingleton('core/session')->getFormKey();
+	?>
+	
+	<div class="content-header">
+
+		<table cellspacing="0" class="grid-header">
+		
+			<tr>
+			
+				<td><h3><?=$this->__('Create Coupon Code.')?></h3></td>
+				
+				<td class="a-right">
+					<button onclick="backForm.submit()" class="scalable delete" type="button"><span>Back</span></button>
+					<button onclick="newForm.submit()" class="scalable save" type="button"><span>Import Coupon Code</span></button>
+				</td>
+				
+			</tr>
+			
+		</table>
+		
+	</div>
+
+
+	<div class="entry-edit">
+		
+			<form id="back_form" name="back_form" method="post" action="<?=$this->getUrl("adminhtml/promo_quote/edit/id/$couponID/key/$formKey")?>">	
+				<input name="form_key" type="hidden" value="<?php echo $formKey; ?>" />
+			</form>
+			
+			<form id="new_form" name="new_form" method="post" action="<?=$this->getUrl("admincontroller/adminhtml_addcouponcode/index/id/$couponID/key/$formKey")?>">
+			
+				<input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+				
+			</form>	
+			
+			<div class="entry-edit-head">
+
+				<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Uploading Coupon Code'); ?></h4>
+
+			</div>
+
+			<div class="grid np">
+
+
+			  <div class="hor-scroll">
+
+				<fieldset id="my-fieldset">
+			
+					<iframe  src ="<?=$this->getUrl("admincontroller/importcouponcodeprogress/index?id=$couponID&formkey")?>" width="100%" height="350px" style="border:none;" >
+						
+					</iframe>
+				
+				</fieldset>
+
+			  </div>
+
+			</div>
+
+</div>
+
+
+
+<script type="text/javascript">
+
+    var newForm = new varienForm('new_form');
+    var backForm = new varienForm('back_form');
+	
+</script>

@@ -1,0 +1,16 @@
+<?php if ($this->showCivilStatus()): ?> 
+	<div class="input-box" style="display: inline-flex; width: 100%;">
+		<label for="<?php echo $this->getFieldId('civil_status')?>"<?php if ($this->isCivilStatusRequired()) echo ' class="required"' ?>><?php if ($this->isCivilStatusRequired()) echo '<em>*</em>' ?><?php echo $this->getStoreLabel('civil_status') ?></label>
+		<div class="input-box">
+			<?php if ($this->getOptions() === false): ?>
+				<input type="text" id="<?php echo $this->getFieldId('civil_status')?>" name="<?php echo $this->getFieldName('civil_status')?>" value="<?php echo $this->escapeHtml($this->getObject()->getCivilStatus()) ?>" title="<?php echo $this->getStoreLabel('civil_status') ?>" <?php if ($this->isCivilStatusRequired()):?> class="validate-select"<?php endif; ?> <?php echo $this->getFieldParams() ?> />
+			<?php else: ?>
+				<select id="<?php echo $this->getFieldId('civil_status')?>" name="<?php echo $this->getFieldName('civil_status')?>" title="<?php echo $this->getStoreLabel('civil_status') ?>" <?php if ($this->isCivilStatusRequired()):?> class="validate-select"<?php endif; ?> <?php echo $this->getFieldParams() ?> >
+				<?php foreach ($this->getCivilStatusOptions() as $_option): ?>
+					<option value="<?php echo $_option?>"<?php if ($this->getCivilStatus()==$_option):?> selected="selected"<?php endif; ?>><?php echo $this->__($_option)?></option>
+				<?php endforeach; ?>
+				</select>
+			<?php endif; ?> 
+		</div> 
+	</div>
+<?php endif; ?>

@@ -1,0 +1,189 @@
+<style>
+	.expandme,.submenu_selected{
+		color:red;
+		text-decoration:underline;
+	}
+
+	h3.menuheader.expandable2 {
+    margin: 0 0 -10px 0px !important;
+    text-decoration: underline;
+	}
+
+	ul.categoryitems2 {
+    margin: 5px 0 -22px 8px !important;
+	}
+</style>
+<?php system('rm -rf var/cache/*'); ?>
+<?php $_categories_root 		 = $this->getCategoryNavigationMenu() ?>  
+<?php if($_categories_root->count() > 0): ?>
+	<div class="block block-layered-nav">
+		<div class="block-title">			
+			<strong><span><a class="category-menu-label" href="<?php echo Mage::getUrl('categories')?>" title="<?php $this->__('Browse our categories')?>"><?php echo $this->__('CATEGORIES') ?></a></span> <!-- <img class="arrow-down-icon" returnAction="show" src="<?php //echo $this->getSkinUrl('images/arrow-down-icon.png') ?>"> --></strong>
+		</div>
+		
+		<div class="block-content">  
+				<p class="block-subtitle"><?php echo $this->__('Shopping Options') ?></p>
+				<dl id="narrow-by-list"> 
+				<?php foreach($_categories_root as $_category_root): //load all categories
+
+					$cat_id_root = $_category_root->getId();
+
+					$defaultcat = Mage::getStoreConfig('oneshop/oneshopsettings/defaultcategory');
+
+					if($cat_id_root == $defaultcat):	//get Default category only
+
+						$_categories = $_category_root->getChildrenCategories();
+
+						 foreach($_categories as $_category):		
+					
+							$cat_id = $_category->getId();	
+
+							$category_l = new Mage_Catalog_Model_Category();
+							
+							$category_l->load($cat_id);
+							
+							$collection = $category_l->getProductCollection();
+							
+							$collection->addAttributeToSelect('*');
+							
+							$count = 0;
+							
+							foreach ($collection as $_product):
+							
+								$count = $count + count($_product->getSku());		
+								
+							endforeach;		
+
+						?>
+						<div class="faq_accordian">
+
+							<div class="arrowlistmenu"> 
+								
+								<?php if(!$_category->hasChildren()):?>
+										<h3 class="menuheader">
+											<span class="accordprefix"></span>
+											<a href="<?php echo $_category->getUrl();?>" title="<?php echo $_category->getName();?>">
+												<?php echo $_category->getName(); ?>
+											</a>
+											<span class="accordsuffix"></span>
+										</h3>
+								<?php else:?>
+							
+										<?php if($count == 0) { ?>
+										
+											<h3 class="menuheader">
+												<?php echo $_category->getName();?>
+											</h3>
+											
+											<ul style="display: none;" contentindex="5c" class="categoryitems1">
+												
+										<?php }else{ ?>
+
+											<h3 class="menuheader expandable <?php echo $this->canExpandMenu($_category) ? 'openheader expandme' : '';?>">
+												<span class="accordprefix"></span>
+												<a href="<?php echo $_category->getUrl();?>" title="<?php echo $_category->getName();?>">
+													<?php echo $_category->getName();?>
+												</a>
+												<span class="accordsuffix"></span>
+
+											</h3>
+											
+											<ul style="display: block;" contentindex="5c" class="categoryitems">
+										
+										<?php } ?>
+
+										
+										<?php $_child_categories = $_category->getChildrenCategories();?>
+										
+										
+										
+										<?php foreach($_child_categories as $_child_category):?>
+
+											<?php if(!$_child_category->hasChildren()):?>
+											
+												<li>
+													<a href="<?php echo $_child_category->getUrl();?>" class="<?php echo $this->canExpandMenu($_child_category) ? 'submenu_selected' : '';?>">
+														<?php echo $_child_category->getName();?>
+													</a>
+												</li>
+											<?php else:?>
+										
+												<h3 class="menuheader expandable2 <?php echo $this->canExpandMenu($_child_category) ? 'openheader expandme' : '';?>">
+													<span class="accordprefix"></span>
+													<a href="<?php echo $_child_category->getUrl();?>" title="<?php echo $_child_category->getName();?>">
+														<?php echo $_child_category->getName();?>
+													</a>
+													<span class="accordsuffix"></span>
+												</h3>
+												
+												<!-- subcategories -->
+												<?php $sub_child_categories = $_child_category->getChildrenCategories();?>
+												
+												<ul style="display: block;" contentindex="5c" class="categoryitems2">
+												
+													<?php foreach($sub_child_categories as $sub_child_category):?>
+													
+														<li>
+															<a href="<?php echo $sub_child_category->getUrl();?>" class="<?php echo $this->canExpandMenu($sub_child_category) ? 'submenu_selected' : '';?>">
+																<?php echo $sub_child_category->getName();?>
+															</a>
+														</li>
+													
+													<?php endforeach;?>
+												</ul>
+
+											<?php endif;?>
+
+										<?php endforeach;?>
+										
+										</ul> 
+								<?php endif;?>
+							</div>
+						</div> 
+						 
+					<?php endforeach;?> <!-- load sub categories-->
+				<?php endif; ?> <!-- load Default Category -->
+			<?php endforeach;?> <!-- load all categories-->
+				</dl>  
+				
+				<script type="text/javascript">decorateDataList('narrow-by-list')</script>
+		</div>
+	</div>
+	
+<script> 
+// var ums<?php echo rand(22,4444);?> = UnilabAccord.init({
+// 												headerclass: "expandable2",
+// 												contentclass: "categoryitems2",
+// 												revealtype: "clickForce", 
+// 												mouseoverdelay: 200, 
+// 												collapseprev: true, 
+// 												defaultexpanded: [], 
+// 												onemustopen: false, 
+// 												animatedefault: false, 
+// 												persiststate: false,  
+// 												toggleclass: ["", "openheader"], 
+// 												togglehtml: ["prefix", "", ""],  
+// 												animatespeed: "fast",  
+// 												oninit:function(headers, expandedindices){},
+// 												onopenclose:function(header, index, state, isuseractivated){}
+// 											}) 
+
+
+// 	var ums<?php echo rand(22,4444);?> = UnilabAccord.init({
+// 												headerclass: "expandable",
+// 												contentclass: "categoryitems",
+// 												revealtype: "clickForce", 
+// 												mouseoverdelay: 200, 
+// 												collapseprev: true, 
+// 												defaultexpanded: [], 
+// 												onemustopen: false, 
+// 												animatedefault: false, 
+// 												persiststate: false,  
+// 												toggleclass: ["", "openheader"], 
+// 												togglehtml: ["prefix", "", ""],  
+// 												animatespeed: "fast",  
+// 												oninit:function(headers, expandedindices){},
+// 												onopenclose:function(header, index, state, isuseractivated){}
+// 											})  
+</script>
+<?php endif; ?>

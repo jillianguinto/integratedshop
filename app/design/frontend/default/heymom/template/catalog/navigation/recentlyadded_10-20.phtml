@@ -1,0 +1,129 @@
+<?php 
+    $items = Mage::getSingleton('checkout/session')->getQuote()->getAllItems();
+    $max = 0;
+    $hasItem = 0;
+
+    $recent_array = array();
+    foreach ($items as $item){
+        // if ($item->getId() > $max) {
+        //     $max = $item->getId();
+        //     $lastItem = $item;
+        // }
+        //echo "--</br>".$item->getId();
+        $_product_recent        = $item->getProduct();
+        $product_id_recent      = $_product_recent->getId();
+        $product_qty_recent     = $_product_recent->getQty();
+       
+        $recent_array[]         = $product_id_recent;
+        $hasItem               = $_product_recent->getId();;
+
+    }
+    if($hasItem == 0):
+        $itemsss = Mage::getSingleton('customer/session')->getData('items'); 
+    else:
+        Mage::getSingleton('customer/session')->setData('items', array($recent_array) );
+    endif;  
+    // if ($lastItem){
+    //     $_product = $lastItem->getProduct();
+    //     $xproductsku = $_product->getSku();
+       // echo "Paul - pname" .
+       //  $xproductname = $_product->getName();  
+                  
+       // $xproductqty = $_product->getQty();  
+       // $xproductprice = $_product->getPrice();   
+       // $xproducturl = $_product->getUrl();
+       // $itemsss = Mage::getSingleton('customer/session')->getData();  
+       // echo "paul -". $itemsss;
+
+       //var_dump($itemsss);
+    //}
+    $itemsss = Mage::getSingleton('customer/session')->getData('items'); 
+
+?> 
+<div class="block-title sidebar-category recentlyadded">
+<strong>
+<span><a class="category-menu-label recentlyadded" title="">Recently Added</a></span>
+</div>
+<div class="recentlyadded-container">
+
+<?php
+                foreach($itemsss as $itemss)
+                {
+                    foreach($itemsss as $itemss){
+                            for($ctr = 0; $ctr <= 2; $ctr++){
+                                $product_id = $itemss[$ctr];
+                                if($product_id){
+                                $product_model = Mage::getModel('catalog/product')->load($product_id);
+                                //echo "-_-".$product_model->getName();
+                                $productname = $product_model->getName();
+                                $productimage = $product_model->getThumbnailUrl();
+                                $productprice = $product_model->getPrice();
+
+                                ?>
+                            <script type="text/javascript">
+                                jQuery(document).ready(function (){
+                                    jQuery('.block-title.sidebar-category.recentlyadded').css("display", "block");
+                                });
+                            </script>
+                            <div class="recentlyadded-thumbnails">
+       
+                                <div class="recent-img">
+                                    <img class="recentlyadded-img" src="<?php echo $productimage; ?>">
+                                </div>
+                                <div class="recently-content">    
+                                    <p class="recent-label"><?php echo $productname; ?></p>
+                                    <p class="recentlyadded-price"><strong>PHP <?php echo number_format($productprice, 2); ?></strong></p>
+                                    <button type="button" id="add" returnId="<?php echo $product_id; ?>" returnName="<?php echo $productname; ?>" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart recentlyadded" ><span><span><?php echo $this->__('Add to Cart') ?></span></span></button> 
+                                </div>    
+                                <div style="clear:both;"></div>
+                             
+                            </div>
+                              
+                <?php
+                        }
+                            }
+                    }
+
+                }
+
+                ?>
+    </strong>
+</div>
+
+<script type="text/javascript">
+   jQuery(document).on('click','#add',function(){
+        jQuery("#loading-icon").show();
+        var product = jQuery(this).attr('returnId');
+        var productName = jQuery(this).attr('returnName');
+        jQuery.ajax({
+        type: 'Post',
+        url:'<?php echo Mage::getBaseUrl()?>checkout/cart/addtoCart',
+        data: {
+            product: product
+        },
+        }).done(function(data){
+            if(data == 'success'){
+            jQuery("#prodName").html(productName);    
+            var count = jQuery("#item_count").html();
+            count = Number(count) + Number(1);
+            jQuery("#item_count").html(count); 
+            jQuery("#loading-icon").hide(); 
+            jQuery("#myModal").show();
+            }
+        });
+    });
+
+   jQuery(document).on('click','.close',function(){
+        jQuery("#myModal").hide();
+    });
+
+    jQuery(document).on('click','.btn-cshopping',function(){
+        location.reload();
+    });
+
+    jQuery(document).on('click','.btn-checkout',function(){
+        window.location = jQuery(this).attr('returnUrl');
+
+    });
+   
+</script>

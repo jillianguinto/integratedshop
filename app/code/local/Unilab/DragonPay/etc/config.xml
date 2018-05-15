@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Unilab_DragonPay>
+            <version>0.1.0</version>
+        </Unilab_DragonPay>
+    </modules>
+
+    <global>
+        <blocks>
+            <dragonpay>
+                <class>Unilab_DragonPay_Block</class>
+            </dragonpay>
+        </blocks>
+
+        <models>
+            <dragonpay>
+                <class>Unilab_DragonPay_Model</class>
+            </dragonpay>
+        </models>
+
+        <!-- declare resource setup for new module -->
+        <resources>
+            <!-- resource identifier -->
+            <dragonpay_setup>
+                <setup>
+                    <module>Unilab_DragonPay</module>
+                    <class>Unilab_DragonPay_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </dragonpay_setup>
+            <dragonpay_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </dragonpay_write>
+            <dragonpay_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </dragonpay_read>
+        </resources>
+
+    </global>
+
+    <frontend>
+        <secure_url>
+            <dragonpay_standard>/dragonpay/standard</dragonpay_standard>
+            <dragonpay_response>/dragonpay/response</dragonpay_response>
+        </secure_url>
+        <routers>
+            <dragonpay>
+                <use>standard</use>
+                <args>
+                    <module>Unilab_DragonPay</module>
+                    <frontName>dragonpay</frontName>
+                </args>
+            </dragonpay>
+        </routers>
+    </frontend>
+
+    <!-- declare default configuration values for this module -->
+    <default>
+        <!-- 'payment' configuration section (tab) -->
+        <payment>
+            <!-- 'newmodule' configuration group (fieldset) -->
+            <dragonpay>
+                <!-- by default this payment method is inactive -->
+                <active>0</active>
+                <!-- model to handle logic for this payment method -->
+                <model>dragonpay/standard</model>
+                <!-- order status for new orders paid by this payment method -->
+                <order_status>pending</order_status>
+                <!-- default title for payment checkout page and order view page -->
+                <title>DragonPay</title>
+                <payment_action>authorize</payment_action>
+                <allowspecific>0</allowspecific>
+            </dragonpay>
+        </payment>
+    </default>
+</config>

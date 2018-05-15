@@ -1,0 +1,218 @@
+<style>
+    .no-display{
+        display: none !important;
+    }
+
+@media screen and (max-width:767px) and (min-width:480px)
+{
+    .validation-advice{
+        padding-left: 15px;
+        background: url(../images/validation_advice_bg.gif) 5px 3px no-repeat;
+    }
+}
+
+@media screen and (max-width:959px) and (min-width:768px)
+{
+    .validation-advice{
+        padding-left: 15px;
+        background: url(../images/validation_advice_bg.gif) 5px 3px no-repeat;
+    }
+
+    .input-box select{
+        padding: 0px 4px 7px;
+    }
+
+    li.edit_civ{
+        margin-left: 0px !important;
+    }
+
+    select#civil_status{
+        width: 100% !important;
+    }
+
+    li.edit_gen{
+        margin-right: 10px !important;
+    }
+
+    select#gender{
+        width: 100% !important;
+    }
+
+    input#firstname_edit{
+        width: 98%;
+    }
+
+    input#lastname_edit{
+        width: 98%;
+    }
+
+
+}
+
+@media screen and (max-width:1020px) and (min-width:960px)
+{
+    .field.name-lastname{
+        margin-right: 0px !important;
+        margin-left: 12px !important;
+    }
+
+    li.edit_civ{
+        margin-left: 0px !important;
+    }
+
+    li.edit_gen{
+        margin-right: 10px !important;
+    }
+}
+@media screen and (min-width:1021px)
+{
+    li.edit_gen {
+        margin-right: 10px !important;
+    }
+
+    li.edit_civ{
+        margin-left: 0px !important;
+    }
+
+}
+
+@media screen and (max-width:829px) and (min-width:768px)
+{
+    input#dob{
+        width: 88%;
+    }
+}
+
+
+@media screen and (min-width:960px)
+{
+    .validation-advice{
+        padding-left: 20px;
+        background: url(../images/validation_advice_bg.gif) 10px 3px no-repeat;
+    }
+
+    .input-box select{
+        padding: 0px 4px 7px;
+    }
+
+
+    select#civil_status{
+        width: 98% !important;
+    }
+
+     select#gender{
+        width: 98% !important;
+    }
+
+}
+
+
+</style>
+
+
+
+<div class="page-title">
+    <h1><?php echo $this->__('Edit Account Information') ?></h1>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<form action="<?php echo $this->getUrl('customer/account/editPost') ?>" method="post" id="form-validate" autocomplete="off">
+    <div class="fieldset">
+        <?php echo $this->getBlockHtml('formkey')?>
+        <h2 class="legend"><?php echo $this->__('Account Information') ?></h2>
+        <ul class="form-list">
+            <li class="fields">
+                <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getCustomer())->toHtml() ?>
+            </li>
+            <li>
+                <label for="email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+                <div class="input-box">
+                    <input type="text" name="email" id="email" value="<?php echo $this->escapeHtml($this->getCustomer()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text required-entry validate-email" />
+                </div>
+            </li>
+		<?php $_civil_status = $this->getLayout()->createBlock('customer/widget_civilstatus') ?>
+		<?php if ($_civil_status->isEnabled()): ?>
+			<li class="edit_civ"><?php echo $_civil_status->setCivilStatus($this->getCustomer()->getCivilStatus())->toHtml() ?></li>
+		<?php endif ?>
+       
+        <?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
+        <?php if ($_taxvat->isEnabled()): ?>
+            <li><?php echo $_taxvat->setTaxvat($this->getCustomer()->getTaxvat())->toHtml() ?></li>
+        <?php endif ?>
+        <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+        <?php if ($_gender->isEnabled()): ?>
+            <li class="edit_gen"><?php echo $_gender->setGender($this->getCustomer()->getGender())->toHtml() ?></li>
+        <?php endif ?>
+		
+		 <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
+        <?php if ($_dob->isEnabled()): ?>
+            <li><?php echo $_dob->setDate($this->getCustomer()->getDob())->setTemplate('customer/widget/dobaccount.phtml')->toHtml() ?></li>
+        <?php endif ?>
+		
+		 <?php $_terms = $this->getLayout()->createBlock('customer/widget_terms') ?>
+		<?php if ($_terms->isEnabled()): ?>
+			<li class="control"><?php echo $_terms->setAgreeOnTerms($this->getCustomer()->getAgreeOnTerms())->toHtml() ?></li>
+		<?php endif ?> 
+            <li class="control">
+                <input type="checkbox" name="change_password" id="change_password" value="1" onclick="setPasswordForm(this.checked)" title="<?php echo $this->__('Change Password') ?>"<?php if($this->getCustomer()->getChangePassword()==1): ?> checked="checked"<?php endif; ?> class="checkbox" /><label for="change_password"><?php echo $this->__('Change Password') ?></label>
+            </li>
+        </ul>
+    </div>
+    <div class="fieldset" style="display:none;">
+        <h2 class="legend"><?php echo $this->__('Change Password') ?></h2>
+        <ul class="form-list">
+            <li>
+                <label for="current_password" class="required"><em>*</em><?php echo $this->__('Current Password') ?></label>
+                <div class="input-box">
+                    <!-- This is a dummy hidden field to trick firefox from auto filling the password -->
+                    <input type="text" class="input-text no-display" name="dummy" id="dummy" />
+                    <input type="password" title="<?php echo $this->__('Current Password') ?>" class="input-text" name="current_password" id="current_password" />
+                </div>
+            </li>
+            <li class="fields">
+                <div class="field">
+                    <label for="password" class="required"><em>*</em><?php echo $this->__('New Password') ?></label>
+                    <div class="input-box">
+                        <input type="password" title="<?php echo $this->__('New Password') ?>" class="input-text validate-password" name="password" id="password" />
+                    </div>
+                </div>
+                
+            </li>
+            <li class="fields">
+                <div class="field">
+                    <label for="confirmation" class="required"><em>*</em><?php echo $this->__('Confirm New Password') ?></label>
+                    <div class="input-box">
+                        <input type="password" title="<?php echo $this->__('Confirm New Password') ?>" class="input-text validate-cpassword" name="confirmation" id="confirmation" />
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="buttons-set">
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+        <button type="submit" title="<?php echo $this->__('Save') ?>" class="button"><span><span><?php echo $this->__('Save') ?></span></span></button>
+    </div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var dataForm = new VarienForm('form-validate', true);
+    function setPasswordForm(arg){
+        if(arg){
+            $('current_password').up(3).show();
+            $('current_password').addClassName('required-entry');
+            $('password').addClassName('required-entry');
+            $('confirmation').addClassName('required-entry');
+
+        }else{
+            $('current_password').up(3).hide();
+            $('current_password').removeClassName('required-entry');
+            $('password').removeClassName('required-entry');
+            $('confirmation').removeClassName('required-entry');
+        }
+    }
+
+    <?php if($this->getCustomer()->getChangePassword()): ?>
+        setPasswordForm(true);
+    <?php endif; ?>
+//]]>
+</script>

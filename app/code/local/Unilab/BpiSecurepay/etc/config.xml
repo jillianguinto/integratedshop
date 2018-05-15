@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * 
+ * BPI Secure Pay Configuration 
+ */
+ * @author: diszo.sasil
+ * @email: diszo.sasil@movent.com
+ * @date: 2013-11-21
+ */
+-->
+<config>
+	<modules>
+		<Unilab_BpiSecurepay>
+			<version>1.1.0.0</version>
+		</Unilab_BpiSecurepay>
+	</modules>
+	<global>
+		<models>
+			<bpisecurepay>
+				<class>Unilab_BpiSecurepay_Model</class>
+			</bpisecurepay>
+		</models>
+		<blocks>
+			<bpisecurepay>
+				<class>Unilab_BpiSecurepay_Block</class>
+			</bpisecurepay>
+		</blocks>
+		<helpers>
+			<bpisecurepay>
+				<class>Unilab_BpiSecurepay_Helper</class>
+			</bpisecurepay>
+		</helpers>
+		<payment>			
+			<groups>
+				<offline>Offline Payment Methods</offline>
+			</groups>
+		</payment>
+	</global>
+	<default>
+		<payment>
+			
+			<bpisecurepay>				
+				<!-- For API configuration -->
+				<active>1</active>
+				<enable_testmode>1</enable_testmode>
+				<title>BPI SecurePay</title>				
+				<merchant_test>TEST001278233986</merchant_test>						
+				<merchant_live></merchant_live>
+				<merchant_accesscode_test>7DC32619</merchant_accesscode_test>		
+				<merchant_accesscode_live></merchant_accesscode_live>
+				<merchant_secure_hash_secret_test>E979E59165C469541F7E62268578F8DD</merchant_secure_hash_secret_test>
+				<merchant_secure_hash_secret_live></merchant_secure_hash_secret_live>				
+				<order_status>pending</order_status>
+				<allowspecific>0</allowspecific>
+				<payment_action>authorize</payment_action>
+				<model>bpisecurepay/method_payment</model>		
+			</bpisecurepay>
+						
+		</payment>
+	</default>
+	<frontend>
+		<routers>
+			<bpisecurepay>
+				<use>standard</use>
+				<args>
+					<module>Unilab_BpiSecurepay</module>
+					<frontName>bpisecurepay</frontName>
+				</args>
+			</bpisecurepay>
+		</routers>
+		<layout>
+            <updates>
+                <bpisecurepay>
+                    <file>bpisecurepay.xml</file>
+                </bpisecurepay>
+            </updates>
+        </layout>		
+	</frontend>
+</config>

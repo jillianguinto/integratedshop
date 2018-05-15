@@ -1,0 +1,67 @@
+<?php
+
+// This page is create by Richel R. Amante for UNILAB use only.
+// Please do not used this software or take with your own risk.
+// Thank you!!!
+
+?>
+
+<?php
+	$this->getshipppingAddress();
+	$this->getsetting();
+	$this->getpaymentmethod();
+	$this->getsubtotalincltax();
+	$this->getdefualtAddress();
+	$this->getaAmountdata();
+	$this->loadAddress();
+?>
+<?php echo $this->getChildHtml('style_css'); ?>
+<div class="container_wapper">
+	<table cellpadding="2">
+		<tbody>
+			<tr>
+				<td rowspan="3" valign="top"  style="padding: 5px; width:35% !important;" height="100px;">
+					<?php echo $this->getChildHtml('billing_address').'<br/><br/>'; ?>		
+					<?php
+						if (Mage::getStoreConfig('rracheckoutsection/rracheckoutgrounp/shiptoaddress') == 1):							
+							echo '<div class="shipping_address" >'.$this->getChildHtml('shipping_address').'</div>';
+						elseif (Mage::getStoreConfig('rracheckoutsection/rracheckoutgrounp/shiptoaddress') == 2):
+							// echo '<div class="shipping_address"  style="display:none;">'.$this->getChildHtml('shipping_address').'</div>';	
+							echo '<div class="shipping_address"  style="display:block;">'.$this->getChildHtml('shipping_address').'</div>';							
+						endif;
+					?>
+				</td>
+				<td valign="top" height="50px" style="padding: 5px; width:33% !important;">
+					<?php echo $this->getChildHtml('shipping_method'); ?>
+				</td>
+				<td valign="top" height="50px" style="padding: 5px; width:35% !important;">
+					<?php echo $this->getChildHtml('payment_method'); ?>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" valign="top" style="padding: 5px;">
+
+
+					<?php 	echo $this->getChildHtml('items'); ?>
+					<?php echo $this->getChildHtml('totals'); ?>
+					<?php echo $this->getChildHtml('place_order'); ?>
+
+				</td>
+
+			
+
+			</tr>
+			<tr>
+			<!-- removed July 27 2016 -->
+			<!-- 	<td valign="top" style="padding: 5px;">
+					<button id="continue_btn" type="submit" title="Continue Shopping" class="button btn-checkout" onclick="setLocation('<?php //echo Mage::getBaseurl(); ?>')"> 
+					  <span><span style=" background-color:#ff3333;">Continue Shopping</span></span>
+					</button>				
+				</td> -->
+				<td valign="top" style="padding: 5px;" colspan="2" >
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

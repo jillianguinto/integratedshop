@@ -1,0 +1,329 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_Inventory
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+-->
+<config>
+    <menu>
+        <inventory module="inventory" translate="title">
+            <title>Inventory</title>
+            <sort_order>71</sort_order>
+            <children>
+                <inventory module="inventory" translate="title">
+                    <title>Manage Inventory</title>
+                    <sort_order>0</sort_order>
+                    <children>
+                        <products translate="title" module="inventory">
+                            <title>Manage Inventory Products</title>
+                            <action>inventoryadmin/adminhtml_inventory/</action>
+                            <sort_order>0</sort_order>
+                        </products>
+                        <adjuststock translate="title" module="inventory">
+                            <title>Adjust stocks</title>
+                            <action>inventoryadmin/adminhtml_adjuststock/index</action>
+                            <sort_order>10</sort_order>
+                        </adjuststock>
+                        <sendstock translate="title" module="inventory">
+                            <title>Send Stock</title>
+                            <action>inventoryadmin/adminhtml_sendstock/</action>
+                            <sort_order>20</sort_order>
+                        </sendstock>
+                        <requeststock translate="title" module="inventory">
+                            <title>Request Stock</title>
+                            <action>inventoryadmin/adminhtml_requeststock/</action>
+                            <sort_order>30</sort_order>
+                        </requeststock>
+                    </children>
+                </inventory>
+                <suppliers translate="title" module="inventory">
+                    <title>Manage Suppliers</title>
+                    <action>inventoryadmin/adminhtml_supplier/</action>
+                    <sort_order>10</sort_order>
+                </suppliers>
+                <warehouses translate="title" module="inventory">
+                    <title>Manage Warehouses</title>
+                    <action>inventoryadmin/adminhtml_warehouse/</action>
+                    <sort_order>20</sort_order>
+                </warehouses>
+                <purchasing translate="title" module="inventory">
+                    <title>Manage Purchasing</title>
+                    <children>
+                        <supplyneeds translate="title" module="inventory">
+                            <title>Manage Supply Needs</title>
+                            <action>inventoryadmin/adminhtml_supplyneeds/</action>
+                            <sort_order>0</sort_order>
+                        </supplyneeds>
+                        <puchaseorder translate="title" module="inventory">
+                            <title>Manage Purchase Orders</title>
+                            <action>inventoryadmin/adminhtml_purchaseorder/</action>
+                            <sort_order>10</sort_order>
+                        </puchaseorder>
+                        <shippingmethod translate="title" module="inventory">
+                            <title>Manage Shipping Methods</title>
+                            <action>inventoryadmin/adminhtml_shippingmethod/</action>
+                            <sort_order>40</sort_order>
+                        </shippingmethod>
+                        <paymentterm translate="title" module="inventory">
+                            <title>Manage Payment Terms</title>
+                            <action>inventoryadmin/adminhtml_paymentterm/</action>
+                            <sort_order>50</sort_order>
+                        </paymentterm>
+                    </children>
+                    <sort_order>30</sort_order>
+                </purchasing>
+                
+                <reports translate="title" module="inventory">
+                    <title>Reports</title>
+                    <children>
+                        <customer translate="title" module="inventory">
+                            <title>Customer Orders</title>
+                            <action>inventoryadmin/adminhtml_report/customerorders</action>
+                            <sort_order>0</sort_order>
+                        </customer>
+                        <sales translate="title" module="inventory">
+                            <title>Sales</title>
+                            <children>
+                                <warehouse_sales translate="title" module="inventory">
+                                    <title>Sales Reports by Warehouse</title>
+                                    <action>inventoryadmin/adminhtml_report/warehousesales</action>
+                                </warehouse_sales>
+                                <warehouse_product_sales translate="title" module="inventory">
+                                    <title>Sales Reports by Warehouse Product</title>
+                                    <action>inventoryadmin/adminhtml_report/warehouseproductsales</action>
+                                </warehouse_product_sales>
+                            </children>
+                            <sort_order>10</sort_order>
+                        </sales>
+                        <supplierproduct translate="title" module="inventory">
+                            <title>Supplier Products</title>
+                            <action>inventoryadmin/adminhtml_report/reportsupplierproduct</action>
+                            <sort_order>12</sort_order>
+                        </supplierproduct>
+                        <purchases translate="title" module="inventory">
+                            <title>Purchases</title>
+                            <children>
+                                <purchases_supplier translate="title" module="inventory">
+                                    <title>Purchases by Supplier</title>
+                                    <action>inventoryadmin/adminhtml_report/purchasessupplier</action>
+                                </purchases_supplier>
+                                <purchases_supplier_product translate="title" module="inventory">
+                                    <title>Purchases by Supplier Product</title>
+                                    <action>inventoryadmin/adminhtml_report/purchases</action>
+                                </purchases_supplier_product>
+                            </children>
+                            <sort_order>20</sort_order>
+                        </purchases>
+                        <inventoryreport translate="title" module="inventory">
+                            <title>Inventory</title>
+                            <children>
+                                <productinfo translate='title' module='inventory'>
+                                    <title>Inventory Products</title>
+                                    <action>inventoryadmin/adminhtml_report/productinfo</action>
+                                </productinfo>
+                                <productpurchased translate="title" module="inventory">
+                                    <title>Report on Stock Receiving</title>
+                                    <action>inventoryadmin/adminhtml_report/productpurchased</action>
+                                </productpurchased>
+                                <productmoved translate="title" module="inventory">
+                                    <title>Report on Stock Sending</title>
+                                    <action>inventoryadmin/adminhtml_report/productmoved</action>
+                                </productmoved>
+                            </children>
+                            <sort_order>21</sort_order>
+                        </inventoryreport>
+                        <other translate="title" module="inventory">
+                            <title>Others</title>
+                            <children>
+                                <notice>
+                                    <title>Backorder Requests</title>
+                                    <action>inventoryadmin/adminhtml_report/notice</action>
+                                </notice>
+                            </children>
+                            <sort_order>22</sort_order>
+                        </other>
+                    </children>
+                    <sort_order>100</sort_order>
+                </reports>
+				
+                <settings module="inventory" translate="title">
+                    <title>Settings</title>
+                    <sort_order>1000</sort_order>
+                    <action>adminhtml/system_config/edit/section/inventory</action>
+                </settings>
+            </children>
+        </inventory>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <inventory module="inventory" translate="title">
+                                        <title>Inventory</title>
+                                        <sort_order>71</sort_order>
+                                    </inventory>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <inventory module="inventory" translate="title">
+                        <title>Inventory</title>
+                        <sort_order>71</sort_order>
+                        <children>
+                            <inventory module="inventory" translate="title">
+                                <title>Manage Inventory</title>
+                                <sort_order>0</sort_order>
+                                <children>
+                                    <products translate="title" module="inventory">
+                                        <title>Manage Inventory Products</title>
+                                        <sort_order>0</sort_order>
+                                    </products>
+                                    <transfering translate="title" module="inventory">
+                                        <title>Transfer Stock</title>
+                                        <action>inventoryadmin/adminhtml_stocktransfering/</action>
+                                        <sort_order>20</sort_order>
+                                    </transfering>
+                                    <adjuststock translate="title" module="inventory">
+                                        <title>Adjust stocks</title>
+                                        <sort_order>10</sort_order>>
+                                    </adjuststock>
+                                    <cusreceiving translate="title" module="inventory">
+                                        <title>Create Stock Receiving </title>
+                                        <action>inventoryadmin/adminhtml_stockreceiving/customnew</action>
+                                        <sort_order>30</sort_order>
+                                    </cusreceiving>
+                                    <cusissuing translate="title" module="inventory">
+                                        <title>Create Stock Issuing</title>
+                                        <action>inventoryadmin/adminhtml_stockissuing/customnew</action>
+                                        <sort_order>40</sort_order>
+                                    </cusissuing>
+                                </children>
+                            </inventory>
+                            <suppliers translate="title" module="inventory">
+                                <title>Manage Suppliers</title>
+                                <sort_order>10</sort_order>
+                            </suppliers>
+                            <warehouses translate="title" module="inventory">
+                                <title>Manage Warehouses</title>
+                                <action>inventoryadmin/adminhtml_warehouse/</action>
+                                <sort_order>20</sort_order>
+                            </warehouses>
+                            <purchasing translate="title" module="inventory">
+                                <title>Manage Purchasing</title>
+                                <children>
+                                    <supplyneeds translate="title" module="inventory">
+                                        <title>Manage Supply Needs</title>
+                                        <sort_order>0</sort_order>
+                                    </supplyneeds>
+                                    <puchaseorder translate="title" module="inventory">
+                                        <title>Manage Purchase Orders</title>
+                                        <sort_order>10</sort_order>
+                                    </puchaseorder>
+                                    <shippingmethod translate="title" module="inventory">
+                                        <title>Manage Shipping Methods</title>
+                                        <sort_order>40</sort_order>
+                                    </shippingmethod>
+                                    <paymentterm translate="title" module="inventory">
+                                        <title>Manage Payment Terms</title>
+                                        <sort_order>50</sort_order>
+                                    </paymentterm>
+                                </children>
+                                <sort_order>30</sort_order>
+                            </purchasing>                            
+                            <reports translate="title" module="inventory">
+                                <title>Reports</title>
+                                <children>                                    
+                                    <customer translate="title" module="inventory">
+                                        <title>Customer Orders</title>
+                                        <sort_order>0</sort_order>
+                                    </customer>
+                                    <sales translate="title" module="inventory">
+                                        <title>Sales</title>
+                                        <children>
+                                            <warehouse_sales translate="title" module="inventory">
+                                                <title>Sales Reports by Warehouse</title>
+                                            </warehouse_sales>
+                                            <warehouse_product_sales translate="title" module="inventory">
+                                                <title>Sales Reports by Warehouse Product</title>
+                                            </warehouse_product_sales>
+                                        </children>
+                                        <sort_order>10</sort_order>
+                                    </sales>
+                                    <supplierproduct translate="title" module="inventory">
+                                        <title>Supplier Products</title>                                        
+                                        <sort_order>12</sort_order>
+                                    </supplierproduct>
+                                    <purchases translate="title" module="inventory">
+                                        <title>Purchases</title>
+                                        <children>
+                                            <purchases_supplier translate="title" module="inventory">
+                                                <title>Purchases by Supplier</title>
+                                            </purchases_supplier>
+                                            <purchases_supplier_product translate="title" module="inventory">
+                                                <title>Purchases by Supplier Product</title>
+                                            </purchases_supplier_product>
+                                        </children>
+                                        <sort_order>20</sort_order>
+                                    </purchases>
+                                    <inventoryreport translate="title" module="inventory">
+                                        <title>Inventory</title>
+                                        <children>
+                                            <productinfo translate='title' module='inventory'>
+                                                <title>Inventory Products</title>
+                                            </productinfo>
+                                            <productpurchased translate="title" module="inventory">
+                                                <title>Report on Stock Receiving</title>
+                                            </productpurchased>
+                                            <productmoved translate="title" module="inventory">
+                                                <title>Report on Stock Sending</title>
+                                            </productmoved>
+                                        </children>
+                                        <sort_order>21</sort_order>
+                                    </inventoryreport>
+                                    <other translate="title" module="inventory">
+                                        <title>Others</title>
+                                        <children>
+                                            <notice>
+                                                <title>Backorder Requests</title>
+                                            </notice>
+                                        </children>
+                                        <sort_order>22</sort_order>
+                                    </other>
+                                    
+                                </children>
+                                <sort_order>100</sort_order>
+                            </reports>
+                            <settings module="inventory" translate="title">
+                                <title>Settings</title>
+                                <sort_order>1000</sort_order>
+                            </settings>
+                        </children>
+                    </inventory>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

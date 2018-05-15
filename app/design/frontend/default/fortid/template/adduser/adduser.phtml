@@ -1,0 +1,231 @@
+<?php 
+$cooki = Mage::getModel('core/cookie');
+$cookie_user_name = $cooki->get('user_name');
+
+$connection = Mage::getSingleton('core/resource')->getConnection('core_write');
+$connection->beginTransaction();
+
+//***Get Entity for Specific Order
+
+$select         =   $connection->select()->from('core_config_data', array('*'))->where('path=?','ulahrequirelogin/regtype/registrationtype'); 
+$rowArray       =   $connection->fetchRow($select);
+$getData        =   $rowArray ['value'];
+$value          = unserialize($getData);
+$regstype       = array();
+$regstypeamount = array();
+
+//print_r($value);
+$xcount = 0;
+foreach($value as $_items):
+    if (!empty($_items)):
+        foreach($_items as $_value):
+            if($xcount == 0):
+                if (!empty($_value)):
+                    $regstype[] = $_value;
+                endif;
+            endif;
+            if($xcount == 1):
+                if (!empty($_value)):
+                    $regstypeamount[] = $_value;
+                endif;
+            endif;          
+        endforeach;
+        $xcount++;
+    endif;
+endforeach;
+
+
+?>
+
+<style type="text/css">
+.u-ve-reg {
+    color:#3FBBE4;
+    font-weight: bold;
+}
+
+.email, .pass, .regtype,.f-left-2, .viewexisting, .learnmore{  
+    color:#3FBBE4;
+    font-weight: bold;
+}
+
+.viewexisting, .learnmore{text-decoration: underline;}
+
+.other-form{
+  padding: 10px; 
+  text-align: right;
+}
+.more-form{
+    padding: 10px; 
+  text-align: right;
+}
+
+.f-left-2{ text-decoration: underline;}
+
+.pass {margin: 0 0 0 22px;}
+
+.x {font-size: 18px;}
+
+.input-login{ 
+      width: 248px;
+    border: 0;
+    padding: 4px;
+    margin-bottom: 10px;
+}
+
+.input-password{ 
+    border: 0;
+    padding: 4px;
+      width: 190px;
+}
+
+.input-box_{ 
+  width: 399px;
+  margin: 0 auto;
+}
+
+/*.table-login > tr > td > label{text-align: right}*/
+
+.continue{
+    background: silver;
+    color: #000;
+    padding: 8px 22px 8px 22px;
+}
+
+.btn-login {
+  width: 96px;
+  margin: 21px auto;
+}
+
+fieldset {
+    margin-top: 10px;
+}
+
+.a, .b{
+    float:left;
+}
+
+.b{  
+    margin-left: 9px;
+    margin-top: 9px;
+    text-decoration: underline;
+}
+
+.p {
+      /*margin-left: -17px;*/
+  margin-bottom: -3px;
+}
+
+.view-d {
+    color: #fff;
+    font-weight: bold;
+    font-size: 10px;
+    text-decoration: underline;
+}
+
+.regtypes{
+    padding-left: 80px;
+    margin-top: 10px;
+    color:#3FBBE4;
+}
+</style>
+<div class="account-login">
+    <div class="p">
+<!--         <div class="a">
+            <h1><?php echo $this->__('Run United 2 2015') ?></h1>        
+            <p>Sunday, June 07, 2015 2:00 AM - 9:00 AM (Philippine Time)</p></br>
+            <div class="info">
+                <strong>SM Mall of Asia</strong>
+                <p>Pasay City</br>Philippines</br>Phone: 02-4634814/02-7031736 <span><a class="view-d" href="">Email Us</a></span></p>
+            </div>
+        </div>   -->      
+    </div>  
+    <div style="clear:both;"></div>  
+        
+    <div class="other-form"><a class="viewexisting" href="<?=Mage::getBaseurl().'customer/account/login'; ?>">View Your Existing Registration</a></div>
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    
+    <form action="<?php echo Mage::getBaseurl().'emailvalid/validate/emailcheckerforadduser' ?>" method="post" id="login-form">
+        <fieldset>
+            <legend><span class=".u-ve-reg">Start Your Registration</span></legend>    
+
+                <div class="col2-set" style="background:#dcdcdc-;">
+                    <div class="input-box_">
+                        <ul class="table-login">
+                            
+                            <li>
+                                <label for="email" class="required email"><em>*</em><?php echo $this->__('Email Address') ?> :</label>
+                                <input name="username" value="<?php if($cookie_user_name != ''){ echo $cookie_user_name;}else{ echo $this->escapeHtml($this->getUsername()); } ?>" title="<?php echo $this->__('Email Address') ?>" id="email" type="text" class="input-login input-text required-entry validate-email" />
+                            </li>
+                            <script type="text/javascript">
+                            // jQuery().ready(function(){
+                            //     alert(jQuery('input[name="username"]').val());
+                            // });
+                            </script>
+                       
+                            <li>
+                                <label for="regtype" class="required regtype"><em>*</em><?php echo $this->__('Select Registrant Type') ?> :</label>
+                            </li>
+                                <div class="regtypes">
+                                    
+                                    
+                                    <?php
+                                    
+                                        foreach($regstype as $_GetValue=>$_key):
+                                        
+                                            foreach($regstypeamount as $_getamount=>$_aKey):
+                                                if($_GetValue == $_getamount):
+                                                    $Amount_value = $_aKey;
+                                                endif;
+                                            endforeach;
+                                            
+                                            $formattedPrice = Mage::helper('core')->currency($Amount_value, true, false);
+                                            
+                                            echo '<li><input type="radio" name="regtypes" value="'.$Amount_value.'" id="'.$_GetValue.'"><label for="'.$_GetValue.'"> '.$_key.': '.$formattedPrice.'</label></li>';
+                                            
+                                        endforeach;
+                                    ?>             
+                                        
+                                    <input type="hidden" id="regtypevalue" class="input-text required-entry" value="">
+                                    
+                                </div>
+                            
+                        
+                        </ul>                                         
+                    </div>    
+                    <?php  echo $this->getChildHtml('form.additional.info'); ?>
+                    <?php echo $this->getChildHtml('persistent.remember.me'); ?>                  
+                  
+                <div class="more-form">
+                <p style="color:#3FBBE4;">You can also register a group.
+                <a class="learnmore" href="<?=Mage::getBaseurl().'customer/account/create'; ?>">Learn More</a>
+                </p>
+                </div>
+            </div>
+
+                <?php if (Mage::helper('checkout')->isContextCheckout()): ?>
+                    <input name="context" type="hidden" value="checkout" />
+                <?php endif; ?>
+        </fieldset>   
+
+        <div class="btn-login">
+            <button type="submit" class="button continue_" title="<?php echo $this->__('Continue') ?>" name="send" id="send2"><?php echo $this->__('Continue') ?></button>
+        </div> 
+        <?php echo $this->getChildHtml('persistent.remember.me.tooltip'); ?>
+    </form>
+    
+    <script type="text/javascript">
+        //< ![CDATA[
+            var customForm = new VarienForm('login-form');
+        //]]>
+        
+        jQuery(document).ready(function() {
+            jQuery("input:radio").click(function() {            
+                jQuery("#regtypevalue").val(jQuery(this).val());
+            });
+
+        });     
+                
+        
+    </script>
+
+</div>

@@ -1,0 +1,15 @@
+<link rel="stylesheet" type="text/css" href="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>freeproductshipping/css/style.css" media="all" />
+
+	<?php if ($this->isfreeProduct() == true){ ?>
+
+		<div id="popup-product">
+			<h5 class="title-name"><?php echo $this->getTitlename() ?></h5>
+			<p class="close_me" title="Close">x</p>
+			<h4><strong><?php echo $this->getItemName(); ?></strong></h4>
+			<p><?php echo $this->getMessage() ?></p>
+		</div>
+
+	<? } ?>
+
+<!--script type="text/javascript" src="<?php //echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_JS) ?>jquery/jquery-1.10.2.min.js"></script-->
+<script type="text/javascript" src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_JS) ?>freeproductshipping/popup.js"></script>

@@ -1,0 +1,189 @@
+<div class="cart">
+    <div class="page-title title-buttons">
+        <h1 style="font-family: monospace;color:#004d8e"><?php echo $this->__('SHOPPING CART') ?></h1>
+		<br /><br />
+		<hr />
+		 <button type="button" style="background-color:#cde9f4  !important; color:#0a77a4;font-size:17px;" title="<?php echo $this->__('continue shopping') ?>" class="button btn-continue" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')"><span style="text-transform: lowercase;"><?php echo $this->__('Continue Shopping') ?><span> <img src="/media/images/arrow.png" style="height: 17px;position:relative;left: 4px;top:2px"> </span></span></button>   
+		 	 <button type="button" style="background-color:#1b89b8  !important; color:#fdfefe;font-size:15px;" title="<?php echo $this->__('checkout') ?>" class="button btn-continue" onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>')"><span  style="text-transform: lowercase;"><span><?php echo $this->__('checkout') ?></span><img src="/media/images/arrow.png" style="height: 15px;position:relative;left: 6px;top:2px"></span></button>   
+		 
+        <?php if(!$this->hasError()): ?>
+        <ul class="checkout-types">
+        <?php foreach ($this->getMethods('top_methods') as $method): ?>
+            <?php if ($methodHtml = $this->getMethodHtml($method)): ?>
+            <li><?php echo $methodHtml; ?></li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        </ul>
+        <?php endif; ?>
+    </div>
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <?php echo $this->getChildHtml('form_before') ?>
+    <form action="<?php echo $this->getUrl('checkout/cart/updatePost') ?>" method="post">
+        <fieldset>
+            <table style="width:100%" id="shopping-cart-table" class="data-table cart-table">
+                <col width="1" />
+                <col />
+                <col width="1" /> 
+                <col /> 
+            <?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                <col width="1" />
+            <?php endif; ?>
+            <?php if ($this->helper('tax')->displayCartPriceInclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                <col width="1" />
+            <?php endif; ?>
+                <col width="1" />
+            <?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                <col width="1" />
+            <?php endif; ?>
+            <?php if ($this->helper('tax')->displayCartPriceInclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                <col width="1" />
+            <?php endif; ?>
+                <col width="1" />
+
+            <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
+                <thead>
+                    <tr>
+					<th rowspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Store') ?></th>
+                        <th style="text-align:center" rowspan="<?php echo $mergedCells; ?>"><?php echo $this->__('item(s)') ?></th>
+                       <!-- <th rowspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Description') ?></span></th>
+                        <th rowspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Prescription') ?></th>
+                        <th rowspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Attribute') ?></th>
+						<th class="a-center" colspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Price') ?></span></th>!-->  
+                        <th rowspan="<?php echo $mergedCells; ?>" class="a-center"><?php echo $this->__('Qty') ?></th>
+                     <th class="a-center" colspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('savings') ?>
+                        <th class="a-center" colspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Total') ?></th>
+                        <th rowspan="<?php echo $mergedCells; ?>" class="a-center">&nbsp;</th>
+                    </tr>
+                    <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+                    <tr>
+                        <th class="a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+                        <th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+                        <th class="a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+                        <th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+                    </tr>
+                    <?php endif; ?>
+                </thead>
+               
+                <tbody>
+		
+                <?php foreach($this->getItems() as $_item): ?>
+	
+                    <?php echo $this->getItemHtml($_item) ?>
+                <?php endforeach ?>
+                </tbody>
+
+<!--                 <tbody>
+                <?php foreach($this->getItems() as $_item): ?>
+                    <?php echo $this->getItemHtml($_item); 
+                         echo "id".$_item->getId();?>
+                <?php endforeach ?>
+                $productModel = Mage::getModel('catalog/product');
+                </tbody> 
+									
+										$adminfeeid //productid
+										$adminfee_model = Mage::getModel('catalog/product')->load($adminfeeid);  //model
+										$adminfeename  =  $adminfee_model->getName();
+
+																	$attribute_option_id2 = Mage::getResourceModel('catalog/product') //get attribute
+								->getAttributeRawValue($raceid, 'addonadminfee', $storeid);
+							-->
+				
+				
+			
+				
+            </table>
+            <script type="text/javascript">decorateTable('shopping-cart-table')</script>
+        </fieldset>
+    </form>
+    <div class="cart-collaterals">
+            <div class="collat-wrap">
+                <div style="background-color:#cde9f4" class="grid_4"><?php echo $this->getChildHtml('coupon') ?></div>
+               <?php /* <div class="grid_4"><?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?></div>*/?>
+                <div class="totals grid_4">
+                    <?php echo $this->getChildHtml('totals'); ?> 
+                    
+                </div>
+            </div>
+			<div class="crosssell-wrap">
+                <?php echo $this->getChildHtml('crosssell') ?>
+            </div>
+    </div>
+	<hr />
+	<div style="float:right">
+	 <button type="button" style="background-color:#cde9f4  !important; color:#0a77a4;font-size:17px;" title="<?php echo $this->__('continue shopping2') ?>" class="button btn-continue" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')"><span style="text-transform: lowercase;"><?php echo $this->__('Continue Shopping') ?><span> <img src="/media/images/arrow.png" style="height: 17px;position:relative;left: 4px;top:2px"> </span></span></button>   
+		 	 <button type="button" style="background-color:#1b89b8  !important; color:#fdfefe;font-size:15px;" title="<?php echo $this->__('checkout2') ?>" class="button btn-continue" onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>')"><span  style="text-transform: lowercase;"><span><?php echo $this->__('checkout') ?></span><img src="/media/images/arrow.png" style="height: 15px;position:relative;left: 6px;top:2px"></span></button>   
+		 </div>
+</div>
+
+<script type="text/javascript">
+	//<![CDATA[ 
+	
+		var confirm_prescription_html = ''; 
+		var prescription_response	  = '';
+		
+		Event.observe(window, 'load', function()
+		{ 
+			var edit_prescription_element = $$("a.edit_prescription");
+				edit_prescription_element.each(function(elm){
+					Event.observe(elm,'click',function(){ 
+							jQuery.fancybox.showLoading(); 
+							var prescription_edit_url  = '<?php echo $this->getUrl('prescription/index/editPrescription');?>'; 
+							var request = new Ajax.Request(prescription_edit_url, {	
+								parameters: {'item_id': elm.rel},
+								onSuccess: function(transport){ 		  						
+									if(transport.status == 200)	{
+										var response = transport.responseText.evalJSON();										 	
+											prescriptionControls(response); 	 
+									}
+								},
+								onFailure: '',
+								onComplete: function(){					
+									jQuery.fancybox.hideLoading();
+								}
+							}); 
+					}); 
+				});
+				
+				var add_prescription_element = $$("a.add_prescription");
+				add_prescription_element.each(function(elm){
+					Event.observe(elm,'click',function(){ 
+							jQuery.fancybox.showLoading(); 
+							var prescription_add_url  = '<?php echo $this->getUrl('prescription/index/editPrescription');?>'; 
+							var request = new Ajax.Request(prescription_add_url, {	
+								parameters: {'item_id': elm.rel},
+								onSuccess: function(transport){ 		  						
+									if(transport.status == 200)	{
+										var response = transport.responseText.evalJSON();										 	
+											prescriptionControls(response); 	 
+									}
+								},
+								onFailure: '',
+								onComplete: function(){					
+									jQuery.fancybox.hideLoading();
+								}
+							}); 
+					}); 
+				});
+		 }); 
+		 
+		 var prescriptionControls = function(response)
+			{		
+				showDialog(response.prescription_dialog);
+				jQuery("#cancel_prescription").click(function(){
+					jQuery.fancybox.close();
+				});	 
+				
+				prescription_response     = response; 	 				 
+				confirm_prescription_html = response.confirm_dialog; 			 
+			}
+		 var showDialog = function(_content)
+			{	
+				jQuery.fancybox({content: _content,
+								 closeBtn: false,
+								 closeClick: false,
+								 helpers: { overlay : {closeClick : false,
+													  locked:	   true}}
+								}); 
+			}
+	//]]> 
+</script>

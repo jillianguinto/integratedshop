@@ -1,0 +1,12 @@
+<?xml version="1.0"?> 
+<config>
+    <modules>
+        <Unilab_Inquiry>
+            <active>true</active>
+            <codePool>local</codePool> 
+        </Unilab_Inquiry>
+        <Mage_Contacts>
+            <active>false</active>
+        </Mage_Contacts>
+    </modules>
+</config>

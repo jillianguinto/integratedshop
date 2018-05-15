@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config>
+  <modules> 
+		<Unilab_Cashondelivery> 
+			<version>0.1.0</version>
+		</Unilab_Cashondelivery>
+  </modules>     
+  <global> 
+	<models> 
+	  <cashondelivery> 
+		<class>Unilab_Cashondelivery_Model</class>
+	  </cashondelivery>
+	</models>	
+	<helpers>
+		<cashondelivery>
+			<class>Unilab_Cashondelivery_Helper</class>
+		</cashondelivery>
+	</helpers> 	
+  </global>
+ 
+</config>

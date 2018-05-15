@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Unilab_Order>
+            <version>0.1.0</version>
+     </Unilab_Order>
+    </modules>
+    <global>
+        <models>
+        <order>
+        <class>Unilab_Order_Model</class>
+        </order>
+        </models>
+    </global>
+    <crontab>
+        <jobs>
+            <order_cancel_orders>
+                <schedule><cron_expr>0 * * * *</cron_expr></schedule>
+                <run><model>order/observer::cancelPendingOrders</model></run>
+            </order_cancel_orders>
+        </jobs>
+    </crontab>
+</config>

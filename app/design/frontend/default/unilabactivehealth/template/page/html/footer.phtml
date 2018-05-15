@@ -1,0 +1,78 @@
+<?php
+/**
+* Magento
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Academic Free License (AFL 3.0)
+* that is bundled with this package in the file LICENSE_AFL.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/afl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@magentocommerce.com so we can send you a copy immediately.
+*
+* DISCLAIMER
+*
+* Do not edit or add to this file if you wish to upgrade Magento to newer
+* versions in the future. If you wish to customize Magento for your
+* needs please refer to http://www.magentocommerce.com for more information.
+*
+* @category    design
+* @package     default_modern
+* @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+* @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+*/
+?>
+
+<div class="footer-container">
+	<div class="footer">
+		<div class="f-gray">
+			<div class="row">  
+				<div class="footer_highlight">
+					<?php echo $this->getChildHtml() ?>
+				</div>
+				<address><?php //echo $this->getCopyright() ?></address>
+			</div>
+		</div>
+	</div>
+</div> 
+<div id="footer-section">
+	<div class="left-corner">
+		<img src="<?php echo $this->getSkinUrl('images/unilabactivehealth/left-footer-section.png');?>" width="97" height="93">
+	</div>
+	<div class="right-corner">
+		<img src="<?php echo $this->getSkinUrl('images/unilabactivehealth/right-footer-section.png');?>" width="97" height="93">
+	</div>
+	<div class="logo-section">
+		<img src="<?php echo $this->getSkinUrl('images/unilabactivehealth/logo-footer-active-health.png');?>" width="200" height="22">
+	</div>
+	<div class="social-media">
+	<ul>
+	<li><a href="https://www.facebook.com/UnilabActiveHealth" target="_blank"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/unilabactivehealth/images/unilabactivehealth/icon-facebook.png" width="44" height="39"></a></li>
+	<li><a href="https://twitter.com/ULActiveHealth" target="_blank"><img src="<? echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/unilabactivehealth/images/unilabactivehealth/icon-twitter.png" width="44" height="39"></a></li>
+	<li><a href="https://www.youtube.com/user/ULAHvideos" target="_blank"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/unilabactivehealth/images/unilabactivehealth/icon-youtube.png" width="44" height="39"></a></li>
+	<li><a href="https://instagram.com/activehealthph"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/unilabactivehealth/images/unilabactivehealth/icon-instagram.png" width="44" height="39" /></a></li>
+	</ul>
+	</div>
+</div>
+<div id="wrap-logo-unilab">   
+	<div id="unilab-logo">
+		<div class="logo-image">
+			<img src="https://s3-ap-southeast-1.amazonaws.com/activehealth/wp-content/uploads/2016/04/unilab-logo.png" width="250" height="64">
+		</div>
+		<div class="logo-text">
+			<span>
+			ActiveHealth 2016 © All Rights Reserved
+
+				<?php //echo $this->getCopyright() ?>
+			</span>
+		</div>
+	</div>
+</div>
+
+<style type="text/css">
+/*.social-media{
+margin: -6px 60px 0 0;
+}*/
+</style>

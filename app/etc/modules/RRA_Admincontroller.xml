@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * 
+ * Camera Integration
+ */
+ * @author: Richel.R.Amante
+ * @email: richelramante@gmail.com
+ * @date: 2014-9-19
+ */
+-->
+<config>
+    <modules>
+        <RRA_Admincontroller>
+            <active>true</active>
+            <codePool>local</codePool>
+        </RRA_Admincontroller>
+    </modules>
+</config>

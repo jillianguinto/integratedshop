@@ -1,0 +1,113 @@
+<?php $_order = $this->getOrder() ?>
+<div>
+    <div style="margin: 0 0 0 80%; text-align: right; position: absolute; text-transform: uppercase;">
+        <h1> Order Slip No. </h1> <p><?php echo $_order->getRealOrderId(); ?></p>
+    </div>
+    </div> 
+    <div>
+   <h1><?php echo $this->__('Order #%s', $_order->getRealOrderId()) ?></h1> 
+    <p><?php echo $this->__('Order Date: %s', $this->formatDate($_order->getCreatedAtStoreDate(), 'long')) ?></p>
+    </div>
+    <hr>
+</div>
+<?php 
+
+//Connect to Database using core resource
+
+    $connection = Mage::getSingleton('core/resource')->getConnection('core_write');
+    
+    $connection->beginTransaction();
+
+    
+//Get Entity for Specific Order
+
+    //Get Local Country code from backend waiver setting        
+        
+        $waiver_code = Mage::getStoreConfig('celeteque_section/celeteque_group/waiver_code');
+
+        $waiver_active = Mage::getStoreConfig('celeteque_section/celeteque_group/waiver_active');
+        
+    //Get Country Code
+                    
+        $path           =   Mage::getBaseDir(); 
+        
+        $file           =   $path . DS .'countrycode.temp';
+                    
+        $country_code =  file_get_contents($file);              
+                    
+        if  ($waiver_active == 1):
+        
+            if ($country_code != $waiver_code):  
+            
+                    $select = $connection->select()->from('sales_flat_order', array('*'))->where('increment_id=?',$_order->getRealOrderId()); 
+                    
+                    $rowArray =$connection->fetchRow($select);
+                    
+                    $notewaiver = $rowArray ['waiver_celeteque'];
+                    
+                    echo '<p class="order-date" style="color:red;font-weight:bold;font-size:10px;display:block;margin-top:-3px;">'.$notewaiver.'</p>';
+            endif;
+            
+        endif;
+
+?>
+
+<div class="col2-set">
+    <?php if (!$_order->getIsVirtual()): ?>
+    <div class="col-1">
+        <h2><?php echo $this->__('Shipping Address') ?></h2>
+        <address><?php echo $_order->getShippingAddress()->format('html') ?></address>
+    </div>
+    <div class="col-2">
+    <?php else: ?>
+    <div class="col-1">
+    <?php endif; ?>
+        <h2><?php echo $this->__('Billing Address') ?></h2>
+        <address><?php echo $_order->getBillingAddress()->format('html') ?></address>
+    </div>
+<?php if (!$_order->getIsVirtual()): ?>
+</div>
+<div class="col2-set">
+    <div class="col-1">
+        <h2><?php echo $this->__('Shipping Method') ?></h2>
+         <?php echo $this->escapeHtml($_order->getShippingDescription()) ?>
+    </div>
+
+<?php endif; ?>
+    <div class="col-2">
+        <h2><?php echo $this->__('Payment Method') ?></h2>
+        <?php echo $_order->getPayment()->getMethodInstance()->getTitle(); ?>
+    <!--     <?php echo $this->getPaymentInfoHtml() ?> -->
+    </div>
+</div>
+<h2><?php echo $this->__('Items Ordered') ?></h2>
+<table class="data-table" id="my-orders-table">
+    <col />
+    <col width="1" />
+    <col width="1" />
+    <col width="1" />
+    <col width="1" />
+    <thead>
+        <tr>
+            <th class="a-left"><?php echo $this->__('SKU') ?></th>
+            <th class="a-left"><?php echo $this->__('Product Name') ?></th>
+            <th class="a-right"><?php echo $this->__('Price') ?></th>
+            <th class="a-center"><?php echo $this->__('Qty') ?></th>
+            <th class="a-right"><?php echo $this->__('Subtotal') ?></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <?php echo $this->getChildHtml('order_totals') ?>
+    </tfoot>
+    <?php $_items = $_order->getItemsCollection(); ?>
+    <?php $_count = $_items->count(); ?>
+    <?php foreach ($_items as $_item): ?>
+    <?php if ($_item->getParentItem()) continue; ?>
+    <tbody>
+        <?php echo $this->getItemHtml($_item) ?>
+    </tbody>
+        <?php endforeach; ?>
+</table>
+
+<script type="text/javascript">decorateTable('my-orders-table', {'tbody' : ['odd', 'even'], 'tbody tr' : ['first', 'last']})</script>
+<script type="text/javascript">window.print();</script>

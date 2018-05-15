@@ -1,0 +1,185 @@
+<?php
+    $rowcount = 0;
+?>
+
+<?php if((Mage::helper('advancedquickorder')->_getStoreConfig('general/active') == 1 && Mage::helper('advancedquickorder')->_getStoreConfig('general/quickdisplay') == 2)):?>
+<div class="breadcrumbs">
+    <ul>
+        <li class="home">
+            <a href="<?php echo $this->getUrl('')?>" title="Go to Home Page">Home</a>
+            <span>/ </span>
+        </li>
+        <li>
+            <strong><?php echo Mage::helper('advancedquickorder')->_getTitle()?></strong>
+        </li>
+    </ul>
+</div>
+<div class="page-title">
+    <h1><?php echo Mage::helper('advancedquickorder')->_getTitle()?></h1>
+</div>
+
+<?php if(Mage::helper('advancedquickorder')->_getStoreConfig('general/tophtml') !== ''): ?>
+<?php echo   $this->getLayout()->createBlock('cms/block')->setBlockId(Mage::helper('advancedquickorder')->_getStoreConfig('general/tophtml'))->toHtml(); ?>
+<?php endif;?>
+
+<?php
+    if(Mage::helper('advancedquickorder')->_getStoreConfig('general/loadbycategory') == 1):
+        $tree = Mage::helper('advancedquickorder')->loadCategoryTree();
+        echo "<div style=\"text-align: right; margin-bottom: 20px;\" class='categoryselect'>";
+        echo '<div class"rectangle">';
+        echo '  <img src="' . $this->getSkinUrl('images/gurutheme/quickorder/opc-ajax-loader.gif') . '" alt="" class="category-loading hide" />';
+             '</div>';
+        echo "<label style=\"font-weight: 700;\">Select category: </label><select id='category' name='categories'>";
+        Mage::helper('advancedquickorder')->printCategoryTree($tree,0);
+        echo "</select>";
+        echo "</div>";
+    endif;
+?>
+
+<div id="quickorder" style="background: #fff">
+    <form id="advancedquickorder-validation-form" onSubmit="return false;">
+            <div id="quickorder-form">
+                        <?php if(Mage::helper('advancedquickorder')->_getStoreConfig('suggestion/active') == 1):?>
+                            <?php if(Mage::helper('advancedquickorder')->_getStoreConfig('suggestion/displaytype') == 1): ?>
+                                <?php
+                                    $suggestion_products = Mage::helper('advancedquickorder')->_getHandleProductCollection();
+                                ?>
+                            <?php elseif(Mage::helper('advancedquickorder')->_getStoreConfig('suggestion/displaytype') == 0):?>
+                                <?php
+                                    $suggestion_products = Mage::helper('advancedquickorder')->_getBestSellerProductCollection();
+                                ?>
+                            <?php endif;?>
+
+                            <?php if(count($suggestion_products)):?>
+                                <table cellspacing="0" id="suggestion">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 90px;">SKU</th>
+                                            <th style="width: 145px;">Product Image</th>
+                                            <th style="width: 335px;">Product Name</th>
+                                            <th style="width: 40px;">Qty</th>
+                                            <th style="width: 60px;">Unit Price</th>
+                                            <th style="width: 60px;">Sub Total</th>
+                                            <th style="width: 80px;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $num = 1; foreach($suggestion_products as $suggestion_product):?>
+                                        <?php $_suggest_product = Mage::getModel('catalog/product')->load($suggestion_product->getId()); ?>
+                                        <?php
+                                            $rowcount++;
+                                        ?>
+                                        <tr class="<?php echo $num % 2 == 0 ? 'odd' : 'even';?>" id="product_<?php echo $rowcount; ?>">
+                                            <td id="sku<?php echo $_suggest_product->getProductId()?>" class="txt-sku"><?php echo $_suggest_product->getSku()?></td>
+                                            <td class="td-pcode">
+                                                <img width="50" height="50" src="<?php echo $this->helper('catalog/image')->init($_suggest_product, 'image')->resize(50)?>">
+                                            </td>
+                                            <td style="width:335px" class="pname">
+                                                <label><?php echo $_suggest_product->getName()?></label>
+                                                <?php if($_suggest_product->getOptions()):?>
+                                                    <?php $_options = Mage::helper('advancedquickorder')->_getProductOptions($_suggest_product, 'product_' . $rowcount, 'options') ?>
+                                                    <?php echo $_options;?>
+                                                <?php endif;?>
+                                                <?php if($_suggest_product->isConfigurable()):?>
+                                                    <?php $_options = Mage::helper('advancedquickorder')->_getProductOptions($_suggest_product, 'product_' . $rowcount, 'configurable') ?>
+                                                    <?php echo $_options?>
+                                                <?php endif;?>
+                                            </td>
+                                            
+                                            <td style="width: 40px;" class="td-qty"><input type="text" value="0" class="txt-qty" id="qty<?php echo $rowcount; ?>"></td>
+                                            <td style="width: 60px;" id="product-price-product_<?php echo $rowcount; ?>"  class="pqty"><?php echo Mage::helper("core")->currency($_suggest_product->getFinalPrice(), true, false)?></td>
+                                            <td style="width: 60px;" id="product-sub-total-product_<?php echo $rowcount; ?>" class="pst"><?php echo Mage::helper("core")->currency(0, true, false)?></td>
+                                            
+                                            <td class="td-action">
+                                                
+                                                <?php if(!Mage::helper('advancedquickorder')->_getStoreConfig('general/hideaddtocartonitem')== 1):?> 
+                                                    <button  alt="<?php echo $_suggest_product->getId()?>" class="btn-addcart button"><span><span>Add to Cart</span></span></button>
+                                                <?php else: ?>
+                                                    <button style="display: none;" alt="<?php echo $_suggest_product->getId()?>" class="btn-addcart button"><span><span>Add to Cart</span></span></button>
+                                                <?php endif; ?>
+                                                    
+                                                <button class="btn-remove-suggest button"><span><span>Remove</span></span></button>
+                                                <input type="hidden" class="clear-suggestion" />
+                                            </td>
+                                        </tr>
+                                        <?php $num++; endforeach;?>
+                                    </tbody>
+                                </table>
+                            <?php endif;?>
+                        <?php endif;?>
+
+                        <table id="search-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 90px;">SKU</th>
+                                    <th style="width: 145px;">Name / Product Code</th>
+                                    <th style="width: 335px;">Product Name</th>
+                                    <th style="width: 40px;">Qty</th>
+                                    <th style="width: 60px;">Unit Price</th>
+                                    <th style="width: 60px;">Sub Total</th>
+                                    <th style="width: 80px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $rowsofinput = Mage::helper('advancedquickorder')->_getStoreConfig('general/rowsofinput'); ?>
+                                <?php for ($i = 1; $i <= $rowsofinput; $i++): ?>
+                                    <?php $rowcount++; ?>
+                                    <tr id="product_<?php echo $rowcount ?>">
+                                        <td id="sku<?php echo $rowcount ?>" class="txt-sku">&ensp;</td>
+                                        <td class="td-pcode"><input class="txt-pcode" type="text" id="pcode<?php echo $rowcount ?>" /></td>
+                                        <td style="width:335px" class="pname">&ensp;</td>
+                                        <td style="width: 40px;" class="td-qty"><input class="txt-qty" type="text" id="qty<?php echo $rowcount ?>" /></td>
+                                        <td style="width: 60px;" id="product-price-product_<?php echo $rowcount; ?>" class="pqty">&ensp;</td>
+                                        <td style="width: 60px;" id="product-sub-total-product_<?php echo $rowcount; ?>" class="pst">&ensp;</td>
+                                        <td class="td-action">
+                                            <?php if(!Mage::helper('advancedquickorder')->_getStoreConfig('general/hideaddtocartonitem')== 1):?> 
+                                                <button  class="btn-addcart button"><span><span>Add to Cart</span></span></button>
+                                            <?php else: ?>
+                                                <button style="display: none;" class="btn-addcart button"><span><span>Add to Cart</span></span></button>
+                                            <?php endif; ?>
+
+                                            <button class="btn-remove-cart button"><span><span>Clear</span></span></button>
+                                        </td>
+                                    </tr>
+                                <?php endfor ?>
+
+                                    <tr>
+                                        <td class="form-action-button" colspan="6">
+                                            <label class="add-item" style="float:left; cursor: pointer; font-weight: 700;">+ Add item</label>
+                                            <label class="remove-item" style="margin-left:15px;float:left; cursor: pointer; font-weight: 700;">- Remove item</label>
+                                            <button class="add-all button" style="margin-right:42px"><span><span>Add All to Cart</span></span></button>
+                                        </td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                        <div class="rectangle">
+                            <img src="<?php echo $this->getSkinUrl('images/gurutheme/quickorder/opc-ajax-loader.gif') ?>" alt="" class="add-cart-loading hide" />
+                        </div>
+                        <div title="Click to Remove" class="quick-order success-msg"></div>
+                        <input type="hidden" id="allid" value="" />
+                        <input type="hidden" id="allqty" value="" />
+                    </div>
+    </form>
+</div>
+
+<?php if(Mage::helper('advancedquickorder')->_getStoreConfig('general/bottomhtml') !== ''): ?>
+<?php echo   $this->getLayout()->createBlock('cms/block')->setBlockId(Mage::helper('advancedquickorder')->_getStoreConfig('general/bottomhtml'))->toHtml(); ?>
+<?php endif;?>
+
+<?php else:?>
+<?php Mage::app()->getFrontController()->getResponse()->setRedirect(Mage::getUrl(''));?>
+<?php endif;?>
+
+<?php if(Mage::helper('advancedquickorder')->_getStoreConfig('general/quicklinkmenu') == '0' ): ?>
+<script type="text/javascript">
+    var _ajaxurl = "<?php echo $this->getUrl('advancedquickorder/ajax')?>";
+    var _shoppingcarturl = "<?php echo $this->getUrl('checkout/cart')?>";
+    var _ajaxloaderimg = "<?php echo $this->getSkinUrl('images/gurutheme/quickorder/opc-ajax-loader.gif') ?>";
+    var _rootcatid = <?php echo Mage::app()->getStore()->getRootCategoryId(); ?>;
+    var _zerosubtotal = "<?php echo Mage::helper("core")->currency(0, true, false); ?>";
+</script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS).'gurutheme/advancedquickorder/advancedquickorder.js';?>"></script>
+<?php endif; ?>
+<script>
+    var avqvalidationform = new VarienForm('advancedquickorder-validation-form');
+</script>

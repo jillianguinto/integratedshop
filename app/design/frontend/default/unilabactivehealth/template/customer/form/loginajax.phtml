@@ -1,0 +1,78 @@
+<div class="block block-login">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Login') ?></span></strong>
+    </div> 
+    <form action="<?php echo $this->getAjaxPostActionUrl() ?>" method="post" id="form-mini-login">
+        <div class="block-content">	 
+			<p id="global_login_message"><?php echo $this->getNotificationMessage();?></p> 
+            <label for="mini-login"><?php echo $this->__('Email:') ?></label><input type="text" name="login[username]" id="mini-login" class="input-text required-entry validate-email" />
+            <label for="mini-password"><?php echo $this->__('Password:') ?></label><input type="password" name="login[password]" id="mini-password" class="input-text required-entry validate-login-ajax" />
+            <div class="actions">
+			   <a style="text-decoration:underline; color:red;" href="<?php echo $this->getUrl("customer/account/create");?>"><?php echo $this->__("No Account Yet?");?></a>
+			   <span style="float: left; color: rgb(255, 0, 0); text-align:center;width:5px;">|</span>
+			   <a style="text-decoration:underline; color:red;" href="<?php echo $this->helper('customer')->getForgotPasswordUrl();?>;?>"><?php echo $this->__("Forgot Password?");?></a>
+			</div>
+            <div class="actions">
+			   <button style="float:none;margin-top:6px;margin-bottom:6px;" type="button" class="button" onclick="miniloginForm.submit(this);"><span><span><?php echo $this->__('Login') ?></span></span></button> 
+			   <button  style="float:none;margin-top:6px;margin-bottom:6px;" type="button" class="button" onclick="closeLoginBox();" style="margin-left:10px;"><span><span><?php echo $this->__('Cancel') ?></span></span></button>
+			</div>
+        </div>
+    </form>
+</div>
+
+<?php echo $this->getChildHtml('inquiry.form');?>
+<script>
+	var miniloginForm = new VarienForm("form-mini-login");
+	var onProcess     = false;
+	miniloginForm.submit = function(button, url){
+		if(onProcess == true){ 
+			$("global_login_message").update("<?php echo $this->__("Please wait....");?>");
+			return false;
+		}
+		
+		jQuery.fancybox.showLoading();
+		if (this.validator.validate()){   
+					onProcess = true;
+					button.style.color = '#808080';  
+				var request = new Ajax.Request(this.form.action, {	
+					parameters: Form.serialize(this.form),
+					onSuccess: function(transport){ 
+						onProcess = false;
+						if(transport.status == 200)	{ 	 
+							var response = transport.responseText.evalJSON();
+							if(response.valid){
+								var inquiry = $("inquiry-form-doctor-wrapper");
+								showDialog(inquiry.innerHTML);
+							}else{  	
+								button.style.color = '#FFFFFF';
+								$("global_login_message").update(response.message);
+							}
+						}
+					},
+					onFailure: '',
+					onComplete: function(){					
+						jQuery.fancybox.hideLoading();
+					}
+				});  		
+		}					
+		jQuery.fancybox.hideLoading();		
+	}
+	
+	function closeLoginBox()
+	{
+		jQuery.fancybox.close();
+	}
+	
+	var showDialog = function(_content){	
+		jQuery.fancybox
+		jQuery.fancybox({content: _content,
+						 closeBtn: false,
+						 closeClick: false,
+						 helpers: { overlay : {closeClick : false,
+											  locked:	   true}},
+						'onComplete' : function(){
+							jQuery.fancybox.update();
+						}
+						}); 
+	}
+</script>

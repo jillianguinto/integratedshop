@@ -1,0 +1,110 @@
+<?php
+	//Added by Richel R. Amante
+	//Email : richelramante@gmail.com
+?>
+<style>
+	.container_wrapper
+	{
+		padding:10px;
+	}
+	.featuredproducts > h4
+	{
+		padding: 4px 0px 4px 0px;
+		background-color: #5EAFA6;
+		color: white;
+		font-weight: bold;
+		position: relative;
+		width: 100%;
+  		left: -10px;
+  		padding-right: 20px;
+
+		
+	}
+	.featured_items
+	{
+		text-align:center;
+		border-left:solid 1px #ccc;
+		border-right:solid 1px #ccc;
+		float:left;
+		margin-top:5px;
+		margin-bottom:15px;
+		width: 19.7%;
+		height: 285px;
+	}
+	
+	.featured_items .button
+	{
+		border-radius:0px !important;
+	}
+	.item_name
+	{
+		padding: 15px;
+	}
+</style>
+
+<?php
+
+	$productCount = 5;			
+	$storeId = Mage::app()->getStore()->getId(); 
+
+	$products = Mage::getResourceModel('reports/product_collection')
+		->addAttributeToSelect('*')     
+		->setStoreId($storeId)->addStoreFilter($storeId)
+		->addAttributeToSelect(array('name', 'price', 'minimal_price', 'small_image')) 
+		->addViewsCount()->setPageSize($productCount);
+
+	Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($products);
+	Mage::getSingleton('catalog/product_visibility')->addVisibleInCatalogFilterToCollection($products);
+
+	if(count($products) > 0):
+	
+?>
+	<div class="featuredproducts">
+		<h4><img src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'arrow/arrow2.png'; ?>" alt="Featured Products" style="padding-left: 10px;" /></h4>
+	</div>
+
+	<div class="container_wrapper">
+		<?php
+		
+			
+			foreach($products->getData() as $data_value):
+			
+				$_product = Mage::getModel('catalog/product')->load($data_value['entity_id']);
+				echo '<div class="featured_items">';
+				echo '<a href="'.$_product->getProductUrl().'">';
+				echo '<img src="'.Mage::helper('catalog/image')->init($_product, 'small_image')->resize(150,150).'"/>';
+				echo '</a>';
+				echo '<br/><div class="item_name"><strong>'.Mage::helper('core/string')->truncate($_product->getName(), 36).'<strong></div><br/>';				
+				echo '<a href="'.$_product->getProductUrl().'" class="button" >Add to Cart</a>';
+				echo '</div>';
+			
+			endforeach;
+		
+		?>
+	</div>
+<?php endif; ?>
+
+<?php if(Mage::getURL('checkout/cart') == Mage::helper('core/url')->getCurrentUrl()) ?>		
+
+	<?php echo 1;?>
+	<style type="text/css">
+	.footer_highlight2 {
+	/*	min-height: 130px;
+		background-color: #2a76bc;*/
+	/*	border-left:solid 2px #31a2c0;*/
+		/*border-bottom: 2px solid #31a2c0;
+		font-family: Tahoma,Geneva,sans-serif;
+		margin-right: 16px;
+		margin-left: 16px;*/
+
+		background-color: #272828;
+		border-bottom-left-radius: 12px;
+		border-bottom-right-radius: 12px;
+		border-left: initial;
+		border-bottom: initial;
+		/*width: 960px !important;*/
+		width: 100% !important;
+		/*width: 100% !important;*/
+		margin: 0 auto !important;
+	}
+	<?php } ?>

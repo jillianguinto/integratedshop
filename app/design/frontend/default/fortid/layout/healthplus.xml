@@ -1,0 +1,8 @@
+<layout version="0.1.0">	
+	<customer_account_index>
+        <reference name="customer_account_dashboard">
+            <action method="unsetChild"><name>customer_account_dashboard_healthplus</name></action>
+            <block type="healthplus/healthplus" name="customer_account_dashboard_healthplus" as="healthplus" template="healthplus/account/healthplus.phtml"/>
+        </reference>
+    </customer_account_index>
+</layout>

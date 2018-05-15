@@ -1,0 +1,387 @@
+
+<?php
+date_default_timezone_set('Asia/Taipei');
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_modern
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+//header('Access-Control-Allow-Origin: *');
+//header('Access-Control-Allow-Methods: GET, POST'); 
+?>
+<?php 
+
+		$currentstoreid   = Mage::app()->getStore()->getStoreId();
+		$currentStorename = Mage::app()->getStore()->getName();
+		
+		$categoryid = Mage::getSingleton('core/session')->getCategoryId();
+		$storeid    = Mage::getSingleton('core/session')->getStoreid();	
+		$storename  = Mage::getSingleton('core/session')->getStorename();	
+		
+?>
+
+
+<?php
+
+	$siteUrl = Mage::getStoreConfig('webservice/sitesettings/websiteurl'); 
+	
+?>
+
+<script type="text/javascript" src="<?php echo $siteUrl; ?>js/jquery.bpopup-0.9.4.js"></script>
+<script type="text/javascript" src="<?php echo $siteUrl; ?>js/jquery.html5-placeholder-shim.js"></script>
+
+<style>
+
+
+#inner-login-container #login-form label {
+	font-size: 12px;
+	color: #c1c1c1;
+	text-align: left;
+	margin-left: 40px;
+	padding: 0;
+}
+#login-form {
+	padding-top: 25px !important;
+}
+
+
+div#banner {
+    display: inline-block;
+    width: 100%;
+    float: left;
+    margin-top: -45px;
+    margin-bottom: 17px;
+    display:none;
+}
+
+/*@-moz-document url-prefix() {
+    #banner{
+        position: relative !important;
+		top: -35px !important;
+		margin-bottom: -10px !important;
+    }
+}*/
+</style>
+
+
+
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '155497174991002'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript>
+	<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=155497174991002&ev=PageView&noscript=1"/>
+</noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	jQuery("#username").keyup(function(){
+		var usernameVal = jQuery(this).val();
+		jQuery("#email").val(usernameVal);
+	});
+	jQuery("#username").focusout(function(){
+		var usernameVal = jQuery(this).val();
+		jQuery("#email").val(usernameVal);
+	});
+	jQuery("#password").keyup(function(){
+		var passwordVal = jQuery(this).val();
+		jQuery("#pass").val(passwordVal);
+	});
+	jQuery("#password").focusout(function(){
+		var passwordVal = jQuery(this).val();
+		jQuery("#pass").val(passwordVal);
+	});
+	
+	jQuery("#login-form-btn").click(function(){
+		alert("asdasd");
+		
+	});
+	
+});
+
+
+</script>
+
+<?php if (Mage::getSingleton('customer/session')->isLoggedIn()):?>
+			
+<?php else: ?>
+	<!-- <script>	
+	window.location = "http://www.ecomqa.com/heymom/?signin=1" 
+	</script> -->
+<?php endif; ?>
+
+		<link rel="stylesheet" href="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>banner/popup.css" type="text/css" />
+
+			<?php
+			if(date("Y-m-d h:i:sa") < "2017-07-08 12:00:00am" ){
+			?>
+			<div class="promo_banner">
+			<label class="promo_close">x</label>
+			<img src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA)?>promobanner/HM_Travel_Kit_PopUp.png" / >
+			</div>
+			<?php }
+			elseif(date("Y-m-d h:i:sa") < "2017-07-15 12:00:00am"){
+			?>
+			<div class="promo_banner">
+				<label class="promo_close">x</label>
+				<img src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA)?>promobanner/HM_BabyBundle_PopUp.png" / >
+			</div>
+			<?php } 
+			elseif(date("Y-m-d h:i:sa") >= "2017-07-15 12:00:00am"){
+			?>
+			<div class="promo_banner">
+				<label class="promo_close">x</label>
+				<img src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA)?>promobanner/HM_KiddieBundle_PopUp.png" / >
+			</div>
+			<?php } ?>
+
+		<script src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_JS)?>banner/popup.js"></script>
+
+
+
+
+<div class="header-container">
+    <div class="header"> 	
+	<div class="logo-container">
+		<a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo logo_cls" alt="<?php echo $this->getLogoAlt() ?>">
+			<img class="logo-wpsi" src="<?php echo $this->getSkinUrl('images/heymom-logo.png'); ?>" alt="<?php echo $this->getLogoAlt() ?>" />		
+			<br/>  
+			<!-- <span class="logo-text">Operated by: Work-Place Pharmacy Services Inc.</span> -->
+			<span class="logo-text">Operated by: Clickhealth Services, Inc.</span>
+		</a>  		
+	</div>
+
+
+<?php
+        if (Mage::getSingleton('customer/session')->isLoggedIn()) {        
+            $customer = Mage::getSingleton('customer/session')->getCustomer();
+            $fullname = $customer->getName();
+            $firstname = $customer->getFirstname();
+
+			/// <!-- Get User ID from the site -->///
+			
+			$pathDir		= Mage::getBaseDir('var').'/temp_user';
+	
+			$folder_path 	= $pathDir. DS . $customer->getId().".tmp";
+			
+			// $user_id 		= file_get_contents($folder_path);
+			$user_id = Mage::getSingleton('core/session')->getuserid();
+
+			
+        
+    ?>
+        <div id="common-button-container">
+	           <a href="<?php echo Mage::getBaseurl()?>customer/account" style="text-decoration: none;"><span class="blue-text" id="logged-user-greeting">Hi Mommy <?php echo $firstname; ?>!</span></a>
+        		<a href="#" id="logout-btn"><img id="logout-img" src="<?php echo $siteUrl; ?>img/layout/accountbutton.png" style="width: 18px; vertical-align: bottom"></a>
+        		<div class="clear"></div>
+        		<div id="logout-link">
+        			<a href="<?php echo $siteUrl ;?>?changepassword=1" title="Change Password" onclick="changePassword(); return false;">Change password</a>
+        			<a href="<?php echo $siteUrl.'user/'.$user_id;?>/edit/basic-info" title="Edit account">Edit account</a>
+        			<a href="<?php echo Mage::getBaseurl()?>customer/account/logout" title="Logout">Logout</a>
+        		</div>
+        </div> 
+        
+    <?php }
+        else
+        {
+    ?>
+            
+		<div id="common-button-container">
+				<a href="<?php echo $siteUrl ;?>?signin=1" class="common-button button-border-radius box-shadow" >SIGN IN</a>
+				<a href="<?php echo $siteUrl; ?>register.php" class="common-button button-border-radius box-shadow">REGISTER</a>
+				
+				<div onclick="hide_me();" class="b-modal" style="display:none; position: fixed; top: 0px; right: 0px; bottom: 0px; left: 0px; opacity: 0.7; z-index: 9998; cursor: pointer; background-color: rgb(0, 0, 0);">
+				</div>
+				
+			<script>
+			
+				var uname = jQuery("#email").val();
+				var pword = jQuery("#pass").val();
+				
+						function sign_in()
+							{
+								jQuery('.b-modal').fadeIn();
+								jQuery('#login-container').fadeIn();
+								jQuery('#login-container').css('position','absolute');
+								jQuery('#login-container').css('z-index','99999');
+								jQuery('#login-container').css('top','115%');
+								jQuery('#login-container').css('left','32%');
+								jQuery('#login-container').css('display','block');
+							}
+						function hide_me()
+							{
+								jQuery('.b-modal').fadeOut();
+								jQuery('#login-container').fadeOut();
+							}		
+													
+						function loginfunction()
+						{
+							
+								uname = jQuery("#email").val();
+								
+								pword = jQuery("#pass").val();
+								
+								jQuery('#login-form').attr('action','<?php echo Mage::getBaseurl()?>customer/account/loginPost/referer/aHR0cDovL2NsaWNraGVhbHRoLmhlYWx0aGZpcnN0LmVjb21xYS5jb20vaGV5bW9tL2luZGV4LnBocC9oZXltb20vY3VzdG9tZXIvYWNjb3VudC9pbmRleC8,/');
+								
+						}
+						
+						jQuery(document).ready(function(){
+						
+							jQuery('#loginpost').attr('action','<?php echo Mage::getBaseUrl();?>relogin/login/loginpost');
+							
+							jQuery("body").on('click', '#Checker', function(){		
+								uname = jQuery("#email").val();
+									
+								pword = jQuery("#pass").val();
+								
+								if ((uname == '') || (pword==''))
+								{
+									jQuery('#msgerror').css('display','block');		
+									return false;
+								}
+								
+								
+								//Get information at the site for username login
+								
+								jQuery.post("<?php echo $siteUrl;?>online_store/connect.php",{
+								
+									username: 	uname,
+									password:	pword,
+									getuser:	"1"
+								},
+								function (xhr)
+								{
+
+									var get_data = jQuery.parseJSON(xhr);
+									
+									if (get_data.success == true)
+									{
+									
+										jQuery("#msgerror").css("display","none");		
+										
+										jQuery("#email").val(get_data.username);
+										
+										jQuery('#login-form').attr("action","<?php echo Mage::getBaseurl()?>customer/account/loginPost/referer/aHR0cDovL2NsaWNraGVhbHRoLmhlYWx0aGZpcnN0LmVjb21xYS5jb20vaGV5bW9tL2luZGV4LnBocC9oZXltb20vY3VzdG9tZXIvYWNjb3VudC9pbmRleC8,/");
+										
+										jQuery("#send2").click();	
+										
+									}								
+									else
+									{
+										jQuery("#msgerror").css("display","block");		
+									}
+									
+								});
+								
+							});
+
+						});
+
+			</script>
+		</div>         
+		
+		<style>
+			#inner-login-container span, .common-popup-inner-container span 
+			{
+				background: #90AD8C;
+				padding: 5px 25px;
+				border: none;
+				color: #fff;
+				margin: 10px auto;
+				display: block;
+				cursor: pointer;
+				width: 101px;
+				padding: 10px;
+			}
+			
+
+			#inner-login-container .login-error 
+			{
+				top: 0px !important;
+			}			
+				
+		</style>
+		
+        <div id="login-container" class="rounded">
+			<div id="login-close-btn" class="b-close"><img src="<?php echo $siteUrl; ?>img/layout/close_white.png" onclick="hide_me();"/></div>
+			<div id="login-header" class="white-text" align="left"><span>SIGN IN</span></div>
+			<div id="inner-login-container">
+				
+				<div id="msgerror" style="display:none;clear:both;">
+					<p class="login-error" >Username/password combination is incorrect.</p>
+					<div style="height:5px;">&nbsp;</div>
+				</div>
+				
+				<form action="" method="POST" id="login-form">					
+					<br/>
+					<label for="username" style="display: block">Username</label>
+					
+					<input name="login[username]" title="Email Address" id="email" type="text">
+					
+					<input name="login[selflog]" value="true" title="Email Address" id="email" type="hidden">
+					
+					<label for="password" style="display: block">Password</label>	
+					
+					<input name="login[password]" type="password" id="pass" title="Password" onKeypress="loginfunction()">
+					
+					<span class="button button-border-radius" title="Login" id="Checker">SUBMIT</span>
+					
+					<input type="submit" name="send" id="send2" title="Login" style="display:none" value="Submit">
+					
+					<div id="forgot-link-container">
+						<a href="#" onclick="recoverUsername(); return false;">Forgot Username?</a>
+						<a href="<?php echo $siteUrl ;?>?forgepassword=1">Forgot Password?</a>
+					</div>
+
+				</form>
+			</div>
+		</div>
+    <?php    }	?>
+		
+		
+	
+       <div class="clear"></div>
+        <?php echo $this->getChildHtml('mainSearch') ?>
+
+    </div>
+	
+</div>
+
+<script>
+    jQuery('#logout-btn').click(function (){
+        jQuery('#logout-link').slideToggle();
+    });
+</script>

@@ -1,0 +1,160 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+  <style>
+ #reportsGrid_table tr td.last {
+	text-align:right;
+ }
+ .money {text-align:right;}
+ </style>
+<div id="filter_form_box">
+	<div>
+ <button id="id_ecf1e66490a9d7cdb5e800485bae0791" title="Show Report" type="button" class="scalable " onclick="document.getElementById('filter_form').submit()" style="float: right;margin-top: 10px;margin-right: 10px;"><span><span><span>Show Report</span></span></span></button>   
+<div id="switcher_block"></div>
+
+</div>
+    <div class="entry-edit">
+    <form id="filter_form" action="" method="get"><div></div><div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend">Filter</h4>
+    <div class="form-buttons"></div>
+</div>
+    <div class="fieldset " id="sales_report_base_fieldset">
+    <div class="hor-scroll">
+                        <table cellspacing="0" class="form-list">
+            <tbody>
+                <tr>
+        <td colspan="2" class="hidden"><input id="sales_report_store_ids" name="store_ids" value="<?php echo $_GET["store_ids"];?>" type="hidden"></td>
+    </tr>
+<tr>
+        <td class="label"><label for="sales_report_report_type">Match Period To</label></td>
+    <td class="value">
+        <select id="sales_report_report_type" name="report_type" class=" select">
+<option value="created_at_order" <?php if($_GET["report_type"] == "created_at_order") echo "selected";?>>Order Created Date</option>
+<option value="updated_at_order" <?php if($_GET["report_type"] == "updated_at_order") echo "selected";?> >Order Updated Date</option>
+</select>                    <p class="note" id="note_report_type"><span>Order Updated Date report is real-time, does not need statistics refreshing.</span></p>
+            </td>
+    </tr>
+<tr>
+        <td class="label"><label for="sales_report_period_type">Period</label></td>
+    <td class="value">
+        <select id="sales_report_period_type" name="period_type" title="Period" class=" select">
+<option value="day" <?php if($_GET["period_type"] == "day") echo "selected";?>>Day</option>
+<option value="month" <?php if($_GET["period_type"] == "month") echo "selected";?>>Month</option>
+<option value="year" <?php if($_GET["period_type"] == "year") echo "selected";?>>Year</option>
+</select>            </td>
+    </tr>
+<tr>
+        <td class="label"><label for="sales_report_from">From <span class="required">*</span></label></td>
+    <td class="value">
+        <input name="from" id="sales_report_from" value="<?php echo $_GET["from"];?>" title="From" type="text" class=" required-entry input-text" style="width:110px !important;"> <img src="http://clickhealth.healthfirst.ecomqa.com/clickhealth/skin/adminhtml/default/default/images/grid-cal.gif" alt="" class="v-middle" id="sales_report_from_trig" title="Select Date" style="">
+                     </td>
+    </tr>
+<tr>
+        <td class="label"><label for="sales_report_to">To <span class="required">*</span></label></td>
+    <td class="value">
+        <input name="to" id="sales_report_to" value="<?php echo $_GET["to"];?>" title="To" type="text" class=" required-entry input-text" style="width:110px !important;"> <img src="http://clickhealth.healthfirst.ecomqa.com/clickhealth/skin/adminhtml/default/default/images/grid-cal.gif" alt="" class="v-middle" id="sales_report_to_trig" title="Select Date" style="">
+                       </td>
+    </tr>
+<tr>
+        <td class="label"><label for="sales_report_show_order_statuses">Order Status</label></td>
+    <td class="value">
+        <select id="sales_report_show_order_statuses" name="show_order_statuses" class=" select" onchange="show_order_statuses_block(this.value)">
+<option value="0" <?php if($_GET["show_order_statuses"] == "0") echo "selected";?>>Any</option>
+<option value="1" <?php if($_GET["show_order_statuses"] == "1") echo "selected";?>>Specified</option>
+</select>                    <p class="note" id="note_show_order_statuses"><span>Applies to Any of the Specified Order Statuses</span></p>
+            </td>
+    </tr>
+<tr id="order_statuses" style="display: <?php if($_GET["show_order_statuses"] == "1") echo "table-row"; else echo "none";?>;">
+        <td class="label"></td>
+    <td class="value">
+        <select id="sales_report_order_statuses" name="order_statuses[]" size="10" class=" select multiselect" multiple="multiple" >
+<option value="canceled" <?php if(in_array("cancelled", $_GET["order_statuses"])) echo "selected";?>>Canceled</option>
+<option value="closed" <?php if(in_array("closed", $_GET["order_statuses"])) echo "selected";?>>Closed</option>
+<option value="complete" <?php if(in_array("complete", $_GET["order_statuses"])) echo "selected";?>>Complete</option>
+<option value="fraud" <?php if(in_array("fraud", $_GET["order_statuses"])) echo "selected";?>>Suspected Fraud</option>
+<option value="holded" <?php if(in_array("holded", $_GET["order_statuses"])) echo "selected";?>>On Hold</option>
+<option value="payment_review" <?php if(in_array("payment_review", $_GET["order_statuses"])) echo "selected";?>>Payment Review</option>
+<option value="paypal_canceled_reversal" <?php if(in_array("paypal_canceled_reversal", $_GET["order_statuses"])) echo "selected";?>>PayPal Canceled Reversal</option>
+<option value="paypal_reversed" <?php if(in_array("paypal_reversed", $_GET["order_statuses"])) echo "selected";?>>PayPal Reversed</option>
+<option value="processing" <?php if(in_array("processing", $_GET["order_statuses"])) echo "selected";?>>Processing</option>
+<option value="unilab_for_verification" <?php if(in_array("unilab_for_verification", $_GET["order_statuses"])) echo "selected";?>>For Verification</option>
+</select>            </td>
+    </tr>
+
+
+            </tbody>
+        </table>
+            </div>
+        </div>
+</form></div>
+<script type="text/javascript">
+filterNode = document.getElementById("filter_form_box");
+reportNode = document.getElementById("reportsGrid");
+reportNode.innerHTML = filterNode.innerHTML + reportNode.innerHTML;
+filterNode.innerHTML = "";
+function show_order_statuses_block(show_statuses){
+if(show_statuses == 1) 
+	document.getElementById("order_statuses").style.display = "table-row";
+else
+	document.getElementById("order_statuses").style.display = "none";
+}
+
+</script>
+ <script type="text/javascript">
+            //<![CDATA[
+                Calendar.setup({
+                    inputField: "sales_report_from",
+                    ifFormat: "%m/%e/%Y",
+                    showsTime: false,
+                    button: "sales_report_from_trig",
+                    align: "Bl",
+                    singleClick : true
+                });
+            //]]>
+			
+            //<![CDATA[
+                Calendar.setup({
+                    inputField: "sales_report_to",
+                    ifFormat: "%m/%e/%Y",
+                    showsTime: false,
+                    button: "sales_report_to_trig",
+                    align: "Bl",
+                    singleClick : true
+                });
+            //]]>
+           window.onload = function(){ 
+			switcherNode = document.getElementById("filter_form_box");
+			switchTemp = document.getElementById("switcher_block");
+			switchTemp.innerHTML = switcherNode.innerHTML;
+			switcherNode.innerHTML = "";
+			document.getElementById("store_switcher").onchange = function(){ 
+				document.getElementById("sales_report_store_ids").value = document.getElementById("store_switcher").value;
+			}
+		   } 
+		  
+</script> 
+         
+

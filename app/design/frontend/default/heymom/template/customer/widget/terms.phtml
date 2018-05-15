@@ -1,0 +1,4 @@
+<div class="input-box">
+	<input type="checkbox" id="<?php echo $this->getFieldId('agree_on_terms')?>" class="checkbox <?php if ($this->isAgreeOnTermsRequired()):?>validate-terms-condition<?php endif; ?>"  name="<?php echo $this->getFieldName('agree_on_terms')?>"title="<?php echo $this->__('I agree to the Terms and Conditions & Privacy Policy'); ?>" value="1"  checked="checked" <?php if($this->getAgreeOnTerms()): ?> checked="checked"<?php endif; ?> />
+	<label for="<?php echo $this->getFieldId('agree_on_terms')?>"<?php if ($this->isAgreeOnTermsRequired()) echo ' class="required"' ?>><?php echo $this->__('I agree to the <a href="%s" target="_blank">Terms and Conditions</a> & <a href="%s" target="_blank">Privacy Policy</a>',Mage::getUrl("terms-and-condition"),Mage::getUrl("privacy-policy")) ?><?php if ($this->isAgreeOnTermsRequired()): echo ' <em>*</em>' ?><?php endif;?></label>
+</div>

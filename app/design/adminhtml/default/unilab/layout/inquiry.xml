@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <inquiry_adminhtml_inquiry_index>
+        <reference name="content">
+            <block type="inquiry/adminhtml_inquiry" name="inquiry" />
+        </reference>
+    </inquiry_adminhtml_inquiry_index>
+    
+    <inquiry_adminhtml_inquiry_view>
+        <reference name="content">
+            <block type="inquiry/adminhtml_inquiry_detail" name="inquiry_view.detail" template="inquiry/detail.phtml"/>
+        </reference>
+    </inquiry_adminhtml_inquiry_view>
+    
+</layout>

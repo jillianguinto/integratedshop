@@ -1,0 +1,168 @@
+<?php 
+    $_item = $this->getItem() ;
+    $orderId = Mage::app()->getRequest()->getParam('order_id');
+    $order = Mage::getModel('sales/order')->load($orderId);
+    $orderItems = $order->getAllItems();
+    $productId =  Mage::getModel("catalog/product")->getIdBySku($_item->getSku());
+    if(!$productId){
+        $productId = $_item->getProductId();
+    }
+    $_product = Mage::getModel('catalog/product')->load($productId);
+
+    $minQty = 0;
+    foreach ($orderItems as  $orderItem)
+    {
+        $pId = $orderItem->getProductId();
+        $orderItemId = $orderItem->getItemId();
+        //$qtyToShip = $orderItem->getQtyOrdered() - $orderItem->getQtyShipped();
+        $qtyToShip = $_item->getQty()*1;
+        $arrQtyAllProductOrderItem[$pId][$orderItemId] = $qtyToShip ;
+    }
+    if(count($arrQtyAllProductOrderItem[$productId]) <= 1){
+        $minQty = $_item->getQty();
+    }else{
+        foreach ($arrQtyAllProductOrderItem[$productId] as $orderItemId => $qty){
+            if($orderItemId <= $_item->getOrderItemId()){
+               $minQty += $qty;
+            }
+        }
+    }
+    $checkAvailable =  Mage::helper('inventory/warehouse')
+            ->checkTheFirstWarehouseAvailableProduct($productId,$minQty);
+?>
+<tr class="border">
+    <td><?php echo $this->getColumnHtml($_item, 'name') ?></td>
+    <td class="a-center"><img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl(Mage::getModel('catalog/product')->load($_item->getProductId())->getSmallImage()); ?>" width="90" height="90" /></td>
+    <?php if(Mage::getStoreConfig('inventory/dropship/enable')): ?>
+        <td><?php echo Mage::getBlockSingleton('inventorydropship/items')->getColumnHtml($_item, 'qty') ?></td>
+    <?php else: ?>
+        <td><?php echo $this->getColumnHtml($_item, 'qty') ?></td>
+    <?php endif ?>
+
+    <td class="<?php if ($this->isShipmentRegular()): ?><?php endif; ?> a-center">
+        <?php if ($this->canShipPartiallyItem()): ?>
+            
+            <?php //check max qty to ship ?>
+            <?php $maxQty = $_item->getQty()*1 ?>
+            <?php 
+                if(Mage::getStoreConfig('inventory/dropship/enable')){
+                    $allDropships = Mage::getModel('inventorydropship/inventorydropship')
+                                                        ->getCollection()
+                                                        ->addFieldToFilter('order_id',$this->getRequest()->getParam('order_id'))
+                                                        ->addFieldToFilter('status',array('in'=>array('3','4','6')));
+                    $allDropshipIds = array();
+                    foreach($allDropships as $dropship)
+                        $allDropshipIds[] = $dropship->getId();
+                    $dropshipProductNumber = 0;
+                    $dropshipProducts = Mage::getModel('inventorydropship/inventorydropshipproduct') 
+                                                        ->getCollection()
+                                                        ->addFieldToFilter('dropship_id',array('in'=>$allDropshipIds))
+                                                        ->addFieldToFilter('item_id',$_item->getOrderItemId());
+                    foreach($dropshipProducts as $dropshipProduct)
+                        $dropshipProductNumber += $dropshipProduct->getQtyApprove() - $dropshipProduct->getQtyShipped();
+                    $maxQty -= $dropshipProductNumber;
+                }
+            ?>
+            <input type="hidden" value="<?php echo $maxQty ?>" id="shipment[maxitems][<?php echo $_item->getOrderItemId() ?>]" />
+        
+            <input type="text" class="input-text" id="shipment[items][<?php echo $_item->getOrderItemId() ?>]" name="shipment[items][<?php echo $_item->getOrderItemId() ?>]" value="<?php echo $maxQty*1 //$_item->getQty()*1 ?>" />
+        <?php else: ?>
+            <?php echo $_item->getQty()*1 ?>
+        <?php endif; ?>
+    </td>
+    <td><div id="show_select_warehouse_supplier_<?php echo $_item->getOrderItemId() ?>_<?php echo $productId ?>"><?php echo Mage::helper('inventory/warehouse')->selectboxWarehouseShipmentByPid($productId,$_item->getQty(),$_item->getOrderItemId()); ?></div></td>
+    <?php if($checkAvailable == true): ?>
+        <td class="last a-center"><span id="span-shipment[items][<?php echo $_item->getOrderItemId() ?>]">
+                <img src="<?php echo Mage::getDesign()->getSkinUrl('images/success_msg_icon.gif', array('_area'=>'adminhtml')); ?> "/>
+                <input type="hidden" id="check-shipment[items][<?php echo $_item->getOrderItemId() ?>]" value="1" />
+            </span></td>
+    <?php else:
+            $warehouseId = Mage::helper('inventory/warehouse')->getFirstWarehouseHaveMostOfAProduct($productId);
+            $checkWaittingForTransfer = Mage::helper('inventory/inventoryshipment')
+                ->checkOrderItemWaittingFortransfer($_item->getOrderItemId(),$productId,$orderId,$warehouseId);
+            if($checkWaittingForTransfer == false):
+            ?>
+            <td class="last a-center">
+                <span id="span-shipment[items][<?php echo $_item->getOrderItemId() ?>]">
+                    <img src="<?php echo Mage::getDesign()->getSkinUrl('images/error_msg_icon.gif', array('_area'=>'adminhtml')); ?> "/>
+                    <input type="hidden" id="check-shipment[items][<?php echo $_item->getOrderItemId() ?>]" value="0" />
+                    <button type="button"  onclick="tinyboxopen('<?php echo $_item->getOrderItemId() ?>','<?php echo $productId; ?>','<?php echo "warehouse-shipment[items][".$_item->getOrderItemId()."]";//$warehouseId ?>','<?php echo $minQty; ?>','<?php echo $orderId; ?>');"  class="scalable" type="button" ><span><?php echo  $this->helper('inventory')->__('Need to Receive Stock') ?></span></button>
+                </span>
+            </td>
+            <script>checkExistNeedTransfer = true;</script>
+            <?php else: ?>
+            <td class="a-center last">
+                <span id="span-shipment[items][<?php echo $_item->getOrderItemId() ?>]">
+                    <img src="<?php echo Mage::getDesign()->getSkinUrl('images/error_msg_icon.gif', array('_area'=>'adminhtml')); ?> "/>  <span ><?php echo  $this->helper('inventory')->__(' Waitting for transfer'); ?></span><br/>  
+                    <input type="hidden" id="check-shipment[items][<?php echo $_item->getOrderItemId() ?>]" value="0" />
+                    <button type="button"  onclick="tinyboxopen('<?php echo $_item->getOrderItemId() ?>','<?php echo $productId; ?>','<?php echo "\'warehouse-shipment[items][".$_item->getOrderItemId()."]\'";//$warehouseId ?>','<?php echo $minQty; ?>','<?php echo $orderId; ?>');"   class="scalable" type="button" ><span><?php echo  $this->helper('inventory')->__('Continue new transfer'); ?></span></button>
+                </span>
+            </td>
+            <script>checkExistNeedTransfer = true;</script>
+            <?php endif; ?>
+    <?php        endif; ?>
+        
+    <?php if (!$this->canShipPartiallyItem()): ?>
+    <td class="a-center">
+        <input type="hidden" name="shipment[items][<?php echo $_item->getOrderItemId() ?>]" value="0" />
+        <input type="checkbox" name="shipment[items][<?php echo $_item->getOrderItemId() ?>]" value="<?php echo $_item->getQty()*1 ?>" checked />
+    </td>
+    <?php endif; ?>
+</tr>
+
+<?php  if(count($arrQtyAllProductOrderItem[$productId]) <= 1):   ?>
+<script>
+    Event.observe($("warehouse-shipment[items][<?php echo $_item->getOrderItemId() ?>]"),'change', function(){
+        var productId = '<?php echo $productId ?>';
+        var orderid = '<?php echo $orderId; ?>';
+        var warehouseId = $("warehouse-shipment[items][<?php echo $_item->getOrderItemId() ?>]").value;
+        var qtyToShip = $$('[name="shipment[items][<?php echo $_item->getOrderItemId() ?>]"]')[0].value ;
+        var orderItemId = '<?php echo $_item->getOrderItemId() ?>';
+        checkStatusAvailableAOrderItemByEvent(warehouseId,productId,qtyToShip,orderItemId,orderid,qtyToShip);
+        });
+        
+    Event.observe($("shipment[items][<?php echo $_item->getOrderItemId() ?>]"),'keyup', function(){  
+        if($("shipment[items][<?php echo $_item->getOrderItemId() ?>]") && $("shipment[maxitems][<?php echo $_item->getOrderItemId() ?>]"))
+            if(parseInt($("shipment[items][<?php echo $_item->getOrderItemId() ?>]").value) > parseInt($("shipment[maxitems][<?php echo $_item->getOrderItemId() ?>]").value))
+                $("shipment[items][<?php echo $_item->getOrderItemId() ?>]").value = $("shipment[maxitems][<?php echo $_item->getOrderItemId() ?>]").value;
+            
+        var productId = '<?php echo $productId ?>';
+        var orderid = '<?php echo $orderId; ?>';
+        var warehouseId = '';
+        var qtyToShip = '';
+        if($("warehouse-shipment[items][<?php echo $_item->getOrderItemId() ?>]"))
+            var warehouseId = $("warehouse-shipment[items][<?php echo $_item->getOrderItemId() ?>]").value;
+        var qtyToShip = $$('[name="shipment[items][<?php echo $_item->getOrderItemId() ?>]"]')[0].value ;
+        var orderItemId = '<?php echo $_item->getOrderItemId() ?>';
+        if(warehouseId)
+            checkStatusAvailableAOrderItemByEvent(warehouseId,productId,qtyToShip,orderItemId,orderid,qtyToShip);
+    });
+</script>
+<?php else:   ?>
+    <script>
+            Event.observe($("warehouse-shipment[items][<?php echo $_item->getOrderItemId() ?>]"),'change', function(){
+                var minQty = 0;
+                <?php foreach ($arrQtyAllProductOrderItem[$productId] as $orderItemId => $qty):     ?>
+                    var qtyToShip = $$('[name="shipment[items][<?php echo $orderItemId ?>]"]')[0].value ;
+                    minQty += parseInt(qtyToShip);
+                    var productId = '<?php echo $productId ?>';
+                    var orderid = '<?php echo $orderId; ?>';
+                    var warehouseId = $("warehouse-shipment[items][<?php echo $orderItemId ?>]").value;
+                    var orderItemId = '<?php echo $orderItemId ?>';
+                    checkStatusAvailableAOrderItemByEvent(warehouseId,productId,minQty,orderItemId,orderid,minQty);
+                <?php endforeach; ?>     
+            });           
+        Event.observe($("shipment[items][<?php echo $_item->getOrderItemId() ?>]"),'keyup', function(){
+            var minQty2 = 0;
+            <?php foreach ($arrQtyAllProductOrderItem[$productId] as $orderItemId => $qty):   ?>
+                    var qtyToShip = $$('[name="shipment[items][<?php echo $orderItemId ?>]"]')[0].value ;
+                    minQty2 += parseInt(qtyToShip);
+                    var productId = '<?php echo $productId ?>';
+                    var orderid = '<?php echo $orderId; ?>';
+                    var warehouseId = $("warehouse-shipment[items][<?php echo $orderItemId ?>]").value;
+                    var orderItemId = '<?php echo $orderItemId ?>';
+                    checkStatusAvailableAOrderItemByEvent(warehouseId,productId,minQty2,orderItemId,orderid,minQty2);
+            <?php   endforeach; ?>
+                    });            
+        </script>
+<?php  endif;   ?>

@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+	    <system translate="title" module="system">
+			<children>
+				<webservice translate="title" module="webservice">
+					<title>Webservice Maintenance</title>
+					<sort_order>10</sort_order> 
+					<children>
+						<managetoken>
+							<title>Manage Token</title>
+							<sort_order>2</sort_order>
+							<action>webservice/adminhtml_managetoken</action>
+						</managetoken>
+						<connectionlogs>
+							<title>Connection Logs</title>
+							<sort_order>3</sort_order>
+							<action>webservice/adminhtml_connectionlogs</action>
+						</connectionlogs>
+
+					</children>
+				</webservice>	
+			</children>
+        </system>
+    </menu>
+	
+	
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>				
+					<system translate="title" module="system">
+						<children>
+							<webservice translate="title" module="webservice">
+								<title>Webservice Webservice</title>
+								<children>
+									<managetoken translate="title" module="webservice">
+										<title>Manage Token</title>
+									</managetoken>
+									
+									<connectionlogs translate="title" module="webservice">
+										<title>Connection Logs</title>
+									</connectionlogs>
+								</children>
+							</webservice>
+						</children>
+					</system>	
+				</children>
+			</admin>
+		</resources>   
+	</acl>
+	
+	
+	<adminhtml>
+        <layout>
+            <updates>
+                <webservice>
+                    <file>webservice.xml</file>
+                </webservice>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>

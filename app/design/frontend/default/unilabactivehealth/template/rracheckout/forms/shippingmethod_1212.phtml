@@ -1,0 +1,146 @@
+<?php
+
+// This page is create by Richel R. Amante for UNILAB use only.
+// Please do not used this software or take with your own risk.
+// Thank you!!!
+
+?>
+
+<?php
+
+	$shipppingAddress  = Mage::getSingleton('core/session')->getShippingadd();
+	$customerAddressId = Mage::getSingleton('core/session')->getdefaultbillingaddress();
+	$storeId = Mage::app()->getStore()->getStoreId();
+	
+?>
+
+<div class="shipping_method_wraper">
+	<div class="heading">
+		<div class="cls_number"><?php echo $this->__('2.') ?></div>
+		<h1 class="cls_header"><?php echo $this->__('Shipping Method') ?></h1>
+	</div>
+	<div class="cls_body">			
+		<div class="shipping_list">
+		
+			<?php 
+			
+			if($this->helper('customer')->isLoggedIn()):
+				
+			?>
+		
+			<form action="" id="shipping-method-form">
+				<ul>
+				<?php
+					//*** GEt active shipping method					
+					$methods 		=	Mage::getSingleton('shipping/config')->getActiveCarriers();
+					$methodCount 	=  count($methods);
+
+					foreach($methods as $_ccode => $_carrier):
+						if($_methods = $_carrier->getAllowedMethods()):
+							
+							if(!$_title = Mage::getStoreConfig("carriers/$_ccode/title"))
+								$_title = $_ccode;
+								foreach($_methods as $_mcode => $_method):
+								
+									$_shippingCode = $_ccode . '_' . $_mcode;	
+								
+									$destination = Mage::getStoreConfig("carriers/$_ccode/destinations");
+								
+									$destinationcode = explode(',',$destination);
+									
+									foreach($destinationcode as $_destination){
+										
+										$shipmedthod = $_ccode . '_' . $_destination;
+										
+										if($shipppingAddress['shipping_method'] == $shipmedthod){
+											
+											$_shippingCode = $shipmedthod;											
+										}
+									} 
+									?>
+									
+									<li class="checkout">
+<!-- 										<input  name="shippingmethod" value="<?php echo $_shippingCode ?>" <?php if($methodCount == 1): echo 'checked="true" style="display:none;"';  elseif ($shipppingAddress['shipping_method'] == $_shippingCode): echo 'checked'; endif;?> id="<?php echo $_shippingCode ?>"  type="radio" class="shipping_method" /> -->
+										<input  name="shippingmethod" value="<?php echo $_shippingCode ?>" checked="true" id="<?php echo $_shippingCode ?>"  type="radio" class="shipping_method" />
+
+										<label for="<?php echo $_shippingCode ?>">&nbsp;<?php echo $_title ?></label>								
+										<ul>
+											<li>
+												<div id="<?php echo $_shippingCode ?>_name" <?php if ($shipppingAddress['shipping_method'] == $_shippingCode): echo 'style="display: block; padding-left:20px;  color: #123464;"'; else:  echo 'style="display: block; padding-left:20px;"'; endif;?> class="shipping_desc">
+													<i><span id="amt_<?php echo $_shippingCode?>"> <?php if ($shipppingAddress['shipping_method'] == $_shippingCode): echo str_replace($_title. ' -','',$shipppingAddress['shipping_description']) .' - '. Mage::helper('core')->currency($shipppingAddress['shipping_amount'],true,false); endif;?>  </span></i>
+												</div>
+											</li>
+											<li>
+												<p id="<?php echo $_shippingCode ?>_loading" style="display:none; padding-left:20px; font-size:12px;" class="shipping_desc">
+												<span style="display:inline-block;position: relative;top: -5px;"><i><?php echo $this->__('Updating method. Please wait') ?></i></span>
+												<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)?>wysiwyg/ajax-loader.gif" alt="loading" style="width:100%; height:10px; display:inline-block; position: relative; top: -7px;" />
+												</p>
+											</li>
+
+
+										</ul>	
+
+									</li>							
+									<?php 
+								endforeach;
+							endif;
+					endforeach;					
+				?>
+				</ul>
+			</form>
+			<?php
+			
+			else:
+				echo 'No available quotation. Please login or set your billing address.';
+			
+			endif;
+
+			?>
+		</div>
+	</div>
+</div>
+
+<script>
+	jQuery(document).ready(function (){	
+		// jQuery('.shipping_method').click(function() {		
+
+			
+			// jQuery('.shipping_desc').hide();
+			jQuery('#'+jQuery(this).val()+'_name').show();
+			jQuery('#'+jQuery(this).val()+'_loading').show();
+			jQuery('#submit_btn').attr('disabled',true);
+			jQuery('#amt_'+jQuery(this).val()+'').html('');
+						
+			var paymentname = jQuery(this).val();			
+			var paymentdata = jQuery("#shipping-method-form").serialize();
+			
+			jQuery.post( '<?php echo Mage::getBaseUrl();?>rracheckout/shippingrate/shippingcost/', 
+		
+				paymentdata,
+
+			function (paymentdataret)
+			{
+				var dataobj = jQuery.parseJSON(paymentdataret);
+				
+				if(dataobj.success == true)
+				{
+					jQuery('#amt_'+dataobj.carrier_code+'').html(dataobj.carrier_method_title + ' - ' + dataobj.shippingrate);
+					jQuery('.shipping_name').html(dataobj.carrier_title + ' - ' + dataobj.carrier_method_title);
+					jQuery('.shipping_amount').html(dataobj.shippingrate);
+					jQuery('.grand_total').html(dataobj.grandTotal);
+					jQuery('.tax_amount').html(dataobj.taxAmount);					
+					jQuery('#'+paymentname+'_loading').hide();
+					jQuery('#submit_btn').removeAttr('disabled');
+					// location.reload(true);
+				}
+				else
+				{
+					jQuery('#submit_btn').attr('disabled',true);
+					jQuery('#'+paymentname+'_loading').hide();
+				}
+
+			});					
+			
+		// });
+	});
+</script>

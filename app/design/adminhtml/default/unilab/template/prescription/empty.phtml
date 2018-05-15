@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+<?php //$this->getChild('head')->unsetChildren(); ?>
+<?php echo $this->getChildHtml('head'); ?>
+</head>
+<body class="page-popup<?php echo $this->getBodyClass()?$this->getBodyClass() : ''?>">
+<div>
+    <?php echo $this->getChildHtml('after_body_start') ?>
+    <?php echo $this->getChildHtml('global_notices') ?>
+     <div id="page:main-container">
+            <?php if($this->getChildHtml('left')): ?>
+			<div class="columns <?php echo $this->getContainerCssClass() ?>">
+				<div class="side-col" id="page:left">
+					<?php echo $this->getChildHtml('left') ?>
+				</div>
+				<div style="margin-left: 220px;min-height: 150px;padding-bottom: 25px;padding-left: 25px;padding-right: 0;padding-top: 0;" id="content">
+					<div class="main-col-inner">
+						<div id="messages"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+						<?php echo $this->getChildHtml('content') ?>
+					</div>
+				</div>
+			</div>
+		<?php else: ?>
+			<div id="messages"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+			<?php echo $this->getChildHtml('content') ?>
+		<?php endif; ?>
+		</div>
+    <?php echo $this->getChildHtml('before_body_end') ?>
+</div>
+<?php echo $this->getAbsoluteFooter() ?>
+</body>
+</html> 

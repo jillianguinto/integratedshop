@@ -1,0 +1,27 @@
+<?php if($this->getIsHidden()):?>
+	<div style="display:none;" id="inquiry-form-doctor-wrapper">
+<?php endif;?> 
+<script>
+	var docInquiryForm 	= new VarienForm('inquiryDoctor');  
+</script>
+
+<div class="inquiry_type_wrapper">
+	<h3><?php echo $this->__("To the Pharmacist:");?></h3>
+    <form name="inquiryDoctor" action="<?php echo $this->getFormAction(); ?>" id="inquiryDoctor" method="post">
+		<input type="hidden" name="type" value="<?php echo $this->getCode();?>">			
+		<p><?php echo $this->__("Please type your concern(s) here:");?></p>
+		<textarea name="comment" class="required-entry validate-length minimum-length-15 maximum-length-1000"></textarea>	
+		<div style="text-align:right;margin-top:10px;">
+			<input type="button" class="button" id="close_inquiry_box" value="Cancel"> &nbsp;
+			<input type="button" class="button" onclick="docInquiryForm.submit();"  value="Submit">
+		</div>
+	</form>
+</div>	
+
+<script>
+	jQuery(document).ready(function($){
+		$("#close_inquiry_box").click(function(){		
+			$.fancybox.close();
+		});
+	});	
+</script>

@@ -1,0 +1,93 @@
+<?php
+	$storeId = 1; 	
+	$store_name = Mage::app()->getStore($storeId)->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);		
+	$rooturl = $store_name.'media/catalog/product/';	
+	$_product=Mage::getModel('catalog/product')->load($this->getRequest()->getParam('productid'));
+?>
+
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/liviacor/liviacor.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/liviacor/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/liviacor/template.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/liviacor/custom.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/styles.css" type="text/css" />
+
+<style>
+.product-shop{
+    margin: 30px 30px 0px 30px; 
+}
+
+.product-name{
+    color: #A61008 !important;
+}
+
+body {
+    background-color: transparent !important;
+	font-family: "timesnewroman";
+}
+
+</style>
+
+
+<div class="body">
+
+			
+						
+			<div class="row-fluid">
+				<main id="content" role="main" class="span12">
+				<!-- Begin Content -->
+					
+				<div id="system-message-container">
+				</div>
+
+
+				<div class="items-leading clearfix">
+				
+				<div class="product-shop">
+				
+					<div class="product-name">
+						<h1><?php echo $_product->getName(); ?></h1>
+					</div>
+					
+					<div class="generic-name">
+						<?php echo $_product->getGenericName(); ?>
+					</div>
+				</div>
+				
+				<div class="add-to-wl">
+
+					<?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
+
+					<ul class="add-to-links">
+
+					<?php if ($this->helper('wishlist')->isAllow()) : ?>
+
+						<li><a href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submit(this, this.href); return false;" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+
+					<?php endif; ?>
+
+					<?php
+
+						$_compareUrl = $this->helper('catalog/product_compare')->getAddUrl($_product);
+
+					?>
+
+					<?php if($_compareUrl) : ?>
+
+						<?php /*<li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>*/ ?>
+
+					<?php endif; ?>
+
+					</ul>
+
+				</div>
+					
+					
+					
+				</div><!-- end items-leading -->
+	
+
+				<!-- End Content -->
+				</main>
+			</div>
+
+</div>

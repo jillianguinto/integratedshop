@@ -1,0 +1,57 @@
+<!--div class="discount_banner">
+
+<!--img src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA) ?>wysiwyg/35off-banner.png"  style="border: 1px solid rgb(222, 221, 221);
+margin-bottom: 10px;width: 100%;" alt="35% Discount" /-->
+	
+</div-->
+
+
+<style>
+
+.carousel_wrapper {
+    width: 700px !important;
+    border: solid #162161 1px;
+    margin-top: 0 !important;
+}
+.next, .prev{
+	display:none;
+}
+
+.homepage-banner-ads {
+    width: 700px !important;
+}
+</style>
+
+<script type="text/javascript" src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_JS)?>jquery/jcarousellite_1.0.1.min.js"></script>
+
+<div class="carousel_wrapper">
+	<button class="prev button">&laquo;</button>
+		<div class="homepage-banner-ads">
+			<ul>
+				<li><a><img src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA)?>wysiwyg/35off-banner.png" alt="" width="700" height="105" /></a></li>
+				
+				<li><a><img src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA)?>wysiwyg/1355362963_c_Hydration.png" alt="" width="700" height="105"/></a></li>
+				<li><a><img src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA)?>wysiwyg/1355362980_c_AdvanceAnti-Aging.png" alt="" width="700" height="105"/></a></li>
+				<li><a><img src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA)?>wysiwyg/1355363066_c_AcneSolution.png" alt="" width="700" height="105"/></a></li>
+				<li><a><img src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA)?>wysiwyg/maternity.png" alt="" width="700" height="105" /></a></li>				
+				<li><a><img src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA)?>wysiwyg/c_bnr_01.jpg" alt="" width="700" height="105" /></a></li>				
+				<li><a><img src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA)?>wysiwyg/1355363014_c_Suncare.png" alt="" width="700" height="105" /></a></li>
+				<li><a><img src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA)?>wysiwyg/1355363048_c_Restorative.png" alt="" width="700" height="105" /></a></li>
+				<li><a><img src="<?php echo Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA)?>wysiwyg/hair-scalp-care.png" alt="" width="700" height="105" /></a></li>
+			</ul>
+		</div>
+	<button class="next button">&raquo;</button>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+// <![CDATA[ 
+		jQuery(function($){
+			$(".homepage-banner-ads").jCarouselLite({
+				btnNext: ".next",
+				btnPrev: ".prev",
+				scroll: 1,
+				auto: 5000,
+				circular: true
+			});
+		}); 
+// ]]></script>

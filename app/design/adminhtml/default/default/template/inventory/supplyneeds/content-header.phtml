@@ -1,0 +1,307 @@
+<?php
+$requestData = Mage::helper('adminhtml')->prepareFilterString($this->getRequest()->getParam('top_filter'));
+$warehouseId = $requestData['warehouse_select'];
+$supplierId = $requestData['supplier_select'];
+$datefrom = $requestData['date_from'];
+$dateto = $requestData['date_to'];
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="<?php echo $this->getHeaderWidth() ?>"><?php echo $this->getHeaderHtml() ?></td>
+            <td class="form-buttons"><?php echo $this->getButtonsHtml() ?></td>
+        </tr>
+    </table>
+</div>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Select criteria to forecast supply needs') ?></h4>
+    </div>
+    <div id="date_picker_form" class="fieldset ">
+        <div  class="input-box">
+            <form method="POST" id="supplyneeds_form_submit" action="<?php echo Mage::helper("adminhtml")->getUrl('inventoryadmin/adminhtml_purchaseorder/new', array('_current' => true)) ?>"
+                  <table cellspacing="0">
+                    <tr>
+                        <td><label><?php echo $this->__('From:') ?></label>
+                            &nbsp; &nbsp;
+                            <input name="date_from" id="date_from" type="text" size="30" onchange="checkDateFrom()" value="<?php echo $datefrom; ?>">
+                            <img title="Date from" id="btn-date-from" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle">
+                            &nbsp; &nbsp;
+                        </td>
+                        <td><label><?php echo $this->__('To:') ?></label>
+                            &nbsp; &nbsp;
+                            <input name="date_to" id="date_to" type="text" onchange="checkDateTo()" size="30" value="<?php echo $dateto; ?>">
+                            <img title="Date to" id="btn-date-to" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle">
+                            &nbsp; &nbsp;
+                        </td>
+                        <td>&nbsp;<label style="font-size:13px"><?php echo $this->__('Warehouse') ?></label></td>
+                        <td>&nbsp;<label style="font-size:13px"><?php echo $this->__('') ?></label>&nbsp;</td>
+                        <td>
+                            <select name="warehouse_select" id="warehouse_select" style="width: 120px">
+                                <option value=""><?php $this->__('All') ?></option>
+                                <?php
+                                $model = Mage::getModel('inventory/warehouse');
+                                $collection = $model->getCollection();
+                                foreach ($collection as $warehouse) {
+                                    if ($warehouse->getId() == $warehouseId):
+                                        ?>
+                                        <option selected value="<?php echo $warehouse->getId() ?>"><?php echo $warehouse->getName(); ?></option>
+                                    <?php else: ?>
+                                        <option value="<?php echo $warehouse->getId() ?>"><?php echo $warehouse->getName(); ?></option>   
+                                    <?php endif; ?>
+                                <?php } ?>
+
+                            </select>
+                            &nbsp; &nbsp;
+                        </td>
+
+                        <td>&nbsp;<label style="font-size:13px"><?php echo $this->__('Supplier') ?></label></td>
+                        <td>&nbsp;<label style="font-size:13px"><?php echo $this->__('') ?></label>&nbsp;</td>
+                        <td>
+                            <select name="supplier_select" id="supplier_select" style="width: 120px">
+                                <option value=""><?php $this->__('All') ?></option>
+                                <?php
+                                $model = Mage::getModel('inventory/supplier');
+                                $collection = $model->getCollection();
+                                foreach ($collection as $supplier) {
+                                    if ($supplier->getId() == $supplierId):
+                                        ?>  
+                                        <option selected value="<?php echo $supplier->getId() ?>"><?php echo $supplier->getName(); ?></option>
+                                    <?php else: ?>
+                                        <option value="<?php echo $supplier->getId() ?>"><?php echo $supplier->getName(); ?></option>
+                                    <?php endif; ?>
+                                <?php } ?>
+
+                            </select>
+                            <input type="hidden" name="product_list" id="product_list" value="" />
+                            <button onclick="filterForm();return false;" ><?php echo $this->__('Show Supply Needs'); ?></button>
+                            <input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>">
+                        </td>
+
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <?php echo $this->getGridHtml() ?>
+</div>
+
+<script type="text/javascript">
+    //<![CDATA[
+    Calendar.setup({
+        inputField : 'date_from',
+        ifFormat : "%d-%m-%Y",
+        daFormat : "%d-%m-%Y",
+        button : 'btn-date-from',
+        align : 'Bl',
+        singleClick : true,
+        disableFunc: function(date) {
+            var now= new Date();
+            if(date.getFullYear()<now.getFullYear())
+            {
+                return true;
+            }
+            if(date.getFullYear()==now.getFullYear())
+            {
+                if(date.getMonth()<now.getMonth())
+                {
+                    return true;
+                }
+            }
+            if(date.getMonth()==now.getMonth())
+            {
+                if(date.getDate()<now.getDate()-1)
+                {
+                    return true;
+                }
+            }
+        }
+    });
+    Calendar.setup({
+        inputField : 'date_to',
+        ifFormat : "%d-%m-%Y",
+        daFormat : "%d-%m-%Y",
+        button : 'btn-date-to',
+        align : 'Bl',
+        singleClick : true,
+        disableFunc: function(date) {
+            var now= new Date();
+            if(date.getFullYear()<now.getFullYear())
+            {
+                return true;
+            }
+            if(date.getFullYear()==now.getFullYear())
+            {
+                if(date.getMonth()<now.getMonth())
+                {
+                    return true;
+                }
+            }
+            if(date.getMonth()==now.getMonth())
+            {
+                if(date.getDate()<now.getDate()-1)
+                {
+                    return true;
+                }
+            }
+        }
+    });
+    //]]>
+    
+    //    function changeFilter(){
+    //        var url = '<?php echo $this->getUrl('inventoryadmin/adminhtml_supplyneeds/index') ?>';
+    //        if($("warehouse_select").value){
+    //            url = url + 'warehouse_id/'+$("warehouse_select").value;
+    //            if($("supplier_select").value){
+    //                url = url + '/supplier_id/'+$("supplier_select").value;
+    //                if($("date_select").value){
+    //                    url = url + '/date-select/'+$("date_select").value;
+    //                }
+    //            }
+    //            if($("date_select").value){
+    //                url = url + '/date_select/'+$("date_select").value;
+    //                if($("supplier_select").value){
+    //                    url = url + '/supplier_id/'+$("supplier_select").value;
+    //                }
+    //            }
+    //        }
+    //        else if($("date_select").value){
+    //            url = url + 'date_select/'+$("date_select").value;
+    //            if($("supplier_select").value){
+    //                url = url + 'supplier_id/'+$("supplier_select").value;
+    //                if($("warehouse_select").value){
+    //                    url = url + '/warehouse_id/'+$("warehouse_select").value;
+    //                }
+    //            }
+    //            if($("warehouse_select").value){
+    //                url = url + '/warehouse_id/'+$("warehouse_select").value;
+    //                if($("supplier_select").value){
+    //                    url = url + '/supplier_id/'+$("supplier_select").value;
+    //                }
+    //            }
+    //        }
+    //        else if($("supplier_select").value){
+    //            url = url + 'supplier_id/'+$("supplier_select").value;
+    //            if($("date_select").value){
+    //                url = url + '/date-select/'+$("date_select").value;
+    //                if($("warehouse_select").value){
+    //                    url = url + '/warehouse_id/'+$("warehouse_select").value;
+    //                }
+    //            }
+    //            if($("warehouse_select").value){
+    //                url = url + '/warehouse_id/'+$("warehouse_select").value;
+    //                if($("date_select").value){
+    //                    url = url + '/date_select/'+$("date_select").value;
+    //                }
+    //            }
+    //        }
+    //        window.location.href = url;
+    //    }
+
+    function filterForm() {
+        if($('date_to').value == ''){
+            alert('Please select a time period to calculate supply needs!');
+            return false;
+        }
+        var filters = new Array();
+        filters[0] = $('date_from');
+        filters[1] = $('date_to');
+        filters[2] = $('warehouse_select');
+        filters[3] = $('supplier_select');
+        var elements = [];
+        for(var i in filters){
+            if(filters[i].value && filters[i].value.length && !filters[i].disabled) elements.push(filters[i]);
+        }
+        var validator  = new Validation('supplyneeds_form_submit');
+        if (validator.validate()) {
+            window.location.href = '<?php echo $this->getUrl('inventoryadmin/adminhtml_supplyneeds/index'); ?>top_filter/'+encode_base64(Form.serializeElements(elements))+'/';
+        }
+        return;
+    }
+    
+    function createPurchaseOrder(){
+        if($('supplier_select').value == ''){
+            alert('Please select a supplier before creating a new purchase order.');
+            return false;
+        }
+        url = '<?php echo Mage::helper("adminhtml")->getUrl('inventoryadmin/adminhtml_purchaseorder/new'); ?>';
+        $('supplyneeds_form_submit').action = url;
+        supplyNeedsGrid.storeLogInTargetInput();
+        if($('product_list').value)
+            $('supplyneeds_form_submit').submit();
+        else
+            alert('Please enter Qty. needed purchasing for 1 product at least!');
+    }
+    
+    function exportCsv(){
+        url = $('supplyneeds_form_submit').action+'export/1';
+        $('supplyneeds_form_submit').action = url;
+        supplyNeedsGrid.storeLogInTargetInput();
+        if($('product_list').value){
+            $('supplyneeds_form_submit').submit();
+        }else{
+            alert('Please enter QTY for 1 product at least!');
+        }       
+    }
+    
+    function checkDateFrom(){
+        var now = new Date();
+        var picked = $('date_from').value;
+        var data = picked.split("-");
+        var newdate = data[2] + "-" + data[1] + '-' +data[0];
+        var pick = new Date(newdate);
+        if(pick.getFullYear()<now.getFullYear())
+        {
+            alert('Wrong date picked');
+            $('date_from').value = '';
+        }
+        if(pick.getFullYear()==now.getFullYear())
+        {
+            if(pick.getMonth()<now.getMonth())
+            {
+                alert('Invalid selected time. Please choose a current or future date.');
+                $('date_from').value = '';
+            }
+        }
+        if(pick.getMonth()==now.getMonth())
+        {
+            if(pick.getDate()<now.getDate()-1)
+            {
+                alert('Wrong date picked');
+                $('date_from').value = '';
+            }
+        }
+    }
+    
+    function checkDateTo(){
+        var now = new Date();
+        var picked = $('date_to').value;
+        var data = picked.split("-");
+        var newdate = data[2] + "-" + data[1] + '-' +data[0];
+        var pick = new Date(newdate);
+        if(pick.getFullYear()<now.getFullYear())
+        {
+            alert('Wrong date picked');
+            $('date_to').value = '';
+        }
+        if(pick.getFullYear()==now.getFullYear())
+        {
+            if(pick.getMonth()<now.getMonth())
+            {
+                alert('Wrong date picked');
+                $('date_to').value = '';
+            }
+        }
+        if(pick.getMonth()==now.getMonth())
+        {
+            if(pick.getDate()<now.getDate()-1)
+            {
+                alert('Wrong date picked');
+                $('date_to').value = '';
+            }
+        }
+    }
+</script>

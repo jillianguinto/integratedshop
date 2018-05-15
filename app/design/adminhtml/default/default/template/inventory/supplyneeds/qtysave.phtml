@@ -1,0 +1,70 @@
+<?php
+    $collection = Mage::registry('supplyneeds_collection');
+?>
+<script type="text/javascript">
+    //<![CDATA[
+    supplyNeedsGrid = new supplyneedsGridControl(supplyneedsGridJsObject, 'product_list', 'qty_', '');
+    function calMax(productId){
+        var max = parseInt($("max_need_"+productId).innerHTML);
+        if(max > 0){
+            $("qty_"+productId).value = max;
+            supplyNeedsGrid.logChange('qty_'+productId,'');
+        }
+        else
+            $("qty_"+productId).value = '';
+    }
+
+    function calMin(productId){
+        var min = parseInt($("min_need_"+productId).innerHTML);
+        if(min > 0){
+            $("qty_"+productId).value = min;
+            supplyNeedsGrid.logChange('qty_'+productId,'');
+        }
+        else
+            $("qty_"+productId).value = '';
+    }
+    
+    function isNumber(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+
+    function fillAllMin(){
+        var ids = supplyNeedsGrid.getIds();
+        var id;
+        for (var i=0; i < ids.length; i++)
+        {
+            id =  ids[i];
+            if (isNumber(id))
+            {
+                var minValue = parseInt($('min_need_' + id).innerHTML);
+                if(minValue > 0){
+                    $('qty_' + id).value = minValue;
+                    supplyNeedsGrid.logChange('qty_' + id, '');
+                }else{
+                    $('qty_' + id).value = '';
+                }
+            }
+        }
+    }
+    
+    function fillAllMax(){
+        var ids = supplyNeedsGrid.getIds();
+        var id;
+        for (var i=0; i < ids.length; i++)
+        {
+            id =  ids[i];
+            if (isNumber(id))
+            {
+                var maxValue = parseInt($('max_need_' + id).innerHTML);
+                if(maxValue > 0){
+                    $('qty_' + id).value = maxValue;
+                    supplyNeedsGrid.logChange('qty_' + id, '');
+                }else{
+                    $('qty_' + id).value = '';
+                }
+            }
+        }
+    }
+    
+    //]]>
+</script>

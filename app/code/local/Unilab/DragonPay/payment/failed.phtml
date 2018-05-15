@@ -1,0 +1,13 @@
+<div class="page-title">
+    <h1><?php echo $this->__('Payment Transaction Failed') ?></h1>
+</div>
+<div class="checkout-success">
+    
+    <p><b><?php echo $this->__('Your transaction with DragonPay has failed.')?></b></p>
+   
+	<p><b><?php echo $this->__('You may click on <a href="'.Mage::getUrl('customer/account').'">'.$this->__('My Account').'</a> to view details of your order.</span>')?></b></p>
+	
+    <div class="buttons-set">
+        <button type="button" class="button" title="<?php echo $this->__('Continue Shopping') ?>" onclick="window.location='<?php echo Mage::getUrl() ?>'"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+    </div>
+</div>

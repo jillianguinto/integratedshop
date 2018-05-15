@@ -1,0 +1,197 @@
+<div class="slider-container">
+    <img src="<?php echo $this->getSkinUrl('images/slider-background.jpg'); ?>" />
+</div>
+
+<div id="loading-icon">
+	<img src="<?php echo $this->getSkinUrl('images/ajax-loader.gif');?>">
+</div>
+
+<?php 
+    $currentUrl = Mage::helper('core/url')->getCurrentUrl(); 
+    $baseurl = Mage::getBaseUrl();
+    $buttonTitle = $this->__('Add to Cart');
+?>
+<script type="text/javascript">
+    var baseurl = "<?php echo $baseurl;?>";
+</script>
+
+<input type="hidden" class="counter" value="">
+<section id="demos">
+	<div class="">
+		<div class="large-12 columns">
+			<div class="owl-carousel owl-theme" style="display:none;">
+        	
+			<?php 
+				$_productCollection = Mage::getModel('catalog/product')
+                        ->getCollection()
+                        ->addAttributeToSort('unilab_sort', 'DESC')
+						->addAttributeToSort('entity_id', 'DESC')
+                        ->addAttributeToSelect('*')
+						->addAttributeToFilter('status', 1)
+						->addAttributeToFilter('visibility', 4) 
+						->setPageSize(10)
+                        ->load();
+						
+				//echo $_productCollection->getSelect();
+
+				$slider_content_num = count($_productCollection);
+
+				foreach ($_productCollection as $_product) 
+				{
+					$productid 	 = $_product->getId();
+					$imgurl 	 = $_product->getImageUrl(); 
+					
+					$producturl  = $baseurl.$_product->getUrlPath();
+					
+					$productname = $_product->getName();
+					$genericname = $_product->getGenericName();
+					//$price		 = Mage::helper('core')->currency($_product->getPrice(),true,false);
+					$price 		= number_format($_product->getPrice(), 2, '.','');
+
+
+            ?>            
+
+					<div class="gallery__item">
+
+						<a href="<?php echo $producturl; ?>" class="gallery__link">
+						<?php
+
+							$imgurl = Mage::helper('catalog/image')->init($_product, 'thumbnail');
+
+							$hide = '';
+							if($genericname == ''){
+							  $hide = 'hide';
+							}
+
+						?>
+							<div class="home-img-card">
+								<img src="<?php echo $imgurl; ?>" width="100%" class="gallery__img" alt="" title="<?php echo $productname; ?>" /><br>
+							</div>
+						</a>
+						   
+						<center>
+							<div class="generic-name-box <?php echo $hide;?>">
+								<div class="generic-text">
+									<?php echo $genericname; ?>
+								</div>
+							</div>
+						</center>
+						   
+						<ul class="item-name-price">
+							<li></li>
+							<li>
+				
+								<div class="health-plus-catalog">
+                                <?php
+
+                                    $storeid            =   Mage::app()->getStore()->getStoreId();
+                                    $healthplusEnabled  = Mage::getStoreConfig('healthplus/healthplussettings/enabled', $storeid);
+                      
+                                    if($healthplusEnabled == '1'){
+
+                                        if(Mage::getConfig()->getModuleConfig('Unilab_Healthplus')->is('active', 'true'))
+                                        {
+                                           $attributeValue = Mage::getModel('catalog/product')
+                                              ->load($productid)
+                                               ->getAttributeText('unilab_healthplus');    
+
+                                           if($attributeValue == 'Yes'){
+                                           ?>
+                                           <a href="<?php echo $producturl; ?>" class="gallery__link">
+                                            <h6><?php echo $productname; ?></h6></a>
+                                          <img src="<?php echo $this->getSkinUrl('images/health-plus-logo.png'); ?>" alt="health plus" class="hp_img"/> <span class="gallery-price">PHP <?php echo $price; ?></span>
+                                          <?php   
+                                           } else{
+                                            ?>
+                                                <h6><?php echo $productname.'</h6></a> <span class="gallery-price">PHP '.$price.'</span>' ?>
+                                            <?php    
+                                           }   
+                                        }
+                                    }else{
+                                        ?>
+                                             <h6><?php echo $productname.'</h6></a> <span class="gallery-price">PHP '.$price.'</span>' ?>
+                                        <?php
+                                    }
+
+                                ?>
+                              </div> 
+
+
+
+
+
+							</li>
+						</ul>
+
+						
+						<?php 
+							$login = Mage::getUrl('customer/account/login');
+							$redirect = Mage::getUrl('checkout/cart');
+							
+							if(Mage::getSingleton('customer/session')->isLoggedIn()){ ?>
+
+								<button type="button" id="btncart"  returnId="<?php echo $_product->getId(); ?>" returnName="<?php echo $_product->getName(); ?>" returnUrl="<?php echo Mage::helper('checkout/cart')->getCartUrl(); ?>" viewUrl="<?php echo $_product->getProductUrl() ?>" title="<?php echo $buttonTitle ?>" class="button btn-cart" ><span><?php echo $buttonTitle ?></span></button>
+							
+						<?php } else { ?>
+
+								<button type="button" id="btncart"  returnId="<?php echo $_product->getId(); ?>" returnName="<?php echo $_product->getName(); ?>" returnUrl="<?php echo Mage::getUrl('customer/account/login'); ?>" viewUrl="<?php echo $_product->getProductUrl() ?>" title="<?php echo $buttonTitle ?>" class="button btn-cart" ><span><?php echo $buttonTitle ?></span></button>
+							
+						<?php } ?>
+					   
+					</div>
+      
+				<?php   
+				}        
+				?> 
+
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+<!-- redirect to signin if not logged in -->
+
+
+    
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    jQuery.noConflict();
+
+    jQuery(document).on('click', '#btncart', function() {
+        jQuery('#loading-icon').show();
+        var product = jQuery(this).attr('returnId');
+        var productName = jQuery(this).attr('returnName');
+        var returnUrl = jQuery(this).attr('returnUrl');
+        var view_product = jQuery(this).attr('viewUrl');
+
+        jQuery.ajax({
+            type: 'Post',
+
+            url: baseurl + '/checkout/cart/addtoCart',
+            data: {
+
+                product: product
+
+            },
+        }).done(function(data) {
+
+            var objresponse = jQuery.parseJSON(data);
+
+            if (objresponse.msg == 'success') {
+                //alert(jQuery(this).attr('returnUrl'));
+                window.location = returnUrl;
+
+            } else {
+                //If Failed
+
+                //alert(view_product);
+                window.location = view_product;
+            }
+
+        });
+    });
+});
+/* NOTE: aall JS event that will be added here kindly put it in skin/frontend/default/main2/js/main/main.js - leandro*/
+</script>

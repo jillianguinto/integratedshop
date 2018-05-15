@@ -1,0 +1,116 @@
+<?xml version="1.0"?> 
+<config>
+	<crontab> 
+		 <jobs> 
+			 <Unilab_Webservice> 
+				 <schedule><cron_expr>* * * * *</cron_expr></schedule> 
+				 <run><model>webservice/netsuite_postdata_cronjobs::sendCustomer</model></run>   
+			 </Unilab_Webservice> 
+			
+			 <Unilab_Webservice> 
+				 <schedule><cron_expr>* * * * *</cron_expr></schedule> 
+				 <run><model>webservice/netsuite_postdata_cronjobs::sendOrder</model></run>   
+			 </Unilab_Webservice> 
+		 </jobs> 
+	 </crontab> 
+
+    <modules>
+        <Unilab_Webservice>
+            <version>1.1.0.1</version>
+        </Unilab_Webservice>
+    </modules>
+	
+	<global>	
+        <models>
+            <webservice>
+				<class>Unilab_Webservice_Model</class>
+				<resourceModel>webservice_resource</resourceModel>
+            </webservice>
+			<webservice_resource>
+				<class>Unilab_Webservice_Model_Resource</class>
+                <entities>
+                    <token>
+                        <table>unilab_token</table>
+                    </token> 
+					<connectionlogs>
+                        <table>unilab_connectionlogs</table>
+                    </connectionlogs> 	
+                    <netsuitelogs>
+                        <table>unilab_logs_netsuite</table>
+                    </netsuitelogs> 					
+				</entities>
+			</webservice_resource>
+        </models>
+	
+		<blocks>
+			<webservice>
+				<class>Unilab_Webservice_Block</class>
+			</webservice>
+		</blocks>
+		
+		<helpers>
+			<webservice>
+				<class>Unilab_Webservice_Helper</class>
+			</webservice>
+		</helpers>		
+	</global>
+	
+	<frontend>
+		<routers>
+			<webservice>
+				<use>standard</use>
+				<args>
+					<module>Unilab_Webservice</module>
+					<frontName>webservice</frontName>
+				</args>
+			</webservice>
+		</routers>
+	</frontend>	
+	
+	<admin>
+        <routers>
+            <webservice>
+                <use>admin</use>
+                <args>
+                    <module>Unilab_Webservice</module>
+                    <frontName>webservice</frontName>
+                </args>
+            </webservice>
+        </routers>
+    </admin>  	
+	
+	<adminhtml>
+        <layout>
+            <updates>
+                <webservice>
+                    <file>webservice.xml</file>
+                </webservice>
+            </updates>
+        </layout>        
+    </adminhtml>
+	
+	<adminhtml>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<system>
+							<children>
+								<config>
+									<children>
+										<webservice>
+											<title>Webservice Settings</title>
+										</webservice>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+	</adminhtml>
+</config>

@@ -1,0 +1,70 @@
+ <div class="block-title sidebar-category recentlyadded">
+<strong>
+<span><a class="category-menu-label recentlyadded" title="">Recently Added</a></span>
+</div>
+<div>
+ 				<?php 
+                $items = Mage::getSingleton('checkout/session')->getQuote()->getAllItems();
+                $max = 0;
+                $lastItem = null;
+
+                 $recent_array = array();
+                foreach ($items as $item){
+                    // if ($item->getId() > $max) {
+                    //     $max = $item->getId();
+                    //     $lastItem = $item;
+                    // }
+                    //echo "--</br>".$item->getId();
+                    $_product_recent 		= $item->getProduct();
+                    $product_id_recent 		= $_product_recent->getId();
+                    $product_qty_recent 	= $_product_recent->getQty();
+                   
+                    $recent_array[] 		= $product_id_recent;
+
+                }
+                Mage::getSingleton('customer/session')->setData('items', array($recent_array) );   
+                // if ($lastItem){
+                //     $_product = $lastItem->getProduct();
+                //     $xproductsku = $_product->getSku();
+                   // echo "Paul - pname" .
+                   //  $xproductname = $_product->getName();  
+                              
+                   // $xproductqty = $_product->getQty();  
+                   // $xproductprice = $_product->getPrice();   
+                   // $xproducturl = $_product->getUrl();
+                   // $itemsss = Mage::getSingleton('customer/session')->getData();  
+                   // echo "paul -". $itemsss;
+
+                   //var_dump($itemsss);
+                //}
+                $itemsss = Mage::getSingleton('customer/session')->getData('items');  
+
+                foreach($itemsss as $itemss)
+                {
+                    foreach($itemsss as $itemss){
+                            for($ctr = 0; $ctr <= 2; $ctr++){
+                                $product_id = $itemss[$ctr];
+                                if($product_id){
+                                $product_model = Mage::getModel('catalog/product')->load($product_id);
+                                //echo "-_-".$product_model->getName();
+                                $productname = $product_model->getName();
+                                $productimage = $product_model->getThumbnailUrl();
+                                $productprice = $product_model->getPrice();
+
+                                ?>
+                                
+                                <img class="recentlyadded-img" src="<?php echo $productimage; ?>">
+                                <label><?php echo $productname; ?></label>
+                                </br><label class="recentlyadded-price"><strong>PHP <?php echo number_format($productprice, 2); ?></strong></label>
+                                <button type="button" id="btncart" returnId="<?php echo $product_id; ?>" returnName="<?php echo $productname; ?>" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" ><span><span><?php echo $this->__('Add to Cart') ?></span></span></button> 
+                            	
+                <?php
+                				}
+                            }
+                    }
+
+                }
+
+                ?>
+    </strong>
+</div>

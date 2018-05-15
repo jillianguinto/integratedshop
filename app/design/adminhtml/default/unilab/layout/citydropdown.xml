@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <citydropdown_adminhtml_citydropdown_index>
+        <reference name="content">
+            <block type="citydropdown/adminhtml_citydropdown" name="citydropdown" />
+        </reference>
+    </citydropdown_adminhtml_citydropdown_index>     
+</layout>

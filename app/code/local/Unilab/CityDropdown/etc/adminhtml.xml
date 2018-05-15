@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config> 
+    <menu> 
+		<unilab module="unilab"> 
+			<children>
+				<citydropdown translate="title" module="citydropdown">
+					<title>Manage Philippine Cities</title>
+					<action>citydropdown/adminhtml_citydropdown</action>
+					<sort_order>0</sort_order>
+				</citydropdown>
+			</children>
+		</unilab>  
+    </menu> 
+</config> 

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config>
+    <menu> 
+		<unilab module="unilab">
+			<title>Unilab Modules</title>
+			<sort_order>999</sort_order>
+			<children>
+				<inquiry translate="title" module="inquiry">
+					<title>Manage Inquiry</title>
+					<action>inquiry/adminhtml_inquiry</action>
+					<sort_order>0</sort_order>
+				</inquiry>
+			</children>
+		</unilab>  
+    </menu>
+	 <acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>
+					<Unilab_Inquiry>
+						<title>Inquiry Module</title>
+						<sort_order>10</sort_order>
+					</Unilab_Inquiry>
+				</children>
+			</admin>
+		</resources>
+	</acl> 
+	<layout>
+		<updates>
+			<inquiry>
+				<file>inquiry.xml</file>
+			</inquiry>
+		</updates>
+	</layout>
+</config> 

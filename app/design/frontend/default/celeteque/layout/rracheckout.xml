@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+	<reference name="content"></reference>
+	</default>
+	<rracheckout_checkout_onepage>	
+			
+        <reference name="root">
+            <action method="setTemplate"><template>page/unilab-1column.phtml</template></action>
+        </reference>
+		
+       <reference name="head">
+           <action method="addJs"><script>rracheckout/jquery-1.10.2.min.js</script></action>
+		   <action method="setTitle" translate="title" module="rracheckout"><title>Checkout</title></action>
+		    <!--action method="addCss">
+                <stylesheet>vendor/qtip/jquery.qtip.min.css</stylesheet>
+            </action-->	
+        </reference>	
+		<reference name="content">
+			<block type="rracheckout/rracheckout"  name="rracheckout.rracheckout" template="rracheckout/checkout.phtml">
+				<block type="core/template" name="style_css" template="rracheckout/style.phtml"/>
+				<block type="core/template" name="items" template="rracheckout/items/default.phtml"/>
+				<block type="core/template" name="totals" template="rracheckout/totals/default.phtml"/>
+				<block type="core/template" name="payment_method" template="rracheckout/forms/paymentmethod.phtml"/>
+				<block type="core/template" name="payment_instructions" template="rracheckout/forms/paymentinstructions.phtml"/>
+				<block type="core/template" name="billing_address" template="rracheckout/forms/billingaddress.phtml"/>
+				<block type="core/template" name="shipping_address" template="rracheckout/forms/shippingaddress.phtml"/>
+				<block type="core/template" name="shipping_method" template="rracheckout/forms/shippingmethod.phtml"/>
+				<block type="core/template" name="place_order" template="rracheckout/forms/placeorder.phtml"/>
+			</block>
+
+						
+		</reference>
+	</rracheckout_checkout_onepage>
+</layout>

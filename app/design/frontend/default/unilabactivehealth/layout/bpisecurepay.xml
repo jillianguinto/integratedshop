@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+    </default>
+    <bpisecurepay_process_failed>
+        <reference name="head"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <!-- <template>page/unilab-2columns-left.phtml</template> -->
+                <template>page/unilab-1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="bpisecurepay/failed" name="bpisecurepay.failed" template="bpisecurepay/payment/failed.phtml" />
+        </reference>
+    </bpisecurepay_process_failed>
+</layout> 

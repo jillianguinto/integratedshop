@@ -1,0 +1,59 @@
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Select Time to Create Return Order') ?></h4>
+    </div>
+    <div id="" class="fieldset ">
+        <div style="float:left;width:30%">
+
+            <table cellspacing="0" class="form-list">
+                <tbody>
+                    <tr>               
+                        <td class="value">
+                            <input type="text" style="width:110px !important;" class="required-entry input-text" value="" id="delivery_date" name="delivery_date"> 
+                            <img style="" title="Select Date" id="delivery_date_trig" class="v-middle" alt="" src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+<!--                <input type="text" style="width:110px !important;" class="required-entry input-text" value="" id="delivery_date" name="delivery_date"> <img style="" title="Select Date" id="delivery_date_trig" class="v-middle" alt="" src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>">-->
+            <script type="text/javascript">
+                //&lt;![CDATA[
+                Calendar.setup({
+                    inputField: "delivery_date",
+                    ifFormat: "%Y-%m-%d",
+                    showsTime: true,
+                    button: "delivery_date_trig",
+                    align: "Bl",
+                    singleClick : true
+                });
+                Event.observe('delivery_date', 'change', function(event){ 		
+                    if($('delivery_date').value){
+                        var url = '<?php echo $this->getUrl('inventoryadmin/adminhtml_purchaseorder/checktimedelivery'); ?>';
+                        url += 'delivery_date/'+$('delivery_date').value;
+                        var request = new Ajax.Request(url,{
+                            method: 'get', 
+                            onFailure: "",
+                            onSuccess: function(transport) {                                 
+                                if(transport.status == 200)	{                                            
+                                    var stringre = transport.responseText;
+                                    if(stringre.trim() == 'error'){
+                                        alert('<?php echo $this->__('Invalid date. Please select a current or past.') ?>');
+                                        $('delivery_date').value = '';
+                                    }
+                                }
+                            }
+                        }); 
+                    }
+                });            
+                //]]&gt;
+            </script>
+        </div>
+        <div style="float:left;">
+            <lable for="return-order"><strong><?php echo $this->__('Reason(s) for returning order:') ?></strong><span class="required">*</span></lable>
+            <br />
+            <textarea id="reason" name="reason" title="<?php echo $this->__('Reason(s) to return order') ?>" style="width:350px; height:50px;" rows="2" cols="15" class="required-entry  textarea"></textarea>               
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

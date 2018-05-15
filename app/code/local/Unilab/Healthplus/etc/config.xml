@@ -1,0 +1,126 @@
+<?xml version="1.0"?> 
+<config>
+    <modules>
+        <Unilab_Healthplus>
+            <version>1.1.0.1</version>
+        </Unilab_Healthplus>
+    </modules>
+	
+	<global>	
+        <models>
+            <healthplus>
+				<class>Unilab_Healthplus_Model</class>
+				<resourceModel>healthplus_resource</resourceModel>
+            </healthplus>
+			<healthplus_resource>
+				<class>Unilab_Healthplus_Model_Resource</class>
+                <entities>
+                    <healthplus>
+                        <table>unilab_healthplus</table>
+                    </healthplus> 				
+				</entities>
+			</healthplus_resource>
+        </models>
+	
+		<blocks>
+			<healthplus>
+				<class>Unilab_Healthplus_Block</class>
+			</healthplus>
+		</blocks>
+		
+		<helpers>
+			<healthplus>
+				<class>Unilab_Healthplus_Helper</class>
+			</healthplus>
+		</helpers>
+
+		<events>
+
+			<sales_order_place_after>
+                <observers>
+                    <unilab_healthplus_model_healthplus>
+                        <type>singleton</type>
+                        <class>healthplus/healthplus</class>
+                        <method>savehealthcredits</method>
+                    </unilab_healthplus_model_healthplus>
+                </observers>
+            </sales_order_place_after>  			
+			
+			<sales_quote_collect_totals_after>
+                <observers>
+                    <set_custom_discount>
+                        <type>singleton</type>
+                        <class>Unilab_Healthplus_Model_Observer</class>
+                        <method>setDiscount</method>
+                    </set_custom_discount>
+                </observers>
+            </sales_quote_collect_totals_after>
+		</events>
+	</global>
+	
+	<frontend>
+		<routers>
+			<healthplus>
+				<use>standard</use>
+				<args>
+					<module>Unilab_Healthplus</module>
+					<frontName>healthplus</frontName>
+				</args>
+			</healthplus>
+		</routers>
+		 <layout>
+           <updates>
+                <healthplus>
+                     <file>healthplus.xml</file> 
+                 </healthplus>
+            </updates>
+        </layout>
+	</frontend>	
+	
+	<admin>
+        <routers>
+            <healthplus>
+                <use>admin</use>
+                <args>
+                    <module>Unilab_Healthplus</module>
+                    <frontName>healthplus</frontName>
+                </args>
+            </healthplus>
+        </routers>
+    </admin>  	
+	
+	<adminhtml>
+        <layout>
+            <updates>
+                <healthplus>
+                    <file>healthplus.xml</file>
+                </healthplus>
+            </updates>
+        </layout>        
+    </adminhtml>
+	
+	<adminhtml>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<system>
+							<children>
+								<config>
+									<children>
+										<healthplus>
+											<title>Healthplus Settings</title>
+										</healthplus>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+	</adminhtml>
+</config>

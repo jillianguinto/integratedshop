@@ -1,0 +1,154 @@
+<?php $cartcount = $this->helper('checkout/cart')->getSummaryCount();?>
+
+<?php $_product = $this->getProduct(); ?>
+
+<?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
+
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+
+<?php if($_product->isSaleable()): ?>
+
+
+	<div class="add-to-cart divAddToCart">
+	
+		<div>
+			<?php echo $this->getPriceHtml($_product); ?>
+
+			<?php if(!$_product->isGrouped()): ?>
+
+				<b><label for="qty"><?php echo $this->__('Quantity:') ?></label></b>
+
+				<?php 
+					$xQty = ($this->getProductDefaultQty() * 1) == 0 ? 1 : $this->getProductDefaultQty() * 1; 
+					
+					$brand    = $_product->getUnilabBrand();
+					$size     = $_product->getUnilabSize();
+
+					$unilab_brand_text = Mage::getModel('admincontroller/convertattrib')->idtotext($_product->getId(), $brand, 'unilab_brand');
+					$unilab_size_text = Mage::getModel('admincontroller/convertattrib')->idtotext($_product->getId(), $size, 'unilab_size');
+				?>
+				<br/>
+				<input type="hidden" name="cartcount" id="cartcount" value="<?php echo $cartcount?>">
+				<input type="hidden" name="isloggedin" id="isloggedin" value="<?php echo Mage::getSingleton('customer/session')->isLoggedIn(); ?>">
+				<input type="hidden" name="producttype" id="producttype" value="<?php echo $_product->getTypeId(); ?>">
+				<input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $xQty ?> " title="<?php echo $this->__('Qty') ?>" class="input-text qty numbersOnly" />
+
+			<?php endif; ?>
+			
+			<br>
+			
+			<div class="divButton">
+				<button type="button" id="btnAddToCart" title="<?php echo $buttonTitle ?>" rx="<?php echo $_product->getUnilabRx();?>" returnId="<?php echo $_product->getId();?>"class="button btn-cart"><span><span><?php echo $buttonTitle ?></span></span></button>
+			</div>
+
+			<?php echo $this->getChildHtml('', true, true) ?>
+
+		</div>
+
+	</div>
+
+<?php endif; ?>
+
+
+<script type="text/javascript">
+
+	var addtocart = document.getElementById("qty");
+	addtocart.addEventListener("keypress", function(event) {
+		if (event.keyCode == 13){
+			jQuery("#btnAddToCart").trigger("click");
+			event.preventDefault();
+			return;
+		}
+	});
+	
+	
+	jQuery(document).ready(function (){ 
+		var producttype = jQuery('#producttype').val();
+	
+		if(producttype == "configurable"){
+			jQuery('.btn-cart').attr('returnId', '0');
+		}
+	
+	});
+	
+	jQuery(document).on('change','.super-attribute-select',function(){
+		var variant = jQuery('.super-attribute-select').val();
+		
+		if(variant == ""){
+			jQuery('.btn-cart').attr('returnId', '0');
+		}else{
+			jQuery('.btn-cart').attr('returnId', variant);
+		}
+	});
+
+	jQuery(document).on('click','.btn-cart',function(){
+		
+		jQuery('#loading-icon').show();
+		var product = jQuery(this).attr('returnId');
+		var rx = jQuery(this).attr("rx");
+		var cartcount = jQuery("#cartcount").val();
+		var isloggedin = jQuery("#isloggedin").val();
+		
+		//if(product == "0"){
+			//jQuery('#loading-icon').hide();
+			//alert("Please select SKU");
+	    //}
+		
+		if(rx == 0){
+			
+			jQuery.post("<?php echo Mage::getBaseUrl()?>checkout/cart/addtoCart",
+			{
+				product: product			
+
+			},function (data){
+				
+				var objresponse = jQuery.parseJSON(data);
+				
+				if(objresponse.msg == 'success'){
+					
+					digitalData.cartValue = "<?php echo $_product->getPrice(); ?>";
+			
+					if(cartcount == "0"){   
+						digitalData.events = "scOpen,scAdd";
+					}else{
+						digitalData.events = "scAdd";
+					}
+					
+					digitalData.product=[{  
+						productInfo: {
+							productID: "<?php echo $_product->getSku(); ?>",
+							productName: "<?php echo $_product->getName(); ?>",
+							productBrand: "<?php echo $unilab_brand_text; ?>",
+							productSize: "<?php echo $unilab_size_text; ?>"
+						}
+					}]
+				
+					_satellite.track('cart-add');
+				
+					if(isloggedin == "1"){
+						window.location = "<?php echo Mage::helper('checkout/cart')->getCartUrl(); ?>";
+					}else{
+						window.location = "<?php echo Mage::getUrl('customer/account/login'); ?>";
+					}
+					
+				}
+			});	
+			
+			//productAddToCartForm.submit(this);
+			
+		}else{ 
+			productAddToCartForm.askPrescription(this);
+		}
+
+	
+	});
+	
+</script>
+
+<div id="loading-icon">
+
+    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/unilab2/images/loading-icon.gif">
+
+</div>
+
+ 

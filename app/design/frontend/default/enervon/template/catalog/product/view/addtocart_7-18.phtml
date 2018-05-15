@@ -1,0 +1,255 @@
+<?php $_product = $this->getProduct(); ?>
+
+<?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
+
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+
+<?php if($_product->isSaleable()): ?>
+
+
+<div class="add-to-cart divAddToCart">
+	<div>
+
+    <?php
+
+      $storeId  = Mage::app()->getStore()->getStoreId();
+
+      $prodname = trim($_product->getName());
+
+
+    ?>
+
+      <?php echo $this->getPriceHtml($_product) ?>
+
+        <?php if(!$_product->isGrouped()): ?>
+
+        <b><label for="qty"><?php echo $this->__('Quantity:') ?></label></b>
+
+        <?php $xQty = ($this->getProductDefaultQty() * 1) == 0 ? 1 : $this->getProductDefaultQty() * 1; ?>
+        <br/>
+        <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $xQty ?> " title="<?php echo $this->__('Qty') ?>" class="input-text qty numbersOnly" />
+
+        <?php endif; ?>
+        <br>
+		<div class="divButton">
+
+     <!-- <button type="button" id="btnAddToCart" returnUrl="<?php echo Mage::helper('checkout/url')->getCartUrl() ?>" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" ><span><?php echo $this->__('Add to Cart2') ?></span></button> -->
+<!-- <button type="button" id="btnAddToCart"  returnId="<?php echo $_product->getId(); ?>" returnName="<?php echo $_product->getName(); ?>" returnUrl="<?php echo Mage::helper('checkout/url')->getCartUrl(); ?>" title="<?php echo $buttonTitle ?>" class="button btn-cart" ><span><?php echo $buttonTitle ?></span></button> -->
+
+<!-- <button type="button" id="btnAddToCart" title="<?php echo $buttonTitle ?>" rx="<?php echo $_product->getUnilabRx();?>" class="button btn-cart"><span><span><?php echo $buttonTitle ?></span></span></button>  returnUrl="<?php echo Mage::helper('checkout/cart')->getCartUrl(); ?>" -->
+
+<!-- Added by J. Hubilla -->
+ <button type="button" id="btnAddToCart"  returnId="<?php echo $_product->getId(); ?>" returnName="<?php echo $_product->getName(); ?>"  viewUrl="<?php echo $_product->getProductUrl() ?>" onclick="productAddToCartForm.submit(this);"  title="<?php echo $buttonTitle ?>" class="button btn-cart" returnUrl="<?php echo Mage::helper('checkout/cart')->getCartUrl(); ?>" ><span><?php echo $buttonTitle ?></span></button>
+
+
+		<a href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submit(this, this.href); return false;" class="btn-wishlist"><?php echo $this->__('Add to Wishlist') ?></a>
+
+		</div>
+
+		<?php echo $this->getChildHtml('', true, true) ?>
+
+	</div>
+
+</div>
+
+	<script>
+
+		var addtocart = document.getElementById("qty");
+
+		addtocart.addEventListener("keypress", function(event) {
+
+			if (event.keyCode == 13){
+
+				jQuery("#btnAddToCart").trigger("click");
+
+				event.preventDefault();
+
+				return;
+
+			}
+
+		});
+
+	</script>
+
+<?php endif; ?>
+
+
+
+<script type="text/javascript">
+
+   // jQuery(document).on('click','.btn-cart',function(){
+   //  //  alert("sadafasdas");
+   //      var product = jQuery(this).attr('returnId');
+   //      var productName = jQuery(this).attr('returnName');
+   //      var returnUrl = jQuery(this).attr('returnUrl');
+   //      //alert(returnUrl);
+   //      //return false;`
+   //      jQuery.ajax({
+   //      type: 'Post',
+   //      url:'<?php echo Mage::getBaseUrl()?>checkout/cart/addtoCart',
+   //      data: {
+   //          product: product
+   //      },
+   //      }).done(function(data){
+   //          if(data == 'success'){
+   //          // jQuery("#prodName").html(productName);    
+   //          // var count = jQuery("#item_count").html();
+   //          // count = Number(count) + Number(1);
+   //          // jQuery("#item_count").html(count);  
+   //          //jQuery("#myModal").show();
+   //           window.location = returnUrl;
+   //          }
+   //      });
+   //  });
+
+
+   // jQuery(document).on('click','.btn-cart',function(){
+        
+   //      jQuery('#loading-icon').show();
+
+   //      var product = jQuery(this).attr('returnId');
+   //      var productName = jQuery(this).attr('returnName');
+   //      var returnUrl = jQuery(this).attr('returnUrl');
+        
+   //      jQuery.post("<?php echo Mage::getBaseUrl()?>checkout/cart/addtoCart",
+   //      {
+   //          product: product            
+
+   //      },function (data){
+
+   //          var objresponse = jQuery.parseJSON(data);
+            
+   //          if(objresponse.msg == 'success'){
+                
+   //              window.location = returnUrl;
+   //              jQuery('#loading-icon').hide();
+   //          }
+
+   //      }); 
+   //  });
+
+
+   // jQuery(document).on('click','.btn-cart',function(){
+    
+   //    jQuery('#loading-icon').show();
+      
+   //    var itemprice = jQuery(this).attr("unitprice");
+   //    var rx = jQuery(this).attr("rx");
+      
+            
+   //    if(rx == 0){
+   //      productAddToCartForm.submit(this);
+        
+   //    }else{ 
+   //      productAddToCartForm.askPrescription(this);
+   //    }
+
+   //  });
+
+// Added by J. Hubilla
+jQuery(document).on('click','#btnAddToCart',function(){
+
+    jQuery('#loading-icon').show();
+    var product = jQuery(this).attr('returnId');
+
+    var productName = jQuery(this).attr('returnName');
+
+    var returnUrl = jQuery(this).attr('returnUrl');
+
+     var view_product = jQuery(this).attr('viewUrl');
+    //alert(returnUrl);
+
+    jQuery.ajax({
+
+    type: 'Post',
+
+    url:'<?php echo Mage::getBaseUrl()?>checkout/cart/addtoCart',
+
+    data: {
+
+        product: product
+
+    },
+
+    }).done(function(data){
+    
+    var objresponse = jQuery.parseJSON(data);
+// alert(returnUrl);
+
+        if(objresponse.msg == 'success'){
+         //alert(jQuery(this).attr('returnUrl'));
+         window.location = returnUrl;
+
+        }else{
+            //If Failed
+            
+            // alert("sss");
+             //alert(view_product);
+             window.location = view_product;
+        }
+
+    });
+
+});
+
+
+   // jQuery(document).on('click','#btnAddToCart',function(){
+
+   //  alert("sdasda");
+
+   //      var product = jQuery(this).attr('returnId');
+
+   //      var productName = jQuery(this).attr('returnName');
+
+   //      var returnUrl = jQuery(this).attr('returnUrl');
+
+   //      jQuery.ajax({
+
+   //      type: 'Post',
+
+   //      url:'<?php echo Mage::getBaseUrl()?>checkout/cart/addtoCart',
+
+   //      data: {
+
+   //          product: product
+
+   //      },
+
+   //      }).done(function(data){
+
+   //          if(data == 'success'){
+
+
+   //           window.location = returnUrl;
+
+   //          }
+
+   //      });
+
+   //  });
+   
+
+// });
+
+</script>
+
+ 
+
+<script>
+
+  jQuery('.numbersOnly').keyup(function () { 
+
+    this.value = this.value.replace(/[^0-9\.]/g,'');
+
+  });
+
+</script>
+
+<div id="loading-icon">
+
+    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/unilab2/images/loading-icon.gif">
+
+</div>
+
+ 

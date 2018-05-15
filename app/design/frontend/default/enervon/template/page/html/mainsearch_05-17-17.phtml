@@ -1,0 +1,166 @@
+<?php
+
+$storeviewid = Mage::app()->getStore()->getStoreId();
+$siteenabled =  Mage::getStoreConfig("webservice/sitesettings/siteenabled", $storeviewid);
+$logouturl 	=  Mage::getUrl('customer/account/logout');
+
+if($siteenabled == 1){
+
+	$loginurl 	=  Mage::getStoreConfig("webservice/sitesettings/loginurl", $storeviewid);
+	$accturl 	=  Mage::getStoreConfig("webservice/sitesettings/accturl", $storeviewid);
+	$signupurl 	=  Mage::getStoreConfig("webservice/sitesettings/signupurl", $storeviewid);
+
+}else{
+
+	$loginurl 	=  Mage::getUrl('customer/account/login');
+	$accturl 	=  Mage::getUrl('customer/account');
+	$signupurl 	=  Mage::getUrl('customer/account/create');
+
+}
+?>
+
+
+<?php
+
+	$iconurl = Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . "images/";
+	$logo = Mage::getBaseurl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'frontend/default/unilab2/';
+	$homepageurl = Mage::getBaseUrl() . Mage::getSingleton('core/session')->getHomepage();
+
+?>
+
+<div class="mainsearch">
+	<div class="m-input-search">
+		<form id="search_main_form" action="<?php echo $this->helper('catalogsearch')->getResultUrl() ?>" method="get">
+			<div class="underform">
+				<input class="formSearch" type="text" name="<?php echo $this->helper('catalogsearch')->getQueryParamName() ?>" value="<?php echo $this->helper('catalogsearch')->getEscapedQueryText() ?>" class="input-text" placeholder="SEARCH" />
+
+				<input type="submit" id="search-button" title="<?php echo $this->__('Go') ?>" value="<?php echo $this->__("Search");?>" class="button search-button">
+
+				<div id="search_autocomplete" class="search-autocomplete"></div>
+
+					<script type="text/javascript">
+
+					//<![CDATA[
+
+						var searchForm = new Varien.searchForm('search_main_form', 'main_search', '<?php echo $this->__('Search') ?>');
+
+						searchForm.initAutocomplete('<?php echo $this->helper('catalogsearch')->getSuggestUrl() ?>', 'search_autocomplete');
+
+					//]]>
+
+					</script>
+
+					<div style="clear:both;"></div>
+				</div> 						
+		</form> 
+	</div>
+
+	<div class="m-links">
+
+		<?php 
+
+    		if(!Mage::getSingleton('customer/session')->isLoggedIn()){
+
+    	?>	
+
+		<ul>
+			<li><a href="<?php echo $homepageurl; ?>"><?php echo $this->__("HOME");?></a></li>
+			<li><a href="<?php echo $loginurl; ?>"><?php echo $this->__("LOGIN");?></a></li>
+			<li><a href="<?php echo $signupurl; ?>"><?php echo $this->__("SIGNUP");?></a></li>
+
+		</ul>	
+
+		<?php } else { ?>
+
+		<ul>
+			<li><a href="<?php echo $homepageurl; ?>"><?php echo $this->__("HOME");?></a></li>
+			<li><a href="<?php echo $accturl; ?>"><?php echo $this->__("ACCOUNT");?></a></li>
+			<li><a href="<?php echo $logouturl; ?>"><?php echo $this->__("LOGOUT");?></a></li>
+		</ul>
+
+		<?php } ?>
+
+	</div>
+
+	<div class="clear"></div>
+
+</div>
+
+
+
+<div class="m-logo">
+	<a href="<?php echo $homepageurl?>" title="<?php echo $this->getLogoAlt() ?>" class="logo">
+	<strong><?php echo $this->getLogoAlt() ?></strong>
+		<img src="<?php echo $logo . Mage::getStoreConfig('design/header/logo_src'); ?>" alt="<?php echo $this->getLogoAlt() ?>" class="logoimg"/>
+		<span class="logo-text">Operated by: Work-Place Pharmacy Services Inc.</span>
+	</a>
+</div>
+
+
+
+<div class="m-horizontal-bar">
+	<div class="mobile-nav">
+		<img src="<?php echo $logo?>images/mobile-nav-icon.png">
+	</div>	
+
+	<ul class="primary-top-nav">
+		<li class="mainsearch-mobile"><a href="<?php echo Mage::getUrl("aboutus");?>"><?php echo $this->__("Home");?></a></li>
+		<li><a href="<?php echo Mage::getUrl("aboutus");?>"><?php echo $this->__("About Us");?></a></li>
+		<li class="last"><a href="<?php echo Mage::getUrl("contacts");?>"><?php echo $this->__("Contact Us");?></a></li> 
+		<li><a href="<?php echo Mage::getUrl("/");?>terms-and-condition/"><?php echo $this->__("Terms & Conditions");?></a></li>
+		<li><a href="<?php echo Mage::getUrl("/");?>privacy-policy/"><?php echo $this->__("Private Policy");?></a></li>
+
+		<?php 
+    		if(!Mage::getSingleton('customer/session')->isLoggedIn()){
+    	?>	
+
+    	<li class="mainsearch-mobile"><a href="<?php echo $loginurl; ?>"><?php echo $this->__("Login");?></a></li>
+    	<li><a href="<?php echo $signupurl; ?>"><?php echo $this->__("Signup");?></a></li>
+
+    	<?php } else {?>
+
+		<li class="mainsearch-mobile"><a href="<?php echo $accturl; ?>"><?php echo $this->__("Account");?></a></li>
+		<li class="mainsearch-mobile"><a href="<?php echo $logouturl; ?>"><?php echo $this->__("Logout");?></a></li>
+
+		<?php }?>
+
+	</ul>	
+
+	<ul class="view-cart-checkout">
+		<li class="last"><a href="<?php echo Mage::helper('checkout/cart')->getCartUrl() ?>">View Cart (<span id="item_count"><?php echo Mage::helper('checkout/cart')->getItemsCount()?></span>)</a></li>
+		<li class="checkoutLI"><a href="<?php echo Mage::helper('checkout/url')->getCheckoutUrl() ?>">Checkout</a></li>
+	</ul>
+
+	<div class="clear"></div>
+
+</div>
+
+
+
+
+
+<script type="text/javascript"> 
+
+jQuery(document).ready(function(){
+
+    jQuery('.mobile-nav').click(function(){
+
+        jQuery(".primary-top-nav").slideToggle("slow");
+
+    });
+
+});
+
+</script>
+
+<script type="text/javascript">
+
+	jQuery(document).ready(function(){
+
+	   jQuery('.newSearchButton').click(function(){
+		   jQuery('#search-button').click();
+		});
+
+	});
+
+</script>

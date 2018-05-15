@@ -1,0 +1,30 @@
+<style>
+.ui-datepicker-trigger{
+	position:absolute;
+	top:5px; 
+}
+
+</style>
+
+<label for="<?php echo $this->getFieldId('dob')?>"<?php if ($this->isRequired()) echo ' class="required"' ?>><?php if ($this->isRequired()) echo '<em>*</em>' ?><?php echo $this->__('Date of Birth') ?></label>
+<div class="input-box customer-dob field-row" style="position:relative;">
+	<input type="text" id="<?php echo $this->getFieldId('dob');?>" name="<?php echo $this->getFieldName('dob');?>" value="<?php echo $this->getData('date'); ?>" readonly="readonly" title="<?php echo $this->__('Day');?>" class="dob <?php echo ($this->isRequired()) ? 'input-text required-entry' : 'input-text'; ?>"/>
+   <div class="validation-advice" style="display:none;"></div>
+</div> 
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+ <script type="text/javascript">
+    //<![CDATA[  
+        jQuery(function(){ 
+                jQuery( "input.dob" ).datepicker({
+                    showOn: "both",
+                    buttonImage: "<?php echo $this->getSkinUrl('images/calendar.gif');?>",
+                    buttonImageOnly: true,
+                    dateFormat: 'mm-dd-yy',
+                    changeMonth: true,
+                    changeYear: true,
+				    yearRange: '-100:+0'
+                });
+            }); //]]>
+    </script>

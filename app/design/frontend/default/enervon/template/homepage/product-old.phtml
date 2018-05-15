@@ -1,0 +1,106 @@
+<?php 
+/*
+ * @author: Richel.R.Amante
+ * @email: richelramante@gmail.com
+ * @date: 2014-11-03
+ */
+ 
+	$storeId = 1; 	
+	$store_name = Mage::app()->getStore($storeId)->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);		
+	$rooturl = $store_name.'media/catalog/product/';	
+	$_product=Mage::getModel('catalog/product')->load($this->getRequest()->getParam('productid'));
+
+
+?>
+
+
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/liviacor/liviacor.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/liviacor/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/liviacor/template.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/liviacor/custom.css" type="text/css" />
+
+
+<div class="body">
+		<div class="container con-width">
+			
+						
+			<div class="row-fluid">
+				<main id="content" role="main" class="span12">
+				<!-- Begin Content -->
+					
+				<div id="system-message-container">
+				</div>
+
+				<div class="blog" itemscope="" itemtype="http://schema.org/Blog">
+					<div class="page-header">
+						<h1> Home </h1>
+					</div>
+
+					<div class="items-leading clearfix">
+						<div class="leading-0" itemprop="blogPost" itemscope="" itemtype="http://schema.org/BlogPosting">
+						
+						<div style="margin: 20px 50px;">
+							<p><img src="<?php echo $rooturl . $_product->getImage(); ?>" alt="" width="287" height="256" style="float: left;"></p>
+							<p>&nbsp;</p>
+							<p><strong><span style="font-size: 14pt;"><span style="font-family: 'times new roman', times; font-size: 24pt;"><?php echo $_product->getName(); ?></span></span></strong></p>
+								<div>
+									<p style="text-align: justify;"><span style="text-align: justify; font-size: 12pt; font-family: 'times new roman', times; color: #808080; line-height: 22.8571px; font-size: 12pt;"><?php echo $_product->getDescription(); ?>
+									<br><br>
+
+										<?php echo $_product->getShortDescription();?>
+									</span></p>
+									
+									<p style="font-size: 23px;">
+										<?php echo Mage::helper('core')->currency($_product->getPrice(),true,false); ?>
+									</p>
+									
+									<p>
+									<!------------------>
+									<?php if($_product->isSaleable()) : ?>	
+										<?php $_product->getOptions(); ?>
+
+											<form action="<?php echo Mage::helper('checkout/cart')->getAddUrl($_product); ?>" method="post" class="add-qty" id="product_addtocart_form_<?php echo $_product->getId()?>"
+												<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?> target='_parent'>
+													
+													<?php if(!$_product->isGrouped()) : ?>
+													
+														<label for="qty">Quantity</label>
+															<?php //$xQty = ($this->getProductDefaultQty() * 1) == 0 ? 1 : $this->getProductDefaultQty() * 1; ?>
+															<?php $xQty = $_product->getunilab_moq() * 1; ?>
+
+										
+																	<input type="text" name="qty" class="input-text qty" style="width: 65px; border: 1px solid #000; padding: 5px; height: 31px;border-radius: 0;" id="qty" 
+																	value="<?php echo $xQty ?>" />
+
+
+
+													<?php endif; ?>
+														
+													<p>
+														<input type="submit" class="addToCartBtn button btn-cart" title="Add to Cart" id="btnAddToCart-" name="submit" value="Add to Cart" />
+													</p>
+													
+											</form>
+											
+									<?php else: ?>
+										<!--p class="availability out-of-stock"><span>Out of stock</span></-->
+									<?php endif; ?>
+									<!------------------>
+									</p>
+									
+								</div>
+						</div>
+						
+						</div>
+					</div><!-- end items-leading -->
+	
+				</div>
+
+					
+					<!-- End Content -->
+				</main>
+			</div>
+		</div>
+	</div>
+
+	

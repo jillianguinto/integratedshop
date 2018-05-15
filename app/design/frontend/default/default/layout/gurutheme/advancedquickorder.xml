@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    
+    <default>
+        <reference name="top.links">
+            <reference name="head">
+                <action method="addJs"><script>gurutheme/advancedquickorder/jquery-1.8.2.min.js</script></action>
+                <action method="addJs"><script>gurutheme/advancedquickorder/jquery.fancybox.js</script></action>
+                <action method="addCss"><stylesheet>css/gurutheme/quickorder/advanced-quickorder.css</stylesheet></action>
+                <action method="addCss"><stylesheet>css/gurutheme/quickorder/jquery.fancybox.css</stylesheet></action>
+            </reference>
+            <action method="setTemplate" ifconfig="advancedquickorder/advancedquickorder_general/quicklinkmenu">
+                <template>gurutheme/advancedquickorder/links.phtml</template>
+            </action>
+        </reference>
+    </default>
+    
+    <advancedquickorder_index_index>
+        <reference name="head">
+                <action method="addJs"><script>gurutheme/advancedquickorder/jquery-1.8.2.min.js</script></action>
+                <action method="addJs"><script>gurutheme/advancedquickorder/product.js</script></action>
+                <action method="addJs"><script>gurutheme/advancedquickorder/configurable.js</script></action>
+                <action method="addCss"><stylesheet>css/gurutheme/quickorder/advanced-quickorder.css</stylesheet></action>
+                <action method="addCss"><stylesheet>css/gurutheme/quickorder/jquery.fancybox.css</stylesheet></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="advancedquickorder/quickorder" name="advancedquickorder.quickorder" template="gurutheme/advancedquickorder/quickorder.phtml" />
+        </reference>
+    </advancedquickorder_index_index>
+    
+    <advancedquickorder_ajax_loadproductoption>
+        
+        <reference name="content">
+            
+            <block type="advancedquickorder/catalog_product_view_options" name="advancedquickorder.product.info.options" as="advancedquickorder_product_options" template="gurutheme/advancedquickorder/catalog/product/view/options.phtml">
+                    <action method="addOptionRenderer"><type>text</type><block>advancedquickorder/catalog_product_view_options_type_text</block><template>gurutheme/advancedquickorder/catalog/product/view/options/type/text.phtml</template></action>
+                    <action method="addOptionRenderer"><type>file</type><block>advancedquickorder/catalog_product_view_options_type_file</block><template>gurutheme/advancedquickorder/catalog/product/view/options/type/file.phtml</template></action>
+                    <action method="addOptionRenderer"><type>select</type><block>advancedquickorder/catalog_product_view_options_type_select</block><template>gurutheme/advancedquickorder/catalog/product/view/options/type/select.phtml</template></action>
+                    <action method="addOptionRenderer"><type>date</type><block>advancedquickorder/catalog_product_view_options_type_date</block><template>gurutheme/advancedquickorder/catalog/product/view/options/type/date.phtml</template></action>
+            </block>
+            
+            <block type="advancedquickorder/catalog_product_view_type_configurable" name="advancedquickorder.product.info.configurable" as="advancedquickorder_product_configurable" template="gurutheme/advancedquickorder/catalog/product/view/type/options/configurable.phtml" />
+            
+        </reference>
+        
+    </advancedquickorder_ajax_loadproductoption>    
+</layout>

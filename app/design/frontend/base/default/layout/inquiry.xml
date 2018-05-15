@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageWorx
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MageWorx EULA that is bundled with
+ * this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.mageworx.com/LICENSE-1.0.html
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@mageworx.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension
+ * for your needs please refer to http://www.mageworx.com/ for more information
+ * or send an email to sales@mageworx.com
+ *
+ * @category   design_default
+ * @package    MageWorx_XContacts
+ * @copyright  Copyright (c) 2012 MageWorx (http://www.mageworx.com/)
+ * @license    http://www.mageworx.com/LICENSE-1.0.html
+ */
+
+/**
+ * Extended Contacts extension
+ *
+ * @category   design_default
+ * @package    MageWorx_XContacts
+ * @author     MageWorx Dev Team <dev@mageworx.com>
+ */
+
+-->
+<layout version="0.1.0">
+    <default>
+        <reference name="footer_links">
+            <action method="addLink" translate="label title" module="xcontacts" ifconfig="mageworx_customers/xcontacts/enabled"><label>Contact Us</label><url>contacts</url><title>Contact Us</title><prepare>true</prepare></action>
+        </reference>
+    </default>
+
+    <xcontacts_index_index>
+        <label>Contact Us Form</label>
+        <reference name="head">
+            <action method="setTitle" translate="title" module="xcontacts"><title>Contact Us</title></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+            <action method="setHeaderTitle" translate="title" module="xcontacts"><title>Contact Us</title></action>
+        </reference>
+        <reference name="content">
+            <block type="xcontacts/form" name="contactForm" template="xcontacts/form.phtml"/>
+        </reference>
+    </xcontacts_index_index>
+</layout>

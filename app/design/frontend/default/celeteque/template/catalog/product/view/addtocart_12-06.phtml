@@ -1,0 +1,60 @@
+<?php $_product = $this->getProduct(); ?>
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+
+<?php if($_product->isSaleable()): ?>
+    <div class="add-to-cart">
+        <div class="qty-container">
+        <?php if(!$_product->isGrouped()): ?>		<!--[if IE ]><div style="display:inline;position: relative; top: -7px;"><![endif]-->		<!--[if !IE]>--><div style="display:inline;position: relative; float: left;"><!--<![endif]-->
+        <label for="qty"><?php echo $this->__('Qty:') ?></label>
+        <?php $xQty = ($this->getProductDefaultQty() * 1) == 0 ? 1 : $this->getProductDefaultQty() * 1; ?>
+        <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $xQty ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />		</div>
+        </div>
+        <?php endif; ?>
+		<?php if($_product->getUnilabRx()):?>
+      <div class="btnAdd-container">
+			<button type="button" id="btnAddToCart" title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="productAddToCartForm.askPrescription(this);"><span><span><?php echo $buttonTitle ?></span></span></button>
+        <?php else:?>
+			<button type="button" id="btnAddToCart"  returnId="<?php echo $_product->getId(); ?>" returnName="<?php echo $_product->getName(); ?>" returnUrl="<?php echo Mage::helper('checkout/url')->getCartUrl(); ?>" title="<?php echo $buttonTitle ?>" class="button btn-cart" ><span><?php echo $buttonTitle ?></span></button>
+        <?php endif;?><br/>
+        <a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>"  class="btn-wishlist"><?php echo $this->__('Add to Wishlist') ?></a>
+      </div>
+		<?php echo $this->getChildHtml('', true, true) ?>
+    </div>
+	<script>
+		var addtocart = document.getElementById("qty");
+
+		addtocart.addEventListener("keypress", function(event) {
+			if (event.keyCode == 13){
+				jQuery("#btnAddToCart").trigger("click");
+				event.preventDefault();
+				return;
+			}
+		});
+	</script>
+<?php endif; ?>
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+   jQuery(document).on('click','.btn-view',function(){
+        window.location = jQuery(this).attr('returnUrl');
+   });
+
+   jQuery(document).on('click','.btn-cart',function(){
+        var product = jQuery(this).attr('returnId');
+        var productName = jQuery(this).attr('returnName');
+        var returnUrl = jQuery(this).attr('returnUrl');
+        jQuery.ajax({
+        type: 'Post',
+        url:'<?php echo Mage::getBaseUrl()?>checkout/cart/addtoCart',
+        data: {
+            product: product
+        },
+        }).done(function(data){
+            if(data == 'success'){
+             window.location = returnUrl;
+            }
+        });
+    });
+});
+</script>
+ 

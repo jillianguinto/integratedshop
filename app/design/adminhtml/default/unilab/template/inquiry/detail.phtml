@@ -1,0 +1,97 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="<?php echo $this->getHeaderWidth() ?>"><?php echo $this->getHeaderHtml() ?></td>
+            <td class="form-buttons"><?php echo $this->getButtonsHtml() ?></td>
+        </tr>
+    </table>
+</div>
+
+<div class="entry-edit">
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Detail(s)'); ?></h4>
+        </div>
+        <div id="log_details_fieldset" class="log-details">
+            <table cellspacing="0" class="log-info table">
+                <col width="15%" />
+                <col />
+                <tbody>
+                	
+                	
+                	<tr>
+                		<th><?php echo $this->__('Store'); ?></th>
+                		<td><b><?php echo  Mage::app()->getStore($this->getInquiry()->getStoreId())->getName() ?></b></td>
+                	</tr>
+                	                	
+                	<tr>
+                		<th><?php echo $this->__('Reason'); ?></th>
+                		<td><b><?php echo sprintf("%s (%s)" ,$this->getDepartment()->getName(),$this->getInquiry()->getDepartmentEmail()) ?></b></td>
+                	</tr>
+                	
+                	<tr>
+                		<th><?php echo $this->__('Customer Type'); ?></th>                		
+                		<?php if($this->getInquiry()->getCustomerId()==0) : ?>
+                			<td><span style="color:red;font-weight: bold;"><?php echo $this->__('GUEST')?></span></td>
+                		<?php else: ?>
+                			<td><span style="color:blue;font-weight: bold;"><?php echo $this->__('REGISTERED')?></span></td>
+                		<?php endif;?>
+                	</tr>
+                	                	
+                    <tr>
+                        <th><?php echo $this->__('Customer'); ?></th>
+                        
+                        <?php if($this->getInquiry()->getCustomerId()==0) : ?>
+                        	<td><?php echo sprintf("%s (%s)",$this->getInquiry()->getName(),$this->getInquiry()->getEmailAddress())?></td>
+                        <?php else: ?>
+                        	<td><?php echo sprintf("<a href=\"".Mage::helper("adminhtml")->getUrl('adminhtml/customer/edit/',array('id'=>$this->getInquiry()->getCustomerId()))."\" target=\"_blank\">%s</a> (%s)",$this->getInquiry()->getName(),$this->getInquiry()->getEmailAddress())?></td>	
+                        <?php endif; ?>
+     
+                    </tr>
+                    
+                    <tr>
+                        <th valign="top"><?php echo $this->__('Message/Concern'); ?></th>
+                        <td><?php echo html_entity_decode($this->getInquiry()->getConcern()) ?></td>
+                    </tr>
+                    
+                    <tr>
+                        <th valign="top"><?php echo $this->__('Is Read'); ?></th>
+                        <td><?php echo $this->getInquiry()->getIsRead() ? $this->__('Yes') : $this->__('No'); ?></td>
+                    </tr>
+                    
+                    <tr>
+                        <th><?php echo $this->__('Created At'); ?></th>
+                        <td><?php echo $this->formatDate($this->getInquiry()->getCreatedTime(), Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM, true) ?></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

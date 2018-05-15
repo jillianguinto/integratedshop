@@ -1,0 +1,7 @@
+<a href="<?php echo $this->getUrl("xcontacts/form/index", array('type' => 'doctor')); ?>" class="email-link fancybox.ajax">doctor</a> 
+<a href="<?php echo $this->getUrl("xcontacts/form/index", array('type' => 'pharmacist')); ?>" class="email-link fancybox.ajax">pharmacist</a>
+<script type="text/javascript">
+  jQuery(function($){
+    $('.email-link').fancybox();
+  });
+</script>

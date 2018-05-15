@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="footer_links">
+            <action method="addLink" translate="label title" module="inquiry" ifconfig="movent_customers/inquiry/enabled"><label>Contact Us</label><url>contacts</url><title>Contact Us</title><prepare>true</prepare></action>
+        </reference>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/jquery/fancybox/jquery.fancybox.js</name></action> 
+            <action method="addItem"><type>skin_css</type><name>css/fancybox/jquery.fancybox.css</name></action> 
+        </reference>
+		<reference name="right">
+			<remove name="right.poll"/>
+		</reference>		
+		<reference name="left">
+			<block type="inquiry/quickaccess" name="inquiry.sidebar.left" after="catalog.leftnav.menu" template="inquiry/form/sideblock.phtml"/>
+		</reference>
+    </default>  
+    <inquiry_index_index>
+        <label>Contact Us Form</label>
+        <reference name="head">
+            <action method="setTitle" translate="title" module="inquiry"><title>Contact Us</title></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/unilab-1column.phtml</template></action>
+            <action method="setHeaderTitle" translate="title" module="inquiry"><title>Contact Us</title></action>
+        </reference>
+        <reference name="content">
+            <block type="inquiry/form" name="contactForm" template="inquiry/form.phtml"/>
+        </reference>
+    </inquiry_index_index>
+	
+	<inquiry_index_showform>
+        <label>Contact Us Form (Home Page)</label>
+		<reference name="root">
+			<action method="setTemplate"><template>page/unilab-empty.phtml</template></action> 
+		</reference>    
+        <reference name="content">
+            <block type="inquiry/quickaccess_form" name="inquiry.quickaccess.form"/>
+        </reference>
+    </inquiry_index_showform>    
+	
+</layout>

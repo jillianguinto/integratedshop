@@ -1,0 +1,169 @@
+	<div class="content-header">
+
+		<table cellspacing="0" class="grid-header">
+		
+			<tr>
+			
+				<td><h3><?=$this->__('Import Promo Voucher CSV file.')?></h3></td>
+				
+				<td class="a-right">
+					<button onclick="backForm.submit()" class="scalable delete" type="button" name="back_form"><span>Back</span></button>
+					<button onclick="submitform()" class="scalable save" type="button"><span>Upload CSV File</span></button>
+				</td>
+				
+			</tr>
+			
+		</table>
+		
+	</div>
+
+
+	<div class="entry-edit"> 
+	
+		<form id="back_form" name="back_form" method="post" action="<?=$this->getUrl('adminhtml/customer/index')?>">
+			<input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+		</form>
+	
+		<form id="save_form" name="save_form" method="post" action="<?=$this->getUrl('*/*/importcsv')?>" enctype = "multipart/form-data">
+			
+			<input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+		
+			<div class="entry-edit-head">
+		
+				<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Import Promo Voucher CSV file.'); ?></h4>
+
+			</div>
+			
+
+			<div class="hor-scroll">
+
+					<fieldset id="my-fieldset">
+				
+
+						<table cellspacing="5" class="data order-tables">				
+							<tbody>				
+								
+								<tr>
+									<td width="200px">
+										<b>Shopping Cart Rule</b>
+									</td>
+									
+									<td>
+										<?php $salesrule = Mage::getModel('promovouchers/values_salesrule')->toOptionArray(); ?>
+										<select name="salesrule">
+											
+											<?php 
+												foreach ($salesrule as $_salesrule)
+												{
+													echo "<option value='".$_salesrule['value']."'>" . $_salesrule['label'] . "</option>";
+												}
+												
+											?>
+											
+										</select>
+									</td>
+								</tr>
+								
+								<tr>
+									<td><b>CSV File</b></td>
+									<td>
+										<input type="file" name="csv_file" id="csv_file" class="required-entry required-entry" onchange="checkfilesize()">
+									</td>
+								</tr>
+							</tbody>
+
+
+						</table>		
+
+					</fieldset>
+				
+			</div>
+		
+		</form>	
+		
+	</div>
+
+
+<style>
+	#progress_bar
+	{
+		
+	  position: fixed;
+	  top: 45%;
+	  left: 50%;
+	  display:none;
+		
+	}
+</style>
+<div id="progress_bar">
+	<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)?>loading/icon.gif" />
+	<br>
+	<label><b>Please wait...</b></label>
+</div>
+
+<script type="text/javascript">
+
+		function checkfilesize(){
+			if(window.ActiveXObject){
+				var fso = new ActiveXObject("Scripting.FileSystemObject");
+				var filepath = document.getElementById('csv_file').value;
+				var thefile = fso.getFile(filepath);
+				var sizeinbytes = thefile.size;
+			}else{
+				var sizeinbytes = document.getElementById('csv_file').files[0].size;
+				var find_file_ext=document.getElementById('csv_file').value;
+				var file_ext=/[^.]+$/.exec(find_file_ext); 
+			}
+
+			var fSExt = new Array('Bytes', 'KB', 'MB', 'GB');
+			fSize = sizeinbytes; i=0;while(fSize>900){fSize/=1024;i++;}
+			
+			var csvSize	= (Math.round(fSize*100)/100);
+			
+			if (file_ext != 'csv')
+			{
+				alert('Filename '+ find_file_ext +': \nError File Type.\nCSV File type is accepted.');
+				document.getElementById('csv_file').value = '';
+				
+			}else{
+						
+			
+
+					if((csvSize > 500) && (fSExt[i] == 'KB') ){
+									
+						//alert('Uploading new employee account will automatically create Benefits, Purchase Cap and select Transaction Type and you are trying to upload too large file. \n\nFile size : ' + (Math.round(fSize*100)/100)+''+fSExt[i] + '. \n\nOnly 500KB or 3000 records can be uploaded. \nIt takes too long to upload.\n\nClick Upload CSV File to continue or remove some items. ');
+						
+					}
+					else if((fSExt[i] == 'MB') || (fSExt[i] == 'GB') ){
+									
+						//alert('Uploading new employee account will automatically create Benefits, Purchase Cap and select Transaction Type and you are trying to upload too large file. \n\nFile size : ' + (Math.round(fSize*100)/100)+''+fSExt[i] + '. \n\nOnly 500KB or 3000 records can be uploaded. \nIt takes too long to upload.\n\nClick Upload CSV File to continue or remove some items. ');
+						
+					}
+			}
+
+		}
+		
+		
+   // document.getElementById(two).style.display = 'none';
+	
+    var saveForm = new varienForm('save_form');
+    var backForm = new varienForm('back_form');
+	
+	
+    function submitform(){
+		
+		if(document.getElementById('csv_file').value != ''){
+			
+          document.getElementById('progress_bar').style.display = 'block';	
+		  saveForm.submit();
+			
+		}else{
+		  saveForm.submit();
+			
+		}
+    }
+
+	
+
+</script>
+

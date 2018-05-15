@@ -1,0 +1,201 @@
+
+<script type="text/javascript" src="http://onlinestore.ecomqa.com/js/mage/captcha.js"></script>
+<div class="main-create-container">
+
+    <form action="<?php echo Mage::getUrl('customer/account/signupPost'); ?>" method="post" id="form-validate">
+
+        <div class="content-container">
+            <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+            <div>
+                <span class="sub-header">Create Account</span>
+            </div>
+            <div class="div-item">
+                <div>
+                    <em>*</em>
+                    Email Address
+                </div>
+                <div>
+                    <input type="text" name="email" id="email_address" value="" title="Email Address" class="input-text validate-email required-entry ">
+                </div>
+            </div>
+            <div class="div-item">
+                <div>
+                    <em>*</em>
+                    First Name-
+                </div>
+                <div>
+                    <input type="text" id="firstname" name="firstname" value="" title="First Name" maxlength="255" class="input-text required-entry">
+                </div>
+            </div>
+
+            <div class="div-item">
+                <div>
+                    <em>*</em>
+                    Last Name
+                </div>
+                <div>
+                    <input type="text" id="lastname" name="lastname" value="" title="Last Name" maxlength="255" class="input-text required-entry">
+                </div>
+            </div>
+
+            <div class="div-item">
+                <div>
+                    <em>*</em>
+                    Date of birth
+                </div>
+                <div>
+                    <div class="customer-dob field-row" style="position:relative;">
+                        <input class="dob input-text required-entry" name="dob" id="dob" type="text" readonly="readonly"/>
+                       <div class="validation-advice" style="display:none;"></div>
+                    </div>
+                    
+
+                </div>
+            </div>
+            <div class="div-item">
+                <div>
+                    <em>*</em>
+                    Password
+                </div>
+                <div>
+                    <input autocomplete="off" type="password" name="password" id="password" title="Password" class="input-text required-entry validate-password" />
+                </div>
+            </div>
+            <div class="div-item">
+                <div>
+                    <em>*</em>
+                    Confirm Password
+                </div>
+                <div>
+                    <input autocomplete="off" type="password" name="confirmation" title="Confirm Password" id="confirmation" class="input-text required-entry validate-cpassword" />
+                </div>
+            </div>
+
+            <div class="securiry-div">
+               Security Check
+            </div>
+            <hr class="div">
+            <div class="div-item">
+                <div>
+                    <em>*</em>
+                    Please type the letters
+                </div>
+                <div class="captcha">
+                    <input name="captcha[user_create]" type="text" class="required-entry" id="captcha_user_create" autocomplete="off">
+                </div>
+
+
+                <div>
+                   <div class="captcha-image" id="captcha-image-box-user_create">
+                        <img id="captcha-reload" title="Click to reload captcha" class="captcha-reload" src="http://onlinestore.ecomqa.com/skin/frontend/base/default/images/reload.png" alt="Reload captcha" onclick="$('user_create').captcha.refresh(this)">
+                        <img id="user_create" class="captcha-img" height="50" src="">
+                                <div class="captcha-note">
+                            <strong>Attention</strong>: Captcha is case sensitive.</div>
+                    </div>
+                </div>
+            </div>
+            <hr class="div">
+
+            <div class="input-box div_checkbox">
+                <input type="checkbox" name="is_subscribed" title="I want to receive email from WPSI and its partners" value="1" id="is_subscribed" class="checkbox">
+
+                <label class="terms" for="is_subscribed">I want to receive email from WPSI and its partners</label>
+
+            </div>
+            <div class="input-box div_checkbox">
+                <input type="checkbox" id="agree_on_terms" class="checkbox validate-terms-condition" name="agree_on_terms" title="I agree to the Terms and Conditions &amp; Privacy Policy" value="1" checked="checked">
+                <label class="terms" for="agree_on_terms">I agree to the <a class="link" href="http://onlinestore.ecomqa.com/index.php/main2/terms-and-condition/" target="_blank">Terms and Conditions</a> &amp; <a class="link" href="http://onlinestore.ecomqa.com/index.php/main2/privacy-policy/" target="_blank">Privacy Policy</a> <em>*</em></label>
+            </div>
+
+
+
+
+            <div class="div-item">
+                <div class="buttons-set">
+                    <p class="required">* Required Fields</p>
+                    <p class="back-link">
+                        <a href="http://onlinestore.ecomqa.com/index.php/main2/customer/account/login/" class="back-link">
+                            <small>« </small>Back
+                        </a>
+                    </p>
+                    <button type="submit" title="Submit" class="button"><span><span>Create An Account</span></span></button>
+                </div>
+            </div>
+
+
+        </div>
+
+    </form>
+
+</div>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+jQuery(function(){ 
+    jQuery(".dob").datepicker({
+        showOn: "both",
+        buttonImage: "http://onlinestore.ecomqa.com/skin/frontend/default/main2/images/calendar.gif",
+        buttonImageOnly: true,
+        dateFormat: 'mm-dd-yy',
+        changeMonth: true,
+        changeYear: true,
+        yearRange: '-100:+0'
+    });
+}); 
+</script>
+
+<script type="text/javascript">
+    $('user_create').captcha = new Captcha('http://onlinestore.ecomqa.com/index.php/main2/captcha/refresh/', 'user_create');
+     
+    function get_browser(){
+        var N=navigator.appName, ua=navigator.userAgent, tem;
+        var M=ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
+        if(M && (tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
+        M=M? [M[1], M[2]]: [N, navigator.appVersion, '-?'];
+        return M[0];
+    }
+
+    if(get_browser() == 'Safari'){
+        jQuery("#captcha-reload").trigger("click");
+    }
+    var submitForm = new VarienForm('form-validate', true);
+
+    submitForm.submit = function(button, url) { // this is to force the validation upon submit -leandro
+
+        if (this.validator.validate()) {
+            var form = this.form;
+            var oldUrl = form.action;
+
+            if (url) {
+               form.action = url;
+            }
+            var e = null;
+            try {
+                this.form.submit();
+            } catch (e) {
+            }
+            this.form.action = oldUrl;
+            if (e) {
+                throw e;
+            }
+
+            if (button && button != 'undefined') {
+                button.disabled = true;
+            }
+        }
+    }.bind(submitForm);
+
+//DOM event goes here at document ready - leandro
+jQuery(document).ready(function(){
+    setTimeout(function(){
+        jQuery("#captcha-reload").trigger("click");
+    }, 2000);
+});
+
+</script>

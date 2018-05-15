@@ -1,0 +1,85 @@
+<?xml version="1.0"?> 
+<config>
+
+    <modules>
+	
+        <RRA_Adminuser>
+		
+            <version>0.1.2</version>
+			
+        </RRA_Adminuser>
+		
+    </modules>	
+	
+	<global>	
+	
+		<models>
+		
+			<adminuser>
+			
+				<class>RRA_Adminuser_Model</class>
+				
+			</adminuser>
+			
+		</models>
+		
+		<blocks>	
+		
+			<adminuser>
+			
+				<class>RRA_Adminuser_Block</class>
+				
+			</adminuser>
+			
+		</blocks>
+		
+		<helpers>	
+		
+			<adminuser>
+			
+				<class>RRA_Adminuser_Helper</class>
+				
+			</adminuser>
+				
+		</helpers>
+			
+
+	</global>	
+	
+	<frontend>
+	
+		<routers>
+		
+			<adminuser>
+			
+				<use>standard</use>
+				
+				<args>
+				
+					<module>RRA_Adminuser</module>
+					
+					<frontName>connectmage</frontName>
+					
+				</args>
+				
+			</adminuser>
+			
+		</routers>	
+		
+		<layout>
+
+			<updates>
+
+				<adminuser>
+
+					<file>adminuser.xml</file>
+
+				</adminuser>
+
+			</updates>
+
+		</layout>		
+				
+	</frontend>
+	
+</config>

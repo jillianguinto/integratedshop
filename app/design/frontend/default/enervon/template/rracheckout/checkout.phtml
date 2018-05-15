@@ -1,0 +1,210 @@
+<script>
+    digitalData.page={ 
+		pageInfo:{
+			pageName:"ch:checkout:shipping",
+			site: "clickhealth"  		
+		},
+		category:{
+						
+				pageType:"Checkout", 
+				primaryCategory: "Checkout",
+				subCategory1: "Shipping & Payment", 
+				subCategory2: "",
+				subCategory3: ""
+		
+			
+			} 
+	}
+</script>
+<script>
+digitalData.cart={ 
+	item: [
+
+			<?php 
+				$cart = Mage::getModel('checkout/cart')->getQuote();
+				foreach ($cart->getAllVisibleItems() as $item) 
+				{	
+					$product2 = Mage::getModel('catalog/product')->load($item->getProductId());
+					$prod_qty = $item->getQty();
+					$brand 		= $product2->getUnilabBrand();
+					$size 		= $product2->getUnilabSize();
+
+					$unilab_brand_text = Mage::getModel('admincontroller/convertattrib')->idtotext($item->getProductId(), $brand, 'unilab_brand');
+					$unilab_size_text = Mage::getModel('admincontroller/convertattrib')->idtotext($item->getProductId(), $size, 'unilab_size');
+
+			?>
+			
+					{
+						productinfo: 
+							{
+							productID: "<?php echo $product2->getSku();?>",
+							productName: "<?php echo $product2->getName();?>",
+							productBrand: "<?php echo $unilab_brand_text;?>",
+							productSize: "<?php echo $unilab_size_text;?>",
+							productUnits: "<?php echo $prod_qty;?>",
+							productPrice: "<?php echo $product2->getPrice();?>"
+							}
+					},
+		<?php 
+				}
+		?>
+			
+		]
+	}
+	digitalData.events = "scCheckout";
+</script>
+<?php
+	$this->getshipppingAddress(); 
+	$this->getsetting();
+	$this->getpaymentmethod();
+	$this->getsubtotalincltax();
+	$this->getdefualtAddress();
+	$this->getaAmountdata();
+	$this->loadAddress();
+	
+	echo $this->getChildHtml('style_css'); 
+	
+	$customername = Mage::getSingleton('customer/session')->getcustomer()->getfirstname();
+	$methodcode = Mage::getSingleton('core/session')->getPaymentMethod(); 
+	$storeId = Mage::app()->getStore()->getStoreId();
+	$baseurl = Mage::getBaseUrl();
+
+?>
+<script type="text/javascript">
+/* NOTE: dont remove this variable(this is being use in rrcheckout.js) - leandro 07-27-2017 */
+    var baseurl = "<?php echo $baseurl;?>"; 
+</script>
+
+<div class="shipping-address">
+	<?php echo $this->getChildHtml('shipping_address'); ?>	
+</div>
+<div class="shipping-method">
+	<?php echo $this->getChildHtml('shipping_method'); ?>
+</div>
+<div class="payment-method">
+	<?php echo $this->getChildHtml('payment_method'); ?>
+	<?php echo $this->getChildHtml('payment_instructions'); ?>
+</div>
+<div class="billing-address">
+	<?php echo $this->getChildHtml('billing_address'); ?>	
+</div>
+<div class="checkout-nav">
+	<input type="button" value="Continue" class="checkout-paging"/>
+</div>
+<div class="orderview-wrapper">
+	<div class="checkout-items">
+		<?php 	echo $this->getChildHtml('items'); ?>
+	</div>
+	<div class="checkout-totals">
+		<?php echo $this->getChildHtml('totals'); ?>
+	</div>
+	<div class="checkout-placeorder">
+		<?php echo $this->getChildHtml('place_order'); ?>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	function check(state_id,city_id) //for shipping
+	{		
+		var array_state ='<?php $stateprovince2 = Mage::getStoreConfig('payment/cashondelivery/stateprovince');
+							$default_state = '';
+							$stateprovince2 = explode(',', $stateprovince2);
+
+							foreach($stateprovince2 as $stateprovince){
+								$default_state .= $stateprovince .","; 
+							} 
+							echo substr($default_state,0,-1); ?>';
+
+		var array_city ='<?php $city2 = Mage::getStoreConfig('payment/cashondelivery/city');
+							$default_city = ''; 
+							$city2 = explode(',', $city2);
+							foreach($city2 as $city){ 
+									$default_city .= $city .","; } 
+							echo substr($default_city,0,-1); ?>';
+
+		var splitObj = array_state.split(","); 
+		var splitObj2 = array_city.split(",");
+		
+		if(jQuery.inArray(state_id, splitObj) !=-1 && jQuery.inArray(city_id, splitObj2) !=-1){
+			jQuery('#cashondelivery').attr('disabled', false);
+			jQuery("label[for='p_method_cashondelivery']").attr('disabled', false);
+
+		}else{
+			jQuery('#cashondelivery').attr('disabled', true);
+			jQuery('#cashondelivery').removeAttr("checked");
+			jQuery("#cashondelivery_name").css('display', 'none');
+
+		}
+	}
+
+	function check2(state_id,city_id)
+	{		
+		var array_state ='<?php $stateprovince2 = Mage::getStoreConfig('payment/cashondelivery/stateprovince');
+							$default_state = '';
+							$stateprovince2 = explode(',', $stateprovince2);
+
+							foreach($stateprovince2 as $stateprovince){
+								$default_state .= $stateprovince .","; 
+							} 
+							echo substr($default_state,0,-1); ?>';
+
+
+
+		var array_city ='<?php $city2 = Mage::getStoreConfig('payment/cashondelivery/city');
+							$default_city = ''; 
+							$city2 = explode(',', $city2);
+							foreach($city2 as $city){ 
+									$default_city .= $city .","; } 
+							echo substr($default_city,0,-1); ?>';
+
+   	
+		var splitObj = array_state.split(","); 
+		var splitObj2 = array_city.split(",");
+		
+
+		if(jQuery.inArray(state_id, splitObj) !=-1 && jQuery.inArray(city_id, splitObj2) !=-1){
+			jQuery('#cashondelivery').attr('disabled', false);
+			jQuery("label[for='p_method_cashondelivery']").attr('disabled', false);
+
+		}else{
+			jQuery('#cashondelivery').attr('disabled', true);
+			jQuery('#cashondelivery').removeAttr("checked");
+			jQuery("#cashondelivery_name").css('display', 'none');
+
+		}
+	}
+</script>
+
+<!-- AMO Conversion Tags -->
+<script type='text/javascript'>
+    (function() {
+        var f = function() {
+              EF.init({ eventType: "transaction",
+                        transactionProperties : "ev_Billing page=1&ev_transid=<transid>",
+                        segment : "27946", 
+                        searchSegment : "",
+                        sku : "",
+                        userid : "940",
+                        pixelHost : "pixel.everesttech.net"
+                        
+                        , allow3rdPartyPixels: 1});
+              EF.main();
+        };
+        window.EF = window.EF || {}; 
+        if (window.EF.main) {
+            f();
+            return;
+        }
+        window.EF.onloadCallbacks = window.EF.onloadCallbacks || [];
+        window.EF.onloadCallbacks[window.EF.onloadCallbacks.length] = f;
+        if (!window.EF.jsTagAdded) {
+            var efjs = document.createElement('script'); efjs.type = 'text/javascript'; efjs.async = true;
+            efjs.src = 'https://www.everestjs.net/static/st.v3.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(efjs, s);
+            window.EF.jsTagAdded=1;
+        }
+    })();
+</script>
+<noscript><img src="https://pixel.everesttech.net/940/t?ev_Billing page=1&ev_transid=<transid>" width="1" height="1"/></noscript>
+<!-- AMO Conversion Tags -->

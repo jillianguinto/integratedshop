@@ -1,0 +1,417 @@
+<?php
+
+// This page is create by Richel R. Amante for UNILAB use only.
+// Please do not used this software or take with your own risk.
+// Thank you!!!
+
+	$customer = Mage::getSingleton('customer/session')->getCustomer();
+
+?>
+<style>
+		.loading_gif
+		 {
+		  display:none;
+		}
+/*		.cont_wrapper
+		{
+			z-index: 99999;
+			position: fixed;
+			top: 25%;
+			left: 40%;
+			background-color: #fff;
+			padding: 16px;
+			width: 25%;
+		}*/
+/*		.black_background
+		{
+		  position: fixed;
+		  top: 0px;
+		  left: 0px;
+		  min-height: 1024px;
+		  z-index: 9999;
+		  background-color: #000;
+		  height: 100vh;
+		  width: 100%;
+		  opacity: .8;
+		}*/
+/*		.text_close
+		{
+		  cursor: pointer;
+		  border: 1px solid #ccc;
+		  float: left;
+		  padding: 5px;
+		  margin-top: 5px;
+		  display:none;
+		  color:#000 !important;
+		}*/
+		
+	</style>
+
+
+<div class="shipping_wrapper">
+	<div class="heading">
+		<div class="cls_number">1</div>
+		<h1 class="cls_header">Select Address</h1>
+	</div>
+	<div class="cls_body">
+		<ul class="form-list">
+		<form action="" id="billing_address_form">
+			<li class="wide">
+				<label for="billing-address-select">Select a billing address</label>
+				<div class="input-box">
+					<select name="billing_address_id" id="billing_address_id" class="address_select" onchange="selectAddress()" title="Select your Billing Address" autocomplete="off">
+						<?php					
+						$customeraddressid = $customer->getDefaultBilling();
+
+							foreach ($customer->getAddresses() as $address) {
+								if (!empty($address['entity_id'])):
+									if($address['entity_id'] == $customeraddressid):
+										echo '<option value="'.$address['entity_id'].'" selected="selected">'.$address['street'].'</option> ';
+									else:
+										echo '<option value="'.$address['entity_id'].'">'.$address['street'].'</option> ';
+									endif;
+								endif;
+							}
+						?>					
+						<option value="0" >Select address</option> 					
+					</select>
+				</div>
+			</li>
+
+			<input type="hidden" id="emailaddress" name="billing[emailaddress]" value="<?php echo $customer->getemail(); ?>">
+
+			<li class="fields">
+				<div class="customer-name">
+					<div class="name-firstname">
+						<label for="billing_firstname" class="required"><em>*</em>First Name</label>
+						<div class="input-box">
+							<input type="text" id="billing_firstname" name="billing[firstname]" value="<?php echo $customer->getFirstname(); ?>" title="First Name" class="input-text required-entry absolute-advice validation-passed" autocomplete="off">
+						</div>
+					</div>
+					<div class="name-lastname">
+						<label for="billing_lastname" class="required"><em>*</em>Last Name</label>
+						<div class="input-box">
+							<input type="text" id="billing_lastname" name="billing[lastname]" value="<?php echo $customer->getLastname(); ?>" title="Last Name" class="input-text required-entry absolute-advice validation-passed" autocomplete="off">
+						</div>
+					</div>
+				</div>
+			</li> 
+
+
+			<li class="wide">
+				<label for="billing_street1" class=" required "><em>*</em>Address</label>
+				<div class="input-box">
+						<input type="text" title="Street Address" name="billing[street][]" id="billing_street1" value="<?php if($this->helper('customer')->isLoggedIn()): echo $customer->getPrimaryBillingAddress()->getStreet(1); endif; ?>" class=" input-text required-entry absolute-advice " autocomplete="off">
+				</div>
+				<br/>
+				<div class="input-box">
+						<input type="text" title="Street Address 2" name="billing[street][]" id="billing_street2" value="<?php if($this->helper('customer')->isLoggedIn()):  echo $customer->getPrimaryBillingAddress()->getStreet(2); endif; ?>" class="input-text" autocomplete="off">
+				</div>
+			</li>
+			
+			<li class="fields telephone-mobile">
+				<div class="field-telephone  field-first ">
+					<label for="billing_city" class=" required "><em>*</em>City</label>
+					<div class="input-box billing_city">
+						<input type="text"  name="billing[city]" id="billing_city" value="<?php	if($this->helper('customer')->isLoggedIn()): echo $customer->getPrimaryBillingAddress()->getCity(); endif; ?>" class=" input-text required-entry absolute-advice " >
+					</div>
+				</div>
+				<div class="field-mobile  field-last ">
+					<label for="billing_country_id" class="required"><em>*</em>Country</label>
+					<div class="input-box input-box-country billing-country">
+						<?php 
+						
+							$_countries = Mage::getResourceModel('directory/country_collection')->loadData()->toOptionArray(false);
+							$countryCode = Mage::getStoreConfig('general/country/default');
+						?>
+						<?php if (count($_countries) > 0): ?>
+							<select name="billing[country_id]" id="billing_country_id" class="required-entry absolute-advice" title="Country" autocomplete="off">
+								<option value="">-- Please Select --</option>
+								<?php foreach($_countries as $_country): ?>
+									<?php if ($_country['value'] == $countryCode ): ?>
+									<option value="<?php echo $_country['value'] ?>" selected>
+										<?php echo $_country['label'] ?>
+									</option>
+								<?php else: ?>
+									<option value="<?php echo $_country['value'] ?>">
+										<?php echo $_country['label'] ?>
+									</option>
+								<?php endif; endforeach; ?>
+							</select>
+						<?php endif; ?>
+					</div>
+				</div>
+			</li> 
+
+
+			<li class="fields telephone-mobile">
+				<div class="field-telephone  field-first ">
+					<label for="billing_postcode" class=" required "><em>*</em>Zip/Postal</label>
+					<div class="input-box billing_postcode">
+						<input type="text" name="billing[postcode]" id="billing_postcode" value="<?php if($this->helper('customer')->isLoggedIn()): echo $customer->getPrimaryBillingAddress()->getPostcode(); endif; ?>" title="Zip/Postal" class=" input-text required-entry absolute-advice " autocomplete="off">
+					</div>
+				</div>
+				<div class="field-mobile  field-last ">
+					<label for="billing_region_id" class=" required "><em>*</em>State/Province</label>
+					<div class="input-box input-box-country billing-country">
+						<select id="billing_region_id" name="billing[region_id]" title="State/Province" class="input-text required-entry absolute-advice validate-select" defaultvalue="" autocomplete="off">
+							<?php 
+
+								if($this->helper('customer')->isLoggedIn()):
+									$customerregionID = $customer->getPrimaryBillingAddress()->getRegionId();
+									echo '<option value="0" >Select address</option>'; 								
+								else:
+									$customerregionID = 0;
+									echo '<option value="0" selected="selected">Select address</option>'; 								
+								endif;
+								
+									$collection = Mage::getModel('directory/region')->getResourceCollection()->addCountryFilter('PH')->load();
+									
+									foreach($collection as $region) 
+									{
+										if ($customerregionID == $region['region_id'] ): 
+											echo '<option value="'.$region['region_id'].'" selected="selected">'.$region['name'].'</option> ';
+										else:
+											$regionName = $region['name'];
+											echo '<option value="'.$region['region_id'].'" >'.$region['name'].'</option> ';									
+										endif;
+									}
+							?>
+						</select>
+						<input type="text" id="billing_region" name="billing[region]" value="<?php echo $regionName ?>" title="State/Province" class="input-text required-entry absolute-advice" style="display: none;" autocomplete="off">
+					</div>
+				</div>
+			</li> 			
+			
+			<li class="fields">
+				<div class="customer-name">
+					<div class="name-firstname">
+						<label for="billing_telephone" class=" required "><em>*</em>Telephone</label>
+						<div class="input-box">
+						<input type="text" name="billing[telephone]" id="billing_telephone" value="<?php if($this->helper('customer')->isLoggedIn()):  echo $customer->getPrimaryBillingAddress()->getTelephone(); endif; ?>" title="Telephone" class=" input-text required-entry absolute-advice " autocomplete="off">
+						</div>
+					</div>
+					<div class="name-lastname">
+						<label for="billing_mobile" class="">Mobile</label>
+						<div class="input-box">
+							<input type="text" id="billing_mobile" name="billing[mobile]" value="<?php echo $customer->getPrimaryBillingAddress()->getMobile(); ?>" title="Mobile" class="input-text required-entry absolute-advice validation-passed" autocomplete="off">
+						</div>
+					</div>
+				</div>
+			</li> 
+			
+			<li style="display:none;">
+				<style>
+
+					img.ui-datepicker-trigger{
+					position:absolute;
+					top:5px; 
+					right: 0px;
+
+					}
+				</style>
+
+				<label for="dob" class="required"><em>*</em>Date of Birth</label>
+				<div class="input-box customer-dob field-row" style="position:relative;">
+				<input type="text" id="billing_dob" name="billing[dob]" value="" readonly="readonly" title="Day" class="dob input-text required-entry"/>
+				   <div class="validation-advice" style="display:none;"></div>
+				</div> 
+
+				<script type="text/javascript">
+				//<![CDATA[
+					jQuery(function(){ 
+							jQuery( "input.dob" ).datepicker({
+								showOn: "both",
+								buttonImage: "http://172.16.9.196/activeone/skin/frontend/default/unilab2/images/calendar.gif",
+								buttonImageOnly: true,
+								dateFormat: 'mm-dd-yy',
+								changeMonth: true,
+								changeYear: true,
+								yearRange: '-100:+0'
+							});
+						}); //]]>
+				</script>
+	
+			</li>
+			
+			<?php if (Mage::getStoreConfig('rracheckoutsection/rracheckoutgrounp/shipaddressbook') > 0):	?>
+			
+				<li id="billing_address_book" class="control control-siab">
+					<input type="checkbox" name="billing[save_in_address_book]" id="billing_save_in_address_book" value="<?php echo Mage::getStoreConfig('rracheckoutsection/rracheckoutgrounp/shipaddressbook');	?>" <?php if (Mage::getStoreConfig('rracheckoutsection/rracheckoutgrounp/shipaddressbook') == 2) echo 'checked';	?> title="Save in address book" class="checkbox" autocomplete="off" onclick="changeAddressSave(this.checked)">
+					<label for="billing_save_in_address_book">Save in address book</label>
+				</li>
+			
+			<?php 	endif; ?>
+			
+			<?php if (Mage::getStoreConfig('rracheckoutsection/rracheckoutgrounp/shiptoaddress') > 0):	?>
+				
+				<li class="control control-stta">
+					<input type="checkbox" name="billing[use_for_shipping]" id="billing_use_for_shipping_yes" value="<?php if (Mage::getStoreConfig('rracheckoutsection/rracheckoutgrounp/shiptoaddress') == 2) echo 1;	?>" title="Ship to this address" <?php if (Mage::getStoreConfig('rracheckoutsection/rracheckoutgrounp/shiptoaddress') == 2) echo 'checked';	?> onclick="changeAddressMode(this.checked)" class="radio" autocomplete="off">
+					<label for="billing_use_for_shipping_yes">Ship to this address</label>
+				</li>
+				
+			<?php else: ?>			
+				<input type="hidden" name="billing[use_for_shipping]" id="billing_use_for_shipping_yes" value="1" title="Ship to this address" >
+			<?php endif; ?>
+			</form>			
+			</ul>
+		</div>
+</div>
+
+
+<script>
+
+	jQuery('#billing_address_form').change(function () {
+
+	    var paymentdata = jQuery('#billing_address_form, #shipping_address_form').serialize();
+
+	    // var shippingdata = jQuery("#shipping_address_form").serialize();
+
+
+	    var useshippingaddress = jQuery('#billing_use_for_shipping_yes').val();
+
+		jQuery.post( '<?php echo Mage::getBaseUrl();?>checkout/onepage/savenewBilling/', 
+	
+			paymentdata,
+
+
+
+		function (paymentdataretship)
+		{
+
+			var dataobj = jQuery.parseJSON(paymentdataretship)
+			if (dataobj.reload == true)
+			{
+				location.reload();
+
+			}else{
+
+				return;
+
+			}
+
+		});	
+
+
+	});
+
+	function selectAddress()
+	{
+	
+		var addID = jQuery('#billing_address_id').val();		
+
+		jQuery.post( '<?php echo Mage::getBaseUrl();?>rracheckout/address/addressbill',{ 
+			addressID: addID
+			},
+			function (addressData)
+			{
+			var dataobj = jQuery.parseJSON(addressData)
+			if (dataobj.success == true)
+			{
+				jQuery('#billing_firstname').val(dataobj.firstname);
+				jQuery('#billing_lastname').val(dataobj.lastname);
+				
+				jQuery('#billing_country_id').val(dataobj.country_id);
+				jQuery('#billing_postcode').val(dataobj.postcode);				
+				
+				jQuery('#billing_city').val(dataobj.city);
+				jQuery('#billing_telephone').val(dataobj.telephone);
+				jQuery('#billing_street1').val(dataobj.street);
+				
+				jQuery('#billing_region_id').val(dataobj.region_id);
+				jQuery('#billing_region').val(dataobj.region);
+				
+				var paymentdata = jQuery("#billing_address_form").serialize();
+				
+				jQuery.post( '<?php echo Mage::getBaseUrl();?>checkout/onepage/saveBilling/', 
+			
+					paymentdata,
+
+				function (paymentdataret)
+				{
+					var dataobj = jQuery.parseJSON(paymentdataret);
+					
+					if(dataobj.success == true)
+					{
+						jQuery('#amt_'+dataobj.carrier_code+'').html(dataobj.carrier_method_title + ' - ' + dataobj.shippingrate);
+						jQuery('.shipping_name').html(dataobj.carrier_title + ' - ' + dataobj.carrier_method_title);
+						jQuery('.shipping_amount').html(dataobj.shippingrate);
+						jQuery('.grand_total').html(dataobj.grandTotal);
+						jQuery('.tax_amount').html(dataobj.taxAmount);					
+						jQuery('#submit_btn').removeAttr('disabled');
+
+					}
+					else
+					{
+						// jQuery('#submit_btn').attr('disabled',true);
+					}
+
+				});	
+				
+								
+			}else{
+
+				jQuery('#billing_firstname').val('');
+				jQuery('#billing_lastname').val('');
+				
+				jQuery('#billing_country_id').val('');
+				jQuery('#billing_postcode').val('');				
+				
+				jQuery('#billing_city').val('');
+				jQuery('#billing_telephone').val('');
+				jQuery('#billing_mobile').val('');
+				jQuery('#billing_street1').val('');
+				
+				jQuery('#billing_region_id').val('');
+				jQuery('#billing_region').val('');
+
+			}
+		});
+	}
+	
+	function changeAddressMode(e)
+	{
+		if(e == true)
+		{
+			jQuery('#billing_use_for_shipping_yes').val(1);
+
+			jQuery('.shipping_address').hide();
+		}
+		else{
+			jQuery('#billing_use_for_shipping_yes').val(0);
+			jQuery('.shipping_address').show();
+
+					jQuery('#shipping_address_form').change(function () {
+
+						// var paymentdata = jQuery("#billing_address_form").serialize();
+
+						var shippingdata = jQuery("#shipping_address_form").serialize();
+
+							jQuery.post( '<?php echo Mage::getBaseUrl();?>checkout/onepage/savenewShipping/', 
+	
+								shippingdata,
+
+
+
+							function (paymentdataretshippingaddress)
+							{
+
+							});
+					});
+
+
+		}
+	}
+	
+	function changeAddressSave(e)
+	{
+		if(e == true)
+		{
+			jQuery('#billing_save_in_address_book').val(1);
+		}
+		else{
+			jQuery('#billing_save_in_address_book').val(0);
+		}
+	}	
+	
+</script>

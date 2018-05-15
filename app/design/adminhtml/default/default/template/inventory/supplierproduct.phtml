@@ -1,0 +1,49 @@
+<div class="content-header">
+    <table cellspacing="0">
+        <tbody><tr>
+                <td style="width:50%;"><h3 class="icon-head head-adminhtml-inventory"><?php echo $this->__('Supplier Product Reports'); ?></h3></td>
+            </tr>
+        </tbody></table>
+</div>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Select a Supplier to Show Report') ?></h4>
+    </div>
+    <div id="date_picker_form" class="fieldset ">
+        <div  class="input-box">
+            <label><?php echo $this->__('Supplier Filter'); ?></label>
+            &nbsp; &nbsp;
+            <select name="supplierid" id="supplier-id" style="width: 120px">
+                <?php
+                $suppliers = Mage::helper('inventory/supplier')->getAllSupplierName();
+                ?>
+                <?php foreach ($suppliers as $supplierId => $supplierName): ?>
+                    <option value="<?php echo $supplierId ?>"><?php echo $supplierName; ?></option>
+                <?php endforeach ?>
+            </select>
+        </div>
+    </div>
+</div>
+<script type='text/javascript'>
+    function ajax(supplier_id){
+        var parameters = {
+            id: supplier_id
+        }; 
+        var url = '<?php echo $this->getUrl('inventoryadmin/adminhtml_report/reportsupplierproductgrid'); ?>';
+        var request = new Ajax.Request(url,
+        {
+            method:'post',
+            parameters:parameters,
+            onSuccess: function(transport){
+                if(transport.responseText){
+                    $('productGrid').update(transport.responseText);
+                }
+            }
+        });
+    }
+    
+    Event.observe($("supplier-id"),'change', function(){
+        var supplier_id = $("supplier-id").value;
+        ajax(supplier_id);
+    });
+</script>

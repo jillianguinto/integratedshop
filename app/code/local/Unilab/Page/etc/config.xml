@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Unilab_Page>
+            <version>0.1.0</version>
+        </Unilab_Page>
+    </modules> 
+    <global> 
+		<page>
+			<layouts>
+			    <unilab_one_column module="page" translate="label">
+                    <label>1 column (Unilab)</label>
+                    <template>page/unilab-1column.phtml</template>
+                    <layout_handle>unilab_one_column</layout_handle>
+                </unilab_one_column>
+                <unilab_two_columns_left module="page" translate="label">
+                    <label>2 columns with left bar (Unilab)</label>
+                    <template>page/unilab-2columns-left.phtml</template>
+                    <layout_handle>unilab_two_columns_left</layout_handle>
+                </unilab_two_columns_left>
+                <unilab_two_columns_right module="page" translate="label">
+                    <label>2 columns with right bar (Unilab)</label>
+                    <template>page/unilab-2columns-right.phtml</template>
+                    <layout_handle>unilab_two_columns_right</layout_handle>
+                </unilab_two_columns_right> 				
+                <unilab_three_columns module="page" translate="label">
+                    <label>3 columns (Unilab)</label>
+                    <template>page/unilab-2columns-right.phtml</template>
+                    <layout_handle>unilab_three_columns</layout_handle>
+                </unilab_three_columns> 
+			</layouts>		
+		</page>
+    </global>
+</config>

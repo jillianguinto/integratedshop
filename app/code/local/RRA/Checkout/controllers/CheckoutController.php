@@ -1,0 +1,57 @@
+<?php 
+
+// This page is create by Richel R. Amante for UNILAB use only.
+// Please do not used this software and take with your own risk.
+
+// Thank you!!!
+
+
+class RRA_Checkout_CheckoutController extends Mage_Core_Controller_Front_Action
+{
+    public function onepageAction()
+    {  
+    	
+
+		$totalItemsInCart = Mage::helper('checkout/cart')->getItemsCount();
+		
+		if ($totalItemsInCart > 0):	
+		
+			if(Mage::getSingleton('customer/session')->isLoggedIn()){
+				$this->loadLayout();
+				$this->renderLayout();
+			}else{
+				
+				
+				$siteenabled=  Mage::getStoreConfig("webservice/sitesettings/siteenabled");
+				$checkouturl = Mage::getBaseUrl() . "checkout/cart" ; //Mage::getBaseUrl() . "rracheckout/checkout/onepage";
+				//$checkouturl = "1";
+		
+				if($siteenabled==1){
+					$parsed_url 		= parse_url($checkouturl);
+					$final_url 			= $parsed_url["host"] . $parsed_url["path"];
+					
+					//$loginurl     = Mage::getStoreConfig("webservice/sitesettings/loginurl") . "&returnurl=" . $final_url;
+					$loginurl     = Mage::getStoreConfig("webservice/sitesettings/loginurl") . "&returnurl=" . $checkouturl;
+					Mage::app()->getFrontController()->getResponse()->setRedirect($loginurl);
+					
+				}else{
+					
+					$url = Mage::getBaseurl()."customer/account/login/";
+					Mage::app()->getResponse()->setRedirect($url)->sendResponse();
+				}
+				
+			}
+
+		else:
+			
+			$url = Mage::getBaseurl();
+			Mage::app()->getResponse()->setRedirect($url)->sendResponse();
+			
+		endif;
+		
+    }	
+
+
+
+
+}

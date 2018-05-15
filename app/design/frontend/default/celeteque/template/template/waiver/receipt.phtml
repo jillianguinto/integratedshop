@@ -1,0 +1,54 @@
+<?php 
+
+/**
+	-> Celeteque International Shipping
+	
+	-> Author 	: Richel R. Amante
+	
+	-> Email	: richelramante@gmail.compile
+	
+	-> Date		: October 29, 2014
+	
+	-> Filename	: receipt.phtml	
+	
+**/
+
+//Connect to Database using core resource
+
+	$connection = Mage::getSingleton('core/resource')->getConnection('core_write');
+	
+	$connection->beginTransaction();
+
+	
+//Get Entity for Specific Order
+
+	//Get Local Country code from backend waiver setting		
+		
+		$waiver_code = Mage::getStoreConfig('celeteque_section/celeteque_group/waiver_code');
+
+		$waiver_active = Mage::getStoreConfig('celeteque_section/celeteque_group/waiver_active');
+		
+	//Get Country Code
+					
+		$path			= 	Mage::getBaseDir();	
+		
+		$file 			= 	$path . DS .'countrycode.temp';
+					
+		$country_code =  file_get_contents($file);				
+					
+		if  ($waiver_active == 1):
+		
+			if ($country_code != $waiver_code):	 
+			
+					$select = $connection->select()->from('sales_flat_order', array('*'))->where('increment_id=?',$_order->getRealOrderId()); 
+					
+					$rowArray =$connection->fetchRow($select);
+					
+					$notewaiver = $rowArray ['waiver_celeteque'];
+					
+					echo '<p class="order-date" style="color:green">'.$notewaiver.'</p>';
+			endif;
+			
+		endif;
+
+?>

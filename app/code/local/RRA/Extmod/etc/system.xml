@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+   <tabs>
+        <RRAExtmod translate="label">
+            <label>Unilab Custom Extensions</label>
+            <sort_order>999999999999999</sort_order>
+        </RRAExtmod>
+    </tabs>
+</config>
