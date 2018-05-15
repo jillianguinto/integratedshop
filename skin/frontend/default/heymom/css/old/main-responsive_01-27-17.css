@@ -1,0 +1,1095 @@
+/* For Large Display */
+@media screen and (max-width: 1680px) {
+
+  /*body {
+    border-top: 3px solid gold;
+  }*/
+}
+
+
+/* For Normal Display */
+@media screen and (max-width: 1200px) {
+
+  /*body {
+    border-top: 3px solid green;
+  }*/  
+
+}
+
+@media only screen and (max-width: 1024px){
+  .xtwsubmitinput{
+    margin: -27px 52px; 
+  }
+  .cart .totals.grid_4{
+    width: 40%;
+    margin: 0;
+    float: right;
+  }
+
+  .products-grid li.item{
+    width: 155px;
+  }
+
+  .product-view .generic-name h1{
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+}
+
+/* For Default */
+@media screen and (max-width: 980px) {
+
+ /* body {
+    border-top: 3px solid blue;
+  }*/
+
+  .row{
+    width: 95%;
+  }
+
+  .products-grid li.item{
+    width: 130px !important;
+  }
+
+  ul.products-grid.first.last.odd{
+    text-align: center;
+  }
+
+  input#search{
+    width: 65%;
+  }
+
+  .form-search button.button{
+    margin-top: 0px;
+  }
+
+  .checkout-wrapper .billing-address{
+    width: 65%;
+  }
+
+  .cart .totals.grid_4 {
+    width: 59% !important;
+    margin-left: 0px;
+  }
+
+  .modalflavor .modal-content {
+      width: 33%;
+  }
+
+  .product-view .product-shop{
+    width: 57%;
+  }
+
+  .product-view .productimage{
+    width: 40%;
+  }
+
+  .rracheckout-checkout-onepage input#billing_mobile, .rracheckout-checkout-onepage input#shipping_mobile{
+    margin-top: -1px;
+  }
+     
+}
+
+/* For Tablets */
+@media screen and (max-width: 768px) {
+
+  /*body {
+    border-top: 3px solid red;
+  }*/
+
+  .row{
+    width: 90%;
+  }
+
+  .main {
+    margin-top: -10px;
+  }
+
+
+  .col2-left-layout .col-left{
+    width: 100%;
+    float: none;
+  }
+
+  .col2-left-layout .col-main{
+    top: 10px;
+    padding:1% 1%;
+    min-height: 0px;
+  }
+
+  .block.block-account.block-account-left-bar {
+    width: 300px;
+    margin: 0 auto 10px;
+  }
+
+  .form-search {
+    width: 96%;
+  }
+
+  .form-search button.button{
+    margin-top:0px;
+  }
+
+  .col2-left-layout .col-main{
+    width: 100%;
+    float: none;
+  }
+
+  .products-grid li.item{
+    width: 140px !important;
+  }
+
+  ul.products-grid.first.last.odd{
+    text-align: center;
+  }
+
+  .xtwsubmitinput {
+    margin: -27px 35.6%!important;
+  }
+
+  p.view-mode {
+   /* display: none;*/
+  }
+
+  .toolbar .sorter {
+    font-size: 12px;
+  }
+
+  .btn-cshopping, .btn-checkout{
+    width: 100%;
+  }
+
+  .checkout-wrapper .billing-address{
+    width: 100%;
+  }
+
+  .billing-address .shipping_wrapper{
+    width: 100%;
+  }
+
+  .checkout-wrapper .shipping_address{
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 20px;
+  }
+
+  .shipping_address .shipping_wrapper{
+    margin-top: 0px;
+  }
+
+  .checkout-wrapper .checkout-wrappah{
+    margin: 0px;
+  }
+
+  .shipping-method{
+    margin-top: 0px !important;
+  } 
+
+  .checkout-wrappah{
+    width: 100% !important;
+  }
+
+  .all-rights-reserved{
+    margin: 10px 230px 0 0;
+  }
+
+  .name-firstname, .name-lastname{
+    width: 95% !important;
+  }
+
+  .input-box select{
+    width: 98%;
+  }
+
+  .form-list li.wide .input-box input.input-text{
+    width: 95%;
+  }
+
+ table#my-orders-table, #my-orders-table thead, #my-orders-table tbody, #my-orders-table th, #my-orders-table td, #my-orders-table tr{
+    display: block;
+    border: 0px;
+  }
+
+  #my-orders-table thead{
+    display: none;
+  }
+
+  #my-orders-table .product-name{
+    min-height: 0px;
+    text-align: left;
+  }
+
+  #my-orders-table tbody td:nth-of-type(1){ width: 100% !important; }
+  #my-orders-table tbody td:nth-of-type(2){ width: 58% !important; }
+  #my-orders-table tbody td:nth-of-type(3) br{ display: none; }
+  #my-orders-table tbody td:nth-of-type(4){ text-align: left !important; }
+
+  #my-orders-table tbody td:nth-of-type(1):before{ content: "SKU: "; }
+  #my-orders-table tbody td:nth-of-type(2) h3:before{ content: "Name: "; }
+  #my-orders-table tbody td:nth-of-type(3) span span span:before{ content: "Price: "; }
+  #my-orders-table tbody td:nth-of-type(5) span span span:before{ content: "Total: "; }
+
+  .data-table td {
+    padding: 5px 6px;
+  }
+
+  .data-table tbody th, .data-table tbody td{ padding-bottom: 0px;}
+
+  .price-excl-tax .price{ text-align: left; }
+
+  tfoot {
+    width: 100%;
+    /*float: right;*/
+  }
+
+  input#search{ width: 92%; }
+
+  .widget-static-block {
+    width: 300px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .xtwsubmitinput {
+    position: relative;
+    top: -21px;
+    left: 37.3%;
+  }
+
+  .my-account .form-list li{ height: auto; }
+  .my-account .form-list li{ width: 100% !important;}
+
+  .customer-account-edit .input-box input.input-text, .customer-address-form .input-box input.input-text{ width: 95%; }
+
+  .my-account .form-list .fields .customer-name .input-box #firstname { width: 100%; }
+  .my-account .form-list .fields .customer-name .input-box #lastname { width: 100%; }
+
+  .cart .totals.grid_4{ float: left; }
+
+  .modalflavor .modal-content {
+      width: 40% !important;
+  }
+
+  .products-list .product-image img{
+   max-width: 170px; 
+   width: 100%;
+   height: 170px;
+  }
+
+  .rracheckout-checkout-onepage input#billing_mobile {
+    width: 91%;
+  }
+
+  .rracheckout-checkout-onepage input#shipping_mobile {
+    width: 91%;
+  }
+
+  .customer-address-form .my-account .form-list input#company {
+    width: 95%;
+  }
+
+  .customer-address-form .form-list li.wide .input-box input.input-text {
+    width: 95% !important;
+  }
+
+  .customer-address-form .input-box select {
+    width: 98%;
+  }
+
+  .customer-address-form .button {
+    width: 20%;
+  }
+
+}
+
+ /*For Tablets */
+@media screen and (max-width: 640px) {
+
+  /*body {
+    border-top: 3px solid orange;
+  }*/
+
+  .form-search input.input-text{
+    /*width: auto !important;*/
+  }
+
+  #navigation-container {
+    top: -30px !important;
+  }
+
+  .product-view .product-shop{
+    width: 100%;
+  }
+
+  .block.block-account.block-account-left-bar {
+    width: 300px;
+  }
+
+
+  .products-grid li.item {
+    width: 33%;
+  }
+
+  .btn-cart.recentlyadded {
+    /*width: 125px;*/
+    width: 140px;
+  }
+
+  .product-view .productimage {
+    width: 100%;
+    margin-right: 15px;
+    float: left;
+  }
+
+  .tabs-menu {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    float: none !important;
+  }
+
+  .tabs-menu li{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  li.current {
+    float: none;
+    text-align: center;
+  }
+
+  input#has_prescription, input#no_prescription {
+      width: 40%;
+  }
+
+  .modal-header h2 {
+    width: 89%;
+  }
+  .modal-content {
+      width: 90%;
+  }
+
+  .form-search{
+    width: 95%;
+  }
+
+  .checkout-wrappah{
+    width: 100%!important;
+  }
+
+  .name-firstname, .name-lastname{
+    width: 95%!important;
+  }
+
+  .checkout-wrappah,
+  .checkout-wrappah .shipping-method{
+    margin: 0!important;
+  }
+
+  .field-mobile {
+      margin: -44px 0px 0 0!important;
+  } 
+
+  .customer-name, .postcode-region, .telephone-mobile, .customer-dob-gender, .faxgender{
+    max-width: 100%!important;
+    width: 100%!important;
+  }
+
+  .form-list li.fields, .form-list li.wide{
+    overflow: hidden;
+  }
+
+  .customer-account-edit .input-box input.input-text, .customer-address-form .input-box input.input-text{
+    width: 95%!important;
+  }
+
+  .customer-account-edit .name-firstname,
+  .customer-account-edit .name-lastname,
+  .customer-address-form #lastname,
+  .customer-address-form #firstname{
+    width: 100%!important;
+  }
+
+  .customer-account-edit  .form-list li.fields, .customer-address-form .form-list li.fields {
+    overflow: visible;
+  }
+
+  table#shopping-cart-table, #shopping-cart-table thead, #shopping-cart-table tbody, #shopping-cart-table th, #shopping-cart-table td, #shopping-cart-table tr{
+    display: block;
+  }
+
+  .data-table td{
+    padding: 0px;
+  }
+
+   #shopping-cart-table thead {
+    display: none;
+  }
+
+  #shopping-cart-table .product-name{
+    min-height: 0px;
+    text-align: left; 
+    margin-left: 5px;
+  }
+
+  .a-center{
+    text-align: left !important;
+  }
+
+  .data-table tbody a{
+    color: #000;
+  }
+
+  #shopping-cart-table td{
+    margin-left: 5px;
+    text-align: left !important;
+  }
+
+  #shopping-cart-table .product-name :before { content: "Name: ";  }
+  #shopping-cart-table td:nth-of-type(4):before { content: "Qty: "; font-weight: bold; }
+  #shopping-cart-table td:nth-of-type(5):before { content: "Price: "; font-weight: bold; }
+  #shopping-cart-table td:nth-of-type(6):before { content: "Total: "; font-weight: bold;}
+
+  #shopping-cart-table tr{
+    margin-bottom: 20px;
+  }
+
+  .cart-collaterals .grid_4{
+    width: 95%;
+  }
+
+  .all-rights-reserved {
+    margin: 10px 100px 0 0;
+  }
+
+  .header-container{
+    height: auto;
+  } 
+
+  .checkout-onepage-success .button{ width: 40%;  }
+  .rracheckout-checkout-onepage  input#billing_firstname { width: 99%; }
+  .rracheckout-checkout-onepage  input#billing_lastname { width: 99%; }
+  select#billing_country_id { width: 97.5%; }
+  select#billing_city { width: 97%; }
+  input#billing_street1 { width: 93%; }
+
+  select#shipping_address_id { width: 100%; }
+
+  .rracheckout-checkout-onepage .input-box select {
+    width: 94%;
+  }
+
+  .rracheckout-checkout-onepage input#billing_mobile {
+    width: 84%;
+  }
+
+  .rracheckout-checkout-onepage .name-firstname, .rracheckout-checkout-onepage .name-lastname {
+    width: 97%!important;
+  }
+
+  .rracheckout-checkout-onepage .input-box select {
+    width: 100%;
+  }
+
+  .rracheckout-checkout-onepage .form-list li.wide .input-box input.input-text {
+    width: 96%;
+  }
+
+  .cart .totals.grid_4{ float: right; }
+
+  .f-fix .btn-cart { width: 100%; }
+  .f-fix .btn-view { width: 100%; }
+
+  .modalflavor .modal-content {
+    width: 40% !important;
+  }
+
+  .data-table tfoot{
+    position: absolute;
+  }
+
+  .cart .cart-collaterals{
+    margin-top: 8%;
+  }
+
+  .cart .totals.grid_4{
+    width: 100% !important;
+  }
+
+  .rracheckout-checkout-onepage .billing_address_id{
+    width: 98%;
+  }
+
+  .rracheckout-checkout-onepage .checkout-wrapper .checkout-wrappah {
+    margin-top: 25px !important;
+  }
+
+}
+
+/* For Mobile/Smartphones */
+@media screen and (max-width: 480px) {
+
+  /*body {
+    border-top: 3px solid violet;
+  }*/
+
+  .form-search{
+    width: 95%;
+  }
+
+  .mini-products-grid li {
+      width: 100%;
+  }
+  .modal-content .btn-cshopping, .modal-content .btn-checkout {
+    width: 48%;
+  }
+
+  .form-search{
+    width: 93%;
+  }
+
+  .form-search input.input-text{
+    width: 85% !important;
+  }
+  .input-box input.input-text {
+    width: 100% !important;
+  } 
+
+  .cart .totals.grid_4{
+    width: 95% !important;
+  }
+
+  .all-rights-reserved {
+    margin: 10px 10px 0 0;
+  }
+
+  .onsale-category-container {
+    top: 320px !important;
+    left: 170px !important;
+  }
+
+  #common-button-container{
+    right: 15px !important;
+  }
+
+  #shopping-cart-table td:nth-of-type(5) { width: 32% !important; }
+  #shopping-cart-table td:nth-of-type(6) { width: 32% !important; }
+  
+  #shopping-cart-table td.prodqty{ width:45%; }
+
+  .checkout-placeorder .btn-checkout{ width: 40%;}
+
+  .category-list > ul
+  {
+    width: 88%;
+  }
+
+  .tbl-left-side
+  {
+    width: 88% !important;
+  }
+
+  .tbl-left-side img
+  {
+    width:100% !important;
+  }
+
+  .tbl-right-side
+  {
+    display: inline-block; width: 88%;
+  }
+
+  .prodname {
+    position: relative;
+    width: 100%;
+    line-height: 1;
+  }
+
+  .header-container{
+    height: auto !important;
+  }
+
+  .block.block-account.block-account-left-bar {
+      margin: 0 auto 10px;
+  }
+
+  .block-layered-nav{
+      width: 100%;
+  }
+  .cat-label a{
+    word-wrap: break-word;
+  }
+
+  .input-box select {
+    width: 100%;
+  }
+
+  .prescription_detail_wrapper{ width: 100%; padding: 10px;}
+  .prescription_details p{ width: 100%; }
+  .prescription_details p label{ width: 100%; }
+
+  .entry_wrapper{ width: 85%; }
+  input#prescription_date_prescribed{ width: 97%; }
+
+  .col2 input, .col2 p input {
+    width: 82% !important;
+  }
+
+  .prescription_details p input {
+    width: 82%;
+  }
+
+  .col2 span input {
+    width: 97% !important;
+  }
+
+  .btn-youhave-prescrioption{
+    width: 50%;
+  }
+
+  .prescription_detail_wrapper h3 {
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .fancybox-inner {
+    overflow-x: hidden !important;
+  }
+
+  #common-button-container{
+    top: 83px !important;
+  }
+
+
+  #contactForm .form-list .field{ width: 100% !important; }
+  #contactForm .form-list #name{ margin-bottom:10px; }
+
+  #products-list .onsale-category-container-list{ width: 49%; }
+  #products-list .onsale-category-container-list img{ max-width: 175px; width: 100%;}
+
+  .modalflavor .modal-content {
+    width: 60% !important;
+  }
+
+  .form-search {
+    width: 93% !important;
+  }
+
+  input#search {
+    width: 85% !important;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+
+  .tabs-menu li a{
+    padding:7px !important;
+  }
+
+  .tabs-menu li{
+    margin-right: 0px !important;
+  }
+
+  .customer-account-resetpassword .button {
+    width: 35%;
+  }
+
+  .customer-account-resetpassword  .form-list li .field{
+    width: 100%;
+  }
+
+  .customer-address-form .input-box select {
+    width: 100%;
+  }
+
+  .customer-address-form .button {
+    width: 35%;
+  }
+
+  .customer-address-form .recentlyadded{
+    width: 40%;
+  }
+
+  .customer-account-edit img.ui-datepicker-trigger{
+    position: relative;
+    top: -22px;
+    float: right;
+  }
+
+  .rracheckout-checkout-onepage select#billing_country_id {
+    width: 100%;
+  }
+
+  .rracheckout-checkout-onepage select#billing_city {
+    width: 100%;
+  }
+
+}
+
+@media screen and (max-width: 414px) {
+  #common-button-container{
+    top: 83px !important;
+  }
+
+  .f-fix{
+    width: 100%;
+    margin-left: 0px;
+  }
+  .cat-label{
+    font-size: 14px;
+  }
+
+  .data-table tfoot {
+    position: static;
+  }
+
+  .cart .cart-collaterals{
+    margin-top: 0px;
+  }
+
+  .customer-address-form .input-box input.input-text {
+    width: 100%!important;
+  }
+
+}
+
+
+/* For Iphone6 */
+@media screen and (max-width: 375px) {
+
+  /*body {
+    border-top: 3px solid black;
+  }*/
+
+  .products-grid li.item{
+    width: 230px !important;
+  }
+
+  .form-search{
+    width: 89%;
+  }
+
+  .products-grid li.item{ 
+      width: 78%;    
+  }
+
+  #my-orders-table .input-text.qty, #my-orders-table .price{
+    left: 20%;
+  }
+  
+  .cat-label{
+    font-size: 12px !important; 
+  }
+
+  #search-bar{
+    visibility: hidden;
+  }
+
+  .cart .totals.grid_4{
+    width: 100% !important;
+  }
+
+  .buttons-set .button{
+    width: 50%;
+  }
+
+  .prescription_details p{
+    padding: 0px;
+  }
+
+  .prescription_details p label{ width: 100%; }
+
+  .btn-youhave-prescrioption{ margin: 0px;}
+
+  #products-list .onsale-category-container-list{ width: 100%; }
+  .products-list .product-image img{ margin: 0px; max-width: 252px; width: 100%; }
+  .products-list .product-shop{ margin-left: 0px;}
+  .products-list .product-name{ font-size: 16px; }
+
+  .f-fix{ margin: 0 auto; float: none; width: 100%; }
+  #products-list .onsale-category-container-list img{ margin-left: 18%; }
+
+  .modalflavor .modal-content {
+      width: 75% !important;
+  }
+
+  .toolbar label{
+    font-size: 11px;
+  }
+
+  #products-list .onsale-category-container-list img{
+    max-width: 240px;
+    width: 100%;
+    height: 240px;
+    margin-left: 20px;
+  }
+  
+  .modal-content .btn-cshopping, .modal-content .btn-checkout {
+    width: 100%;
+  }
+
+  .rracheckout-checkout-onepage #shopping-cart-table tbody td:nth-of-type(4) {
+    width: 24%;
+  }
+
+  .rracheckout-checkout-onepage #shopping-cart-table tbody td:nth-of-type(6) {
+    width: 35%;
+  }
+
+  .customer-address-form .input-box input.input-text {
+    width: 93%!important;
+  }
+
+  .customer-address-form #lastname, .customer-address-form #firstname {
+    width: 98%!important;
+  }
+
+  #products-list .onsale-category-container-list{
+    width: 50%;
+  }
+
+  #products-list .onsale-category-container-list img{
+    height: auto;
+    margin-left: 0px;
+  }
+
+  .f-fix{
+    float: left;
+    width: 48%;
+    margin-left: 5px;
+  }
+
+  .products-list li.item{
+    /*padding:0px;*/
+    padding-bottom: 5px;
+  }
+
+  .f-fix .btn-cart {
+    width: 90%;
+  }
+
+  .f-fix .btn-view {
+    width: 90%;
+  }
+  
+}
+
+
+/* For Small Phones */
+@media screen and (max-width: 320px) {
+
+  /*body {
+    border-top: 3px solid brown;
+  }*/
+
+  .header .logo{
+    left: -25px;
+    width: auto;
+  }
+
+  .navigation div a{
+    width: 90px;
+  }
+
+  #sub-navigation ul{
+    width: 100%;
+  }
+
+  .navigation div a{
+    width: 84px;
+  }
+
+  #shopping-cart-table td:nth-of-type(5){
+    width: 45% !important; 
+  }
+
+  #shopping-cart-table td:nth-of-type(6){
+    width: 45% !important; 
+  }
+
+  .block.block-account.block-account-left-bar {
+    width: 250px !important;
+  }
+
+  #navigation li a {
+    width: 95px !important;
+  }
+  .col2-left-layout .col-left {
+    width: 95% !important;
+    margin: 0px;
+    margin-bottom: 10px;
+    float: none;
+  }
+
+  .widget-static-block {
+    width: 253px !important;
+    margin: 0 auto;
+  }
+
+  .products-grid li.item {
+    width: 85%!important;
+    /*min-height: 430px;
+    max-height: 345px;*/
+    margin-left:0;
+  }
+
+  .shopbycategory-content2 {
+    background-color: #5a6a9d;
+    width: 100%;
+    color: #FFF;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px 0px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .category-container {
+    width: 30%;
+    padding: 0px 2px;
+    display: inline-block;
+  }
+
+  .xtwsubmitinput {
+      margin: -26px 0 0 0 !important;
+  }
+
+  div#askPrescription {
+    width: 230px !important;
+  }
+
+  .modal-content .btn-cshopping, .modal-content .btn-checkout {
+    width: 100% !important;
+  }
+
+  #loading-icon{
+    top: 125px;
+  }
+
+  .input-box input.input-text, .input-box select,.form-list li.wide .input-box input.input-text{
+    width: 100%!important;
+    padding: 5px;
+  }
+
+  .input-box{
+    overflow: hidden;
+  }
+
+  img.ui-datepicker-trigger{
+    top: 8px;
+      right: 5px;
+  }
+
+  #ui-datepicker-div{
+    width: 230px;
+  }
+
+  .field-telephone, .field-mobile, .gender, .fax{
+    width: 100%!important;
+    margin: 0!important;
+  }
+  .field-mobile{
+    margin: 0!important;
+  }
+
+  .customer-account-edit .button, .newsletter-manage-index .button, .customer-address-form .button {
+      width: 35%;
+  }
+  
+  .pro_topadst .genericname{ 
+    min-height: 0px 
+  }
+  
+  .header-container {   
+    height: 305px !important; 
+  }
+
+  span.logo-text{ padding-left: 30px; }
+
+  #common-button-container{
+    top: 85px !important;
+  }
+
+  .checkout-onepage-success .button { width: 50%; }
+
+  .cart .discount-form .buttons-set{ width: auto !important;}
+
+  span.logo-text {
+    padding-left: 15px;
+  }
+
+  .name-firstname, .name-lastname {
+    width: 100%!important;
+  }
+
+  .prescription_details{ padding: 0px;}
+  .prescription_details p{ width: 90%; font-size: 14px;}
+
+  .btn-youhave-prescrioption {
+    width: 100%;
+  }
+
+  .modalflavor .modal-content {
+      width: 80% !important;
+  } 
+
+  .form-search {
+    width: 89% !important;
+  }
+
+  input#search {
+    width: 80% !important;
+  }
+
+  #products-list .onsale-category-container-list img{
+    margin-left: 0px;
+  }
+
+  .customer-address-form .button {
+      width: 50%;
+  }
+
+  #products-list .onsale-category-container-list {
+    width: 45%;
+  }
+
+  .f-fix{
+    width: 50%;
+  }
+
+}
+
+@media only screen and (min-width: 120px) and (max-width: 310px) {
+
+  #search-bar {
+    left: 65px;
+  }
+  #search-bar input {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 327px){
+  .navigation div a{
+    width: 94px;
+  }
+}
+
+
+
+@media only screen and (max-width: 314px){
+  .navigation div a{
+    width: 80px;
+  }
+}
+
+@media only screen and (max-width: 298px){
+  .navigation div a{
+    width: 70px;
+  }
+}

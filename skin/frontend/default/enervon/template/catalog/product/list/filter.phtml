@@ -1,0 +1,24 @@
+<?php if($attribute_filters = $this->getAttributeFilters()):?> 	
+	<div class="product_list_filter_wrapper">
+		<div style="width:100%;">			
+				<ul>		 
+					<?php foreach($attribute_filters as $attribute):?>
+						<li class="filter_<?php echo $attribute->getAttributeCode();?>"><?php echo $attribute->getStoreLabel();?></li>
+					<?php endforeach;?>  
+				</ul>
+				<ul> 
+					<?php foreach($attribute_filters as $attribute):?> 
+							<li class="filter_<?php echo $attribute->getAttributeCode();?>">
+								<select style="width:96%;" name="<?php echo $attribute->getAttributeCode();?>" onchange="setLocation(this.value);">
+									<?php foreach($attribute->getOptions() as $option):?>
+										<option <?php echo $option['selected'];?> value="<?php echo $option['value'];?>"><?php echo $option['label'];?></option>
+									<?php endforeach;?>
+								</select>
+							</li>  
+					<?php endforeach;?> 
+					<li><input type="button" value="Reset" onclick="setLocation('<?php echo $this->getResetFilterUrl();?>');"/></li>
+				</ul>
+				<div class="clear"></div>
+		</div>
+	</div>
+<?php endif;?>

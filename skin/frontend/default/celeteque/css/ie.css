@@ -1,0 +1,69 @@
+.customer-account-create img.ui-datepicker-trigger {
+	margin-top: 14px;
+}
+
+@media screen and (max-width: 1680px) {
+
+	.main .xtwsubmitinput {
+	
+	    margin-left: 180px;
+	}
+}
+
+
+/* For Normal Display */
+@media screen and (max-width: 1200px) {
+
+	.main .xtwsubmitinput {
+		margin-left: 130px;
+
+	}
+
+}
+
+/* For Default */
+@media screen and (max-width: 980px) {
+
+	.xtwsubmitinput {
+			margin-left: 100px;
+
+	}
+     
+}
+
+/* For Tablets */
+@media screen and (max-width: 768px) {
+
+	.main .xtwsubmitinput {
+		margin-left: 125px;
+	}
+}
+
+
+@media screen and (max-width: 640px) {
+
+	.main .xtwsubmitinput {
+		margin-left: 230px;
+	}
+
+}
+
+
+/* For Mobile/Smartphones */
+@media screen and (max-width: 480px) {
+
+	.main .xtwsubmitinput {
+		margin-left: 230px;
+	}
+ 
+}
+
+
+/* For Iphone6 */
+@media screen and (max-width: 375px) {
+
+	.main .xtwsubmitinput {
+		margin-left: 200px;
+	}
+ 
+}

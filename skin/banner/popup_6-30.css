@@ -1,0 +1,56 @@
+	.promo_banner{
+		
+		display: none;
+		position: fixed;
+		top: 18%;
+		z-index: 99999;
+		left: 12.5%;
+		width: 75%;
+		
+	}
+	.promo_banner img{
+		
+		width: 100%;
+		
+	}
+	.promo_close
+	{
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		border: 1px solid #fff;
+		padding: 0px 5px 0px 5px;
+		border-radius: 6px;
+		cursor: pointer;
+		background-color: #fff;
+		
+	}
+	
+	.promo_banner2{
+		
+		display: none;
+		position: fixed;
+		top: 18%;
+		z-index: 99999;
+		left: 12.5%;
+		width: 75%;
+		
+	}
+	.promo_banner2 img{
+		
+		width: 100%;
+		
+	}
+	.promo_close2
+	{
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		border: 1px solid #fff;
+		padding: 0px 5px 0px 5px;
+		border-radius: 6px;
+		cursor: pointer;
+		background-color: #fff;
+		
+	}
+	

@@ -1,0 +1,216 @@
+
+	#canvas, #video, #status, #camwrapper
+	{
+		font-family:'Arial';
+	}
+	
+	#camwrapper
+	{
+		position:relative;
+		width:100%;
+/* 		border:1px solid #ccc; */
+	}
+	
+    #video {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        border: 2px solid #208881;
+		box-shadow: 0px 0px 5px #208881;
+    }	
+
+	#canvas {
+        margin-left: auto;
+        margin-right: auto;
+        display: none;
+        background-color: #fff;		
+        border: 2px solid #208881;
+		box-shadow: 0px 0px 5px #208881;
+    }
+	
+	#status{
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+		z-index: 4;
+		border: 1px solid #208881;
+		text-align:left;
+		background-color:#208881;
+		background-image:url('images/bgloading.jpg');
+		background-repeat: no-repeat;
+		padding-left:10px;
+		background-size:0% 100%;
+		border-radius:4px;
+		box-shadow: 0px 0px 5px #208881;
+		color:white;
+		
+    }
+	
+	
+	#status span
+	{
+		padding:5px; 
+		border-radius:5px;
+		font-size: 10pt !important;	
+		width:90%;
+		margin-left:auto;
+		margin-right:auto;
+		text-align:center;
+		color:white;
+    }
+	#status > p
+	{
+		color:white !important;
+    }
+	button {
+		background:none;
+        font-size: 12pt;
+		background-image:url('images/camera-icon_active.png');
+		background-size:100% 100%;
+		background-repeat: no-repeat;
+		height:40px;
+		width:40px;
+		border:none;
+		cursor:pointer;
+		z-index:1;
+		position: absolute;
+		top: -80px;
+		left: 48%;
+		outline: 0;
+		
+    }
+	button:hover {
+		background-image:url('images/camera_icon_hover.png');		
+    }
+	
+	#controls > img{
+		background:none;
+        font-size: 12pt;
+		height:40px;
+		width:40px;
+		border:none;
+		cursor:pointer;
+		z-index:1;
+		position: absolute;
+		top: -80px;
+		left: 48%;
+		outline: 0;
+		z-index:4;
+		
+    }
+    #controls {
+		clear:both;
+		margin-top:20px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        text-align: center;
+		position:relative;
+    }
+
+    .camera_prescription_wrapper
+    {
+        
+        width:100%;
+        background-color:#fff;
+        height:100%;
+        z-index:9999;
+        position:absolute;
+        top:0;
+        display:none;
+    }
+    #close_camera
+    {
+        position:absolute;
+        top:0;
+        left:0;
+        cursor: pointer;
+    }
+    .remove_img
+    {
+        display: block; 
+        background-color:#a41d21; 
+        text-align:center; 
+        color: #FFFFFF; 
+        font-weight: bold;
+        height: 15px; 
+        line-height: 15px; 
+        width: 17px;
+        position:absolute;
+        top:0; 
+        right:10px;
+    }
+    .btn-capture
+    {
+        width:100px;padding:0px;
+        font-size: 12px; display: block;
+        padding-top: 0px; padding-bottom: 0px; 
+        height: 20px; text-align: center; 
+        vertical-align: middle; cursor: pointer;line-height: 20px;
+    }
+	#scanned_prescription_lists
+	{
+		width:100% !important;
+		overflow:auto;
+	}
+		.success_msg
+	{
+		text-align:center;
+		color:white;
+		padding:10px 0px 10px 0px;
+	}
+	.warning_msg
+	{
+		text-align:center;
+		color:white;
+		padding:10px 0px 10px 0px;
+	}
+	.critical_msg
+	{
+		text-align:center;
+		color:white;
+		padding:10px 0px 10px 0px;
+	}
+	.primary_msg
+	{
+		text-align:center;
+		color:white;
+		padding:10px 0px 10px 0px;
+	}
+	.capimage
+	{
+		cursor:pointer;
+	}
+	.image-wrapper
+	{
+		position: fixed;
+		top: 5%;
+		width:65%;
+		background-color: #transparent;
+		left: 17.5%;
+		z-index: 99999;
+		display: none;
+		display: none;
+		text-align: center;
+		border-radius:10px;
+	}
+	.image-wrapper  > img
+	{
+		width:90%;		
+		margin: 1%;
+		border: solid 1px #fff;
+	}
+	#close_me
+	{
+		cursor: pointer;
+		position: absolute;
+		top: -3px;
+		left: 3.5%;
+		border-radius: 15px;
+		border: solid 1px #fff;
+	}	
+	.rev_img
+	{
+		display: block; background-color:#208881; text-align: center; color: #FFFFFF; font-weight: bold; height: 15px; line-height: 15px; width: 17px;
+	}
+	

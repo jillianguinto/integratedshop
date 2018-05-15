@@ -1,0 +1,76 @@
+@media screen and (max-width: 1024px) {
+	.form-search input.input-text { width: 70%; }
+}
+
+@media screen and (max-width: 980px) {
+	#products-list .onsale-category-container-list{
+		float: left;
+		width: 45%;
+	}
+
+	.products-list .product-image img{
+		max-width: 175px;
+		width: 100%;
+	}
+
+	.products-list .product-shop{
+		width: 49%;
+		float: left;
+	}
+
+	.product-shop .btn-cart{ width: 100%; }
+	.f-fix button{ width: 100%; }
+	.products-list .product-shop{ margin-left: 0px;}
+	.f-fix .btn-cart { width: 100% !important; }
+	.f-fix .product-name{ font-size: 16px; font-weight: bold; }
+
+}
+
+@media screen and (max-width: 768px) {
+	.cart-table td{ padding: 0px; }
+	.data-table td{ padding: 0px; }
+
+	.form-list li.edit_civ{ margin-left: 0px !important; }
+
+	.customer-account-login #login-form #email{ width: 65%; }
+
+	.customer-account-create .input-box input.input-text { width: 52% !important; }
+
+	.customer-account-edit .form-list li.fields input{ width: 95% !important; }
+	.customer-account-edit .form-list li #email{ width: 95% !important; }
+	.customer-account-edit .form-list li select{ width: 100% !important; }
+	.customer-account-edit .my-account li{ width: 56% !important; }
+	.customer-account-edit input#current_password { width: 95%; }
+}
+
+
+@media screen and (max-width: 640px) {
+	#products-list .onsale-category-container-list{
+		width: 40%;
+	}
+
+	.sorter .view-mode{ display: block !important; }
+	.products-grid .product-image img{ max-width: 175px !important; }
+
+}
+
+
+
+@media screen and (max-width: 480px) {
+	.sorter .view-mode{ display: block; }
+
+	.f-fix{ width: 100%; }
+	.products-list .product-shop{ margin-left: 0px; }
+
+	.shipping-country #billing_region_id{ padding: 6px 6px 6px !important; }
+
+	.customer-account-edit .my-account li{ width: 100% !important; }
+
+
+}
+
+@media screen and (max-width: 375px) {
+	.products-list .product-shop{ float: left !important; }
+	.customer-account-create .input-box input.input-text { width: 95% !important; }
+	.products-grid .product-image img { width: 100% !important; }
+}

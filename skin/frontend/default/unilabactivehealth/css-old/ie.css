@@ -1,0 +1,35 @@
+
+@media only screen and (max-width: 769px) and (min-width: 641px){
+
+  .col2-left-layout .col-main{
+    width: 680px;
+    margin-right: 220px;
+  }
+  
+  .col2-left-layout .col-left{
+     margin-top: 20px;
+     margin-left: 30px;
+  }
+
+
+  .form-search-main{
+  padding: 15px 35px 10px 5px;
+  margin-right: 330px;
+  }
+
+  .quick-access{
+    float: left;
+  }
+
+  .block{
+      margin: -10px -90px 0;
+  }
+
+    .f-gray{
+    text-align: center !important;
+  }
+
+  .wrapper_footer_blocks{
+    display: inline-flex;
+  }
+}

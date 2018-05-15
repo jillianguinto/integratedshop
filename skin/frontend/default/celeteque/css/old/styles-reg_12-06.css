@@ -1,0 +1,516 @@
+/*Registration*/
+
+
+
+
+
+
+
+.form-list li {  
+
+	margin: 0px 0 !important; 
+
+}
+
+
+
+li.ddl-reg.fields{
+
+	margin: 8px 0 !important;
+
+}
+
+
+
+li.ddl-reg-gender.fields{
+
+	margin: 0px 0 !important;
+
+}
+
+
+
+#captcha-input-box-user_create{
+
+	width: 100%;
+
+}
+
+
+
+ul.form-list.captcha{
+
+	display: inline-flex;
+
+}
+
+
+
+label.reg-lblcaptcha {
+
+	margin: 10px 0px !important;
+
+}
+
+
+
+
+
+input#captcha_user_create{
+
+
+	margin: 5px 20px;
+
+	padding: 7px 9px;
+	
+}
+
+
+
+
+
+a.link{
+
+	color: #A61008;
+
+}
+
+
+
+label.em{
+
+	color: #A61008;
+
+}
+
+
+
+label.reg-lblcaptcha.required {
+
+    width: 100%;
+
+}
+
+
+
+#captcha_user_forgotpassword{
+	background: #F7F7F7 none repeat scroll 0% 0%;
+	border: 1px solid #CCC;
+	padding: 4px 9px;
+	width: 89%;
+}	
+
+@media screen and (max-width:479px) and (min-width:100px)
+
+{
+
+
+
+
+
+    ul.form-list.captcha{
+
+	display: inline-block;
+
+	}
+
+    
+
+    #captcha-image-box-user_create{
+
+    	margin-top: 10px;
+
+    }
+
+
+
+
+	input#firstname{
+
+		width: 97% !important;
+
+	}
+
+
+
+	input#lastname{
+
+		width: 97% !important;
+
+	}
+
+
+
+	.input-box.customer-dob.field-row{
+
+		display: block;
+
+	}
+
+
+
+	.validation-advice{
+
+		clear: both;
+
+	    min-height: 13px;
+
+	    margin: 3px 0 0;
+
+	    padding-left: 15px;
+
+	    font-size: 11px;
+
+	    line-height: 13px;
+
+	    background: url(../images/validation_advice_bg.gif) 5px 3px no-repeat;
+
+	    color: #eb340a;
+
+	}
+
+
+
+	label.required{
+
+		margin: 3px 10px !important;
+
+		display: inline-block;
+
+		float: left;
+
+		clear: left;
+
+		/* text-align: right; */
+
+		width: 150px;
+
+	}
+
+
+
+	.form-list li, .form-list li .field{
+
+		float: none !important;
+
+	}
+
+
+
+	.field.name-lastname{
+
+	    margin: 0px 0px !important;
+
+	    width: 104% !important;
+
+	}
+
+
+
+	li.ddl-edit-civ{
+
+		width: 100% !important;
+
+	}
+
+
+
+	li.ddl-edit-gen{
+
+		width: 100% !important;
+
+		 padding-right: 0px !important;
+
+	}
+
+
+
+	.field.name-firstname {
+
+    	margin: 0px 0px !important;
+
+	    width: 104% !important;
+
+	}
+
+
+
+	.form-list li.control .input-box{
+
+
+
+	}
+
+
+
+
+
+}
+
+
+
+@media screen and (max-width:767px) and (min-width:480px)
+
+{
+
+
+
+
+
+	
+
+
+	i
+    input#captcha_user_create{
+
+		width: 80%; 
+
+		margin: 5px 0px;
+
+	}
+
+
+
+	.validation-advice{
+
+		clear: both;
+
+	    min-height: 13px;
+
+	    margin: 3px 0 0;
+
+	    padding-left: 185px;
+
+	    font-size: 11px;
+
+	    line-height: 13px;
+
+	    background: url(../images/validation_advice_bg.gif) 175px 3px no-repeat;
+
+	    color: #eb340a;
+
+	}
+
+
+
+	div#advice-required-entry-captcha_user_create{
+
+		clear: both;
+
+	    min-height: 13px;
+
+	    margin: 3px 0 0;
+
+	    padding-left: 13px;
+
+	    font-size: 11px;
+
+	    line-height: 13px;
+
+	    background: url(../images/validation_advice_bg.gif) 3px 3px no-repeat;
+
+	    color: #eb340a;
+
+	}
+
+
+
+	div#advice-validate-terms-condition-agree_on_terms{
+
+		padding-left: 13px;
+
+		background: url(../images/validation_advice_bg.gif) 3px 3px no-repeat;
+
+	}
+
+
+
+	.form-list li, .form-list li .field{
+
+		float: none !important;
+
+	}
+
+
+
+		input#firstname{
+
+		/*width: 104% !important;*/
+
+	}
+
+
+
+	input#lastname{
+
+		/*width: 104% !important;*/
+
+	}
+
+
+
+	.field.name-lastname{
+
+		margin: 0px 0 !important;
+
+	}
+
+
+
+	li.ddl-edit-civ{
+
+		width: 100% !important;
+
+	}
+
+
+
+	li.ddl-edit-gen{
+
+		width: 100% !important;
+
+		 padding-right: 0px !important;
+
+	}
+
+	
+
+	.form-list{
+
+		width: 100% !important;
+
+	}
+
+}
+
+
+
+@media screen and (max-width:959px) and (min-width:768px)
+
+{
+
+
+
+	div#advice-required-entry-captcha_user_create{
+
+	    padding-left: 33px;
+
+	    background: url(../images/validation_advice_bg.gif) 23px 3px no-repeat;
+
+	}
+
+
+
+	div#advice-validate-terms-condition-agree_on_terms{
+
+		padding-left: 33px;
+
+		background: url(../images/validation_advice_bg.gif) 23px 3px no-repeat;
+
+	}
+
+
+
+	.validation-advice{
+
+		padding-left: 185px;
+
+		background: url(../images/validation_advice_bg.gif) 175px 3px no-repeat;
+
+	}
+
+}
+
+
+
+@media screen and (min-width:960px)
+
+{   
+
+    .validation-advice{
+
+		padding-left: 190px;
+
+		background: url(../images/validation_advice_bg.gif) 180px 3px no-repeat;
+
+	}
+
+
+
+	div#advice-required-entry-captcha_user_create{
+
+	    padding-left: 33px;
+
+	    background: url(../images/validation_advice_bg.gif) 23px 3px no-repeat;
+
+	}
+
+
+
+	div#advice-validate-terms-condition-agree_on_terms{
+
+	    padding-left: 33px;
+
+	    background: url(../images/validation_advice_bg.gif) 23px 3px no-repeat;
+
+	}
+
+}
+
+
+
+
+
+/*EDIT FORM*/
+
+
+
+	input#firstname_edit{
+
+		width: 100%;
+
+	}
+
+
+
+	input#lastname_edit{
+
+		width: 100%;
+
+	}
+
+
+
+
+
+	.field.name-lastname{
+
+	    margin: 0px 30px;
+
+	}
+
+
+
+	li.ddl-edit-civ{
+
+		width: 42%;
+
+	}
+
+
+
+	li.ddl-edit-gen{
+
+		width: 45%;
+
+    	padding-right: 20px;
+
+	}
+
+
+
+	.my-account .form-list li{
+
+		height: 100px;
+
+	}

@@ -1,0 +1,465 @@
+@media screen and (max-width: 1024px) {
+
+	.products-grid li.item {
+		width: 19%;
+		
+	}
+	
+	.category-container {
+		width: 18%;
+		padding: 0 5px;
+	}
+	
+	h2.product-name, .genericname  {
+		min-height: 70px;
+		text-align: center;
+	}
+	
+	.input-box input.input-text {
+		width: 91%;
+	}
+	
+	.input-box select {
+		width: 95%;
+	}
+	
+	.xtwsubmitinput {
+		margin: -26px 0 0 38px;
+	}
+
+}
+@media screen and (max-width: 768px) {
+	
+	.primary-top-nav {
+		width: auto;
+	}
+	
+	.m-horizontal-bar ul li a {
+		padding: 10px;
+	} 
+	
+	.products-grid li.item {
+		width: 40%;
+	}
+	
+	.col2-left-layout .col-main {
+		width: 65%;
+	}
+	
+	.col2-left-layout .col-left {
+		width: 33%;
+	}
+	
+	.category-container {
+		width: 18%;
+		padding: 0 3px;
+		display: inline-block;
+	}
+	
+	.row {
+		width: 98%;
+	}
+	
+	.footer_featured_block {
+		width: 18%;
+	}
+	
+	.input-box input.input-text {
+		border: 1px solid #ccc;
+		padding: 4px 9px;
+		width: 89%;
+	}
+	
+	.input-box.div_checkbox{
+		width: 100%;
+	}
+	
+	.cart-table td {
+		padding: 5px;
+	}
+	
+	.cart-collaterals .grid_4 {
+		width: 100%;
+	}
+	
+	.cart-table .product-name {
+		margin-left: 0px;
+		min-height: 25px;
+		display: inline-block;
+	}
+	
+	.cart div.discount{
+		width: 90%;
+	}
+	
+	.cls_header, .cls_number {
+		font-size: 14px !important;
+	}
+
+	
+}
+
+
+@media screen and (max-width: 640px) {
+	.mobile-nav img {
+		width: 40px;
+		padding: 5px 15px;
+	}
+	
+	.col2-left-layout .col-left {
+		width: 100%; 
+	}
+	
+	.mainsearch {
+		display: none;
+	}
+	
+	.header .logo {
+		float: none;
+		margin-bottom: 20px;
+		display: inline-block;
+	}
+	
+	.m-logo {
+		margin: 0 auto;
+	}
+	
+	.primary-top-nav{
+        display: none;
+        position: absolute;
+        width: 100%;
+        top: 46px;
+        background: #008081;
+        z-index: 9;
+    }
+	
+	.mobile-nav{
+        display: block;
+        width: 22%;
+        float: left;
+        cursor: pointer;
+    }
+	
+	.widget-static-block, .block-account-left-bar {
+		width: 300px;
+		margin: 0 auto;
+	}
+	
+	.widget-static-block{
+		padding: 5px;
+	}
+	
+	.primary-top-nav li {
+		float: none;
+	}
+	
+	.mainsearch-mobile {
+		display: block;
+	}
+	
+	.col-main {
+		width: 100%!important;
+	}
+	
+	.primary-top-nav li:hover a {
+		color: #008081;
+	}
+	
+	.primary-top-nav li:hover{
+        background-color: #fff;
+    }  
+	
+	.products-grid li.item {
+		width: 40%;
+		margin: 10px;
+	}
+	
+	.row {
+		width: 100%;
+		display: block;
+	}
+	
+	.footer_featured_block {
+		width: 100% !important;
+	}
+	
+	.f-gray {
+		text-align: center !important;
+	}
+	
+	.xtwsubmitinput {
+		margin: -26px 0 0 88px;
+	}
+	
+	.prescription_detail_wrapper {
+		width: 100%;
+	}
+	
+	.entry_wrapper {
+		width: 100%;
+	}
+	
+	.prescription_details p label {
+		float: none;
+		width: 100%;
+	}
+	
+	#myModal .modal-content{
+        width: 90%;
+    }
+	
+	.tabs-menu {
+		width: 100%;
+	}
+	
+	.tabs-menu li {
+		float: none;
+		width: 100%;
+		text-align: center;
+	}
+		
+	.customer-account-create select {
+		width: 94%;
+	}
+
+	#shipping_address_form input, #billing_address_form input {
+		width: 97%;
+	}
+	
+	#my-orders-table tr {
+		background: none !important;
+		padding: 10px 0;
+		border-bottom: 1px solid #008081;
+	}
+	
+	.checkout-onepage-success #my-orders-table tfoot, .sales-order-view #my-orders-table tfoot {
+		float: right;
+		width: 50%;
+	}
+	
+	#my-orders-table td {
+		text-align: right;
+		width: 100% !important;
+	}
+	
+	#my-orders-table tbody td:nth-of-type(1):before{ content: "SKU: " }
+    #my-orders-table tbody td:nth-of-type(2):before{ content: "Name: " }
+    #my-orders-table tbody td:nth-of-type(3):before{ content: "Price: " }
+    #my-orders-table tbody td:nth-of-type(4):before{ content: "QTY: " }
+    #my-orders-table tbody td:nth-of-type(5):before{ content: "Total: " }
+	
+	#my-orders-table tfoot{
+		width: 100%;
+		display: inline;
+	}
+	
+	.prescription_details input{
+		width: 90%;
+	} 
+	
+	.product-img-box {
+		width: 100% !important;
+	}
+	
+	.product-shop {
+		float: none !important;
+		width: 100% !important;
+	}
+	
+	.cart-table .product-name {
+		margin-left: 34px;
+		min-height: 25px;
+		display: inline-block;
+	}
+	
+	#shopping-cart-table .input-text.qty, #shopping-cart-table .price {
+		margin-left: 50px;
+	}
+	
+	td.prodqty {
+		text-align: right !important;
+	}
+	
+	.shipping_wrapper {
+		width: 100%!important;
+	}
+	
+	.payment-method, .shipping-method {
+		width: 100%!important;
+	}
+	
+	#shopping-cart-table th {
+		font-size: 10px;
+		padding: 0;
+	}
+	
+	.faq_accordian .arrowlistmenu .menuheader {
+		padding: 6px 0px;
+	}
+	
+		
+	#shopping-cart-table .a-center{
+		text-align: left !important;
+	}
+	
+}
+
+
+@media screen and (max-width: 480px) {
+	.shoppingcart 
+	{ 
+		margin: 20px 20px; 
+		width: 93%; 
+		text-align: center; 
+	}
+	.icon-shoppingcart 
+	{
+		display: block !important;
+		position: absolute !important;
+		left: 17% !important;
+	}
+	.checkout-cart-index .page-title 
+	{
+		margin-top:0px !important;
+	}
+	.quick-access .tagline {
+		padding-right: 0px !important;
+		text-align: center !important;
+		height: auto !important;
+	}
+	
+	.category-container {
+		width: 30%;
+		padding: 0px 3px;
+	}
+	
+	.products-grid li.item {
+		width: 40%;
+		margin: 10px;
+	}
+	
+	#search_main_form .formSearch {
+		width: 98%;
+	}
+	
+	h2.product-name, .genericname  {
+		min-height: 70px;
+	}
+	
+	.account-create input[type="text"], input[type="password"], input[type="email"] {
+		width: 90% !important;
+	}
+	
+	ul.form-list.captcha {
+		display: block;
+	}
+	
+	#captcha-input-box-user_create {
+		width: 100%;
+	}
+	
+	.customer-account-create select {
+		width: 97%;
+	}
+	
+	#shipping_address_form input, #billing_address_form input {
+		width: 95%;
+	}
+	
+	input#billing_use_for_shipping_yes {
+		width: auto !important;
+	}
+	
+	.mini-products-grid li {
+		width: 60%;
+	}
+	
+	.cls_header, .cls_number {
+		font-size: 17px !important;
+	}
+	
+	.modal-header h2 {
+		width: 89%;
+	}
+	
+	#loading-icon{
+        top: 140px; 
+    }
+	
+	#my-orders-table .a-center{
+		text-align: right !important;
+
+	}
+
+	
+	.buttonLogin {
+		float: left !important;
+	}
+
+	
+ 
+}
+
+
+@media screen and (max-width: 320px) {
+
+	.products-grid li.item {
+		width: 80%;
+		margin-left: 0px !important;
+	}
+
+	.products-grid .genericname {
+		min-height: 0;
+		padding: 10px;
+	}
+	
+	#search_main_form .formSearch {
+		width: 96%;
+	}
+	
+	.block-account-left-bar, .widget-static-block {
+		width: 285px;
+		margin: 0 auto;
+	}
+	
+	.widget-static-block{
+		padding: 5px;
+	}
+	
+	h2.product-name, .genericname  {
+		min-height: 0;
+	}
+	
+	.prescription_detail_wrapper{
+		height: 400px !important;
+	}
+	
+	.prescription_details p input[type=text] {
+		width: 80%;
+	}
+	
+	#myModal .btn-cshopping, .btn-checkout {
+		width: 100%;
+	}
+	
+	.form-list li.fields, .form-list li.wide {
+		display: inline-block;
+	}
+	
+	.input-box {
+		width: 100%;
+	}
+	
+	.fields {
+		display: block;
+	}
+	
+	#captcha-input-box-user_create {
+		width: 100%;
+	}
+
+	#shipping_address_form input, #billing_address_form input {
+		width: 93%;
+	}	
+	
+}

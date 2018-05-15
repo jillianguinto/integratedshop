@@ -1,0 +1,78 @@
+.drop{	margin: 0; padding-top:0px;  background: #f26f1d; z-index:5;position: absolute; left:0; width:100%; font-family:'armataregular'; top:123px;  visibility:hidden;}
+.bg-dropdown ul { padding:0; margin:0 auto; width:1100px; font-size:12px;  }
+.bg-dropdown  li { float:left; list-style:none; margin-right:50px;}
+.bg-dropdown  li strong { font-size:15px; font-weight:normal; padding:20px 0 5px 0; display:block;}
+.drop a, .drop a:visited, .drop a:active {color: #fff; text-decoration:none;}
+.drop a:hover {	}
+	
+.drop2 .box {width:200px; float:left; margin-left:10px; display:block; }	
+.close {text-align:right; width:95%; padding:5px; clear:both; display:block; cursor:pointer}
+.drop2 blockquote { margin-left:0; padding-left:0;}
+.drop2
+{	width:98%;
+	margin: 0;
+	padding: 5px;
+	background: #0db14b;
+	border: 1px solid #fdd20a;
+	z-index:99999999999999;
+	display:block;
+	position: absolute; 
+	left:0px;
+	background: #0db14b none repeat scroll 0%;
+}
+
+.drop2 a, .drop2 a:visited, .drop2 a:active
+
+	{	
+		display: block;
+		margin: 0;
+		padding: 1px 5px;
+	
+		white-space: nowrap;
+		text-align: left;
+		text-decoration: none;
+		background: #0db14b;
+		color: #fff;
+		font: 12px 
+	
+
+		}
+
+.drop2 a:hover
+
+	{	background: #0db14b;
+		color: #fddc01;
+		text-align:left;
+		text-decoration: none;
+		padding: 1px 5px;
+		font: 12px 
+	
+
+	}
+	
+#wrapdropmenu {
+	position:relative;
+
+	z-index:6;
+	}
+	
+ 
+
+@media only screen and (max-width: 900px) {
+.drop2 .box {width:250px; float:left; margin-left:10px; display:block; height: auto ;}	
+}
+
+
+
+
+@media only screen and (max-width: 775px) {
+
+.drop2 .box {width:250px; float:left; margin-left:10px; display:block;    }
+.drop2 { }
+.drop2 .b2 { height:190px;}
+.drop2 .b4 { height:230px;}
+}
+@media only screen and (max-width: 515px) {
+.drop2 .box {width:250px; float:none; margin-left:10px; display:block; height:auto; margin:0 auto;    }
+
+}

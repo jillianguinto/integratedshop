@@ -1,0 +1,783 @@
+@media only screen and (min-width: 321px) and (max-width: 480px) {
+		
+
+}
+
+@media only screen and (max-width: 480px){
+
+/*		.products-grid li.item {
+		    width: 38%;
+		    margin: 10px;
+		}*/
+		.mini-products-grid li {
+		    width: 100%;
+		}
+		.modal-content .btn-cshopping, .modal-content .btn-checkout {
+			width: 48%;
+		}
+	
+}	
+
+
+
+@media only screen and (min-width: 496px) and (max-width: 690px) {
+		div#navigation {
+		    float: none;
+		}
+
+}
+
+@media only screen and (max-width: 640px){
+
+		div#sub-navigation {
+	    	/*margin-top: 50px;*/
+		}
+
+		.block.block-account.block-account-left-bar {
+			width: 300px;
+    	    /*margin: 0 auto 10px 0;*/
+		}
+
+		.widget-static-block {
+		    width: 300px;
+		    margin: 0 auto;
+		    display: block;
+	    }
+
+	    .products-grid li.item {
+		   width: 33%;
+		}
+
+		.btn-cart.recentlyadded {
+		    /*width: 125px;*/
+		    width: 140px;
+		}
+
+/*		.xtwsubmitinput {
+    		margin: -26px 0 0 78px;
+		}*/
+		.product-view .productimage {
+		    width: 100%;
+		    margin-right: 15px;
+		    float: left;
+		}
+
+		.tabs-menu {
+		    width: 100%;
+		    margin: 0;
+		    padding: 0;
+		    float: none !important;
+		}
+
+
+		.tabs-menu li{
+		    width: 100%;
+		    margin: 0;
+		    padding: 0;
+		    text-align: center;
+		}
+
+		li.current {
+		    float: none;
+		    /*width: 100%;
+*/		    text-align: center;
+		}
+
+		input#has_prescription, input#no_prescription {
+		    width: 40%;
+		}
+
+		.modal-header h2 {
+			width: 89%;
+		}
+		.modal-content {
+		    width: 90%;
+		}
+
+		.xtwsubmitinput {
+		    position: relative;
+		    top: -21px;
+		    left: 37.3%;
+		}
+		
+		.operated-by, .operatedby-block-strong{
+			display: none;
+		}
+		
+		.col2-left-layout .col-left{
+			float: left !important;
+		}
+		
+		.col2-left-layout .col-main{
+			float: right !important;
+		}
+
+}
+
+@media only screen and (max-width: 1024px){
+	    .xtwsubmitinput {
+	    	margin: -26px 0 0 45px;
+	    }
+}
+
+/* start jj - 10/24/2016 */
+
+@media only screen and (max-width: 767px){
+	.logo-container{
+		/*background: #dcdcdc;*/
+	    width: 427px;
+	    float: left;
+	}
+
+	.xtwsubmitinput{
+		margin: -27px 35.6%!important;
+	}
+	.block-account-left-bar{
+		width: 300px;
+   		margin: 0 auto 10px;
+	}
+
+	.header-container {
+ 	   height: 200px!important;
+	}
+
+	#my-orders-table td:nth-of-type(3):before{ content: "Price: "}
+	#my-orders-table td:nth-of-type(5):before{ content: "Total: ";}
+
+
+	#my-orders-table .input-text.qty, #my-orders-table .price{
+	    text-align: left;
+	    left: 10%;
+	    position: relative;
+	}
+
+	.a-right {
+	    text-align: left !important;
+	}
+	
+	td.a-right br {
+	    display: none;
+	}	
+	
+	.name-firstname, .name-lastname{ width: 97% !important; }
+	
+	.form-list li.wide .input-box input.input-text{ width: 97% !important; }
+	
+	.checkout-wrappah .shipping-method{ margin-top:8px; }
+	
+	.checkout-wrappah{ width: 45%!important; }
+
+}
+
+@media only screen and (max-width: 682px){
+	.logo-container{
+		width:auto;	    
+	}
+
+}
+
+
+@media only screen and (max-width: 673px){
+	#navigation ul li{
+		padding-right: inherit!important;
+	}
+}
+
+@media only screen and (max-width: 546px){
+	#common-button-container{
+		right: initial !important;
+    	top: 85px !important;
+	}
+}
+
+
+.navigation-modify ul li{ 
+	float: left;
+}
+
+.custom-home-logo, .custom-menu{
+	float:left;
+}
+
+.navigation div {
+	float: left;
+    margin: 6px 0 0 4px;
+}
+
+.navigation div a {
+	text-decoration: none;
+    text-align: center;
+    color: #fff;
+    display: inline-block;
+    width: 100px;
+    height: 100%;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 40px;
+}
+
+@media only screen and (max-width: 674px){
+	.custom .onlinestore{
+	    margin-left: 55px;
+    	margin-top: -4px;
+    }
+
+    #navigation-container{
+    	height: 112% !important;
+    	/*height: auto !important;*/
+    }
+
+    .header-container{
+    	height: 236px !important;
+    }	
+}	
+
+@media only screen and (max-width: 558px){
+
+	.custom .forum{
+		margin-left: 55px;
+    	margin-top: -4px;
+	}
+
+	.custom .onlinestore{
+	 	margin-left: auto;
+    }	
+}
+
+@media only screen and (max-width: 443px){
+
+	.experienced{
+		margin-left: 55px;
+    	margin-top: -4px;
+	}
+
+	.custom .forum{
+		margin-left: auto;
+	}
+
+	.custom .onlinestore{
+	    margin-left: 55px;
+    	margin-top: -4px;
+    }	
+
+    #navigation-container{
+    	height: 177% !important;
+    }
+}
+
+
+@media only screen and (max-width: 327px){
+	.navigation div a{
+		width: 94px;
+	}
+}
+
+@media only screen and (max-width: 320px){
+	.navigation div a{
+		width: 84px;
+	}
+	#shopping-cart-table td:nth-of-type(5){ width: 45% !important; }
+	#shopping-cart-table td:nth-of-type(6){ width: 45% !important; }
+}
+
+
+@media only screen and (max-width: 314px){
+	.navigation div a{
+		width: 80px;
+	}
+}
+
+@media only screen and (max-width: 298px){
+	.navigation div a{
+		width: 70px;
+	}
+}
+
+@media only screen and (max-width: 545px){
+	#sub-navigation ul {
+	    margin-left: auto!important;
+	}
+}
+
+@media only screen and (max-width: 528px){
+
+	.products-grid .product-image img{
+		    margin: 0 auto;
+	}
+
+	.products-grid li.item{
+		border-radius: 10px;
+	    display: inline-block;
+	    vertical-align: top;
+	    /*width: 78%;*/
+	    width: 40%;
+	    margin-left: auto;
+	    padding-bottom: inherit;
+	    border: 1px solid #eaeaea;
+	    background: #fafafa;
+	    padding: 10px;
+	    margin-bottom: 15px;
+	    max-height: none;
+	    min-height: inherit;
+	}
+}
+
+@media only screen  and (max-width: 375px){
+	.products-grid li.item{	
+	    width: 78%;	   
+	}
+
+	#my-orders-table .input-text.qty, #my-orders-table .price{
+		left: 20%;
+	}
+	
+	.cat-label{ font-size: 12px !important; }
+
+}	
+
+
+@media only screen and (max-width: 1024px){
+	.xtwsubmitinput{
+		margin: -27px 52px;	
+	}
+	.cart .totals.grid_4{
+		width: 40%;
+	    margin: 0;
+	    float: right;
+	}
+}
+
+@media only screen and (max-width: 479px){
+
+	.header-container{
+		height: auto !important;
+	}
+
+	.block.block-account.block-account-left-bar {
+    	margin: 0 auto 10px;
+	}
+
+	.block-layered-nav{
+	    width: 104%;
+	}
+	.cat-label a{
+		word-wrap: break-word;
+	}
+}
+
+
+@media only screen and (max-width: 959px){
+	.header-container{
+		height: 186px;
+	}
+
+	.form-search input.input-text{
+		width: auto;
+	}
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px){	
+	.row{
+		width: 98%;
+		padding: 0;
+	}
+	.col2-left-layout .col-left{
+		/*width: 33%*/
+	}
+	.col2-left-layout .col-main{
+		width: 65%;
+		padding: 0;
+	}
+	.form-search button.button{
+		margin-top: 0;
+	}
+	.form-search{
+		width: 92%
+	}
+	.products-grid li.item{
+		width: 40%;
+		max-height: 400px;
+	}
+	.product-essential {
+	    padding: 0 0 10px;
+	}
+	.tabs-menu li{
+		margin-right: 4px!important;
+	}
+	.tabs-menu li:last-child{
+		margin-right: 0!important;
+	}
+	.tab-content p{
+		width: 100%;
+	}
+	.product-view{
+		margin-top: 0;
+	}
+	.product-view .productimage{
+		width: 100%;
+		margin-right: 0;
+	}
+	.product-view .product-shop{
+		width: 100%;
+	}
+	.form-list li, .form-list li .field{
+		margin-right: 10px;
+	}
+	img.ui-datepicker-trigger{
+		right: 0;
+	}
+	.input-box select{
+		width: 100%;
+	}
+	.customer-address-index .button {
+	    width: 35%;
+	}
+	.customer-address-form .button {
+	    width: 30%;
+	}
+	.checkout-wrappah {
+	    width: 31%!important;
+	}
+	.field-telephone, .field-mobile, .gender, .fax{
+		width: 100%!important;
+		margin: 0!important;
+	}
+	#billing_postcode,#shipping_postcode{
+		padding: 4px 0!important;
+	}
+	.box-account table, 
+	.box-account thead, 
+	.box-account tbody, 
+	.box-account th, 
+	.box-account td, 
+	.box-account tr { 
+		display: block; 
+	}
+
+	
+	.box-account thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	.box-account tr { border: 1px solid #ccc; }
+	
+	.box-account td { 
+	
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	.box-account td:before { 
+		position: absolute;
+	
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+
+
+
+	.box-account td:nth-of-type(1):before { content: "ORDER #"; }
+	.box-account td:nth-of-type(2):before { content: "DATE"; }
+	.box-account td:nth-of-type(3):before { content: "SHIP TO"; }
+	.box-account td:nth-of-type(4):before { content: "ORDER TOTAL"; }
+	.box-account td:nth-of-type(5):before { content: "STATUS"; }
+	.box-account td:nth-of-type(6):before { content: ""; }
+
+}
+
+@media only screen and (max-width: 777px){
+
+	.cart .totals.grid_4{
+		width: 60%!important;
+   		float: right;
+	}
+}
+
+
+
+@media only screen and (max-width: 767px){
+
+	.entry_wrapper  #prescription_date_prescribed,
+	.entry_wrapper #prescription_expiry_date{
+		width: 107%;
+	}
+
+	.entry_wrapper  img{
+		right: -29px;
+	}
+
+	label[for=prescription_patient_name]
+	{
+	    clear: both;
+	}
+
+	.c-btn {
+		    float: right !important;
+	}
+
+	.cart .totals.grid_4 {
+	    width: 100% !important;
+	}
+
+	.cart-collaterals .btn-continue {
+	    width: auto;
+	    /*float: right;*/
+	}
+
+	.cart-collaterals .btnCheckout {
+ 	    width: auto;
+		/*float: right;*/
+	}
+	
+	.sidebar-top #search{
+		width: 100%;
+	}
+
+	.checkout-wrapper .checkout-wrappah{
+		width: 95.4%;
+	}
+
+	.shopbycategory-content2 {
+    	width: 97%;
+	}
+
+	.checkout-onepage-success .col-main .buttons-set button{
+		width: 97%;
+	    float: inherit;
+	    padding: 10px;
+	    font-weight: bold;
+	
+	}
+
+	.col2-left-layout .col-main {
+		top: 10px;
+    	padding: 1% 1%;
+	}
+
+
+	/* 11-3-2016 edited by jj */ 
+	.input-box input.input-text{
+		width: 100%;
+	}
+
+	.input-box select {
+	    width: 100%;
+	}
+
+	.form-list li.wide .input-box input.input-text {
+	    width: 100%;
+	}
+	
+	.product-name{     /*width: 60%;*/ width: 100%; color: #000; text-align: left; }
+
+}
+
+
+
+@media only screen and (max-width: 640px){
+	.form-search{
+		width: 96%;
+	}
+	.checkout-wrappah{
+		width: 100%!important;
+	}
+	.name-firstname, .name-lastname{
+		width: 96%!important;
+	}
+	.checkout-wrappah,
+	.checkout-wrappah .shipping-method{
+		margin: 0!important;
+	}
+	.field-mobile {
+	    margin: -44px 0px 0 0!important;
+	}	
+	.customer-name, .postcode-region, .telephone-mobile, .customer-dob-gender, .faxgender{
+		max-width: 100%!important;
+		width: 100%!important;
+	}
+	.form-list li.fields, .form-list li.wide{
+		overflow: hidden;
+	}
+	.customer-account-edit .input-box input.input-text, .customer-address-form .input-box input.input-text{
+		width: 96%!important;
+	}
+	.customer-account-edit .name-firstname,
+	.customer-account-edit .name-lastname,
+	.customer-address-form #lastname,
+	.customer-address-form #firstname{
+		width: 100%!important;
+	}
+	.customer-account-edit  .form-list li.fields, .customer-address-form .form-list li.fields {
+		overflow: visible;
+	}
+
+}	
+
+
+@media only screen and (max-width: 480px){
+	.form-search{
+		width: 95%;
+	}
+	.input-box input.input-text {
+	    width: 100% !important;
+	}
+}
+
+.slider-wrapper{
+	margin-top: -11px;
+}
+
+.block-layered-nav {
+    margin-top: 75px;
+}
+
+
+
+@media only screen and (max-width: 985px){
+	.cart .totals.grid_4 {
+	    width: 34%;
+	}
+}
+
+.c-btn {
+
+	float:right;
+}
+
+p.cancel-prescription-btn{
+	text-align: center;margin: 0 auto;width: 224px;
+}
+
+#has_prescription, 
+#no_prescription{
+	width: 30%;
+}
+
+#askPrescription h3{
+	margin-bottom: 10px;
+    text-align: center;
+}
+
+#save_prescription,
+#cancel_prescription{
+	width: auto;
+}
+
+.btn-youhave-prescrioption{
+	margin: 0 auto;
+    width: 23%;
+}
+
+#cancelPrescriptionTransaction h3{
+	text-align: center;
+    margin-bottom: 10px;
+} 
+
+#cancelPrescriptionTransaction #btnCancelPrescriptionTransaction,
+#cancelPrescriptionTransaction #btnCancelPrescriptionCancelTransaction,
+#btnCancelPrescription {
+	width: auto;
+}
+
+
+@media only screen and (max-width: 459px){
+	#cancelPrescriptionTransaction{
+		width: 100%!important;
+	}
+
+}
+@media only screen and (max-width: 320px){
+
+		.block.block-account.block-account-left-bar {
+		    width: 250px !important;
+		}
+
+/*		div#sub-navigation {
+	    	margin-top: 50px;
+		}*/
+
+		#navigation li a {
+			width: 95px !important;
+		}
+		.col2-left-layout .col-left {
+		    width: 95% !important;
+		    margin: 0px;
+		    margin-bottom: 10px;
+		    float: none;
+		}
+
+		.widget-static-block {
+		    width: 253px !important;
+		    margin: 0 auto;
+		}
+
+		.products-grid li.item {
+		    width: 85%!important;
+		    min-height: 430px;
+		    max-height: 345px;
+		    margin-left:0;
+		}
+
+		.shopbycategory-content2 {
+		    background-color: #5a6a9d;
+		    width: 100%;
+		    color: #FFF;
+		    text-align: center;
+		    font-size: 16px;
+		    padding: 10px 0px;
+		    font-weight: bold;
+		    margin-bottom: 15px;
+		}
+
+		.category-container {
+		    width: 30%;
+		    padding: 0px 2px;
+		    display: inline-block;
+		}
+
+		.xtwsubmitinput {
+    		margin: -26px 0 0 0 !important;
+		}
+
+		div#askPrescription {
+			width: 230px !important;
+		}
+		.modal-content .btn-cshopping, .modal-content .btn-checkout {
+			width: 100% !important;
+		}
+		#loading-icon{
+			top: 125px;
+		}
+		.input-box input.input-text, .input-box select,.form-list li.wide .input-box input.input-text{
+			width: 100%!important;
+			padding: 5px;
+		}
+		.input-box{
+			overflow: hidden;
+		}
+		img.ui-datepicker-trigger{
+			top: 8px;
+    		right: 5px;
+		}
+		#ui-datepicker-div{
+			width: 230px;
+		}
+		.field-telephone, .field-mobile, .gender, .fax{
+			width: 100%!important;
+			margin: 0!important;
+		}
+		.field-mobile{
+			margin: 0!important;
+		}
+		.customer-account-edit .button, .newsletter-manage-index .button, .customer-address-form .button {
+		    width: 35%;
+		}
+}

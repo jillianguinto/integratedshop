@@ -1,0 +1,33 @@
+<?php $socialmedia_urls = $this->helper('socialmedia')->getMediaUrls();?>
+
+<div class="wrapper_footer_blocks"> 	
+	<?php if($block = Mage::app()->getLayout()->createBlock('cms/block')->setBlockId('customerservices')): ?>
+			<div class="footer_featured_block">
+				<?php echo $block->toHtml();?>
+			</div>
+	<?php endif;?>
+	<?php if($block = Mage::app()->getLayout()->createBlock('cms/block')->setBlockId('aboutus')): ?>
+			<div class="footer_featured_block">
+				<?php echo $block->toHtml();?>
+			</div>
+	<?php endif;?> 
+	<div class="footer_featured_block social_media"><h3>Follow us on</h3>
+			<a href="<?php echo $socialmedia_urls->getFacebook();?>"target="_blank" title="<?php echo $this->__("Facebook");?>"><img src="<?php echo $this->getSkinUrl("images/icon_facebook.png");?>"/></a>
+			<a href="<?php echo $socialmedia_urls->getTwitter();?>" target="_blank" title="<?php echo $this->__("Twitter");?>"><img src="<?php echo $this->getSkinUrl("images/icon_twitter.png");?>"/></a>
+			<a href="<?php echo $socialmedia_urls->getYoutube();?>" target="_blank" title="<?php echo $this->__("Youtube Channel");?>"><img src="<?php echo $this->getSkinUrl("images/icon_youtube.png");?>"/></a>
+	</div>
+	<div class="footer_featured_block securepay">
+		<h3><?php echo $this->__("Secure Payment Methods");?></h3>
+		<a href="#"><img src="<?php echo $this->getSkinUrl("images/icon_securepay.jpg");?>"/></a><br/>
+		<a href="#"><img style="width:141px;height:41px" src="<?php echo $this->getSkinUrl("images/ipay88.gif");?>"/></a><br/>
+		<a href="#"><img style="width:141px;height:41px" src="<?php echo $this->getSkinUrl("images/rcbcpay.jpg");?>"/></a>
+	</div>
+	<div class="footer_featured_block delivery">
+		<h3><?php echo $this->__("Insured Delivery");?></h3>		
+		<a><img src="<?php echo $this->getSkinUrl("images/icon_xend.gif");?>"/></a>
+	</div>
+	<div class="footer_featured_block security">
+		<h3><?php echo $this->__("Security System");?></h3>
+		<a><img src="<?php echo $this->getSkinUrl("images/icon_norton.png");?>"/></a>
+	</div> 
+</div>

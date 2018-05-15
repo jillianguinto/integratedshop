@@ -1,0 +1,54 @@
+.links-quick-order{float:right;width:100%}
+#quickorder-form table td, #quickorder-form table th{float:left;padding-right:10px}
+#quickorder-form table td.txt-sku{width:90px}
+#quickorder-form table td.td-pcode{width:145px}
+#quickorder-form table td.pname{width:360px}
+#quickorder-form table td.td-qty{width:75px}
+#quickorder-form table td.pqty{width:100px}
+#quickorder-form table td.td-action{width:90px; text-align: left;padding-right:0}
+
+#quickorder table{width: 100%; border-spacing: 0 10px;padding:10px}
+#quickorder table#suggestion{background:#efefef}
+#quickorder table tbody tr:hover{background:#f6f9a2}
+#quickorder table th{font-weight: 700;padding: 0 10px 6px 0;}
+#quickorder h2.suggestion{display: inline-block;margin-bottom:10px;text-align: left;width: 100%;}
+.txt-pcode{width: 140px; height: 25px; border:1px solid #999}
+.txt-pcode:focus{background:#EDF7FD}
+.txt-qty{width: 30px; height: 25px; border:1px solid #999}
+.txt-input-loading{background: url(../../../images/gurutheme/quickorder/opc-ajax-loader.gif) no-repeat right 5px #EDF7FD !important;}
+.p-auto{background:#fff; position:absolute; width:277px;box-shadow: 0 2px 3px 2px #CCC; margin-top:2px; z-index: 9999}
+.p-item{padding:5px; width: 265px; float:left; border: 1px solid #ccc}
+.p-item.current{background:#F07F00; cursor: pointer;}
+.p-item.current span{color:#fff}
+.p-item.current em{background:#253F7A}
+.p-item img, .p-item span{float:left;}
+.p-item span.name{font-weight:700; width: 210px}
+.p-item span.sku{float:none}
+.p-item img{margin-right:5px;}
+.p-item em{background:#444; color:#fff; font-style:normal}
+.quick-order.success-msg, .quick-order.error-msg{float:left; min-width: 855px; padding: 5px 30px; display: none; line-height:24px; cursor:pointer; text-align:left;margin:0 0 13px}
+.pname em{font-style:normal}
+.add-cart-loading{float:left}
+.add-cart-loading.hide{opacity:0}
+.add-cart-loading.show{opacity:1}
+
+.category-loading.hide{opacity:0}
+.category-loading.show{opacity:1}
+
+.poption{display: inline-block;width: 100%;}
+.option-item{float: left;margin: 5px 0 0;width: 100%;}
+.option-item > label{width:100%; display:block;font-weight:700;}
+.option-item > label > em{color:red}
+.option-item select{border: 1px solid #666;width:100%}
+.rectangle{display:inline-block;width:100%}
+
+.options-list{padding:5px 10px;display:inline-block}
+.options-list li{float:left;width:100%}
+.options-list li input, .options-list li > span{float:left}
+.options-list li input{margin:3px 7px 0 0}
+
+.form-action-button{text-align:right;padding:20px 0 0;width:100%;}
+#quickorder-form, #quickorder
+{
+    margin-top: 10px;
+}

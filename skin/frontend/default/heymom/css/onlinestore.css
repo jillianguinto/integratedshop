@@ -1,0 +1,74 @@
+.header-content {
+    display: inline-flex;
+}
+
+.store_name h1{
+	font-family: kalinga;
+    font-weight: bold;
+    color: #103758;
+	margin: 5px;
+}
+
+.store_name p{
+    color: #103758;
+    margin: 5px;
+    font-size: 16px;
+}
+
+.store_name {
+    width: 62%;
+}
+
+.header-content{
+	width: 100%;
+}
+
+.header-icons {
+    display: inline-flex;
+}
+
+.header-icons li {
+	margin: 5px 10px;
+}
+
+.quick-access {
+    width: 35%;
+}
+
+a.btn-checkout{
+	background: #004E86;
+    color: #FFF;
+    padding: 5px 20px;
+    border-radius: 4px; 
+}
+
+.basket{
+	z-index: 1000;
+    position: relative;
+    left: 30px;
+}
+
+.li-icons{
+    padding-top: 25px;
+}
+
+.li-icons img{
+    height: 20px;
+}
+
+/*button[title="Add to Cart"] {
+    width: 132px;
+    height: 28px;
+    background-image: url(../images/btn_addtocart.png) !important;
+    background-repeat: no-repeat;
+    background-color: transparent !important;
+    color: transparent;
+}*/
+
+.li-cartcount{
+    color: #fff;
+    position: relative;
+    top: 37px;
+    left: 85px;
+    z-index: 9999;
+}

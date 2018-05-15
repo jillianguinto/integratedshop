@@ -1,0 +1,51 @@
+<div class="category-list" id="category-list">
+	<h3><?php echo $this->__("Browse Our Categories");?></h3>
+	<?php if($category_list = $this->getCategoryLists()):?>
+		<ul>
+			<?php $category_count = 1;?>
+			<?php foreach($category_list as $_category):?>
+				<?php $list_attributes = ($category_count > 6) ? 'class="to_hide" style="display:none;"' : '';?>
+				<li <?php echo $list_attributes;?>>
+					<?php if($_imgUrl = $_category->getListIcon()):?>
+						<a href="<?php echo $_category->getUrl();?>" title="<?php echo $_category->getName();?>"><img alt="<?php echo $_category->getName();?>" style="width:90px;height:90px;" src="<?php echo Mage::getBaseUrl('media').'catalog/category/'.$_imgUrl;?>" alt="<?php echo $this->htmlEscape($_category->getName());?>" title="<?php echo $this->htmlEscape($_category->getName());?>" /></a>
+					<?php else:?>
+						<a href="<?php echo $_category->getUrl();?>" title="<?php echo $_category->getName();?>"><img alt="<?php echo $_category->getName();?>"  style="width:90px;height:90px;" src="<?php echo $this->getSkinUrl("images/_category_default.jpg");?>" alt="<?php echo $this->htmlEscape($_category->getName());?>" title="<?php echo $this->htmlEscape($_category->getName());?>" /></a>
+					<?php endif;?>
+					<b style="display:block;"><a href="<?php echo $_category->getUrl();?>"><?php echo Mage::helper('core/string')->truncate($_category->getName(),40);?></a></b>
+					<p class="desc" style="margin:0px;"><?php echo  Mage::helper('core/string')->truncate($this->htmlEscape($_category->getListTitle(),60));?></p>
+				</li>
+				<?php $category_count++;?>
+			<?php endforeach;?>
+		</ul> 
+		<div class="clear">&nbsp;</div>
+		<?php if(count($category_list) > 6):?>
+			<p style="width:150px;margin:0 auto;text-align:center;padding:10px;"><a href="javascript:void(0);" id="show_more_categories"><?php echo $this->__("Show More Categories");?></a></p>
+						
+			<script>
+					var show_all_categories   = false;
+					var show_categories_label = "<?php echo $this->__("Show More Categories");?>";
+					var hide_categories_label = "<?php echo $this->__("Hide Categories");?>";
+					
+					Event.observe($("show_more_categories"),"click",function(event)
+					{ 
+						var element 	  = Event.element(event);
+						var _list_wrapper = $("category-list").select("li.to_hide"); 
+						
+						if(show_all_categories){
+							_list_wrapper.each(function(elm){
+								elm.hide();
+							});
+							element.update(show_categories_label);
+							show_all_categories = false;
+						}else{
+							_list_wrapper.each(function(elm){
+								elm.show();
+							});
+							element.update(hide_categories_label);
+							show_all_categories = true;
+						}
+					});
+			</script>
+		<?php endif;?>
+	<?php endif;?>
+</div>

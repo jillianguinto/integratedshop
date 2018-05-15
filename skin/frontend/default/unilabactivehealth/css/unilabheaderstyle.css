@@ -1,0 +1,121 @@
+.right-menu {    
+    width: 37%;
+    float: left;
+}    
+
+.main {
+    margin-top: 133px;
+}
+
+.slider-wrapper { 
+    margin-top: -9px;
+}
+
+.lean-slider{
+	height: 250px;
+}
+
+.unilab-header{
+    margin-top: -133px;
+	position: fixed; 
+	width: 104%;
+	height: 189px;
+	z-index: 1;
+	background-image: url('https://s3-ap-southeast-1.amazonaws.com/activehealth/wp-content/uploads/2016/05/bg-top-section.png');
+	background-size: contain;
+}
+
+.unilab-header .top-img {
+	margin-left: -51px;	
+	position: absolute;
+	display: none;
+}
+.unilab-header .left-corner {
+	float: left;
+	    /*background: blue;*/
+}
+
+.unilab-header .logo-center{
+	/*float: left;*/
+	/*height: auto;*/
+	/*width: 229px;*/
+	/*width: auto;*/
+	/*margin: 40px 0 0 12px;*/
+/*	background: green;*/
+}    
+
+.unilab-header .logo-center img {
+	margin-top: 0px;
+	width: 90%;
+	/*height: 190.61px;*/
+	  /*  background: orange;*/
+}
+.sff-main-col, .first-col, .third-col{
+	float: left;
+	    /*background: black;*/
+}
+
+
+
+.second-col, .fourth-col{
+	float: left;
+	margin-top: 40px;
+}
+
+.second-col{
+	margin-left: 45px;
+	width: 480px;
+}
+
+.logo-active-health-exceed-yourself {
+	float: left;
+    margin: 40px 0 0 46px;
+    /*background: red;*/
+}
+
+.logo-active-health-exceed-yourself > img {
+	width: 234px !important;
+	height: 76px !important;
+}
+
+.space{
+	clear: both;
+}
+
+ul.small-user-menu > li, ul.cart2 > li {
+	float: left;
+}
+.fourth-col{
+	float: left;
+	margin-top: 60px;
+	width: 350px;
+}
+
+.fifth-col {
+	/*	background: green;*/
+}
+
+.fifth-col ul li{
+	color: #fff;
+	float: left;
+	padding-left: 20px;
+	padding-right: 20px;
+	font-size: 15px;
+	text-transform: uppercase;
+	font-variant: normal;
+}
+
+.sff-submain-col{
+	    
+	    
+}
+
+.center-col{
+	float: left;
+}
+
+.social-link{
+    float: left;
+    /*background: green;*/
+    margin: 60px 165px 0 237px;
+}

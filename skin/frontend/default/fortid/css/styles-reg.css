@@ -1,0 +1,178 @@
+li.ddl-reg.fields {
+    margin: 8px 0 !important;
+}
+li.ddl-reg-gender.fields {
+    margin: 0px 0 !important;
+}
+#captcha-input-box-user_create {
+    width: 50%;
+}
+ul.form-list.captcha {
+    display: inline-block;
+}
+label.reg-lblcaptcha {
+    margin: 10px 0px !important;
+}
+a.link {
+    color: #A61008;
+}
+label.em {
+    color: #A61008;
+}
+label.reg-lblcaptcha.required {
+    width: 100%;
+}
+#captcha_user_forgotpassword {
+    background: #F7F7F7 none repeat scroll 0% 0%;
+    border: 1px solid #CCC;
+    padding: 4px 9px;
+    width: 60%;
+}
+@media screen and (max-width: 479px) and (min-width: 100px) {
+    ul.form-list.captcha {
+        display: inline-block;
+    }
+    #captcha-image-box-user_create {
+        margin-top: 10px;
+    }
+    .input-box.customer-dob.field-row {
+        display: block;
+    }
+    .validation-advice {
+        clear: both;
+        min-height: 13px;
+        margin: 3px 0 0;
+        padding-left: 15px;
+        font-size: 11px;
+        line-height: 13px;
+        background: url(../images/validation_advice_bg.gif) 5px 3px no-repeat;
+        color: #eb340a;
+    }
+    label.required {
+        margin: 3px 0px !important;
+        display: inline-block;
+        float: left;
+        clear: left;
+        width: 150px;
+    }
+    .form-list li,
+    .form-list li .field {
+        float: none !important;
+    }
+    .field.name-lastname {
+        margin: 0px 0px !important;
+        width: 104% !important;
+    }
+    li.ddl-edit-civ {
+        width: 100% !important;
+    }
+    li.ddl-edit-gen {
+        width: 100% !important;
+        padding-right: 0px !important;
+    }
+    .field.name-firstname {
+        margin: 0px 0px !important;
+        width: 104% !important;
+    }
+    .form-list li.control .input-box {}
+}
+@media screen and (max-width: 767px) and (min-width: 480px) {
+    input#captcha_user_create {
+        width: 93%;
+        margin: 5px 0px;
+    }
+    .input-box.captcha{
+        width: 97% !important;
+    }
+    div#advice-required-entry-captcha_user_create {
+        clear: both;
+        min-height: 13px;
+        margin: 3px 0 0;
+        padding-left: 13px;
+        font-size: 11px;
+        line-height: 13px;
+        background: url(../images/validation_advice_bg.gif) 3px 3px no-repeat;
+        color: #eb340a;
+    }
+    div#advice-validate-terms-condition-agree_on_terms {
+        padding-left: 13px;
+        background: url(../images/validation_advice_bg.gif) 3px 3px no-repeat;
+    }
+    .field.name-lastname {
+        margin: 0px 0 !important;
+    }
+    li.ddl-edit-civ {
+        width: 100% !important;
+    }
+    li.ddl-edit-gen {
+        width: 100% !important;
+        padding-right: 0px !important;
+    }
+    .form-list {
+        width: 100% !important;
+    }
+}
+@media screen and (max-width: 959px) and (min-width: 768px) {
+    div#advice-required-entry-captcha_user_create {
+        padding-left: 33px;
+        background: url(../images/validation_advice_bg.gif) 23px 3px no-repeat;
+    }
+    div#advice-validate-terms-condition-agree_on_terms {
+        padding-left: 33px;
+        background: url(../images/validation_advice_bg.gif) 23px 3px no-repeat;
+    }
+}
+@media screen and (min-width: 960px) {
+    div#advice-required-entry-captcha_user_create {
+        padding-left: 33px;
+        background: url(../images/validation_advice_bg.gif) 23px 3px no-repeat;
+    }
+    div#advice-validate-terms-condition-agree_on_terms {
+        padding-left: 33px;
+        background: url(../images/validation_advice_bg.gif) 23px 3px no-repeat;
+    }
+}
+input#firstname_edit {
+    width: 100%;
+}
+input#lastname_edit {
+    width: 100%;
+}
+.field.name-lastname {
+    margin: 0px 0px;
+}
+li.ddl-edit-civ {
+    width: 42%;
+}
+li.ddl-edit-gen {
+    width: 45%;
+    padding-right: 20px;
+}
+.customer-account-index .col-main, 
+.sales-order-view .col-main, 
+.customer-account-edit .col-main,
+.newsletter-manage-index .col-main {
+    width: 96%;
+    margin: 0 auto;
+}
+
+.cms-index-index.cms-homepage .generic-name-box{
+    border: 1px solid #000;
+    padding: 3px 3px 0 3px;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 1;
+    font-family: 'calibriregular', tahoma, arial, sans-serif;
+    text-transform: uppercase;
+    margin: 0px;
+    word-wrap: break-word;
+    max-width: 205px;
+}
+.hide{
+    display: none !important;
+}
+.generic-text{
+    padding: 5px;
+    width: 200px;
+}

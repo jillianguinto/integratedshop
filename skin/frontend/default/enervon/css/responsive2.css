@@ -1,0 +1,63 @@
+@media screen and (max-width:1680px){}
+@media screen and (max-width:1200px){}
+@media screen and (max-width:1024px){}
+@media screen and (max-width:980px){}
+@media screen and (max-width:768px){}
+@media screen and (max-width:767px){.checkout-onepage-success .header-container{overflow-x:hidden;overflow-y:hidden;}
+.checkout-onepage-success .address-preview{width:100%;}
+.checkout-onepage-success #billing-container{padding-left:0px;padding-top:20px;}
+.product-essential{width:85% !important;margin:auto;}
+.product-essential .product-img-box{width:100% !important;margin:auto !important;float:none !important;padding:1px !important;}
+
+.product-view .prod-details,
+.product-view .nutritional-contents{width:100% !important;}
+.payment-method .payment_method_wraper .cls_body,
+.shipping_address .shipping_wrapper .heading,
+.shipping_address .choose-shipping{text-align:center;}
+.payment-method .payment_method_wraper .cls_body .payment_list,
+.shipping_address .choose-shipping .choose-shipping-list{text-align:left;}
+}
+@media screen and (max-width:736px){.shipping-line{width:9%;}
+}
+@media screen and (max-width:640px){}
+@media screen and (max-width:667px){.shipping-line{width:9%;}
+}
+@media screen and (max-width:568px){.shipping-line{width:21%;}
+}
+@media screen and (max-width:480px){
+}
+@media screen and (max-width:414px){
+.rracheckout-checkout-onepage #shipping_city {
+    width: 96% !important;
+}
+	.customer-account-create .account-create-content .input-box{width:90%;padding-left:10px;}
+.shipping-method{width:326px !important;}
+.shipping-line{width:15%;}
+.customer-account-edit .my-account select#civil_status,
+.customer-account-edit .my-account select#gender{width:75% !important;}
+.customer-name #lastname_edit,
+.customer-name #firstname_edit{width:94% !important;}
+.my-account-top .dropdown-content{right:48px !important;}
+.header .logoimg {margin-left: 65%;}
+.slider-container { height: auto; }
+.rracheckout-checkout-onepage #shipping_region_id {width: 94% !important;}
+.rracheckout-checkout-onepage #shipping_country_id {width: 94% !important;}
+.rracheckout-checkout-onepage #shipping_street1 {width: 91% !important;}
+.category-container {
+    width: 16.5%;
+}
+.cat-label a {
+    font-size: 8px;
+}
+.cat-label {
+    font-size: 8px;
+    padding: 0px;
+}
+}
+@media screen and (max-width:375px){.header .logoimg {margin-left: 55%;}
+.orderview-wrapper .checkout-items .shipping-line {width: 15% !important;}
+}
+@media screen and (max-width:320px){
+
+
+}

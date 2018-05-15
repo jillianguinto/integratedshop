@@ -1,0 +1,1210 @@
+body {background:#123464 !important;  }
+#top-section { 
+	/*background: url(../images/unilabactivehealth/bg-top-section.png) repeat-x;*/
+    background: url(https://s3-ap-southeast-1.amazonaws.com/activehealth/wp-content/uploads/2016/05/bg-top-section.png);
+    /* height: 189px; */
+    /* max-width: 1400px; */
+    /* margin: 0 auto; */
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    margin-top: -136px;
+}
+#top-section .left-corner {float:left; width:125px; }
+#top-section .right-corner {float:right; width:125px; z-index:997; }
+#top-section .seventyyears{    
+	position: absolute;
+	right: 0;
+	z-index:999;
+	}
+#top-section .logo-section { position:absolute; left:0px;  padding:0 5% 0px  5%;  z-index:7; }
+
+#mobileNav { display:none;}
+#navigation ul {padding:0; margin:0 ;  }
+#navigation span { display:none;}
+#navigation ul a, #navigation ul a:visited {color:#fff; text-decoration:none; font-size:15px; font-family:'armataregular'; }
+#navigation ul a:hover {color:#0a182e; text-decoration:none; font-size:15px; font-family:'armataregular'; }
+#navigation  ul li {float:left; list-style:none;}
+#navigation ul.menu li {position: relative; list-style-type: none; }
+#navigation ul.menu li a { position: relative;  text-decoration: none;   z-index: 100; }
+#navigation ul.menu > li:first-child > a {border-left: 0;}
+
+/** **/
+#navigation ul ul li {float:none;}
+#navigation ul.menu li ul.sub-menu {position: relative; top:45px; display: none;  margin: 0;  background:#f26f1d; padding:20px; border-bottom:2px solid #fbbc4f; -webkit-box-shadow: 0px 4px 2px 0px rgba(50, 50, 50, 0.43);
+-moz-box-shadow:0px 4px 2px 0px rgba(50, 50, 50, 0.43); box-shadow:0px 4px 2px 0px rgba(50, 50, 50, 0.43);}
+#navigation ul.menu li:hover ul.sub-menu { display: block;  float: left;  position: absolute;  z-index: 200; }
+#navigation ul.menu li ul.sub-menu > li:first-child {  margin: 5px 0 0 0; }
+#navigation ul.menu li ul.sub-menu li a {   width:auto; display: block; }
+ #navigation ul.menu li ul.sub-menu li:first-child > a {border-top: 0; }
+#navigation ul.menu li ul.sub-menu li:last-child > a {border-bottom: 0; }
+
+/** **/
+#navigation ul.menu li ul.sub-menu li ul {  position: relative; display: none; left: 100%;  }
+#navigation ul.menu li ul.sub-menu li ul li {  margin: 0 0 0 5px; }
+#navigation ul.menu li ul.sub-menu li:hover ul {  display: block;  float: left;  position: absolute;  top: 0;    background:#f26f1d; padding:20px; border-bottom:2px solid #fbbc4f; -webkit-box-shadow: 0px 4px 2px 0px rgba(50, 50, 50, 0.43);
+-moz-box-shadow:0px 4px 2px 0px rgba(50, 50, 50, 0.43); box-shadow:0px 4px 2px 0px rgba(50, 50, 50, 0.43);}
+#navigation ul.menu li ul.sub-menu li ul li a {  width: auto;  display: block; }
+
+
+
+#top-section .social-media {position:absolute; right:0; padding:0px 5% 0px 0px; top: 1%;} 
+#top-section .social-media ul {list-style:none;}
+#top-section .social-media li {float:left;}
+
+#slider-section { border-bottom:#f26f1d solid 4px; margin:0; padding:0; background:#f26f1d; padding-top:120px;}
+#banner-section { border-bottom:#f26f1d solid 4px;}
+.header { margin-top:36px; height:45px; border-bottom:#f26f1d solid 4px; background:url(../images/unilabactivehealth/home/bg-header-section.gif) no-repeat left #0a182e;   font-family: 'armataregular'; padding:15px 0 0 0; }
+.header h1  {color:#fff; font-size:28px; font-weight:normal; padding-left:170px; float:left;}
+
+.header .icon { position:absolute;  }
+.header img { position: relative; float:left; top:-35px; left:20px; }
+.header .share-section { float:right; width:270px; color:#FFF; padding-top:10px;}
+
+.header .share-section img { margin-left:5px;}
+.header .share-section  .addthis {position:relative; left:35px; padding-top:5px;}
+.content-section { background:url(../images/unilabactivehealth/home/bg-content-section.jpg) repeat-x #FFF;  padding-top:35px;}
+.content-section  ol { margin-top:0px; padding-top:0px;}
+.content-section .left {float:left; width:640px;}
+.content-section .right {float:right; width:480px; line-height:24px; padding:10px 0px 0 0; margin-right:80px; }
+.content-section .right h1 { margin-bottom:10px;}
+.countdown-section { background:#0a182e; border-top:4px #f26f1d solid; padding:20px; margin-bottom:2px; }
+.countdown-section-blank {padding:20px; margin-bottom:2px; background:#123464; height:195px}
+.counter { background:url(../images/unilabactivehealth/home/bg-countdown-timer.gif) no-repeat; width:192px; height:162px; margin:0 auto; color:#fff; font-family: Verdana, Geneva, sans-serif;   font-size:22px; }
+.counter .wrap-days {font-size:30px; text-align:center; display:block; padding-top:10px;}
+.counter #hours { position:relative; top:30px; left:-25px;}
+.counter #minutes {position:relative; top:60px; left:-2px;}
+.counter #seconds {position:relative; top:30px; left:23px;}
+
+.counter #hours2 { position:relative; top:30px; left:-25px;}
+.counter #minutes2 {position:relative; top:60px; left:-2px;}
+.counter #seconds2 {position:relative; top:30px; left:23px;}
+
+
+.counter #hours3 { position:relative; top:30px; left:-25px;}
+.counter #minutes3 {position:relative; top:60px; left:-2px;}
+.counter #seconds3 {position:relative; top:30px; left:23px;}
+
+.counter #hours4 { position:relative; top:30px; left:-25px;}
+.counter #minutes4 {position:relative; top:60px; left:-2px;}
+.counter #seconds4 {position:relative; top:30px; left:23px;}
+
+.counter #hours5 { position:relative; top:30px; left:-25px;}
+.counter #minutes5 {position:relative; top:60px; left:-2px;}
+.counter #seconds5 {position:relative; top:30px; left:23px;}
+
+
+.counter #hours6 { position:relative; top:30px; left:-25px;}
+.counter #minutes6 {position:relative; top:60px; left:-2px;}
+.counter #seconds6 {position:relative; top:30px; left:23px;}
+.box-proving-grounds a, .box-proving-grounds a:visited {color:#f26f1d; text-decoration:none; border:1px solid #f26f1d; width:375px; padding:2px; display:block; font-size:18px; }
+.box-proving-grounds a:hover { background:#f26f1d; color:#fff; text-decoration:none; }
+.box-proving-grounds { text-align:center; width:380px; float:left; margin:120px 10px 40px 10px; font-size:14px}
+.box-proving-grounds .icon { text-align:center; width:200px; margin:0 auto;}
+.box-proving-grounds .icon img {position:relative; width:200px; left:33.3%; top:-190px;}
+.box-proving-grounds .box-content {color:#fff; line-height:22px; padding:80px 30px 15px 30px; background:#123464; height:200px; }
+
+.box-proving-grounds .box-content2 {color:#fff; padding:80px 30px 15px 30px; background:#123464; height:435px; margin-bottom:2px; line-height:22px;}
+
+.content-box-section a, .content-box-section a:visited {color:#f26f1d; text-decoration:none; border:1px solid #f26f1d; width:100%; margin-top:3px; text-align:center; padding:2px; display:block; font-size:18px;-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+.content-box-section a:hover { background:#f26f1d; color:#ffffff; text-decoration:none; }
+.content-box-section img{margin:0 auto; display:block;}
+.content-box-section { width:1181px; margin:0 auto;}
+#footer-section { background:url(../images/unilabactivehealth/bg-bottom-section.png) bottom repeat-x; width:100%; height:93px; margin-top: -46px;}
+#footer-section .left-corner {float:left; width:97px;}
+#footer-section .right-corner {float:right; 
+	/*width:97px; */
+	}
+#footer-section .logo-section {position:absolute; left:0px; padding:55px  0px 0px 10%;}  
+#footer-section .social-media {position: absolute; right:0; padding:25px 10% 0px 0px;}
+#footer-section .social-media ul { list-style:none;}
+#footer-section .social-media li { float:left;}
+#sitemap-section {background:url(../images/unilabactivehealth/bg-site-map.png); padding:30px 0 30px 0; display:block; width:100%; font-size:14px; line-height:16px; display:none;}
+#sitemap-section .box {width: auto; float:left; margin:0 50px 0 50px;}
+#sitemap-section .box strong {font-size:18px;  line-height:18px; font-weight:normal; margin-bottom:20px; display:block;}
+#sitemap-section .box strong a, #sitemap-section .box strong a:visited {color:#eb8e1e !important;}
+#sitemap-section .box a, #sitemap-section .box a:visited {color:#fff; text-decoration:none;}
+#sitemap-section .wrap-sitemap {max-width:900px; margin:0 auto;}
+#sitemap-section .wrap-sitemap .link { clear:both; width:210px; margin:0 auto; padding-top:20px;}
+#sitemap-section .wrap-sitemap .link a, #sitemap-section .wrap-sitemap .link a:visited {color:#eb8e1e; text-decoration:none; font-size:18px;} 
+#sitemap-section .wrap-sitemap .link  img { margin:0 30px; 0 30px;}
+#unilab-logo { 
+	/*background:url(../images/unilabactivehealth/bg-footer-unilab-logo.jpg) top repeat-x; 
+	text-align:center; 
+	padding:10px 0 10px 0; 
+	max-width:600px; 
+	color:#fff; 
+	font-size:14px; 
+	margin:0 auto;*/
+
+	background: url(../images/unilabactivehealth/bg-footer-unilab-logo.jpg) top repeat-x;
+    text-align: center;
+    padding: 10px 0 10px 0;
+    /* max-width: 600px; */
+    color: #fff;
+    font-size: 14px;
+    margin: 0 10px 0 10px;
+    /* background-color: red; */
+
+}
+#unilab-logo span { float:right; padding-top:10px;}
+#unilab-logo img { float:left;}
+#wrap-logo-unilab {background:url(../images/unilabactivehealth/bg-footer-unilab-logo.jpg) top repeat-x; background-color: #11325F; height: 97px;}
+
+/* inside */
+hr {color:#3b4658; display:block; background:#3b4658; clear:both; width:100%; margin:40px 0 20px 0;}
+.news-box {width:100%; margin-top:40px; font-size:18px; line-height:19px; overflow:hidden;}
+.news-box img {border:1px #0a182e solid;}
+.news-box span {font-size:24px; color:#0c172d; line-height:24px; display:block;}
+.news-box .box-right a, .news-box .box-left a:visited { clear:both; color:#f26f1d; text-decoration:none; border:1px solid #ff0f0f; width:95%; margin-top:3px; text-align:center; padding:8px; display:block; font-size:18px; }
+.news-box .box-right a:hover { background:#ff0f0f; color:#ffffff !important; text-decoration:none; }
+.news-box .box-left {float:left; width:30%; }
+.news-box  .box-right { float:right; width:68%; }
+.image-caption01 { max-width:971px; margin:15px auto; /*margin-top:15px;*/  border:1px solid #0a182e;}
+.image-caption01  .image-caption { width:100%; background:#0a182e; padding:15px; color:#fff; font-size:15px; line-height:18px; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+.image-caption02 { max-width:734px; margin:0 auto; margin-top:40px;  border:1px solid #0a182e;}
+.image-caption02  .image-caption { max-width:674px; background:#0a182e; padding:30px; color:#fff; font-size:15px; line-height:18px; }
+.image-caption03 { max-width:964px; margin:0 auto; /*margin-top:40px; border:1px solid #0a182e;*/ }
+.image-caption03  .image-caption { max-width:964px; background:#0a182e; padding:10px; color:#fff; font-size:14px; line-height:16px; }
+.image-left{margin:0 auto; margin-top:15px; margin-right:20px;  border:1px solid #0a182e; width:250px; float:left}
+.image-right{margin:0 auto; margin-top:15px; margin-left:20px;  border:1px solid #0a182e; width:250px; float:right}
+.image-left02{margin:0 auto; margin-top:15px; margin-right:20px;  border:1px solid #0a182e; width:50%; float:left}
+.image-left03{margin:0 auto; margin-top:15px; margin-right:20px;  border:1px solid #0a182e; width:40%; float:left}
+.image-right02{margin:0 auto; margin-top:15px; margin-left:20px;  border:1px solid #0a182e; width:50%; float:right}
+.image-left .image-caption, .image-right .image-caption { width:100%; background:#0a182e; padding:15px; color:#fff; font-size:14px; line-height:18px; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+.image-left img, .image-right img, .image-right02 img, .image-left02 img, .image-left03 img{width:100%}
+
+
+
+
+.primary {float:left; width:75%; color:#0e1e38; font-size:16px; line-height:24px}
+.primary  blockquote { margin:0 0 0 28px; padding:0; font-size:15px;}
+.primary h1 {font-weight:normal; width:100%; border-bottom:1px solid #f16f1f; color:#0e182e; font-family: 'armataregular'; padding:5px 0; /*font-size:35px; line-height:30px;*/ font-size:30px; line-height:30px;}
+.primary h2 {font-weight:normal; color:#f27425; font-size:22px; font-weight:normal; margin:3px 0 0 0; padding:0; line-height:24px;}
+.primary h3 {color:#0e1e38; /*font-size:24px;*/font-size:20px; font-family: 'armataregular';}
+.primary h4 { width:100%; border-bottom:1px solid #f16f1f; color:#f27425; font-size:24px;  font-family: 'armataregular'; margin-bottom:50px;}
+.primary h5 { width:100%;  color:#0c172d; /*font-size:35px;*/font-size:30px;  font-family: 'armataregular';  font-weight:normal; text-transform: capitalize; margin:0; padding:0; line-height:36px;}
+.primary h6 { width:100%;  color:#f27425; font-size:18px;  font-family: 'armataregular';  font-weight:normal; text-transform: capitalize; margin:0; padding:0; }
+
+.primary li, .primary ol, .primary p,{}
+.primary center {width:95%; margin:0 auto;}
+
+.wrap-storieshdr{}
+.wrap-storieshdr h2 {font-weight:normal; width:100%; /*border-bottom:1px solid #f16f1f;*/ color:#0e182e; padding:5px 0; font-size:30px; line-height:36px; font-family: 'armataregular';}
+.wrap-storieshdr h1 {font-weight:normal; color:#f27425; font-size:27px; font-weight:normal; margin:3px 0 0 0; padding:0; line-height:40px;}
+
+.secondary {float:right; width:300px; }
+.content-box-section-inside { width:100%; margin:0 auto; padding:20px 0 20px 0;}
+.pacers{float:left; width:49%; display:block; margin:0 .5% 1% .5%}
+.wrap-table {  display:block;}
+.wrap-table span {color:#f26f1d;}
+.styleTable { font-size:20px; width:700px;}
+.wrap-table2{position: relative;  display:block;  }
+
+.wrap-table3, .wrap-table4, .wrap-table5{display:block; margin-top:20px; font-size:16px; line-height:22px}
+.wrap-table3 tr.tophdr td, .wrap-table4 tr.tophdr td, .wrap-table5 tr.tophdr td{color:#FFF; background:#153666}
+
+.styleTable span {color:#fff; font-sizee:20px;}
+.box-blue h1 {background:#0a182e; border-bottom:#f26f1d 2px solid; color:#f26f1d; font-size:24px; padding:10px;  font-family:'armataregular'; margin:0;}
+.content-boxBlue {background:#123464; color:#bdd8ff; font-size:16px; padding:10px; display:block; line-height:20px;}
+.content-boxBlue ul {margin:0; padding:0; list-style:none;}
+.content-boxBlue li { background:url(../images/unilabactivehealth/blt-ulah-orange.gif) top left no-repeat; padding-left:27px; }
+.content-boxBlue li a, .content-boxBlue li a:visited {color:#fff; text-decoration:none; color:#bdd8ff; font-size:16px; display:block; padding-top:7px}
+.content-boxBlue li a:hover {text-decoration:underline;}
+#recommended-section { padding-top:50px; clear:both; overflow:hidden}
+#recommended-section .box-recommended {width:260px; padding:70px 20px 30px 20px; text-align:center; margin-top:20px; color:#fefefe; font-size:16px; line-height:20px; margin-right:15px;}
+#recommended-section .box-recommended strong { font-size:20px; font-weight:normal; display:block;  line-height:22px; font-family:'armataregular'; margin-bottom:5px}
+#recommended-section .box-recommended span{font-size:16px; display:block; margin-bottom:10px}
+#recommended-section .icon-ev {float:left; background:#f38625; height:100px}
+#recommended-section .icon-tr {float:left; background:#6e8faf; height:100px}
+#recommended-section .icon-ge {float:left; background:#aa916d; height:100px}
+#recommended-section .icon-nu {background:#0e4c53; float:left; height:100px}
+#recommended-section a, #recommended-section a:visited {color:#fff; text-decoration:none; display:block; position:relative; z-index:9;}
+#recommended-section a:hover {text-decoration:underline;}
+#recommended-section .icon { text-align:center; max-width:133px; margin:0 auto;}
+#recommended-section .icon img {position:relative; top:20px;  width:133px; left:46%; top:-130px;}
+a.linkBlue, a.linkBlue:visited  { padding:5px; font-size:16px; width:95%; margin:0 auto; margin-bottom:2px; text-decoration:none; color:#fff; background:#153666; text-align:center; display:block; }
+a.linkBlue:hover  {background:#f26f1d;}
+.wrap-colTwo { overflow:hidden;}
+#recommended-section .wvid, #recommended-section .wvid1 {padding-bottom:200px}
+#recommended-section img.vidimg{width:90%; padding-bottom:15px}
+
+#recommended-section .padb70{padding-bottom:70px}
+
+.quotation-content { padding:20px; font-size:24px; line-height: 28px;}
+.backgroundBlue02 { background:#b0c8ec; padding:20px; border-left:5px solid #ff6633; }
+.backgroundBlue01 { background:#b0c8ec; padding:40px; border-left:5px solid #ff6633; }
+.backgroundBlue03 { background:#b0c8ec; padding:10px 20px; margin-top:10px}
+.backgroundBlue01 span {color:#ff6633;}
+.quotation-left {width:100%;}
+.quotation-right  {text-align:right; width:100%;}
+/* col raw style */
+.col-two-left-01 {float:left; width:18%;}
+.col-two-right-01 {float:left; width:82%; padding-top:38px;}
+.col-two-left-02 {float:left; width:18%;}
+.col-two-right-02 {float:left; width:77%; font-size:16px !important; line-height:22px; margin-left:10px; }
+.col-two-right-02 strong { font-weight:normal; color:#ff6633; }
+.col-two-right-02 li { list-style-image: url(../images/unilabactivehealth/blt-black.png);}
+.col-two-left-03 {float:left; width:15%; margin-top:20px}
+.h3sub {color:#ff6633; font-size:20px !important;}
+.col-two-right-03 {float:left; width:85%; font-size:16px !important; line-height:22px; padding-left:10px; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; margin-top:40px}
+
+.col-two-left-04 {float:left; width:18%;}
+.col-two-right-04 {float:left; width:77%; font-size:16px !important; line-height:22px; margin-left:10px;}
+
+.col-two-left-05 {float:left; width:18%; margin-top:10px}
+.col-two-right-05 {float:left; width:77%; font-size:16px !important; line-height:22px; margin-left:10px; margin-top:10px}
+.col-two-right-05 p{padding-top:0}
+
+/* View Style */
+.header .responsiveView { display:none;}
+.responsiveView2 {display:block;}
+.responsiveImage01 {display:none;}
+/* wrap Style */
+.wrap {/*max-width:1260px;*/ max-width:1200px; margin:0 auto;}
+.wrap-main {max-width:1400px; margin:0 auto;}
+.wrapTopSection { /*position:absolute;*/ width:100%; z-index:9999;}
+ 
+
+/* Padding Margin Style */
+.margin-left-right_02 { margin-left:22px; margin-right:23px;}
+.padding-bottom-20 { padding-bottom:20px; display:block;}
+.padding-bottom-15 { padding-bottom:15px; display:block;}
+.padding-top-20 { padding-top:20px;}
+.padding30 { padding:30px;}
+.padding30-2 { padding:30px; padding-top:0;} 
+.padding20 { padding:20px !important;} 
+.padding10 { padding:10px !important;} 
+.padding-top30 { padding-top:30px !important;}  
+.padding-lef-top-right_01  {padding:55px 35px 0 35px;  }
+.margin-left-right_01 { margin:0 70px 0 70px;} 
+.margin-top_01 { margin:70px 0  0 0; display:block;} 
+.margin-bottom_01 {margin: 0  0 100px 0; display:block;} 
+.margin-left_01 { margin-left:70px; float:right !important;}
+/* line height Style */
+.line-height30 { line-height:30px;}
+.line-height24 { line-height:24px;}
+.line-height22 { line-height:22px;}
+.line-height18 { line-height:18px;}
+.line-height14 { line-height:14px;}
+
+/* how to exceed sries */
+.featuredvid-wrap{display:block; background:url(../images/unilabactivehealth/inside/videos/featured-vid-bg.jpg); padding:20px; width:100%; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;
+background-repeat: no-repeat; background-position: 50% 0%; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
+.featuredvid{display:block; width:70%;}
+.fvideo {position:relative; padding-bottom:56.25%; padding-top:35px; height:0; overflow:hidden;}
+.facebookvid {position:relative; padding-bottom:56.25%; padding-top:5px; height:0; overflow:hidden;}
+.fvideo iframe {position: absolute; top: 0; left: 1px; width: 100%; height: 100%;}
+.featuredvid-txt{float:right; width:25%; display:block; color:#FFF; margin-top:20px;; margin-right:15px}
+.featuredvid-txt h1{font-size:27px; border:none; color:#FFF;}
+.featuredvid-txt h2{font-size:22px; margin-bottom:30px}
+.featuredvid-txt h3{font-size:22px; color:#FFF; font-weight:normal}
+.featuredvid-txt p{color:#bfd8ff; font-size:17px}
+.vidthumb{float:left; width:100% }
+.vidthumb ul{display:block; width:100%; padding:0; margin:15px 0 0 0; list-style:none; padding-top: 20px;}	
+.vidthumb li{width:31%; margin-right:3.5%; display:block; float:left; text-align: left; margin-bottom:15px; line-height: 1.25em; height:250px; background:url(../images/unilabactivehealth/inside/videos/vidthumb-bg.jpg) no-repeat bottom left;}	
+.vidthumb li.vidthumb-mnone{margin-right:0}
+.vidthumb li.vidthumb-mright{margin-right:0}
+.vidthumb li.vidthumb-mright2{margin-right:3.5%}
+.vidthumb li p{display:block; margin-left:25px; padding-bottom:5px; margin-top:5px}	
+.vidthumb li span{display:block; margin-left:25px; color:#bfd8ff; margin-right:15px}		
+.vidthumb li a{text-decoration:none; color: #fff;}
+.vidthumb li a:hover{text-decoration: underline; color:#bfd8ff;}
+
+
+/*collapsible-panel*/
+#collapsible-panels h2 {width: 100%; margin:0; background: url(../images/unilabactivehealth/inside/img-program-bg.jpg) no-repeat left center; border-top: 5px solid #fff; background-color:#123464; display:block;}
+#collapsible-panels h2 strong{font-weight:normal; display:block; width:60%}  
+#collapsible-panels h2 .wrap-table table{width:95%!important; /*max-width:700px*/}
+#collapsible-panels .arrow {display:block;  float:right;  padding:0; position:relative; top:-7px; width:42px; height:37px;}
+#collapsible-panels .arrow {background:url(../images/unilabactivehealth/inside/img-program-arrow.jpg) top right no-repeat; }
+#collapsible-panels h2.active {background: url(../images/unilabactivehealth/inside/img-program-bg-active.jpg) no-repeat left center; background-color:#123464; }
+#collapsible-panels h2.active .arrow {background:url(../images/unilabactivehealth/inside/img-program-arrow-active.jpg) top left no-repeat; }
+#collapsible-panels h2 a {padding: 15px 0 15px 35px; text-decoration:none; color: #fff; display:block; width: 98%; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}  
+#collapsible-panels .prog-day {width: 100%; max-width:997px; background-color:#caddf8; border-top: 5px solid #fff; display:inline-block; heigth:400px;}  
+#collapsible-panels .prog-day{overflow-x: auto;}
+#collapsible-panels .prog-day table{width: 100%; min-width: 800px;}
+#collapsible-panels .prog-day p{padding: 0 0 0 15px;}
+.lborder{background:url(../images/unilabactivehealth/inside/prog-day-lborder.gif) repeat-y left; padding: 0 5px}
+#collapsible-panels .prog-day span{color:#ff6633; font-size:20px !important}
+
+#collapsible-panels .prog-day2 {width: 100%; max-width:997px; border-top: 5px solid #fff; display:inline-block; margin:15px 0;}  
+#collapsible-panels .prog-day2 span{color:#ff6633; font-size:20px !important}
+
+#collapsible-panels2 h2 {width: 100%; margin:5px 0 0; display:block; clear:both; overflow:hidden; background-color:#123464; border-left: 6px solid #f26f1d; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+#collapsible-panels2 h2 strong{font-weight:normal; display:block; width:70%; float:left; padding:15px 30px 15px 25px; background: url(../images/unilabactivehealth/inside/img-program-bg2.jpg) no-repeat right center; background-color:#6c8faf;}
+
+#collapsible-panels2 .arrow {display:block; float:right; padding:0; position:relative; top:0; width:42px; height:37px; margin-top:7px}
+#collapsible-panels2 .arrow {background:url(../images/unilabactivehealth/inside/img-program-arrow.jpg) top right no-repeat; }
+#collapsible-panels2 h2.active strong {background: url(../images/unilabactivehealth/inside/img-program-bg2-active.jpg) no-repeat right center; background-color:#f26f1d; }
+#collapsible-panels2 h2.active .arrow {background:url(../images/unilabactivehealth/inside/img-program-arrow-active.jpg) top left no-repeat; }
+#collapsible-panels2 h2 a {/*padding: 15px 0 15px 35px; */text-decoration:none; color: #fff; display:block; width: 98%; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}  
+#collapsible-panels2 .prog-day {width: 100%; max-width:997px; background-color:#caddf8; border-top: 5px solid #fff; display:inline-block;} 
+#collapsible-panels2 .prog-day p{padding: 25px;}
+#collapsible-panels2 .prog-day ul {margin:0; padding-left:50px; padding-right:15px}
+#collapsible-panels2 .prog-day span{color:#ff6633; font-size:20px !important}
+
+
+
+#collapsible-panels3 h2 {width:100%; margin:0; border-left:5px solid #fd7300; background-color:#153666; display:block; margin-top:5px; font-size:18px !important; overflow:hidden; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+#collapsible-panels3 h2 strong{font-weight:normal; display:block; width:60%}  
+/*#collapsible-panels3 h2 .wrap-table table{width:95%!important;}*/
+#collapsible-panels3 span.tab{width:90%; display:block; float:left; margin-bottom:15px}
+#collapsible-panels3 .arrow {display:block; float:right;  padding:0; position:relative; top:-7px; width:42px; height:37px;}
+#collapsible-panels3 .arrow {background:url(../images/unilabactivehealth/inside/img-faqs-arrow.jpg) top right no-repeat; }
+#collapsible-panels3 h2.active {background-color:#fd7300; }
+#collapsible-panels3 h2.active .arrow {background:url(../images/unilabactivehealth/inside/img-faqs-arrow-active.jpg) top left no-repeat; }
+#collapsible-panels3 h2 a {padding: 15px 0 15px 35px; text-decoration:none; color: #fff; display:block; width: 98%; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}  
+#collapsible-panels3 .faqs {width: 100%; max-width:997px; border-top: 5px solid #fff; display:inline-block; heigth:400px;}  
+#collapsible-panels3 .faqs{overflow-x: auto;}
+#collapsible-panels3 .faqs table{width:60%; /*min-width:700px;*/ margin:0 20%}
+#collapsible-panels3 .faqs p{line-height:1.5em; width:96%; padding:2%}
+#collapsible-panels3 .faqs ul{line-height:1.70em;}
+#collapsible-panels3 .faqs span{color:#ff6633; font-size:20px !important}
+#collapsible-panels3 .faqs-img{width:100%; text-align:center; font-size:11px; line-height:14px; margin:25px 0}
+
+
+/* directory */
+.dbox-wrap{display:inline-block; margin-bottom:20px}
+.dbox-wrap h1{margin-bottom:15px !important; clear:left}
+.dbox{float:left; width:50%; padding:10px 7px 10px 10px; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; font-size:14px}
+.dbox a{color:#f26f1d; text-decoration:none;}
+.dbox a:hover {color:#0348a8; text-decoration:underline; }
+.dbox-info, .dbox-info2, .dbox-info3{float:left; border:1px solid #CCC; width:100%; padding:10px 20px; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; /*background-color:#FFF*/}
+.dbox .d-icon img {position:relative;  width:21px; left:-10px; top:15px;}
+.dbox-info2{height:200px}
+.dbox-info3{height:220px}
+
+.img-desktop{display:block}
+.img-mobile{display:none}
+
+/* Fonts Style */
+h1 {font-family:'armataregular'; font-weight:normal;}
+.font-darkblue-style40 {font-size:40px; color:#0d1b30;}
+.font-darkblue-cap-style24 {font-size:23px; color:#0d1b30; text-transform: uppercase; font-family:'armataregular';}
+.font-darkblue-style23 {font-size:18px; color:#0d1b30; font-family:'armataregular'; font-style:italic; padding-top:20px; display:block}
+.font-darkblue-style34 {font-size:30px; color:#0d1b30; line-height:38px;}
+.font-orange-style18 {font-size:18px; color:#ff9900;}
+.font-black-style18 {font-size:18px;}
+.font-orange2-style25 {font-size:25px; color:#f26f1d; padding-top:50px; display:block}
+.font-orange2-style24 {font-size:24px; color:#f26f1d; display:block}
+.font-orange2-style24b {font-size:24px; color:#f26f1d; display:block; font-family:'oxygenregular'; font-weight:normal; margin-top:10px}
+.font-orange2-style22b{font-size:22px; color:#f26f1d; padding-top:30px; display:block}
+.font-orange2-style22 {font-size:22px; color:#f26f1d;}
+.font-orange2-style18 {font-size:18px; color:#f26f1d;}
+.font-orange2-style16 {font-size:16px; color:#f26f1d;}
+.font-orange02 {font-size:16px; color:#f26f1d; line-height:20px; font-family: 'armataregular'; margin-top:10px}
+.header01 {border-bottom:1px solid #f26f1d; font-size:24px; line-height:28px; color:#0c172d; margin:0 0 10px 0; padding-bottom:10px;  }
+.header01 strong {font-weight:normal; /*font-size:38px; line-height:40px;*/font-size:34px; line-height:36px; }
+.font-blue2-style18 {font-size:18px; color:#b2cdf2;}
+.font-blue2-style16 {font-size:16px; color:#b2cdf2;}
+.font-blue2-style14 {font-size:14px; color:#b2cdf2;}
+.font-blue2-style12 {font-size:12px; color:#b2cdf2;}
+.font-style14-italic {font-size:14px; font-style:italic; line-height:1.5em}
+.armata { font-family: 'armataregular';}
+.title01 {background:#b0c8ec; padding:5px; border-left:5px solid #ff6633; color:#0e1e38; font-size:22px; padding-left:20px; margin:30px 0 20px 0; clear:both; display:block;}
+.title02 {background:#b0c8ec; padding:5px; border-left:5px solid #ff6633; color:#0e1e38; font-size:22px; padding-left:10px; margin:30px 0 20px 0; clear:both; display:block; overflow:hidden}
+.title02 p{display:block; float:left; margin-top:2px; margin-left:10px}
+.title02 img{display:block; float:left}
+
+/* Slider */
+ul.slides li img.slides-dsktop{display:block}
+ul.slides li img.slides-mobile{display:none}
+
+.ads-banner02 { text-align:center;; margin-top:20px; height:402px; width:100%;}
+.ads-banner02 img { width:100%; height:auto;}
+#ads-banner { height: auto; max-width:985px; margin:0 auto; margin-top:25px; padding-bottom:6%; }
+#ads-banner img { width:99%; height:auto; margin:0 auto;}
+#slideshow {position:relative; height: auto; }
+#slideshow02 {position:relative; height: auto; }
+#slideshow03 {position:relative; height: auto; }
+#slideshow04 {position:relative; height: auto; }
+#slideshow DIV {position:absolute; top:0; left:0; z-index:8; opacity:0.0;}
+#slideshow DIV.active {z-index:10; opacity:1.0;}
+#slideshow DIV.last-active {z-index:9;}
+#slideshow DIV IMG {display: block; border: 0; margin-bottom: 10px;}
+#slideshow02 DIV {position:absolute; top:0; left:0; z-index:8; opacity:0.0;}
+#slideshow02 DIV.active {z-index:10; opacity:1.0;}
+#slideshow02 DIV.last-active {z-index:9;}
+#slideshow02 DIV IMG {display:block; border:0; margin-bottom:10px;}
+#slideshow03 DIV {position:absolute; top:0; left:0; z-index:8; opacity:0.0;}
+#slideshow03 DIV.active {z-index:10; opacity:1.0;}
+#slideshow03 DIV.last-active {z-index:9;}
+#slideshow03 DIV IMG {display: block; border: 0; margin-bottom: 10px;}
+#slideshow04 DIV {position:absolute; top:0; left:0; z-index:8; opacity:0.0; }
+#slideshow04 DIV.active {z-index:10; opacity:1.0;}
+#slideshow04 DIV.last-active {z-index:9;}
+#slideshow04 DIV IMG {display: block; border: 0; margin-bottom: 10px;}
+.link1 a, .link1 a:visited {color:#f26f1d; text-decoration:none;}
+.link1 a:hover {color:#f26f1d; text-decoration:underline;}
+
+/*popup*/
+#popup-window{width:844px; height:421px; position:absolute; left:50%; top:0; margin-left:-422px; margin-top:120px; z-index:999999 !important; text-align:center;}
+#popup-window img{border: none;}
+#close-wrap{float:right; top:0px; left:825px; position:absolute; z-index:999999 !important;}
+#close{height:33px; width:33px; position:relative;}
+#close img{border:none;}
+#close a{background:url(../images/unilabactivehealth/close-btn.png) no-repeat; display:block; height:35px; width:41px;}
+#wrapper{height:100%; width:100%; position:fixed; left:0; top:0; z-index:99999 !important; background-color:black; filter:alpha(opacity=70); /* internet explorer */-khtml-opacity:0.70; /* khtml, old safari */-moz-opacity:0.70; /* mozilla, netscape */opacity:0.70; /* fx, safari, opera */}
+#banner1{width:844px; height:521px; background-color:#FFF; position:fixed;}
+
+
+
+/*nutrition*/
+.content-nutrimain{background:url(../images/unilabactivehealth/inside/nutrition/nutritionmain-bg.jpg) top center #FFF;  padding-top:35px;}
+.primary-nutri {float:left; width:100%; color:#0e1e38; font-size:16px; line-height:24px}
+.primary-nutri h1 {display:block; text-align:center; font-weight:normal; width:100%; color:#123464; font-family: 'armataregular'; margin-top:60px; font-size:48px; line-height:30px;}
+.primary-nutri h2 {font-weight:bold; color:#fff; font-size:40px; margin-bottom:67px;}
+.primary-nutri p {display:block; text-align:center; width:100%; font-weight:normal; color:#0e1e38; font-size:18px; font-weight:normal; line-height:24px; font-family:'oxygenregular'; margin:20px 0;}
+.product-wrap{float:left; display:block; width:50%; margin:47px 0 150px 0 /*width:45%; margin:47px 2.5% 150px 2.5%*/}
+.product-wrap img{text-align:center;}
+.product-wrap p{width:90%; margin-top:50px; padding:0 5%}
+.product1{float:right; display:block; text-align:center; width:382px; margin-right:37px}
+.product2{float:left; display:block; text-align:center; width:382px; margin-left:37px}
+.bgOrange {background:#fdb813; padding:40px; border-left:5px solid #f26f1d; margin-bottom:20px; overflow:hidden}
+.bgOrange-col1{width:40%; margin-right:10%; margin-top:70px;; display:block; float:left}
+.bgOrange-col1b{width:40%; margin-right:10%; margin-top:0;; display:block; float:left}
+.bgOrange-col2{width:50%; display:block; float:left;
+}
+.bgOrange-col1b img{dislay:block; width:50%; margin:2% 25%; height:auto}
+
+.bgOrange-col2 p{font-size:11px; line-height:14px}
+.infographic-wrap{display:block; width:100%; overflow:hidden; margin-bottom:30px}
+.infographic-wrap h2{display:block; width:92%; padding:2% 4%; background-color:#0a182e; color:#FFF; font-size:20px}
+.infographic-wrap ul{font-size:14px}
+.infographic-wrap h3{font-size:18px; color:#FFF;}
+.bgOrange2{width:94%; padding:2% 3%; background-color:#cc5c00; color:#FFF; overflow:hidden}
+.bgOrange3{width:94%; padding:2% 3%; background-color:#e36700; color:#FFF; overflow:hidden}
+.bgOrange4{width:94%; padding:2% 3%; background-color:#fd7300; color:#FFF; overflow:hidden}
+.col1{display:block; float:left; width:23%}
+.col2{display:block; float:left; width:77%}
+span.nowrap{white-space: nowrap;}
+
+@media only screen and (max-width: 1920px) {
+#footer-section .logo-section { padding:55px  0px 0px 15%;}  
+#footer-section .social-media { padding:25px 15% 0px 0px;}
+#top-section .logo-section {padding:0  0px  0px 15%;}
+#navigation { padding:0px 0px  0px 30%;   }
+#top-section .social-media {padding:10px 15% 0px 0px;}
+}
+
+@media only screen and (max-width: 1720px) {
+#footer-section .logo-section {padding:55px  0px 0px 10%;}  
+#footer-section .social-media {padding:40px 10% 0px 0px;}
+#top-section .logo-section {padding:0  0px  0px 10%;}
+#top-section .social-media {padding:10px 10% 0px 0px;}
+
+}
+@media only screen and (max-width: 1400px) {
+#top-section .logo-section { 
+	position: absolute;
+    left: 0px;
+    padding: 0 0 0px 0px;
+    margin: 31px 0px 0 73px;
+}
+#top-section .social-media {     
+	position: absolute;
+	right: 103px;
+	padding: 12px 5% 0px 0px;
+	z-index: 99999;
+	
+	}
+#footer-section .logo-section {
+	position:absolute; 
+	left:0px;  
+	/*padding:55px  0px 0px 5%;*/
+	padding: 51px 0px 0px 137px;
+}  
+#footer-section .social-media {
+	/*position: absolute; 
+	right:0; 
+	padding:40px 5% 0px 0px;*/
+	/*position: absolute;*/
+    /*margin: 0px 60px;*/
+}
+
+.wrap-table2 {height: 300px;} 
+}
+@media only screen and (max-width: 1326px) {
+
+#recommended-section .icon-nu {   float:none; clear:both; margin:0 auto;   }
+#recommended-section .box-recommended { margin-bottom:80px;}
+.margin-left-right_02 { margin-left:30px;  }
+
+.wrap-box-recommended { max-width:655px; margin:0  auto;}
+.content-box-section a{width:100%}
+.content-box-section {width:95%}
+.wrap-table3 table{width:70%}
+
+}
+@media only screen and (max-width: 1305px) {
+.box-proving-grounds .icon img {left:12%;}
+.box-proving-grounds a, .box-proving-grounds a:visited {width:312px; }
+.box-proving-grounds { width:320px;  }
+.box-proving-grounds .box-content {height:240px;}
+.box-proving-grounds .box-content2 {height:450px;}
+.font-orange2-style22b{padding-top:0;}
+.wrap {max-width:1024px; margin:0 auto;}
+.font-orange2-style18 {font-size:17px; color:#f26f1d;}
+.font-orange2-style16 {font-size:15px; color:#f26f1d;}
+.font-blue2-style18 {font-size:17px; color:#b2cdf2;}
+.font-blue2-style16 {font-size:15px; color:#b2cdf2;}
+.font-blue2-style14 {font-size:13px; color:#b2cdf2;}
+.countdown-section { background:#0a182e; border-top:4px #f26f1d solid; padding:8px; margin-bottom:2px; }
+.countdown-section-blank {height:171px}
+}
+@media only screen and (max-width: 1285px) {
+ .primary {width:73%;  }
+ .col-two-left-01 {width:20%; }
+.col-two-right-01 { width:80%; padding-top:38px;}
+ .col-two-left-02, .col-two-left-04 {width:20%; }
+.col-two-right-02, .col-two-right-04 { width:75%; }
+}
+@media only screen and (max-width: 1280px) {
+
+#banner-section { padding-top:50px; }
+#ads-banner {padding-bottom:8%;}
+.responsiveImage01 { width:100%; display:block;}
+.content-section .left {width:50%;}
+.desktopImage01 { display:none;}
+.content-section .right {width:40%;}
+.responsivePaddingBottom30 { padding-bottom:30px;}
+.desktopView2 {display:none;}
+.responsiveView2 {display:block;}
+.wrap-table2 {height: 325px;} 
+
+.dbox-info2{height:220px;}
+.dbox-info3{height:260px;}
+}
+@media only screen and (max-width: 1200px) {
+.primary {width:70%;  }
+
+.primary h1 { font-size:28px !important;}
+.primary h2 { font-size:20px;}
+.wrap-storieshdr h2 {font-size:30px;}
+.wrap-storieshdr h1 {font-size:27px !important;}
+
+.wrap-table2 {height: 370px;} 
+a.linkBlue{font-size:18px; padding:10px}
+.wrap-table3 table{width:80%}
+.pacers{float:none; width:100%; display:block; margin:0 0 20px 0; text-align:center}
+
+.featuredvid{width:65%;}
+.featuredvid-txt{float:right; width:30%; display:block; color:#FFF; margin-top:5px;; margin-right:10px}
+.featuredvid-txt h2{font-size:18px; margin-bottom:15px}
+.featuredvid-txt h1{font-size:24px !important; border:none; color:#FFF; width:95% !important}
+.featuredvid-txt h3{font-size:18px; color:#FFF}
+.featuredvid-txt p{color:#bfd8ff; font-size:16px}
+#collapsible-panels3 .faqs table{width:80%; margin:0 10%}
+}
+
+@media only screen and (max-width: 1120px) {
+.primary {width:68%;  } 
+
+.featuredvid-wrap{display:table; table-layout:fixed; padding:0; background:url(../images/unilabactivehealth/inside/videos/featured-vid-bg2.jpg);
+-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;
+background-repeat: no-repeat; background-position: 50% 0%; -webkit-background-size: cover; -moz-background-size: canvass; -o-background-size: canvass; background-size: canvass;}
+
+.fvideo, .facebookvid{margin:3% 3% 0 3%}
+.facebookvid {margin-bottom:-10%}
+.featuredvid{display:table-header-group; width:100%;}
+.featuredvid-txt{float:none; width:100%; display:table-footer-group; background:url(../images/unilabactivehealth/inside/videos/featuredvid-txt-bg.jpg); -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;
+background-repeat: no-repeat; background-position: 50% 0%; -webkit-background-size: cover; -moz-background-size: canvass; -o-background-size: canvass; background-size: canvass;
+}
+
+.featuredvid-txt h1, .featuredvid-txt h2, .featuredvid-txt h3, .featuredvid-txt p{margin-right:3% ; margin-left:3%}
+.featuredvid-txt h2{font-size:22px; margin-bottom:30px; margin-top:4%}
+.featuredvid-txt h3{font-size:22px; color:#FFF}
+.featuredvid-txt p{color:#bfd8ff; font-size:18px; margin-bottom:20px;}
+
+.vidthumb li{width:48%; margin-right:4%; margin-bottom:15px; height:280px;}
+.vidthumb li.vidthumb-mright{margin-right:4%}
+.vidthumb li.vidthumb-mright2{margin-right:0}
+.wrap-table5 {max-width:700px; overflow-x:scroll; overflow-y:visible;}
+}
+@media only screen and (max-width: 1070px) {
+.secondary { width:280px;}
+.ads-banner02 { height:372px;}
+#ads-banner {padding-bottom:9%;}
+
+
+#navigation ul li { width: auto; margin-left:-15px;}
+#navigation ul ul li { width: auto; margin-left: auto;}
+#navigation { top:85px; }
+#navigation ul.menu li ul.sub-menu { top:35px;}
+.left-menu {width: 60% !important;}
+.right-menu {width: 40% !important;}
+
+}
+
+@media only screen and (max-width: 1030px) {
+
+#recommended-section .box-recommended {width:200px;}
+.margin-left-right_02 { margin-left:20px;  }
+#recommended-section .icon img {left:23%;}
+.wrap-box-recommended {max-width:523px;}
+
+.col-two-left-01 {float:none; margin:0 auto; margin-bottom:20px; /*width:287px;*/ width:200px;}
+.col-two-left-01 img{margin:0 auto; display:block}
+.col-two-right-01 {float:none; padding:0; width:100%;  }
+.col-two-left-02, .col-two-left-04 {float:none;  margin-bottom:20px; /*width:287px;*/ text-align:center; width:100%;}
+.col-two-right-02, .col-two-right-04 {float:none; padding:0; width:100%;  margin-left:0px;}
+
+.dbox{width:100%}
+.dbox-info2, .dbox-info3{height:auto}
+
+.featuredvid-wrap{display:table; table-layout:fixed; padding:0; background:url(../images/unilabactivehealth/inside/videos/featured-vid-bg2.jpg);
+-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; background-repeat: no-repeat; background-position: 50% 0%; -webkit-background-size: cover; -moz-background-size: canvass; -o-background-size: canvass; background-size: canvass;}
+
+.fvideo{margin:3% 3% 0 3%}
+.featuredvid{display:table-header-group; width:100%;}
+.featuredvid-txt{background:url(../images/unilabactivehealth/inside/videos/featuredvid-txt-bg.jpg); -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;
+background-repeat: no-repeat; background-position: 50% 0%; -webkit-background-size: cover; -moz-background-size: canvass; -o-background-size: canvass; background-size: canvass;
+}
+
+.featuredvid-txt h1, .featuredvid-txt h2, .featuredvid-txt h3, .featuredvid-txt p{margin-right:3% ; margin-left:3%}
+.featuredvid-txt h2{font-size:22px; margin-bottom:30px; margin-top:4%}
+.featuredvid-txt h3{font-size:22px; color:#FFF}
+.featuredvid-txt p{color:#bfd8ff; font-size:18px; margin-bottom:20px;}
+
+.vidthumb li{width:48%; margin-right:4%; margin-bottom:15px; height:250px;}
+.vidthumb li.vidthumb-mright{margin-right:4%}
+.vidthumb li.vidthumb-mright2{margin-right:0}
+/*.box-proving-grounds .box-content2 {height:280px;}*/
+}
+
+@media only screen and (max-width: 1022px) {
+.responsiveCenter01 { margin:0 auto; float:none; clear:both; padding-top:120px; display:block;}
+.wrap {max-width:680px; margin:0 auto;}
+/*#navigation  img { width:80%; height:auto;}
+#navigation ul li { width: auto; margin-left:-25px;}
+#navigation ul ul li { width: auto; margin-left: auto;}
+#navigation { top:85px; }
+#navigation ul.menu li ul.sub-menu { top:35px;}*/
+#navigation ul.menu li ul.posMobile li ul { right:100% !important; left: auto !important;  }
+#navigation  img { width:90%;}
+#navigation ul li {margin-left:-30px;}
+#navigation ul { padding-left:0;}
+#navigation { top:88px; }
+#navigation ul.menu li ul.sub-menu { top:32px;}
+
+.secondary { width:230px;}
+.ads-banner02 { height:302px;}
+.wrap-table2 {height: 430px;} 
+ul.user-menu li {padding: 0 12px !important;}
+ul.cart li {padding: 0 12px !important;}
+
+
+}
+@media only screen and (max-width: 900px) {
+.font-darkblue-style40 { font-size:38px;}
+
+.wrap-table2 {height: 460px;} 
+
+}
+@media only screen and (max-width: 980px) {
+	
+ .share-section{ display:none;}
+ #banner-section { padding-top:70px; }
+ #sitemap-section .wrap-sitemap {max-width:740px; margin:0 auto;}
+#sitemap-section .box {width: auto; float:left; margin:0 30px 0 30px;}
+
+
+}
+@media only screen and (max-width: 890px) {
+	#navigation  img { width:70%;}
+	#navigation ul li {margin-left:-35px;}
+}
+
+@media only screen and (max-width: 880px) {
+#navigation ul.menu li ul.posMobile li ul { right:100% !important; left: auto !important;  }
+#navigation  img { width:70%;}
+#navigation ul li {margin-left:-45px;}
+#navigation ul { padding-left:20px;}
+#navigation { top:90px; }
+#navigation ul.menu li ul.sub-menu { top:32px;}
+ }
+ 
+@media only screen and (max-width: 865px) {
+.responsiveCenter01 { margin:0 auto; float:none; clear:both; padding-top:0px; display:block;}
+.box-proving-grounds {  width:320px; float:none; margin:135px 0px 0px 0px;}
+.box-proving-grounds a, .box-proving-grounds a:visited { width:314px; }
+.box-proving-grounds .icon img {left:12%; }
+.wrap {max-width:320px; margin:0 auto;}
+.ads-banner02 { height:402px;}
+.secondary {width:300px; float:none; margin:0 auto; }
+.primary { float:none; width:100%;}
+.wrap-table2 {height: 340px;} 
+
+#recommended-section .box-recommended {width:290px;}
+/*#recommended-section .wvid1 {padding-bottom:200px}*/
+.margin-left-right_02 { margin-left:20px;  }
+#recommended-section .icon img {left:57%;}
+.wrap-box-recommended {max-width:645px;}
+
+.vidthumb li{width:31%; margin-right:3.5%; margin-bottom:15px; height:230px; background:url(../images/unilabactivehealth/inside/videos/vidthumb-bg2.jpg) no-repeat left bottom}
+.vidthumb li.vidthumb-mright{margin-right:0}
+.vidthumb li.vidthumb-mright2{margin-right:3.5%}
+.content-nutrimain{background:url(../images/unilabactivehealth/home/bg-content-section.jpg) repeat-x #FFF;  padding-top:35px;}
+.product-wrap{margin:0}
+.product-wrap p{margin-top:20px}
+.product1{margin:0 5%; width:90%}
+.product2{margin:0 5%; width:90%}
+.primary-nutri h2{background:url(../images/unilabactivehealth/inside/nutrition/h2-mobilebg.jpg) top center no-repeat; display:block; padding:20px 0 25px 0; margin-bottom:20px}
+.primary-nutri h1{margin-top:30px}
+}
+@media only screen and (max-width: 850px) {
+#top-section .social-media { display:none;}
+.font-darkblue-style40 { font-size:34px;}
+.countdown-section-blank {height:20px}
+#mobileNav {position:absolute;  right:0; padding:80px 115px 0px 0px; display:block; z-index:9;}
+#navigation {display:none; /*top:160px;*/ top:118px; left:auto;  padding:20px 0px 0px; background:#f26f1d; z-index:2; width:100%;  float:none;   }
+#btnMobileNavClose {display:none;   }
+#navigation span { display:block; font-size:14px; color:#fff; display:block;}
+#navigation img { display:none;}
+#navigation ul {padding:50px;  width:100%; margin:0 auto; /*padding-top:20px;*/ padding-top:51px; }
+#navigation ul li { float:none; background:#f68622; margin-bottom:3px; padding:5px; width:100% !important;  }
+#navigation ul ul li { float:none;}
+
+#navigation ul.menu li ul.sub-menu { position: relative; top: auto; display: block;    background:none; padding:5px; border-bottom:none;  -webkit-box-shadow:none;
+-moz-box-shadow:none; box-shadow:none;}
+#navigation ul.menu li:hover ul.sub-menu { display: block;  float: none;  position:  relative;  z-index: 200; }
+#navigation ul.menu li ul.sub-menu li ul {  position: relative; display: block; left:  auto; padding:0px; margin-left:20px; }
+#navigation ul.menu li ul.sub-menu li:hover ul {  display: block;  float: none;  position:  relative;  top: 0; padding:0px;   border-bottom:none; -webkit-box-shadow: none;
+-moz-box-shadow:none; box-shadow:none;}
+#navigation ul.menu li ul.posMobile li ul { left:  auto!important; right: auto !important;  }
+
+}
+@media only screen and (max-width: 830px) {
+.wrap-table2 {height: 360px;} 
+
+}
+@media only screen and (max-width: 960px) { 
+.left-menu {width: 70% !important;}
+.right-menu {width: 30% !important;}
+}
+@media only screen and (max-width: 750px) { 
+.left-menu {width: 50% !important;}
+.right-menu {width: 50% !important;}
+}
+@media only screen and (max-width: 800px) {
+.content-section .left {float:none; width:70%;}
+.content-section .right {float:none; width:98%; padding:30px 0px 0 0; margin:0 auto;  }
+.font-darkblue-style40 { font-size:40px;}
+
+#banner-section { padding-top:100px; }
+.wrap-table2 {height: 400px;} 
+ 
+.vidthumb li{width:48%; margin-right:4%; margin-bottom:15px; height:280px; background:url(../images/unilabactivehealth/inside/videos/vidthumb-bg.jpg) no-repeat left bottom}
+.vidthumb li.vidthumb-mright{margin-right:4%}
+.vidthumb li.vidthumb-mright2{margin-right:0}
+ul.slides li img.slides-dsktop{display:none}
+ul.slides li img.slides-mobile{display:block}
+#collapsible-panels3 .faqs table{width:100%; margin:0}
+}
+
+@media only screen and (max-width: 755px) {
+#top-section .logo-section {   z-index:8; }
+#top-section .logo-section img { width:60%; height: auto;}
+#top-section .logo-section  {width:80%;}
+#mobileNav {position:absolute;  right:0; /*padding:80px 115px 0px 0px;*/ padding:15px 15px 0px 0px; display:block; z-index:9;}
+#btnMobileNavClose {display:none;   }
+#navigation span { display:block; font-size:14px; color:#fff; display:block;}
+#navigation img { display:none;}
+#top-section .left-corner { position:relative; z-index:6; }
+#top-section .right-corner {  position:relative; z-index:6;}
+#navigation ul {padding:50px;  width:100%; margin:0 auto; padding-top:20px; }
+#navigation ul li { float:none; background:#f68622; margin-bottom:3px; padding:5px; width:100% !important;  }
+/** **/
+#navigation ul ul li { float:none;}
+
+#navigation ul.menu li ul.sub-menu { position: relative; top: auto; display: block;    background:none; padding:5px; border-bottom:none;  -webkit-box-shadow:none;
+-moz-box-shadow:none; box-shadow:none;}
+#navigation ul.menu li:hover ul.sub-menu { display: block;  float: none;  position:  relative;  z-index: 200; }
+ 
+/** **/
+#navigation ul.menu li ul.sub-menu li ul {  position: relative; display: block; left:  auto; padding:0px; margin-left:20px; }
+
+#navigation ul.menu li ul.sub-menu li:hover ul {  display: block;  float: none;  position:  relative;  top: 0; padding:0px;   border-bottom:none; -webkit-box-shadow: none;
+-moz-box-shadow:none; box-shadow:none;}
+ 
+#navigation ul.menu li ul.posMobile li ul { left:  auto!important; right: auto !important;  }
+#sitemap-section .wrap-sitemap {max-width:590px; margin:0 auto; }
+#sitemap-section .box {width: auto; float:left; margin:0 10px 0 10px;}
+
+.wrap-table { max-width:700px; overflow:scroll;}
+.col-two-left-05 {width:30%;}
+.col-two-right-05 {width:65%;}
+.cart-menu {z-index: 1 !important;}
+
+}
+
+
+
+@media only screen and (max-width: 710px) {
+.header .responsiveView { display:block; }
+.header .desktopView { display:none;}
+.content-section .left {float:none; width:90%;}
+#footer-section .logo-section {padding:55px  0px 0px 20px;}
+#footer-section .social-media {padding:25px 20px 0px 0px;}
+#recommended-section .box-recommended {width:280px; padding:80px 10px 30px 10px;}
+#recommended-section .icon-ev {float:none;  width:280px; margin:0 auto; margin-top:80px;}
+#recommended-section .icon-tr {float:none;  width:280px; margin:0 auto; margin-top:80px;}
+#recommended-section .icon-ge {float:none;  width:280px; margin:0 auto; margin-top:80px;}
+#recommended-section .icon-nu {float:none;  width:280px; margin:0 auto; margin-top:80px;}
+#recommended-section .icon img {position:relative; top:20px;  width:133px; left:55%; top:-140px;}
+#recommended-section .wvid {width:280px; padding:80px 10px 30px 10px;}
+#recommended-section .wvid1 {width:280px; padding:80px 10px 210px 10px; }
+ .wrap-table2 {height: 440px;} 
+#recommended-section { padding-top:30px; padding-bottom:30px}
+#recommended-section .padb70{padding-bottom:70px}
+
+.primary h4 { margin-bottom:90px;}
+
+.news-box .box-left {float:none; width:100%; text-align:center;}
+.news-box  .box-right { float:none; max-width:320px; margin:0 auto; margin-top:20px;  width: auto; }
+.news-box {overflow: visible;}
+.vidthumb li{height:250px;}
+.bgOrange {padding:30px 30px 10px 30px;}
+.bgOrange-col1, .bgOrange-col1b{width:100%; margin:0; float:none}
+.bgOrange-col2{width:100%; margin:0; float:none;
+	white-space: pre;           /* CSS 2.0 */
+	white-space: pre-wrap;      /* CSS 2.1 */
+	white-space: pre-line;      /* CSS 3.0 */
+	white-space: -pre-wrap;     /* Opera 4-6 */
+	white-space: -o-pre-wrap;   /* Opera 7 */
+	white-space: -moz-pre-wrap; /* Mozilla */
+	word-wrap: break-word;      /* IE 5+ */
+}
+.bgOrange-col1b img{float:left; width:35%; margin:2% 2% 0 0}
+
+}
+
+@media only screen and (max-width: 650px) {
+	.wrap-table2 {height: 480px;} 
+	.wrap-table4 {max-width:600px; overflow-x:scroll; overflow-y:visible;}
+	.primary-nutri{width:90%; padding-left:5%}
+	.product-wrap{width:100%}
+	.primary-nutri br{display:none}
+	.primary-nutri h1{font-size:38px; line-height:38px}
+	.primary-nutri h2{font-size:30px;}
+	.primary-nutri p{font-size:16px;}
+	.product2{margin-top:20px}
+	.product-wrap p{width:100%; padding:0}
+	.col1{width:30%; margin-top:3%; margin-bottom:3%}
+	.col2{width:70%; margin-top:3%; margin-bottom:3%}
+	#top-section .seventyyears{  width:30%;	}
+} 
+
+
+@media only screen and (max-width: 630px) {
+#top-section .logo-section img { width:67%;}
+#top-section .logo-section  {/* width:100%; width: 60%; margin: 10px 0 0 -15px;*/}
+.vidthumb li{height:230px;}
+}
+
+
+@media only screen and (max-width: 570px) {
+ #banner-section { padding-top:120px; }
+
+.counter { margin-top:4px;}
+.font-darkblue-style34 { font-size:30px;}
+#footer-section {width:100%; text-align:center;}
+#footer-section .left-corner {float:left; width:97px;}
+#footer-section .logo-section {position:absolute;  padding:50px 0px 0px 0px; width:100%;}
+#footer-section .social-media {display:none;}
+.content-section .right h1 { margin-bottom:10px;}
+.wrap-table2 {height: 490px;} 
+
+.padding-lef-top-right_01  {padding:55px 10px 0 10px;  }
+#sitemap-section .box { float:none; margin:0 auto; width:100%; text-align:center;}
+#sitemap-section .box strong { margin-bottom:0; margin-top:20px;}
+.header h1  { font-size:22px; line-height:1em}
+
+#ads-banner { display:none;}
+.font-darkblue-style40 { font-size:30px; }
+
+.styleTable {font-size:15px; }
+.styleTable span {font-size:15px; }
+
+.vidthumb li{background:url(../images/unilabactivehealth/inside/videos/vidthumb-bg2.jpg) no-repeat left bottom}
+#collapsible-panels3 h2 a {padding-left:20px;}
+}
+
+ @media only screen and (max-width: 520px) {
+ #top-section .logo-section img { width:80%; height: auto;}
+
+ img#exceed-your-self {
+    display: none;
+}
+ 
+ .styleTable {font-size:12px; }
+.styleTable span {font-size:12px; }
+ .wrap-table2 {height: 360px;} 
+ .wrap-table3 table{width:100%}
+.header01 strong{font-size:30px; line-height:32px} 
+  
+.featuredvid-txt h1{font-size:26px!important;  border:none; color:#FFF}
+.featuredvid-txt h2{font-size:20px; margin-top:7%}
+.featuredvid-txt h3{font-size:20px;}
+.featuredvid-txt p{font-size:18px}
+
+.vidthumb li{width:48%; margin-right:4%; margin-bottom:15px; /*height:250px;*/}
+.vidthumb li.vidthumb-mright{margin-right:4%}
+.vidthumb li.vidthumb-mright2{margin-right:0}
+ 
+.col-two-left-03 {width:120px; float:none; margin:15px auto;}
+.col-two-right-03 {width:100%; float:none; margin-top:0}
+ 
+.img-desktop{display:none}
+.img-mobile{display:block}
+.image-left, .image-left02, .image-left03{width:100%; float:none; margin-right:0;}
+.image-right, .image-right02{width:100%; float:none; margin-left:0;}
+.image-right02{margin-top:0}
+#collapsible-panels3 span.tab{width:80%;} 
+
+   }
+@media only screen and (max-width: 430px) {
+  .styleTable {font-size:11px; }
+.styleTable span {font-size:11px; }
+ .wrap-table2 {height: 350px;} 
+
+.vidthumb li{width:100%; height:auto; background:url(../images/unilabactivehealth/inside/videos/vidthumb-bg.jpg) no-repeat left bottom}
+.vidthumb li.vidthumb-mright{margin-right:0}
+.vidthumb li span{margin-bottom:25px;}
+.col1{float:none; width:40%; margin:5% 30%}
+.col2{float:none; width:90%; margin:0 5%}
+
+
+
+/*.image-left{margin:0 auto; margin-top:15px; margin-right:20px;  border:1px solid #0a182e; width:250px; float:left}
+.image-left .image-caption, .image-right .image-caption { width:100%; background:#0a182e; padding:15px; color:#fff; font-size:14px; line-height:18px; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+.image-left img, .image-right img{width:100%}
+.image-right{margin:0 auto; margin-top:15px; margin-left:20px;  border:1px solid #0a182e; width:250px; float:right}*/
+  }
+@media only screen and (max-width: 380px) {
+.header h1  {   padding-left:140px;  font-size:20px;   }
+
+.header img {  left:0px; }
+#unilab-logo { line-height:15px;}
+#unilab-logo span { float:none; width:100%; display:block;}
+#unilab-logo img { float:none;}
+#top-section .logo-section img { width:100%; margin-top:10px;}
+.font-darkblue-style40 { font-size:26px; line-height:26px;}
+
+.styleTable {font-size:9px; }
+.styleTable span {font-size:9px; }
+.wrap-table2 {height: 300px;} 
+
+.featuredvid-txt h1{font-size:22px!important;  border:none; color:#FFF}
+.featuredvid-txt h2{font-size:18px; margin-bottom:30px; margin-top:15%}
+.featuredvid-txt h3{font-size:18px;}
+.featuredvid-txt p{font-size:18px}
+.col-two-left-03 {width:100px;}
+#collapsible-panels2 h2 {font-size:18px;line-height:20px}
+#collapsible-panels2 h2 a{}
+#collapsible-panels2 h2 strong{width:60%; padding-left:20px;}
+
+.primary-nutri h2{background:url(../images/unilabactivehealth/inside/nutrition/h2-mobilebg2.jpg) top center no-repeat;}
+#collapsible-panels3 .faqs table{width:100%; min-width:500px; margin:0}
+.col1{float:none; width:50%; margin:5% 25%}
+.col2{float:none; width:90%; margin:0 5%}
+.bgOrange-col1b img{float:none; width:50%; margin:2% 25%}
+.col-two-left-05{float:none; width:50%; margin:5% 25%}
+.col-two-right-05{float:none; width:90%; margin:0 5%}
+}
+
+
+/*************Store Css***/
+.banner a img {
+  width: 85%;
+  margin-bottom: 10px;
+}
+.col2-left-layout .col-left {
+	margin-top: 79px !important;
+}
+.col-main {
+	margin-top: 20px !important;
+		/*edited by paul (issue with checkout page)*/
+	/*width: 73% !important; */ 
+}
+.banner {
+  width: 100%;
+  text-align: center;
+/*  border-top: 2px solid #F26F1D;
+  border-bottom: 2px solid #F26F1D;*/
+  margin-bottom: 15px;
+}
+.cart-menu {
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  z-index: 7;
+  text-transform: uppercase;
+  padding: 5px 0;
+}
+.right-menu {
+  display: inline-block;
+  width: 50%;
+  float: right;
+}
+.left-menu {
+  display: inline-block;
+  width: 50%;
+  float: left;
+}
+ul.cart2 {
+  display: inline-block;
+  float: right;
+}
+ul.cart2 li {
+  display: inline;
+  float: left;
+  font-size: 15px;
+  padding: 0 14px;
+  border-right: 1px solid #fff;
+}
+ul.cart2 li a{
+color:#fff;
+}
+ul.cart2 li a:hover {
+ color:#FA9900;
+}
+ul.cart2 li:last-child {
+	border-right: none; 	
+}
+ul.user-menu {
+  display: inline-block;
+   float: right; 
+  /*margin-left: 100px;*/
+}
+ul.user-menu li {
+  display: inline;
+  float: left;
+  font-size: 15px;
+  padding: 0 20px;
+  border-right: 1px solid #fff;
+  text-align: right;	
+}
+ul.user-menu li a{
+color:#fff;
+}
+ul.user-menu li a:hover {
+ color:#FA9900;
+}
+ul.user-menu li:last-child {
+	border-right: none; 	
+}
+/*menus*/
+li.home:hover {
+  background-image: url('../images/unilabactivehealth/btn-home-hover.png');
+}
+li.events:hover {
+  background-image: url('../images/unilabactivehealth/btn-events-hover.png');
+}
+li.training:hover {
+  background-image: url('../images/unilabactivehealth/btn-training-hover.png');
+}
+li.nutrition:hover {
+  background-image: url('../images/unilabactivehealth/btn-nutrition-hover.png');
+}
+li.shop:hover {
+  background-image: url('../images/unilabactivehealth/btn-shop-hover.png');
+}
+li.promos:hover {
+  background-image: url('../images/unilabactivehealth/btn-promos-hover.png');
+}
+/***Footer */
+.footer_featured_block.social_media {
+  display: none;
+}
+.footer_highlight {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+.wrapper_footer_blocks {
+	text-align:center;
+}
+.footer_featured_block {
+	/*width: 23%;*/
+}
+.footer_featured_block > h3 {
+  text-align: center;
+}
+.footer_featured_block ul li {
+	text-align:center !important;
+}
+span.hello {
+    color: #fff;
+}
+
+
+.headerlogo #exceed-your-self {
+	margin: 9px 0 0 -185px;
+}
+
+
+
+
+.view-chekout{
+	text-align: right;
+}
+
+.view-chekout ul  li{
+	float: right;
+    margin-left: 8px;
+}
+
+.view-chekout ul  li a {
+	color:#070e18;
+	text-transform: uppercase;
+}
+
+/* content-heading */
+.slider-wrapper{
+	    margin: 59px 0;
+}
+
+/*@media (max-width: 767px) {
+	.left-corner, .right-corner{
+		display: none;
+	}
+	.main{
+		margin-top: 0!important
+	}
+	#top-section{
+		height: 75px!important;
+		position: fixed!important;
+		top: 0!important;
+		margin-top: 0!important
+	}
+	#top-section .logo-section{
+		margin: 0;
+	    padding: 0;
+	    width: 165px;
+	    margin-top: -10px;
+	    margin-left: -20px;
+	}
+	#mobileNav{
+		padding: 20px 15px 0px 0px;
+	}
+	#navigation{
+	    width: 70%;
+	    position: absolute;
+	    top: 0;
+	    z-index: 9;
+	}
+	#navigation ul{
+		padding: 20px 0 0 0;
+	}
+	#navigation ul.menu li{
+		margin-left: 0;
+	}
+	#navigation ul.menu li ul.sub-menu{
+		width: 100%!important;
+	}
+	#navigation ul li{
+		width: 95%!important
+	}
+}*/
